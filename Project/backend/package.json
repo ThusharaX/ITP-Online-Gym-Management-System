@@ -1,0 +1,38 @@
+{
+	"name": "itp-backend",
+	"version": "1.0.0",
+	"description": "Online Gym Management System Server",
+	"main": "app.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"start": "cross-env NODE_ENV=Development nodemon --exec babel-node src/app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "dc"
+	},
+	"keywords": [
+		"nodejs",
+		"express"
+	],
+	"author": "Thushara Thiwanka",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^0.26.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"mongoose": "^6.2.7",
+		"pino": "^7.9.1",
+		"pino-pretty": "^7.5.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.8",
+		"@babel/node": "^7.16.8",
+		"@babel/preset-env": "^7.16.11",
+		"cross-env": "^7.0.3",
+		"nodemon": "^2.0.15"
+	}
+}
