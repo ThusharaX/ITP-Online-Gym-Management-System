@@ -1,8 +1,25 @@
 import {
-	getTest,
-} from "./Test.service";
+    insertSample,
+    getAllSamples,
+    getOneSample,
+    updateSample,
+    deleteSample,
+    searchSamples,
+} from "./Sample.service";
+
+import {
+    authAdmin,
+} from "./Admin.service";
 
 export default {
-    // Test services
-    getTest,
+    // Sample services
+    insertSample,
+    getAllSamples,
+    getOneSample,
+    updateSample,
+    deleteSample,
+    searchSamples,
+
+    // Admin services
+    authAdmin,
 };
