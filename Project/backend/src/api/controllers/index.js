@@ -1,8 +1,27 @@
 import {
-	getTest,
-} from "./Test.controller";
+    insertSample,
+    getAllSamples,
+    getOneSample,
+    updateSample,
+    deleteSample,
+    searchSamples,
+} from "./Sample.controller";
+
+import {
+    authAdmin,
+    createAdmin,
+} from "./Admin.controller";
 
 export default {
-    //Test Controllers
-    getTest,
+    //Sample Controllers
+    insertSample,
+    getAllSamples,
+    getOneSample,
+    updateSample,
+    deleteSample,
+    searchSamples,
+
+    //Admin Controllers
+    authAdmin,
+    createAdmin,
 };
