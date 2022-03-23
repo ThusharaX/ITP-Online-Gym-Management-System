@@ -24,6 +24,14 @@ import {
     insertWorkout,
 } from "./Workout.service";
 
+import{
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+}from "./Notice.service";
+
 export default {
     // Sample services
     insertSample,
@@ -45,4 +53,11 @@ export default {
 
     // Workout services
     insertWorkout,
+
+    //Notice Services
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
 };

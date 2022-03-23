@@ -25,6 +25,14 @@ import {
     insertWorkout,
 } from "./Workout.controller";
 
+import{
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+}from "./Notice.Controller";
+
 export default {
     //Sample Controllers
     insertSample,
@@ -47,4 +55,11 @@ export default {
 
     //Workout Controllers
     insertWorkout,
+
+    //Notices Controllers
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
 };
