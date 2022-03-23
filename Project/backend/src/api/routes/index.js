@@ -30,4 +30,10 @@ export default function (app) {
 
      // Workout endpoints
      app.post("/workout/", controller.insertWorkout);  // insert one workout
+     app.get("/workout/", controller.getAllWorkouts); // get all workouts
+     app.get("/workout/:id", controller.getOneWorkout); // get one workout
+     app.put("/workout/:id", controller.updateWorkout); // update one workout
+     app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
+     app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+
 }

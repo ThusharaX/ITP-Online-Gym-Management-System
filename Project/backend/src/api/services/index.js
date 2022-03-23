@@ -29,6 +29,11 @@ import {
 
 import {
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 } from "./Workout.service";
 
 export default {
@@ -59,4 +64,9 @@ export default {
 
     // Workout services
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 };

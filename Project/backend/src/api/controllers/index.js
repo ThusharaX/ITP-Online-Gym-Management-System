@@ -23,6 +23,11 @@ import {
 
 import {
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
 } from "./Workout.controller";
 
 import{
@@ -51,9 +56,14 @@ export default {
     //Admin Controllers
     authAdmin,
     createAdmin,
-
+    
     //Workout Controllers
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
 
     //Salary Controller
     insertSalary,
