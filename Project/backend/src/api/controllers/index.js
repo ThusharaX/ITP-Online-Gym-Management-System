@@ -16,6 +16,13 @@ import {
     insertWorkout,
 } from "./Workout.controller";
 
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions
+} from "./Question.controller";
+
 export default {
     //Sample Controllers
     insertSample,
@@ -31,4 +38,10 @@ export default {
 
     //Workout Controllers
     insertWorkout,
+
+    //Question Controllers
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
 };

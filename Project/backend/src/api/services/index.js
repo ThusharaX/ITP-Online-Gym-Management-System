@@ -15,6 +15,13 @@ import {
     insertWorkout,
 } from "./Workout.service";
 
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+} from "./Question.service";
+
 export default {
     // Sample services
     insertSample,
@@ -23,6 +30,12 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //question services
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
 
     // Admin services
     authAdmin,
