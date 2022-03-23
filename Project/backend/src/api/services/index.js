@@ -13,8 +13,15 @@ import {
     getOneTrainerBD,
     updateTrainerBD,
     deleteTrainerBD,
-     
+
 } from "./TrainerBD.service";
+
+import {
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+} from "./Salary.service";
 
 import {
     authAdmin,
@@ -39,6 +46,13 @@ export default {
     getOneTrainerBD,
     updateTrainerBD,
     deleteTrainerBD,
+    
+    //salary services
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+
 
     // Admin services
     authAdmin,

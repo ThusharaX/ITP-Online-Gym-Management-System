@@ -25,6 +25,13 @@ import {
     insertWorkout,
 } from "./Workout.controller";
 
+import{
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+}from "./Salary.controller";
+
 export default {
     //Sample Controllers
     insertSample,
@@ -47,4 +54,10 @@ export default {
 
     //Workout Controllers
     insertWorkout,
+
+    //Salary Controller
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
 };
