@@ -8,6 +8,15 @@ import {
 } from "./Sample.service";
 
 import {
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+     
+} from "./TrainerBD.service";
+
+import {
     authAdmin,
 } from "./Admin.service";
 
@@ -23,6 +32,13 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //Blog services
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
 
     // Admin services
     authAdmin,

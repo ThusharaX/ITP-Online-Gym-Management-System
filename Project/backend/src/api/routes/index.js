@@ -10,6 +10,14 @@ export default function (app) {
     app.delete("/sample/:id", controller.deleteSample); // delete one sample
     app.get("/sample/search/:search", controller.searchSamples); // search samples
 
+    //TrainerDB endpoints
+    app.post("/blog/", controller.insertTrainerBD);  // insert one sample
+    app.get("/blog/", controller.getAllTrainerBD); // get all samples
+    app.get("/blog/:id", controller.getOneTrainerBD); // get one sample
+    app.put("/blog/:id", controller.updateTrainerBD); // update one sample
+    app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
+    //app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
+
     // Admin endpoints
     app.post("/admin/login/", controller.authAdmin);
     app.post("/admin/register/",middleware.adminAuthenticate, controller.createAdmin);

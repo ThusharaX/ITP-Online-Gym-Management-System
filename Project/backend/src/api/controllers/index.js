@@ -8,6 +8,15 @@ import {
 } from "./Sample.controller";
 
 import {
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+    
+} from "./TrainerBD.controller";
+
+import {
     authAdmin,
     createAdmin,
 } from "./Admin.controller";
@@ -24,6 +33,13 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //Blog Controllers
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
 
     //Admin Controllers
     authAdmin,
