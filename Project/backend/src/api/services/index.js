@@ -11,6 +11,10 @@ import {
     authAdmin,
 } from "./Admin.service";
 
+import {
+    insertWorkout,
+} from "./Workout.service";
+
 export default {
     // Sample services
     insertSample,
@@ -22,4 +26,7 @@ export default {
 
     // Admin services
     authAdmin,
+
+    // Workout services
+    insertWorkout,
 };

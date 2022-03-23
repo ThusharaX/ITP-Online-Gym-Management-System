@@ -12,6 +12,10 @@ import {
     createAdmin,
 } from "./Admin.controller";
 
+import {
+    insertWorkout,
+} from "./Workout.controller";
+
 export default {
     //Sample Controllers
     insertSample,
@@ -24,4 +28,7 @@ export default {
     //Admin Controllers
     authAdmin,
     createAdmin,
+
+    //Workout Controllers
+    insertWorkout,
 };

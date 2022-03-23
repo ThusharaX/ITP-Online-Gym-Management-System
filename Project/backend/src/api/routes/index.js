@@ -13,4 +13,7 @@ export default function (app) {
     // Admin endpoints
     app.post("/admin/login/", controller.authAdmin);
     app.post("/admin/register/",middleware.adminAuthenticate, controller.createAdmin);
+
+     // Workout endpoints
+     app.post("/workout/", controller.insertWorkout);  // insert one workout
 }
