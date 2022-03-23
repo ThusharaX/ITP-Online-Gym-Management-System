@@ -18,6 +18,12 @@ export default function (app) {
     app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
     //app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
+    //Salary endpoints
+    app.post("/salary/", controller.insertSalary);  // insert a salary
+    app.put("/salary/:id",controller.updateSalary); //update a salary
+    app.get("/salary/", controller.getAllSalaries); // get all salaries
+    app.get("/salary/:id", controller.getOneSalary); // get a salary
+
     // Admin endpoints
     app.post("/admin/login/", controller.authAdmin);
     app.post("/admin/register/",middleware.adminAuthenticate, controller.createAdmin);
