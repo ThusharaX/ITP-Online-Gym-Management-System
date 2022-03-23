@@ -11,6 +11,14 @@ import {
     authAdmin,
 } from "./Admin.service";
 
+import {
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
+
+}from "./WorkoutScR.service";
+
 export default {
     // Sample services
     insertSample,
@@ -20,6 +28,11 @@ export default {
     deleteSample,
     searchSamples,
 
+    // Workout Services
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
     // Admin services
     authAdmin,
 };
