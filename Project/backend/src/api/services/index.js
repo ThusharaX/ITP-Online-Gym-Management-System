@@ -8,6 +8,22 @@ import {
 } from "./Sample.service";
 
 import {
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+
+} from "./TrainerBD.service";
+
+import {
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+} from "./Salary.service";
+
+import {
     authAdmin,
 } from "./Admin.service";
 
@@ -18,6 +34,30 @@ import {
     getAllWorkoutScR,
 
 }from "./WorkoutScR.service";
+
+import {
+    insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
+} from "./Workout.service";
+
+import{
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+}from "./Notice.service";
+
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+} from "./Question.service";
 
 export default {
     // Sample services
@@ -33,6 +73,42 @@ export default {
     updateWorkoutScR,
     deleteWorkoutScR,
     getAllWorkoutScR,
+
+    //question services
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+
+    //Blog services
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+    
+    //salary services
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+
     // Admin services
     authAdmin,
+
+    // Workout services
+    insertWorkout,
+
+    //Notice Services
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 };
