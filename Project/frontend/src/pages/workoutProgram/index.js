@@ -14,12 +14,23 @@ const WorkoutProgram = () => {
 			<h1>Workout Program Page</h1>
 
 			<WorkoutProgramProvider>
-
-				{/* WorkoutProgram list */}
-				<WorkoutProgramList />
 				
-				{/* Add new WorkoutProgram */}
-				<AddWorkoutProgram />
+				<style jsx>{`
+					.components {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-around;
+						margin: 0 auto;
+					}
+				`}</style>
+
+				<div className="components">
+					{/* WorkoutProgram list */}
+					<WorkoutProgramList />
+
+					{/* Add new WorkoutProgram */}
+					<AddWorkoutProgram />
+				</div>
 
 			</WorkoutProgramProvider>
 		</div>
