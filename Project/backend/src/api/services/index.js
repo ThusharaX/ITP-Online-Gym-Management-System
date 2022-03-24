@@ -98,6 +98,11 @@ export default {
 
     // Workout services
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 
     //Notice Services
     insertNotice,
@@ -105,10 +110,4 @@ export default {
     getOneNotice,
     updateNotice,
     deleteNotice,
-
-    getAllWorkouts,
-    getOneWorkout,
-    updateworkout,
-    deleteWorkout,
-    searchWorkouts,
 };

@@ -34,17 +34,11 @@ export default function (app) {
     app.post("/admin/login/", controller.authAdmin);
     app.post("/admin/register/",middleware.adminAuthenticate, controller.createAdmin);
 
-      // Sample endpoints
-      app.post("/WorkoutScR/", controller.insertWorkoutScR);  // insert one sample
-      app.get("/WorkoutScR/", controller.getAllWorkoutScR); // get all samples
-      
-      app.put("/WorkoutScR/:id", controller.updateWorkoutScR); // update one sample
-      app.delete("/WorkoutScR/:id", controller.deleteWorkoutScR); // delete one sample
-      
-  
-}
-     // Workout endpoints
-     app.post("/workout/", controller.insertWorkout);  // insert one workout
+    // WorkoutScR endpoints
+    app.post("/WorkoutScR/", controller.insertWorkoutScR);  // insert one WorkoutScR
+    app.get("/WorkoutScR/", controller.getAllWorkoutScR); // get all WorkoutScR
+    app.put("/WorkoutScR/:id", controller.updateWorkoutScR); // update one WorkoutScR
+    app.delete("/WorkoutScR/:id", controller.deleteWorkoutScR); // delete one WorkoutScR
 
     //Notice endpoints 
     app.post("/notice/", controller.insertNotice);  // insert one notice
@@ -52,10 +46,12 @@ export default function (app) {
     app.get("/notice/:id", controller.getOneNotice); // get one notice
     app.put("/notice/:id", controller.updateNotice); // update one notice
     app.delete("/notice/:id", controller.deleteNotice); // delete one notice
-
-     app.get("/workout/", controller.getAllWorkouts); // get all workouts
-     app.get("/workout/:id", controller.getOneWorkout); // get one workout
-     app.put("/workout/:id", controller.updateWorkout); // update one workout
-     app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
-     app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+    
+    // Workout endpoints
+    app.post("/workout/", controller.insertWorkout);  // insert one workout
+    app.get("/workout/", controller.getAllWorkouts); // get all workouts
+    app.get("/workout/:id", controller.getOneWorkout); // get one workout
+    app.put("/workout/:id", controller.updateWorkout); // update one workout
+    app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
+    app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
 }

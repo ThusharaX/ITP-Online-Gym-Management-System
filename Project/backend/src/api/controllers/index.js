@@ -68,7 +68,7 @@ export default {
     deleteSample,
     searchSamples,
 
-    //Workout controllers
+    //WorkoutScR controllers
     insertWorkoutScR,
     updateWorkoutScR,
     deleteWorkoutScR,
@@ -87,6 +87,11 @@ export default {
     
     //Workout Controllers
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
 
     //Notices Controllers
     insertNotice,
@@ -100,12 +105,6 @@ export default {
     updateQuestion,
     deleteQuestion,
     getAllQuestions,
-
-    getAllWorkouts,
-    getOneWorkout,
-    updateWorkout,
-    deleteWorkout,
-    searchWorkouts,
 
     //Salary Controller
     insertSalary,
