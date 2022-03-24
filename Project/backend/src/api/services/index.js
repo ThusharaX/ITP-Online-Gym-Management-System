@@ -13,8 +13,15 @@ import {
     getOneTrainerBD,
     updateTrainerBD,
     deleteTrainerBD,
-     
+
 } from "./TrainerBD.service";
+
+import {
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+} from "./Salary.service";
 
 import {
     authAdmin,
@@ -22,6 +29,11 @@ import {
 
 import {
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 } from "./Workout.service";
 
 import{
@@ -32,6 +44,13 @@ import{
     deleteNotice,
 }from "./Notice.service";
 
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+} from "./Question.service";
+
 export default {
     // Sample services
     insertSample,
@@ -41,12 +60,24 @@ export default {
     deleteSample,
     searchSamples,
 
+    //question services
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+
     //Blog services
     insertTrainerBD,
     getAllTrainerBD,
     getOneTrainerBD,
     updateTrainerBD,
     deleteTrainerBD,
+    
+    //salary services
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
 
     // Admin services
     authAdmin,
@@ -60,4 +91,10 @@ export default {
     getOneNotice,
     updateNotice,
     deleteNotice,
+
+    getAllWorkouts,
+    getOneWorkout,
+    updateworkout,
+    deleteWorkout,
+    searchWorkouts,
 };

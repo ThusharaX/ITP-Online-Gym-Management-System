@@ -23,6 +23,11 @@ import {
 
 import {
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
 } from "./Workout.controller";
 
 import{
@@ -32,6 +37,20 @@ import{
     updateNotice,
     deleteNotice,
 }from "./Notice.Controller";
+
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions
+} from "./Question.controller";
+
+import{
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+}from "./Salary.controller";
 
 export default {
     //Sample Controllers
@@ -52,7 +71,7 @@ export default {
     //Admin Controllers
     authAdmin,
     createAdmin,
-
+    
     //Workout Controllers
     insertWorkout,
 
@@ -62,4 +81,22 @@ export default {
     getOneNotice,
     updateNotice,
     deleteNotice,
+
+    //Question Controllers
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
+
+    //Salary Controller
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
 };
