@@ -8,12 +8,26 @@ import {
 } from "./Sample.controller";
 
 import {
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+    
+} from "./TrainerBD.controller";
+
+import {
     authAdmin,
     createAdmin,
 } from "./Admin.controller";
 
 import {
     insertWorkout,
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
 } from "./Workout.controller";
 
 import {
@@ -22,6 +36,13 @@ import {
     deleteQuestion,
     getAllQuestions
 } from "./Question.controller";
+
+import{
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
+}from "./Salary.controller";
 
 export default {
     //Sample Controllers
@@ -32,10 +53,17 @@ export default {
     deleteSample,
     searchSamples,
 
+    //Blog Controllers
+    insertTrainerBD,
+    getAllTrainerBD,
+    getOneTrainerBD,
+    updateTrainerBD,
+    deleteTrainerBD,
+
     //Admin Controllers
     authAdmin,
     createAdmin,
-
+    
     //Workout Controllers
     insertWorkout,
 
@@ -44,4 +72,16 @@ export default {
     updateQuestion,
     deleteQuestion,
     getAllQuestions,
+
+    getAllWorkouts,
+    getOneWorkout,
+    updateWorkout,
+    deleteWorkout,
+    searchWorkouts,
+
+    //Salary Controller
+    insertSalary,
+    updateSalary,
+    getAllSalaries,
+    getOneSalary,
 };
