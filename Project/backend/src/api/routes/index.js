@@ -9,6 +9,14 @@ export default function (app) {
     app.put("/sample/:id", controller.updateSample); // update one sample
     app.delete("/sample/:id", controller.deleteSample); // delete one sample
     app.get("/sample/search/:search", controller.searchSamples); // search samples
+    
+    // Workout Program endpoints
+    app.post("/workoutProgram/", controller.insertWorkoutProgram);  // insert one Workout Program
+    app.get("/workoutProgram/", controller.getAllWorkoutPrograms); // get all Workout Programs
+    app.get("/workoutProgram/:id", controller.getOneWorkoutProgram); // get one Workout Program
+    app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
+    app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
+    app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
 
     // Question endpoints
     app.post("/question/", controller.insertQuestion);//insert one question

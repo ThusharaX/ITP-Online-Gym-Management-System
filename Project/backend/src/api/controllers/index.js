@@ -8,6 +8,15 @@ import {
 } from "./Sample.controller";
 
 import {
+    insertWorkoutProgram,
+    getAllWorkoutPrograms,
+    getOneWorkoutProgram,
+    updateWorkoutProgram,
+    deleteWorkoutProgram,
+    searchWorkoutPrograms,
+} from "./WorkoutProgram.controller";
+
+import {
     insertTrainerBD,
     getAllTrainerBD,
     getOneTrainerBD,
@@ -67,6 +76,14 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //Workout Program Controllers
+    insertWorkoutProgram,
+    getAllWorkoutPrograms,
+    getOneWorkoutProgram,
+    updateWorkoutProgram,
+    deleteWorkoutProgram,
+    searchWorkoutPrograms,
 
     //WorkoutScR controllers
     insertWorkoutScR,
