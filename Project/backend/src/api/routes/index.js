@@ -36,10 +36,17 @@ export default function (app) {
 
      // Workout endpoints
      app.post("/workout/", controller.insertWorkout);  // insert one workout
+
+    //Notice endpoints 
+    app.post("/notice/", controller.insertNotice);  // insert one notice
+    app.get("/notice/", controller.getAllNotices); // get all notices
+    app.get("/notice/:id", controller.getOneNotice); // get one notice
+    app.put("/notice/:id", controller.updateNotice); // update one notice
+    app.delete("/notice/:id", controller.deleteNotice); // delete one notice
+
      app.get("/workout/", controller.getAllWorkouts); // get all workouts
      app.get("/workout/:id", controller.getOneWorkout); // get one workout
      app.put("/workout/:id", controller.updateWorkout); // update one workout
      app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
      app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
-
 }

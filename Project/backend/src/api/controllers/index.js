@@ -30,6 +30,14 @@ import {
     searchWorkouts,
 } from "./Workout.controller";
 
+import{
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+}from "./Notice.Controller";
+
 import {
     insertQuestion,
     updateQuestion,
@@ -66,6 +74,13 @@ export default {
     
     //Workout Controllers
     insertWorkout,
+
+    //Notices Controllers
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
 
     //Question Controllers
     insertQuestion,

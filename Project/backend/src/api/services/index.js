@@ -36,6 +36,14 @@ import {
     searchWorkouts,
 } from "./Workout.service";
 
+import{
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+}from "./Notice.service";
+
 import {
     insertQuestion,
     updateQuestion,
@@ -76,6 +84,14 @@ export default {
 
     // Workout services
     insertWorkout,
+
+    //Notice Services
+    insertNotice,
+    getAllNotices,
+    getOneNotice,
+    updateNotice,
+    deleteNotice,
+
     getAllWorkouts,
     getOneWorkout,
     updateworkout,
