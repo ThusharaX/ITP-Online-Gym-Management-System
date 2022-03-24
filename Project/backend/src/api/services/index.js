@@ -36,6 +36,13 @@ import {
     searchWorkouts,
 } from "./Workout.service";
 
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+} from "./Question.service";
+
 export default {
     // Sample services
     insertSample,
@@ -44,6 +51,12 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //question services
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
 
     //Blog services
     insertTrainerBD,
@@ -57,7 +70,6 @@ export default {
     updateSalary,
     getAllSalaries,
     getOneSalary,
-
 
     // Admin services
     authAdmin,

@@ -30,6 +30,13 @@ import {
     searchWorkouts,
 } from "./Workout.controller";
 
+import {
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions
+} from "./Question.controller";
+
 import{
     insertSalary,
     updateSalary,
@@ -59,6 +66,13 @@ export default {
     
     //Workout Controllers
     insertWorkout,
+
+    //Question Controllers
+    insertQuestion,
+    updateQuestion,
+    deleteQuestion,
+    getAllQuestions,
+
     getAllWorkouts,
     getOneWorkout,
     updateWorkout,
