@@ -8,6 +8,15 @@ import {
 } from "./Sample.service";
 
 import {
+    insertWorkoutProgram,
+    getAllWorkoutPrograms,
+    getOneWorkoutProgram,
+    updateWorkoutProgram,
+    deleteWorkoutProgram,
+    searchWorkoutPrograms,
+} from "./WorkoutProgram.service";
+
+import {
     insertTrainerBD,
     getAllTrainerBD,
     getOneTrainerBD,
@@ -67,6 +76,14 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    // Workout Program services
+    insertWorkoutProgram,
+    getAllWorkoutPrograms,
+    getOneWorkoutProgram,
+    updateWorkoutProgram,
+    deleteWorkoutProgram,
+    searchWorkoutPrograms,
 
     // Workout Services
     insertWorkoutScR,
