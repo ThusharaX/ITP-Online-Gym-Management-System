@@ -21,6 +21,13 @@ import {
     createAdmin,
 } from "./Admin.controller";
 
+import{
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
+}from "./WorkoutScR.Controller";
+
 import {
     insertWorkout,
     getAllWorkouts,
@@ -60,6 +67,12 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    //Workout controllers
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
 
     //Blog Controllers
     insertTrainerBD,

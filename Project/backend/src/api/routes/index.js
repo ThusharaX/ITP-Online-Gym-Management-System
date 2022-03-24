@@ -34,6 +34,15 @@ export default function (app) {
     app.post("/admin/login/", controller.authAdmin);
     app.post("/admin/register/",middleware.adminAuthenticate, controller.createAdmin);
 
+      // Sample endpoints
+      app.post("/WorkoutScR/", controller.insertWorkoutScR);  // insert one sample
+      app.get("/WorkoutScR/", controller.getAllWorkoutScR); // get all samples
+      
+      app.put("/WorkoutScR/:id", controller.updateWorkoutScR); // update one sample
+      app.delete("/WorkoutScR/:id", controller.deleteWorkoutScR); // delete one sample
+      
+  
+}
      // Workout endpoints
      app.post("/workout/", controller.insertWorkout);  // insert one workout
 

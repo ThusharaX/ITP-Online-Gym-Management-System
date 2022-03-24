@@ -28,6 +28,14 @@ import {
 } from "./Admin.service";
 
 import {
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
+
+}from "./WorkoutScR.service";
+
+import {
     insertWorkout,
     getAllWorkouts,
     getOneWorkout,
@@ -59,6 +67,12 @@ export default {
     updateSample,
     deleteSample,
     searchSamples,
+
+    // Workout Services
+    insertWorkoutScR,
+    updateWorkoutScR,
+    deleteWorkoutScR,
+    getAllWorkoutScR,
 
     //question services
     insertQuestion,
