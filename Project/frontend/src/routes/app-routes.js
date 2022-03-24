@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Sample, Home } from "../pages";
+import { Sample, Home, WorkoutProgram } from "../pages";
 
 // import NavBar from '../components/NavBar';
 // import Footer from '../components/Footer';
@@ -13,6 +13,7 @@ const AppRoutes = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/sample" element={<Sample />} />
+                    <Route path="/workoutProgram" element={<WorkoutProgram />} />
 
                     <Route path="*" element={<h1>404 Not Found</h1>} />
                 </Routes>
