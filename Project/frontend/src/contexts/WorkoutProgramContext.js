@@ -60,14 +60,14 @@ export function WorkoutProgramProvider({ children }) {
 	const modals = useModals();
 	const confirmDelete = (id) =>
 		modals.openConfirmModal({
-			title: 'Delete WorkoutProgram',
+			title: 'Delete Workout Program',
 			centered: true,
 			children: (
 				<Text size="sm">
 					Are you sure you want to delete this workoutProgram? This action is destructive and cannot be undone.
 				</Text>
 			),
-			labels: { confirm: 'Delete workoutProgram', cancel: "No don't delete it" },
+			labels: { confirm: 'Delete workout Program', cancel: "No don't delete it" },
 			confirmProps: { color: 'red' },
 			onCancel: () => console.log('Cancel'),
 			onConfirm: () => deleteWorkoutProgram(id),
