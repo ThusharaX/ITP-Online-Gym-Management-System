@@ -21,6 +21,8 @@ import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Sala
 
 import { authAdmin } from "./Admin.service";
 
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
+
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
 
 import {
@@ -104,4 +106,11 @@ export default {
 	updateEvents,
 	deleteEvents,
 	createEvents,
+
+	// Trainer services
+	getTrainer,
+	getTrainers,
+	updateTrainers,
+	deleteTrainers,
+	createTrainers,
 };

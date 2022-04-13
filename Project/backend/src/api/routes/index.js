@@ -69,4 +69,11 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+
+	// Trainer endpoints
+	app.get("/trainers/", controller.getTrainers); // get all Trainers
+	app.post("/trainers/", controller.createTrainers); // insert one Trainer
+	app.get("/trainers/:id", controller.getTrainer); // Search Trainers
+	app.put("/trainers/:id", controller.updateTrainers); // update one Trainer
+	app.delete("/trainers/:id", controller.deleteTrainers); // delete one Trainer
 }
