@@ -17,12 +17,10 @@ export const getAllWorkouts = async () => {
 	return await WorkoutModel.find({})
 		.then((workouts) => {
 			return workouts;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };
 
 // Get one workout
@@ -34,30 +32,28 @@ export const getOneWorkout = async (workoutId) => {
 			} else {
 				throw new Error("Workout not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Update one workout
 export const updateworkout = async (workoutId, workoutData) => {
-	return await WorkoutModel.findByIdAndUpdate(workoutId, workoutData, { new: true })
+	return await WorkoutModel.findByIdAndUpdate(workoutId, workoutData, {
+		new: true,
+	})
 		.then((workout) => {
 			if (workout) {
 				return workout;
 			} else {
 				throw new Error("Workout not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Delete one workout
 export const deleteWorkout = async (workoutId) => {
@@ -68,27 +64,21 @@ export const deleteWorkout = async (workoutId) => {
 			} else {
 				throw new Error("Workout not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Search workout workout_name
 export const searchWorkouts = async (searchTerm) => {
 	return await WorkoutModel.find({
-		$or: [
-			{ workout_name: { $regex: searchTerm, $options: "i" } },
-		]
+		$or: [{ workout_name: { $regex: searchTerm, $options: "i" } }],
 	})
 		.then((workouts) => {
 			return workouts;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };

@@ -14,32 +14,30 @@ export const insertSalary = async (salaryData) => {
 
 // Update a salary
 export const updateSalary = async (salaryId, salaryData) => {
-	return await SalaryModel.findByIdAndUpdate(salaryId, salaryData, { new: true })
+	return await SalaryModel.findByIdAndUpdate(salaryId, salaryData, {
+		new: true,
+	})
 		.then((salary) => {
 			if (salary) {
 				return salary;
 			} else {
 				throw new Error("Salary not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Get all salaries
 export const getAllSalaries = async () => {
 	return await SalaryModel.find({})
 		.then((salaries) => {
 			return salaries;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };
 
 // Get a salary
@@ -51,10 +49,8 @@ export const getOneSalary = async (salaryId) => {
 			} else {
 				throw new Error("Salary not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};

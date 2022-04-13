@@ -1,72 +1,47 @@
 import {
-    insertSample,
-    getAllSamples,
-    getOneSample,
-    updateSample,
-    deleteSample,
-    searchSamples,
+	insertSample,
+	getAllSamples,
+	getOneSample,
+	updateSample,
+	deleteSample,
+	searchSamples,
 } from "./Sample.controller";
 
 import {
-    insertWorkoutProgram,
-    getAllWorkoutPrograms,
-    getOneWorkoutProgram,
-    updateWorkoutProgram,
-    deleteWorkoutProgram,
-    searchWorkoutPrograms,
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
 } from "./WorkoutProgram.controller";
 
 import {
-    insertTrainerBD,
-    getAllTrainerBD,
-    getOneTrainerBD,
-    updateTrainerBD,
-    deleteTrainerBD,
-    
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
 } from "./TrainerBD.controller";
 
-import {
-    authAdmin,
-    createAdmin,
-} from "./Admin.controller";
+import { authAdmin, createAdmin } from "./Admin.controller";
 
-import{
-    insertWorkoutScR,
-    updateWorkoutScR,
-    deleteWorkoutScR,
-    getAllWorkoutScR,
-}from "./WorkoutScR.Controller";
+import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
 
 import {
-    insertWorkout,
-    getAllWorkouts,
-    getOneWorkout,
-    updateWorkout,
-    deleteWorkout,
-    searchWorkouts,
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateWorkout,
+	deleteWorkout,
+	searchWorkouts,
 } from "./Workout.controller";
 
-import{
-    insertNotice,
-    getAllNotices,
-    getOneNotice,
-    updateNotice,
-    deleteNotice,
-}from "./Notice.Controller";
+import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
 
-import {
-    insertQuestion,
-    updateQuestion,
-    deleteQuestion,
-    getAllQuestions
-} from "./Question.controller";
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
 
-import{
-    insertSalary,
-    updateSalary,
-    getAllSalaries,
-    getOneSalary,
-}from "./Salary.controller";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.controller";
 
 import {
 	getEvent,
@@ -77,71 +52,70 @@ import {
 } from "./Event.Controller";
 
 export default {
-    //Sample Controllers
-    insertSample,
-    getAllSamples,
-    getOneSample,
-    updateSample,
-    deleteSample,
-    searchSamples,
+	//Sample Controllers
+	insertSample,
+	getAllSamples,
+	getOneSample,
+	updateSample,
+	deleteSample,
+	searchSamples,
 
-    //Workout Program Controllers
-    insertWorkoutProgram,
-    getAllWorkoutPrograms,
-    getOneWorkoutProgram,
-    updateWorkoutProgram,
-    deleteWorkoutProgram,
-    searchWorkoutPrograms,
+	//Workout Program Controllers
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
 
-    //WorkoutScR controllers
-    insertWorkoutScR,
-    updateWorkoutScR,
-    deleteWorkoutScR,
-    getAllWorkoutScR,
+	//WorkoutScR controllers
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
 
-    //Blog Controllers
-    insertTrainerBD,
-    getAllTrainerBD,
-    getOneTrainerBD,
-    updateTrainerBD,
-    deleteTrainerBD,
+	//Blog Controllers
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
 
-    //Admin Controllers
-    authAdmin,
-    createAdmin,
-    
-    //Workout Controllers
-    insertWorkout,
-    getAllWorkouts,
-    getOneWorkout,
-    updateWorkout,
-    deleteWorkout,
-    searchWorkouts,
+	//Admin Controllers
+	authAdmin,
+	createAdmin,
 
-    //Notices Controllers
-    insertNotice,
-    getAllNotices,
-    getOneNotice,
-    updateNotice,
-    deleteNotice,
+	//Workout Controllers
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateWorkout,
+	deleteWorkout,
+	searchWorkouts,
 
-    //Question Controllers
-    insertQuestion,
-    updateQuestion,
-    deleteQuestion,
-    getAllQuestions,
+	//Notices Controllers
+	insertNotice,
+	getAllNotices,
+	getOneNotice,
+	updateNotice,
+	deleteNotice,
 
-    //Salary Controller
-    insertSalary,
-    updateSalary,
-    getAllSalaries,
-    getOneSalary,
+	//Question Controllers
+	insertQuestion,
+	updateQuestion,
+	deleteQuestion,
+	getAllQuestions,
 
-  //Event Controllers
+	//Salary Controller
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
+
+	//Event Controllers
 	getEvent,
 	getEvents,
 	createEvents,
 	updateEvents,
 	deleteEvents,
-
 };
