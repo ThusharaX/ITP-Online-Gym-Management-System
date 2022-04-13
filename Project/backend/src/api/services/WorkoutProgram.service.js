@@ -12,18 +12,15 @@ export const insertWorkoutProgram = async (workoutProgramData) => {
 		});
 };
 
-
 // Get all Workout Program
 export const getAllWorkoutPrograms = async () => {
 	return await WorkoutProgramModel.find({})
 		.then((workoutPrograms) => {
 			return workoutPrograms;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };
 
 // Get one Workout Program
@@ -35,13 +32,11 @@ export const getOneWorkoutProgram = async (workoutProgramId) => {
 			} else {
 				throw new Error("Workout Program not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Update one Workout Program
 export const updateWorkoutProgram = async (workoutProgramId, workoutProgramData) => {
@@ -52,13 +47,11 @@ export const updateWorkoutProgram = async (workoutProgramId, workoutProgramData)
 			} else {
 				throw new Error("Workout Program not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Delete one Workout Program
 export const deleteWorkoutProgram = async (workoutProgramId) => {
@@ -69,28 +62,21 @@ export const deleteWorkoutProgram = async (workoutProgramId) => {
 			} else {
 				throw new Error("Workout Program not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Search Workout Program titles or content
 export const searchWorkoutPrograms = async (searchTerm) => {
 	return await WorkoutProgramModel.find({
-		$or: [
-			{ name: { $regex: searchTerm, $options: "i" } },
-			{ description: { $regex: searchTerm, $options: "i" } }
-		]
+		$or: [{ name: { $regex: searchTerm, $options: "i" } }, { description: { $regex: searchTerm, $options: "i" } }],
 	})
 		.then((workoutPrograms) => {
 			return workoutPrograms;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };

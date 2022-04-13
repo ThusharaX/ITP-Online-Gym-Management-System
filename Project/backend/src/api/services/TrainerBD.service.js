@@ -12,18 +12,15 @@ export const insertTrainerBD = async (tData) => {
 		});
 };
 
-
 // Get all blog details
 export const getAllTrainerBD = async () => {
 	return await TrainerBDModel.find({})
 		.then((trainerBD) => {
 			return trainerBD;
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
+		});
 };
 
 // Get one blog detail
@@ -35,16 +32,14 @@ export const getOneTrainerBD = async (tId) => {
 			} else {
 				throw new Error("Sample not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Update one blog details
-export const updateTrainerBD = async (tId,  tData) => {
+export const updateTrainerBD = async (tId, tData) => {
 	return await TrainerBDModel.findByIdAndUpdate(tId, tData, { new: true })
 		.then((trainerBD) => {
 			if (trainerBD) {
@@ -52,13 +47,11 @@ export const updateTrainerBD = async (tId,  tData) => {
 			} else {
 				throw new Error("Trainer not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Delete one blog detail
 export const deleteTrainerBD = async (tId) => {
@@ -69,13 +62,11 @@ export const deleteTrainerBD = async (tId) => {
 			} else {
 				throw new Error("Trainer not found");
 			}
-		}
-	)
+		})
 		.catch((error) => {
 			throw new Error(error.message);
-		}
-	);
-}
+		});
+};
 
 // Search email
 // export const searchTrainerDB = async (searchTerm) => {
