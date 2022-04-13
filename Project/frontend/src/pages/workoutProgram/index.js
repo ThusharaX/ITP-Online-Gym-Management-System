@@ -5,16 +5,14 @@ import WorkoutProgramList from "./WorkoutProgramList";
 import AddWorkoutProgram from "./AddWorkoutProgram";
 
 // WorkoutProgramProvider
-import { WorkoutProgramProvider } from '../../contexts/WorkoutProgramContext';
+import { WorkoutProgramProvider } from "../../contexts/WorkoutProgramContext";
 
 const WorkoutProgram = () => {
-
 	return (
 		<div>
 			<h1>Workout Program Page</h1>
 
 			<WorkoutProgramProvider>
-				
 				<style jsx>{`
 					.components {
 						display: flex;
@@ -31,10 +29,9 @@ const WorkoutProgram = () => {
 					{/* Add new WorkoutProgram */}
 					<AddWorkoutProgram />
 				</div>
-
 			</WorkoutProgramProvider>
 		</div>
-	)
-}
+	);
+};
 
-export default WorkoutProgram
+export default WorkoutProgram;
