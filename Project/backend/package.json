@@ -46,5 +46,10 @@
 		"husky": "^7.0.4",
 		"nodemon": "^2.0.15",
 		"prettier": "^2.6.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint"
+		}
 	}
 }
