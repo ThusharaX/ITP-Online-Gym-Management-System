@@ -3,6 +3,7 @@
 
 echo '🏗️👷 Hi, my name is LuciferX. I am responsible for testing your project before commit'
 
+# Change to the project directory
 cd Project/backend
 
 # Check Prettier standards
