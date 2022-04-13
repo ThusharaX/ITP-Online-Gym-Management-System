@@ -12,7 +12,7 @@
 		"check-format": "prettier --check .",
 		"fix-lint": "eslint src --fix",
 		"fix-format": "prettier --write .",
-		"prepare": "husky install"
+		"prepare": "cd .. && cd .. && husky install"
 	},
 	"repository": {
 		"type": "git",
