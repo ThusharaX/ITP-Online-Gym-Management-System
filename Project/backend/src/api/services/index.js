@@ -1,130 +1,98 @@
-import {
-    insertSample,
-    getAllSamples,
-    getOneSample,
-    updateSample,
-    deleteSample,
-    searchSamples,
-} from "./Sample.service";
+import { insertSample, getAllSamples, getOneSample, updateSample, deleteSample, searchSamples } from "./Sample.service";
 
 import {
-    insertWorkoutProgram,
-    getAllWorkoutPrograms,
-    getOneWorkoutProgram,
-    updateWorkoutProgram,
-    deleteWorkoutProgram,
-    searchWorkoutPrograms,
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
 } from "./WorkoutProgram.service";
 
 import {
-    insertTrainerBD,
-    getAllTrainerBD,
-    getOneTrainerBD,
-    updateTrainerBD,
-    deleteTrainerBD,
-
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
 } from "./TrainerBD.service";
 
-import {
-    insertSalary,
-    updateSalary,
-    getAllSalaries,
-    getOneSalary,
-} from "./Salary.service";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
+
+import { authAdmin } from "./Admin.service";
+
+import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
 
 import {
-    authAdmin,
-} from "./Admin.service";
-
-import {
-    insertWorkoutScR,
-    updateWorkoutScR,
-    deleteWorkoutScR,
-    getAllWorkoutScR,
-
-}from "./WorkoutScR.service";
-
-import {
-    insertWorkout,
-    getAllWorkouts,
-    getOneWorkout,
-    updateworkout,
-    deleteWorkout,
-    searchWorkouts,
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateworkout,
+	deleteWorkout,
+	searchWorkouts,
 } from "./Workout.service";
 
-import{
-    insertNotice,
-    getAllNotices,
-    getOneNotice,
-    updateNotice,
-    deleteNotice,
-}from "./Notice.service";
+import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
 
-import {
-    insertQuestion,
-    updateQuestion,
-    deleteQuestion,
-    getAllQuestions,
-} from "./Question.service";
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
 export default {
-    // Sample services
-    insertSample,
-    getAllSamples,
-    getOneSample,
-    updateSample,
-    deleteSample,
-    searchSamples,
+	// Sample services
+	insertSample,
+	getAllSamples,
+	getOneSample,
+	updateSample,
+	deleteSample,
+	searchSamples,
 
-    // Workout Program services
-    insertWorkoutProgram,
-    getAllWorkoutPrograms,
-    getOneWorkoutProgram,
-    updateWorkoutProgram,
-    deleteWorkoutProgram,
-    searchWorkoutPrograms,
+	// Workout Program services
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
 
-    // Workout Services
-    insertWorkoutScR,
-    updateWorkoutScR,
-    deleteWorkoutScR,
-    getAllWorkoutScR,
+	// Workout Services
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
 
-    //question services
-    insertQuestion,
-    updateQuestion,
-    deleteQuestion,
-    getAllQuestions,
+	//question services
+	insertQuestion,
+	updateQuestion,
+	deleteQuestion,
+	getAllQuestions,
 
-    //Blog services
-    insertTrainerBD,
-    getAllTrainerBD,
-    getOneTrainerBD,
-    updateTrainerBD,
-    deleteTrainerBD,
-    
-    //salary services
-    insertSalary,
-    updateSalary,
-    getAllSalaries,
-    getOneSalary,
+	//Blog services
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
 
-    // Admin services
-    authAdmin,
+	//salary services
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
 
-    // Workout services
-    insertWorkout,
-    getAllWorkouts,
-    getOneWorkout,
-    updateworkout,
-    deleteWorkout,
-    searchWorkouts,
+	// Admin services
+	authAdmin,
 
-    //Notice Services
-    insertNotice,
-    getAllNotices,
-    getOneNotice,
-    updateNotice,
-    deleteNotice,
+	// Workout services
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateworkout,
+	deleteWorkout,
+	searchWorkouts,
+
+	//Notice Services
+	insertNotice,
+	getAllNotices,
+	getOneNotice,
+	updateNotice,
+	deleteNotice,
 };

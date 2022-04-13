@@ -7,7 +7,12 @@
 		"doc": "docs"
 	},
 	"scripts": {
-		"start": "cross-env NODE_ENV=Development nodemon --exec babel-node src/app.js"
+		"start": "cross-env NODE_ENV=Development nodemon --exec babel-node src/app.js",
+		"check-lint": "eslint src",
+		"check-format": "prettier --check .",
+		"fix-lint": "eslint src --fix",
+		"fix-format": "prettier --write .",
+		"prepare": "cd .. && cd .. && husky install Project/backend/.husky"
 	},
 	"repository": {
 		"type": "git",
@@ -32,9 +37,19 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.8",
+		"@babel/eslint-parser": "^7.17.0",
+		"@babel/eslint-plugin": "^7.17.7",
 		"@babel/node": "^7.16.8",
 		"@babel/preset-env": "^7.16.11",
 		"cross-env": "^7.0.3",
-		"nodemon": "^2.0.15"
+		"eslint": "^8.13.0",
+		"husky": "^7.0.4",
+		"nodemon": "^2.0.15",
+		"prettier": "^2.6.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint"
+		}
 	}
 }

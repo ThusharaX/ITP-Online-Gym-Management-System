@@ -1,0 +1,18 @@
+{
+	"extends": "eslint:recommended",
+	"parser": "@babel/eslint-parser",
+	"plugins": ["@babel"],
+	"env": {
+		"node": true,
+		"es2021": true
+	},
+	"rules": {
+		"indent": ["error", "tab"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"no-const-assign": "error",
+		"no-unused-vars": "error",
+		"no-console": "error",
+		"no-duplicate-imports": ["error", { "includeExports": true }]
+	}
+}

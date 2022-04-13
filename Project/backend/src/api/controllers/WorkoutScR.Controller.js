@@ -13,10 +13,6 @@ export const insertWorkoutScR = async (request, response, next) => {
 		});
 };
 
-
-
-
-
 // Update Workout Schedule Request
 export const updateWorkoutScR = async (request, response, next) => {
 	await WorkoutScRService.updateWorkoutScR(request.params.id, request.body)
