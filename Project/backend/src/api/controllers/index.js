@@ -43,13 +43,7 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.controller";
 
-import {
-	getEvent,
-	getEvents,
-	createEvents,
-	updateEvents,
-	deleteEvents,
-} from "./Event.Controller";
+import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
 export default {
 	//Sample Controllers

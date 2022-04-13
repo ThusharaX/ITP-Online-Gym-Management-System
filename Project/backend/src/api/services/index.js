@@ -36,13 +36,7 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
-import {
-	updateEvents,
-	deleteEvents,
-	createEvents,
-	getEvent,
-	getEvents,
-} from "./Event.service";
+import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
 export default {
 	// Sample services

@@ -43,11 +43,11 @@ export default function (app) {
 	app.post("/admin/register/", middleware.adminAuthenticate, controller.createAdmin);
 
 	// Event endpoints
-	app.get("/events/", controller.getEvents); // get/sort/search workouts
-	app.post("/events/", controller.createEvents);// insert one workout
-	app.get("/events/:id", controller.getEvent);// get one workout
-	app.patch("/events/:id", controller.updateEvents);// update one workout
-	app.delete("/events/:id", controller.deleteEvents);// delete one workout
+	app.get("/events/", controller.getEvents); // get all/sort/search event
+	app.post("/events/", controller.createEvents); // insert one event
+	app.get("/events/:id", controller.getEvent); // get one event
+	app.put("/events/:id", controller.updateEvents); // update one event
+	app.delete("/events/:id", controller.deleteEvents); // delete one event
 
 	// WorkoutScR endpoints
 	app.post("/WorkoutScR/", controller.insertWorkoutScR); // insert one WorkoutScR
