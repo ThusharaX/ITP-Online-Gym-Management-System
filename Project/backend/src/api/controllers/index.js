@@ -68,6 +68,14 @@ import{
     getOneSalary,
 }from "./Salary.controller";
 
+import {
+	getEvent,
+	getEvents,
+	createEvents,
+	updateEvents,
+	deleteEvents,
+} from "./Event.Controller";
+
 export default {
     //Sample Controllers
     insertSample,
@@ -128,4 +136,12 @@ export default {
     updateSalary,
     getAllSalaries,
     getOneSalary,
+
+  //Event Controllers
+	getEvent,
+	getEvents,
+	createEvents,
+	updateEvents,
+	deleteEvents,
+
 };

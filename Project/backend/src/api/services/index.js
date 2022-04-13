@@ -68,6 +68,14 @@ import {
     getAllQuestions,
 } from "./Question.service";
 
+import {
+	updateEvents,
+	deleteEvents,
+	createEvents,
+	getEvent,
+	getEvents,
+} from "./Event.service";
+
 export default {
     // Sample services
     insertSample,
@@ -127,4 +135,11 @@ export default {
     getOneNotice,
     updateNotice,
     deleteNotice,
+	
+	// Event services
+	getEvent,
+	getEvents,
+	updateEvents,
+	deleteEvents,
+	createEvents,
 };

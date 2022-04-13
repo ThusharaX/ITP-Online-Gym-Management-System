@@ -1,7 +1,20 @@
 import EventService from "../services";
-const joi = require("@hapi/joi");
+const joi = require("joi");
 let events = require("../models/Event.model");
-const { eventValidation } = require("../models/ETvalidation.model");
+
+const eventValidation = (data) => {
+  const schema = joi.object({
+    title: joi.string().required().min(5).max(100),
+    tags: joi.required(),
+    description: joi.string().required().min(15).max(50),
+    details: joi.string().required().min(10),
+    gender: joi.string().required().min(4).max(10),
+    date: joi.date().required(),
+    trainer: joi.string().required().min(23).max(25),
+  });
+
+  return schema.validate(data);
+};
 
 const getEvent = async (req, res, next) => {
   await EventService.getEvent(req.params.id)
