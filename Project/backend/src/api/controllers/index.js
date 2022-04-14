@@ -24,7 +24,7 @@ import {
 	deleteTrainerBD,
 } from "./TrainerBD.controller";
 
-import { authAdmin, createAdmin } from "./Admin.controller";
+import { login, createUser, getAdminDashboard } from "./User.Controller";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
 
@@ -76,8 +76,9 @@ export default {
 	deleteTrainerBD,
 
 	//Admin Controllers
-	authAdmin,
-	createAdmin,
+	login,
+	createUser,
+	getAdminDashboard,
 
 	//Workout Controllers
 	insertWorkout,

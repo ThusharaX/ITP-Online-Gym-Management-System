@@ -38,9 +38,10 @@ export default function (app) {
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
 
-	// Admin endpoints
-	app.post("/admin/login/", controller.authAdmin);
-	app.post("/admin/register/", middleware.adminAuthenticate, controller.createAdmin);
+	// User endpoints
+	app.post("/user/login/", controller.login);
+	app.post("/user/register/", middleware.authenticate, controller.createUser);
+	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Event endpoints
 	app.get("/events/", controller.getEvents); // get all/sort/search event

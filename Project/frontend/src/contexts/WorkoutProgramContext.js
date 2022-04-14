@@ -6,7 +6,8 @@ import { Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
-const baseURL = `${process.env.REACT_APP_BACKEND_URL}/workoutProgram`;
+import WorkoutProgramAPI from "./api/WorkoutProgramAPI";
+
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
@@ -14,8 +15,8 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Get all workoutPrograms
 	useEffect(() => {
-		axios.get(baseURL).then((res) => {
-			setWorkoutPrograms(res.data);
+		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
+			setWorkoutPrograms(response.data);
 		});
 	}, []);
 
@@ -43,15 +44,15 @@ export function WorkoutProgramProvider({ children }) {
 			day: values.day,
 			time: values.time,
 		};
-		axios.post(baseURL, newWorkoutProgram).then((res) => {
-			setWorkoutPrograms([...workoutPrograms, res.data]);
+		WorkoutProgramAPI.addWorkoutProgram(newWorkoutProgram).then((response) => {
+			setWorkoutPrograms([...workoutPrograms, response.data]);
 			form.reset();
 		});
 	};
 
 	// Delete workoutProgram and update UI
 	const deleteWorkoutProgram = (id) => {
-		axios.delete(`${baseURL}/${id}`).then((res) => {
+		WorkoutProgramAPI.deleteWorkoutProgram(id).then(() => {
 			setWorkoutPrograms(workoutPrograms.filter((workoutProgram) => workoutProgram._id !== id));
 		});
 	};

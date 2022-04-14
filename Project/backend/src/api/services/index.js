@@ -19,7 +19,7 @@ import {
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
 
-import { authAdmin } from "./Admin.service";
+import { authenticateUser, insertUser } from "./User.service";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
 
@@ -81,7 +81,8 @@ export default {
 	getOneSalary,
 
 	// Admin services
-	authAdmin,
+	authenticateUser,
+	insertUser,
 
 	// Workout services
 	insertWorkout,

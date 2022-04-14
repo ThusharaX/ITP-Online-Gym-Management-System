@@ -6,7 +6,8 @@ import { Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
-const baseURL = `${process.env.REACT_APP_BACKEND_URL}/sample`;
+import SampleAPI from "./api/SampleAPI";
+
 const SampleContext = createContext();
 
 export function SampleProvider({ children }) {
@@ -14,8 +15,8 @@ export function SampleProvider({ children }) {
 
 	// Get all samples
 	useEffect(() => {
-		axios.get(baseURL).then((res) => {
-			setSamples(res.data);
+		SampleAPI.getSampleData().then((response) => {
+			setSamples(response.data);
 		});
 	}, []);
 
@@ -33,15 +34,15 @@ export function SampleProvider({ children }) {
 			title: values.title,
 			content: values.content,
 		};
-		axios.post(baseURL, newSample).then((res) => {
-			setSamples([...samples, res.data]);
+		SampleAPI.addSample(newSample).then((response) => {
+			setSamples([...samples, response.data]);
 			form.reset();
 		});
 	};
 
 	// Delete sample and update UI
 	const deleteSample = (id) => {
-		axios.delete(`${baseURL}/${id}`).then((res) => {
+		SampleAPI.deleteSample(id).then(() => {
 			setSamples(samples.filter((sample) => sample._id !== id));
 		});
 	};
