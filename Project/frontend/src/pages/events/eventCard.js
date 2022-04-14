@@ -2,25 +2,13 @@ import React, { useContext } from "react";
 
 import EventContext from "../../contexts/EventContext";
 
-import {
-	Card,
-	Image,
-	Text,
-	Badge,
-	Button,
-	Paper,
-	Group,
-	useMantineTheme,
-	List,
-	Table,
-	ScrollArea,
-} from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
 
 // const clickHandler = () => {
 //   console.log("clicked");
 //   alert("clicked");
 // };
-// const EventList = ({ img, title, description }) => {
+
 const EventList = () => {
 	const { events, confirmDelete } = useContext(EventContext);
 

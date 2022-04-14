@@ -6,9 +6,9 @@ const eventValidation = (data) => {
 	const schema = joi.object({
 		title: joi.string().required().min(5).max(100),
 		tags: joi.required(),
-		description: joi.string().required().min(15).max(50),
-		details: joi.string().required().min(10),
-		gender: joi.string().required().min(4).max(10),
+		description: joi.string().required().min(15).max(300),
+		details: joi.string().required().min(5),
+		gender: joi.string().required().min(4).max(20),
 		date: joi.date().required(),
 		trainer: joi.string().required().min(23).max(25),
 	});
