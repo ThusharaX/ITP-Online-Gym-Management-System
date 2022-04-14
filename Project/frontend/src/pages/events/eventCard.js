@@ -45,7 +45,15 @@ const EventList = () => {
 								Date:
 							</Text>
 							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-								{String(item.date)}
+								{Date(item.date).toString().slice(0, 15)}
+							</Text>
+						</Group>
+						<Group position="left" style={{ marginTop: "4px" }}>
+							<Text weight={400} style={{ fontSize: "15px", marginRight: "40px" }}>
+								Time:
+							</Text>
+							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								{Date(item.date).toString().slice(16, 21)}
 							</Text>
 						</Group>
 						<Group position="left" style={{ marginTop: "4px" }}>
@@ -71,10 +79,10 @@ const EventList = () => {
 							</Text>
 						</ScrollArea>
 						<Group position="center" style={{ marginTop: "20px" }}>
-							<Button onClick={() => confirmDelete(item._id)} compact variant="light" color="red">
+							<Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="red">
 								Delete
 							</Button>
-							<Button onClick={() => confirmDelete(item._id)} compact variant="light" color="blue">
+							<Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="blue">
 								update
 							</Button>
 						</Group>

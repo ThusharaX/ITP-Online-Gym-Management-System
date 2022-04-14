@@ -21,7 +21,6 @@ const Events = () => {
 			>
 				<EventProvider>
 					{/* Event list */}
-
 					<EventList />
 
 					{/* Add new Event */}

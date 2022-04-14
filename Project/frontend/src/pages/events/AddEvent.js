@@ -25,7 +25,9 @@ const AddEvent = () => {
 					},
 				})}
 			>
-				<Title order={1}>Add an Event</Title>
+				<Title align="center" order={1}>
+					Add an Event
+				</Title>
 				<Divider my="sm" size={"md"} />
 				<form onSubmit={form.onSubmit((values) => addEvent(values))}>
 					<Group position="center" style={{ marginTop: "20px" }}>
@@ -78,8 +80,12 @@ const AddEvent = () => {
 							{...form.getInputProps("time")}
 						/>
 					</Group>
-					<Group spacing={25} position="left" style={{ marginTop: "40px" }}>
+					<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
+						<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
+							<App />
+						</div>
 						<RadioGroup
+							style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
 							size="md"
 							orientation="vertical"
 							label="Can Join"
@@ -91,10 +97,6 @@ const AddEvent = () => {
 							<Radio value="Cats" label="Only for Cats" />
 							<Radio value="Both" label="Both" />
 						</RadioGroup>
-
-						<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
-							<App />
-						</div>
 					</Group>
 
 					<TextInput
@@ -108,8 +110,8 @@ const AddEvent = () => {
 					/>
 
 					<Divider my="sm" size={"md"} />
-					<Group style={{ marginTop: "4px" }} position="center" mt="md">
-						<Button color={"gray"} type="submit" radius="20px" size="xl" compact>
+					<Group style={{ marginTop: "15px" }} position="center" mt="md">
+						<Button color={"blue[4]"} type="submit" radius="20px" size="xl" compact>
 							Submit
 						</Button>
 					</Group>
