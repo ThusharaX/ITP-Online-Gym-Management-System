@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Title, Divider } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
-
+import App from "./FileUpload";
 const AddEvent = () => {
 	const { addEvent, form } = useContext(EventContext);
-
+	const [value, onChange] = useState(new Date());
+	const [value1, onChange1] = useState(new Date());
 	return (
 		<>
 			<Box
 				sx={(theme) => ({
 					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
-					textAlign: "center",
+					textAlign: "left",
 					padding: theme.spacing.xl,
 					borderRadius: theme.radius.md,
 					width: "500px",
@@ -57,14 +58,27 @@ const AddEvent = () => {
 						maxRows={10}
 						style={{ marginTop: "35px" }}
 					/>
-					<Group spacing={80} position="center" style={{ marginTop: "40px" }}>
+
+					<Group spacing={40} position="left" style={{ marginTop: "40px" }}>
 						<DatePicker
 							size="md"
 							placeholder="Select date"
 							label="Select Date"
 							required
+							value={value}
+							onChange={onChange}
 							{...form.getInputProps("date")}
 						/>
+						<TimeInput
+							size="md"
+							label="Select Time"
+							value={value1}
+							onChange={onChange1}
+							required
+							{...form.getInputProps("time")}
+						/>
+					</Group>
+					<Group spacing={25} position="left" style={{ marginTop: "40px" }}>
 						<RadioGroup
 							size="md"
 							orientation="vertical"
@@ -77,10 +91,13 @@ const AddEvent = () => {
 							<Radio value="Cats" label="Only for Cats" />
 							<Radio value="Both" label="Both" />
 						</RadioGroup>
+
+						<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
+							<App />
+						</div>
 					</Group>
 
 					<TextInput
-						boxShadow="0px 0px 10px rgba(0, 0, 0, 0.8)"
 						size="md"
 						width={500}
 						required
@@ -89,14 +106,21 @@ const AddEvent = () => {
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("details")}
 					/>
+
 					<Divider my="sm" size={"md"} />
 					<Group style={{ marginTop: "4px" }} position="center" mt="md">
-						<Button color={"gray"} type="submit" radius="40px" size="xl" compact>
+						<Button color={"gray"} type="submit" radius="20px" size="xl" compact>
 							Submit
 						</Button>
 					</Group>
 
-					{/* <TextInput required label="debug trainer id" placeholder="Event trainer" {...form.getInputProps("trainer")} /> */}
+					<TextInput
+						size="xs"
+						required
+						label="debug trainer id"
+						placeholder="Event trainer"
+						{...form.getInputProps("trainer")}
+					/>
 				</form>
 			</Box>
 		</>

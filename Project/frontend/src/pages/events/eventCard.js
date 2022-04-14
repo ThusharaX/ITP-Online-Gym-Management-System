@@ -45,7 +45,7 @@ const EventList = () => {
 								Date:
 							</Text>
 							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-								{item.date}
+								{String(item.date)}
 							</Text>
 						</Group>
 						<Group position="left" style={{ marginTop: "4px" }}>

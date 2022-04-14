@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+
 import axios from "axios";
 
 // Mantine imports
@@ -27,19 +28,21 @@ export function EventProvider({ children }) {
 				"Cats love climbing and hiding, and can have hours of fun on a cat tree, a simple cardboard box, or a tunnel – not only does it encourage them to play, it also provides them with some space of their own!",
 			details: "noon to midnight",
 			gender: "Both",
-			date: "2012-04-23T",
+			date: new Date(),
+			time: new Date(),
 			trainer: "6238afed94d1c551735ca084",
 		},
 	});
 
 	// Add new event
 	const addEvent = (values) => {
+		let newDate = String(values.date).slice(0, 15) + String(values.time).slice(15);
 		const newEvent = {
 			title: values.title,
 			description: values.description,
 			details: values.details,
 			gender: values.gender,
-			date: values.date,
+			date: newDate,
 			tags: values.tags.split(","),
 			trainer: values.trainer,
 		};
