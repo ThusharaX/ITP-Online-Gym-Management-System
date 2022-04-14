@@ -1,5 +1,5 @@
-import { adminAuthenticate } from "./Auth.Admin.middleware";
+import { authenticate } from "./Auth.middleware";
 
 export default {
-	adminAuthenticate,
+	authenticate,
 };

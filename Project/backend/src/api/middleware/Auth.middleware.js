@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 import logger from "../../util/logger";
-const Admin = require("../models/Admin.model");
+const UserModel = require("../models/User.model");
 
-export const adminAuthenticate = async (request, response, next) => {
+export const authenticate = async (request, response, next) => {
 	try {
 		const secret = process.env.JWT_SECRET;
 
@@ -10,20 +10,23 @@ export const adminAuthenticate = async (request, response, next) => {
 			if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
 				const authToken = request.headers.authorization.split(" ")[1];
 				const decode = jwt.verify(authToken, secret);
-				const admin = await Admin.findById(decode.id).select("-password");
+				const user = await UserModel.findOne({
+					_id: decode,
+					authToken: authToken,
+				});
 
-				if (!admin) {
+				if (!user) {
 					const useNotFoundResponse = JSON.stringify({
 						status: 401,
-						message: "Admin not found in the system",
+						message: "User not found in the system",
 					});
 					throw new Error(useNotFoundResponse);
 				}
 
 				request.authToken = authToken;
-				request.admin = admin;
+				request.user = user;
 
-				logger.info(`Authentication Token for ID ${admin._id} is Accepted`);
+				logger.info(`Authentication Token for ID ${user._id} is Accepted`);
 				next();
 			} else {
 				response.status(401);

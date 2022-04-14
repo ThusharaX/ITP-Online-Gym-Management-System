@@ -1,23 +1,39 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Sample, Home, WorkoutProgram } from "../pages";
+import PrivateRoute from "./PrivateRoute";
+import CheckLoginStatus from "./CheckLoginStatus";
 
-// import NavBar from '../components/NavBar';
-// import Footer from '../components/Footer';
+// Pages
+import { Sample, Home, WorkoutProgram, UserLogin, Dashboard } from "../pages";
+// Error pages
+import Error404 from "../pages/error/Error404";
+
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const AppRoutes = () => {
 	return (
 		<>
 			<Router>
-				{/* <NavBar /> */}
+				<NavBar />
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/sample" element={<Sample />} />
-					<Route path="/workoutProgram" element={<WorkoutProgram />} />
+					{/* Public Routes */}
+					<Route exact path="/" element={<Home />} />
+					<Route exact path="/sample" element={<Sample />} />
+					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
+					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
+						<Route exact path="/userLogin" element={<UserLogin />} />
+					</Route>
 
-					<Route path="*" element={<h1>404 Not Found</h1>} />
+					{/* Private Routes */}
+					<Route exact path="/dashboard" element={<PrivateRoute />}>
+						<Route exact path="/dashboard" element={<Dashboard />} />
+					</Route>
+
+					{/* 404 */}
+					<Route path="*" element={<Error404 />} />
 				</Routes>
-				{/* <Footer /> */}
+				<Footer />
 			</Router>
 		</>
 	);
