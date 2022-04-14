@@ -8,7 +8,7 @@ const eventValidation = (data) => {
 		tags: joi.required(),
 		description: joi.string().required().min(15).max(300),
 		details: joi.string().required().min(5),
-		gender: joi.string().required().min(4).max(20),
+		gender: joi.string().required().length(4),
 		date: joi.date().required(),
 		trainer: joi.string().required().min(23).max(25),
 	});

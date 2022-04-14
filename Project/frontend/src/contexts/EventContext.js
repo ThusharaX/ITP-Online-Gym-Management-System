@@ -26,8 +26,8 @@ export function EventProvider({ children }) {
 			description:
 				"Cats love climbing and hiding, and can have hours of fun on a cat tree, a simple cardboard box, or a tunnel – not only does it encourage them to play, it also provides them with some space of their own!",
 			details: "noon to midnight",
-			gender: "Only for Tomcats",
-			date: "2012-04-23T18:25:43.511Z",
+			gender: "Both",
+			date: "2012-04-23T",
 			trainer: "6238afed94d1c551735ca084",
 		},
 	});
