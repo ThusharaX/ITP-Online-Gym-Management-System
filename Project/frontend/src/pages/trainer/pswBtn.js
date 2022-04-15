@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CheckIcon, Cross1Icon } from "@modulz/radix-icons";
 import { PasswordInput, Progress, Text, Popover, Box } from "@mantine/core";
 
-function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
+function PasswordRequirement({ meets, label }) {
 	return (
 		<Text color={meets ? "teal" : "red"} sx={{ display: "flex", alignItems: "center" }} mt={7} size="sm">
 			{meets ? <CheckIcon /> : <Cross1Icon />} <Box ml={10}>{label}</Box>
@@ -17,7 +17,7 @@ const requirements = [
 	{ re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
 ];
 
-function getStrength(password: string) {
+function getStrength(password) {
 	let multiplier = password.length > 5 ? 0 : 1;
 
 	requirements.forEach((requirement) => {

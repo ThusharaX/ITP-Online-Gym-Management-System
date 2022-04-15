@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { Button, TextInput, Group, Box, PasswordInput, RadioGroup, Radio, Title, Divider } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import { PasswordStrength } from "./pswBtn.tsx";
+import { PasswordStrength } from "./pswBtn";
 // import dropzoneChildren from "./Dropzone.tsx";
-import { DropzoneButton } from "./Dropzone.tsx";
+import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
 	const { addTrainer, form } = useContext(TrainerContext);

@@ -4,7 +4,7 @@ import React from "react";
 import TrainerList from "./TrainerCard";
 import AddTrainer from "./AddTrainer";
 import ReactCard from "./ReactCard";
-import { AuthenticationTitle } from "./Login.tsx";
+import { AuthenticationTitle } from "./Login.js";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 

@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-function getActiveColor(status: DropzoneStatus, theme: MantineTheme) {
+function getActiveColor(status, theme) {
 	// prettier-ignore
 	return status.accepted ? theme.colors[theme.primaryColor][6] : status.rejected? theme.colors.red[6]: theme.colorScheme === "dark"? theme.colors.dark[0]: theme.black;
 }
@@ -34,7 +34,8 @@ function getActiveColor(status: DropzoneStatus, theme: MantineTheme) {
 export function DropzoneButton() {
 	const theme = useMantineTheme();
 	const { classes } = useStyles();
-	const openRef = useRef<() => void>();
+	const openRef = useRef(false);
+	// const openRef = useRef<() => void>();
 
 	return (
 		<div className={classes.wrapper}>
