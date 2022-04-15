@@ -4,12 +4,28 @@ import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import App from "./FileUpload";
 // import { DropzoneButton } from "./Dropzone";
+import { useForm } from "@mantine/form";
 
-const EditEvent = () => {
+const EditEvent = ({ event }) => {
 	const [opened, setOpened] = useState(false);
 	const { addEvent, form } = useContext(EventContext);
-	const [value, onChange] = useState(new Date());
-	const [value1, onChange1] = useState(new Date());
+
+	// Form initial state
+	const form1 = useForm({
+		initialValues: {
+			title: event.title,
+			tags: event.tags,
+			description: event.description,
+			details: event.details,
+			gender: event.gender,
+			date: new Date(event.date),
+			time: new Date(event.time),
+			trainer: event.trainer,
+		},
+	});
+	// ("2022-03-31T18:30:23.000Z");
+	const [date, setDate] = useState({ ...form1.getInputProps("date") });
+	const [time, setTime] = useState({ ...form1.getInputProps("time") });
 	return (
 		<>
 			<Modal
@@ -39,6 +55,7 @@ const EditEvent = () => {
 							cursor: "pointer",
 							borderRadius: "50px",
 							boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+							value: "dfdfdfdfdf",
 
 							"&:hover": {
 								backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
@@ -57,7 +74,7 @@ const EditEvent = () => {
 									required
 									label="Title"
 									placeholder="Enter Title"
-									{...form.getInputProps("title")}
+									{...form1.getInputProps("title")}
 								/>
 								<TextInput
 									size="md"
@@ -65,7 +82,7 @@ const EditEvent = () => {
 									required
 									label="Tags"
 									placeholder="Enter Tags"
-									{...form.getInputProps("tags")}
+									{...form1.getInputProps("tags")}
 								/>
 							</Group>
 							<Textarea
@@ -73,29 +90,31 @@ const EditEvent = () => {
 								required
 								label="Description"
 								placeholder="Event Description"
-								{...form.getInputProps("description")}
+								{...form1.getInputProps("description")}
 								autosize
 								minRows={1}
 								maxRows={10}
 								style={{ marginTop: "35px" }}
 							/>
 							<Group spacing={40} position="left" style={{ marginTop: "40px" }}>
+								{/* DATE */}
 								<DatePicker
 									size="md"
 									placeholder="Select date"
 									label="Select Date"
 									required
-									value={value}
-									onChange={onChange}
-									{...form.getInputProps("date")}
+									value={date}
+									onChange={setDate}
+									{...form1.getInputProps("date")}
 								/>
+								{/* TIME */}
 								<TimeInput
 									size="md"
 									label="Select Time"
-									value={value1}
-									onChange={onChange1}
+									value={time}
+									onChange={setTime}
 									required
-									{...form.getInputProps("time")}
+									{...form1.getInputProps("time")}
 								/>
 							</Group>
 							<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
@@ -109,7 +128,7 @@ const EditEvent = () => {
 									label="Can Join"
 									color="gray"
 									required
-									{...form.getInputProps("gender")}
+									{...form1.getInputProps("gender")}
 								>
 									<Radio value="Dogs" label="Only for Dogs" />
 									<Radio value="Cats" label="Only for Cats" />
@@ -123,7 +142,7 @@ const EditEvent = () => {
 								label="Details"
 								placeholder="Enter Details"
 								style={{ marginTop: "30px", marginBottom: "30px" }}
-								{...form.getInputProps("details")}
+								{...form1.getInputProps("details")}
 							/>
 							<Divider my="sm" size={"md"} />
 							<Group spacing={"150px"} style={{ marginTop: "15px" }} position="center" mt="md">
@@ -140,7 +159,7 @@ const EditEvent = () => {
 								required
 								label="debug trainer id"
 								placeholder="Event trainer"
-								{...form.getInputProps("trainer")}
+								{...form1.getInputProps("trainer")}
 							/>
 						</form>
 					</Box>

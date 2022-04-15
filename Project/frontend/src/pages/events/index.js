@@ -7,8 +7,6 @@ import AddEvent from "./AddEvent";
 // SampleProvider
 import { EventProvider } from "../../contexts/EventContext";
 
-//{onClick={()=>clickHandler(data)} } //to call function from onclick with data
-
 const Events = () => {
 	return (
 		<>

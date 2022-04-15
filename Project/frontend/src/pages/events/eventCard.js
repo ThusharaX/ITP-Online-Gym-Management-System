@@ -2,24 +2,8 @@ import React, { useContext } from "react";
 
 import EventContext from "../../contexts/EventContext";
 
-import {
-	Card,
-	Image,
-	Text,
-	Badge,
-	Button,
-	Group,
-	useMantineTheme,
-	ScrollArea,
-	Divider,
-	Container,
-} from "@mantine/core";
-import EventModel from "./EventModel";
-// const clickHandler = () => {
-//   console.log("clicked");
-//   alert("clicked");
-// };
-//////////////////////////////USE MANRINE MODEL TO UPDATE!!!!!!!!!!!!!!!!!!!!!!!
+import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
+import EditEvent from "./EditEvent";
 
 const EventList = () => {
 	const { events, confirmDelete } = useContext(EventContext);
@@ -59,7 +43,7 @@ const EventList = () => {
 										Date:
 									</Text>
 									<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-										{Date(item.date).toString().slice(0, 15)}
+										{new Date(item.date).toString().slice(0, 15)}
 									</Text>
 								</Group>
 								<Group position="left" style={{ marginTop: "4px" }}>
@@ -67,7 +51,7 @@ const EventList = () => {
 										Time:
 									</Text>
 									<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-										{Date(item.date).toString().slice(16, 21)}
+										{new Date(item.date).toString().slice(16, 21)}
 									</Text>
 								</Group>
 								<Group position="left" style={{ marginTop: "4px" }}>
@@ -96,17 +80,13 @@ const EventList = () => {
 									<Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="red">
 										Delete
 									</Button>
-									<EventModel />
-									{/* <Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="blue">
-										update
-									</Button> */}
+									<EditEvent event={item} />
 								</Group>
 							</Card>
 						</div>
 					))}
 				</Group>
 			</div>
-			{/* <Divider my="sm" size={"md"} /> */}
 		</>
 	);
 };
