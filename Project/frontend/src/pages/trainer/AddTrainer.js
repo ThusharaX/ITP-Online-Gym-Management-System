@@ -127,13 +127,14 @@ const AddTrainer = () => {
 					<Group position="center" style={{ marginTop: "20px" }}>
 						<PasswordStrength />
 						<PasswordInput
-							size="md"
+							size="sm"
 							style={{ width: "48%" }}
 							required
 							label="CONFIRM PASSWORD"
 							placeholder="Confirm Password"
 							{...form.getInputProps("tags")}
 						/>
+						
 					</Group>
 					<Divider my="sm" size={"md"} />
 					<Group style={{ marginTop: "15px" }} position="center" mt="md">

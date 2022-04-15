@@ -4,7 +4,7 @@ import React from "react";
 import TrainerList from "./TrainerCard";
 import AddTrainer from "./AddTrainer";
 import ReactCard from "./ReactCard";
-
+import { AuthenticationTitle } from "./Login.tsx";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
@@ -25,6 +25,7 @@ const Trainers = () => {
 					<br />
 					{/* Add new Trainer */}
 					<AddTrainer />
+					<AuthenticationTitle />
 					<ReactCard />
 				</TrainerProvider>
 			</div>

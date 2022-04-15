@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Modal, Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Title, Divider } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import App from "./FileUpload";
+// import App from "./FileUpload";
 // import { DropzoneButton } from "./Dropzone";
 import { useForm } from "@mantine/form";
 
@@ -118,9 +118,7 @@ const EditTrainer = ({ trainer }) => {
 								/>
 							</Group>
 							<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
-								<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
-									<App />
-								</div>
+								<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>{/* <App /> */}</div>
 								<RadioGroup
 									style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
 									size="md"
