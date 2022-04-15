@@ -134,7 +134,6 @@ const AddTrainer = () => {
 							placeholder="Confirm Password"
 							{...form.getInputProps("tags")}
 						/>
-						
 					</Group>
 					<Divider my="sm" size={"md"} />
 					<Group style={{ marginTop: "15px" }} position="center" mt="md">
