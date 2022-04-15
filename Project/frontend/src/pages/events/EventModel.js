@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Modal, Button, Group } from "@mantine/core";
-import AddEvent from "./AddEvent";
+import EditEvent from "./EditEvent";
 function EventModel() {
-	const [opened, setOpened] = useState(false);
+	// const [opened, setOpened] = useState(false);
 
 	return (
 		<>
-			<Modal opened={opened} onClose={() => setOpened(false)} withCloseButton={false}>
+			{/* <Modal
+				opened={opened}
+				onClose={() => setOpened(false)}
+				withCloseButton={false}
+				transition="fade"
+				transitionDuration={600}
+				transitionTimingFunction="ease"
+			>
 				<div
 					style={{
 						backgroundColor: "",
@@ -15,16 +22,13 @@ function EventModel() {
 						border: "3px solid #ccc",
 						width: "548px",
 					}}
-				>
-					<AddEvent />
-				</div>
-			</Modal>
-
-			<Group position="center">
-				<Button size="md" onClick={() => setOpened(true)} compact variant="light" color="blue">
-					Update
-				</Button>
-			</Group>
+				> */}
+			<EditEvent />
+			{/* <Button onClick={() => setOpened(false)} color={"red"} type="button" radius="10px" size="xl" compact>
+						Cancel
+					</Button> */}
+			{/* </div>
+			</Modal> */}
 		</>
 	);
 }
