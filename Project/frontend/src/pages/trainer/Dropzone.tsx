@@ -27,13 +27,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function getActiveColor(status: DropzoneStatus, theme: MantineTheme) {
-	return status.accepted
-		? theme.colors[theme.primaryColor][6]
-		: status.rejected
-			? theme.colors.red[6]
-			: theme.colorScheme === "dark"
-				? theme.colors.dark[0]
-				: theme.black;
+	// prettier-ignore
+	return status.accepted ? theme.colors[theme.primaryColor][6] : status.rejected? theme.colors.red[6]: theme.colorScheme === "dark"? theme.colors.dark[0]: theme.black;
 }
 
 export function DropzoneButton() {
