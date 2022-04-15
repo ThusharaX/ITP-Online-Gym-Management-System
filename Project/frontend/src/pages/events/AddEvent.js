@@ -3,6 +3,8 @@ import { Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Title, Divi
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import App from "./FileUpload";
+// import { DropzoneButton } from "./Dropzone";
+
 const AddEvent = () => {
 	const { addEvent, form } = useContext(EventContext);
 	const [value, onChange] = useState(new Date());
@@ -48,7 +50,6 @@ const AddEvent = () => {
 							{...form.getInputProps("tags")}
 						/>
 					</Group>
-
 					<Textarea
 						size="md"
 						required
@@ -60,7 +61,6 @@ const AddEvent = () => {
 						maxRows={10}
 						style={{ marginTop: "35px" }}
 					/>
-
 					<Group spacing={40} position="left" style={{ marginTop: "40px" }}>
 						<DatePicker
 							size="md"
@@ -98,7 +98,6 @@ const AddEvent = () => {
 							<Radio value="Both" label="Both" />
 						</RadioGroup>
 					</Group>
-
 					<TextInput
 						size="md"
 						width={500}
@@ -108,14 +107,13 @@ const AddEvent = () => {
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("details")}
 					/>
-
 					<Divider my="sm" size={"md"} />
 					<Group style={{ marginTop: "15px" }} position="center" mt="md">
 						<Button color={"blue[4]"} type="submit" radius="20px" size="xl" compact>
 							Submit
 						</Button>
 					</Group>
-
+					{/* <DropzoneButton /> */}
 					<TextInput
 						size="xs"
 						required

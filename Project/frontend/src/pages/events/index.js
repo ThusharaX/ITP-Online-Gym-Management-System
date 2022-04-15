@@ -12,6 +12,7 @@ import { EventProvider } from "../../contexts/EventContext";
 const Events = () => {
 	return (
 		<>
+			<h1>Event Page</h1>
 			<div
 				style={{
 					display: "table",
@@ -22,12 +23,11 @@ const Events = () => {
 				<EventProvider>
 					{/* Event list */}
 					<EventList />
-
+					<br />
 					{/* Add new Event */}
 					<AddEvent />
 				</EventProvider>
 			</div>
-			<h1>Sample Page</h1>
 		</>
 	);
 };
