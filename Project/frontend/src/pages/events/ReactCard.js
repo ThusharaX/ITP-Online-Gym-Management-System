@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 
 import EventContext from "../../contexts/EventContext";
 
-import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
-import EditEvent from "./EditEvent";
+import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea, Select } from "@mantine/core";
 
-const EventList = () => {
+const ReactCard = () => {
 	const { events, confirmDelete } = useContext(EventContext);
 
 	const theme = useMantineTheme();
@@ -13,6 +12,7 @@ const EventList = () => {
 
 	return (
 		<>
+			<h1>View evets by Members</h1>
 			<div style={{ border: "2px solid #ccc", borderRadius: "20px", width: "100%", padding: "50px 0px 50px 0px" }}>
 				<Group position="center" spacing={50}>
 					{events.map((item) => (
@@ -76,11 +76,28 @@ const EventList = () => {
 										{item.description}
 									</Text>
 								</ScrollArea>
-								<Group spacing={40} position="center" style={{ marginTop: "20px" }}>
-									<Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="red">
-										Delete
+								<Group spacing={"10px"} position="center" style={{ marginTop: "20px" }}>
+									<Select
+										style={{ width: "140px", border: "2px solid #afa", borderRadius: "5px" }}
+										// label="Your "
+										placeholder="Pick one"
+										data={[
+											{ value: "react", label: "Yanawa" },
+											{ value: "ng", label: "Yanne Na" },
+											{ value: "svelte", label: "Yannath One" },
+											{ value: "vue", label: "Wedak Na" },
+										]}
+									/>
+									<Button
+										style={{ marginTop: "0px" }}
+										size="lg"
+										onClick={() => confirmDelete(item._id)}
+										compact
+										variant="light"
+										color="grape"
+									>
+										Update
 									</Button>
-									<EditEvent event={item} />
 								</Group>
 							</Card>
 						</div>
@@ -91,4 +108,4 @@ const EventList = () => {
 	);
 };
 
-export default EventList;
+export default ReactCard;
