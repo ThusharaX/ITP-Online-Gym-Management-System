@@ -2,13 +2,15 @@ import React, { useContext, useState } from "react";
 import { Button, TextInput, Group, Box, PasswordInput, RadioGroup, Radio, Title, Divider } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import App from "./FileUpload";
 import { PasswordStrength } from "./pswBtn.tsx";
+// import dropzoneChildren from "./Dropzone.tsx";
+import { DropzoneButton } from "./Dropzone.tsx";
 
 const AddTrainer = () => {
 	const { addTrainer, form } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
-
+	// eslint-disable-next-line no-console
+	console.log("dddd");
 	return (
 		<>
 			<Box
@@ -112,12 +114,6 @@ const AddTrainer = () => {
 						/>
 					</Group>
 
-					<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
-						<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
-							<App />
-						</div>
-					</Group>
-
 					<TextInput
 						size="md"
 						width={500}
@@ -127,14 +123,15 @@ const AddTrainer = () => {
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("details")}
 					/>
+					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
 						<PasswordStrength />
 						<PasswordInput
 							size="md"
 							style={{ width: "48%" }}
 							required
-							label="PHONE NUMBER"
-							placeholder="Enter Trainer's Phone Number"
+							label="CONFIRM PASSWORD"
+							placeholder="Confirm Password"
 							{...form.getInputProps("tags")}
 						/>
 					</Group>
