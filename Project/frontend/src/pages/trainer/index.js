@@ -1,37 +1,35 @@
 import React from "react";
 
 // Page components
-import TrainerList from "./TrainerList";
+import TrainerList from "./TrainerCard";
 import AddTrainer from "./AddTrainer";
+import ReactCard from "./ReactCard";
 
-// TrainerProvider
+// SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
-const Trainer = () => {
+const Trainers = () => {
 	return (
-		<div>
-			<h1>Workout Program Page</h1>
-
-			<TrainerProvider>
-				<style jsx>{`
-					.components {
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						margin: 0 auto;
-					}
-				`}</style>
-
-				<div className="components">
+		<>
+			<h1>Trainer Page</h1>
+			<div
+				style={{
+					display: "table",
+					borderCollapse: "separate",
+					borderSpacing: "50px",
+				}}
+			>
+				<TrainerProvider>
 					{/* Trainer list */}
 					<TrainerList />
-
+					<br />
 					{/* Add new Trainer */}
 					<AddTrainer />
-				</div>
-			</TrainerProvider>
-		</div>
+					<ReactCard />
+				</TrainerProvider>
+			</div>
+		</>
 	);
 };
 
-export default Trainer;
+export default Trainers;

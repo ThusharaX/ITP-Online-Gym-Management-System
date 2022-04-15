@@ -1,35 +1,148 @@
-import React, { useContext } from "react";
-import { Button, TextInput, Group, Box } from "@mantine/core";
-
+import React, { useContext, useState } from "react";
+import { Button, TextInput, Group, Box, PasswordInput, RadioGroup, Radio, Title, Divider } from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
+import App from "./FileUpload";
+import { PasswordStrength } from "./pswBtn.tsx";
 
 const AddTrainer = () => {
 	const { addTrainer, form } = useContext(TrainerContext);
+	const [value, onChange] = useState(new Date());
 
 	return (
 		<>
-			<Box sx={{ maxWidth: 300 }} mx="auto">
-				<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
-					<TextInput required label="Image URL" placeholder="Enter Image URL" {...form.getInputProps("photoURL")} />
-					<TextInput required label="Name" placeholder="Trainer Program Name" {...form.getInputProps("name")} />
-					<TextInput
-						required
-						label="Description"
-						placeholder="Trainer Program Description"
-						{...form.getInputProps("description")}
-					/>
-					<TextInput
-						required
-						label="Conducted By"
-						placeholder="Trainer Program Conducted By"
-						{...form.getInputProps("conducted_by")}
-					/>
-					<TextInput required label="Fee" placeholder="Trainer Program Fee" {...form.getInputProps("fee")} />
-					<TextInput required label="Day" placeholder="Trainer Program Day" {...form.getInputProps("day")} />
-					<TextInput required label="Time" placeholder="Trainer Program Time" {...form.getInputProps("time")} />
+			<Box
+				sx={(theme) => ({
+					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+					textAlign: "left",
+					padding: theme.spacing.xl,
+					borderRadius: theme.radius.md,
+					width: "500px",
+					cursor: "pointer",
+					borderRadius: "50px",
+					boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
 
-					<Group position="right" mt="md">
-						<Button type="submit">Add Trainer Program</Button>
+					"&:hover": {
+						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
+					},
+				})}
+			>
+				<Title align="center" order={1}>
+					TRAINER REGISTRATION
+				</Title>
+
+				<Divider my="sm" size={"md"} />
+				<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
+					<Group position="center" style={{ marginTop: "20px" }}>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="FIRST NAME"
+							placeholder="Enter Trainer's First Name"
+							{...form.getInputProps("title")}
+						/>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="LAST NAME"
+							placeholder="Enter Trainer's First Name"
+							{...form.getInputProps("tags")}
+						/>
+					</Group>
+					<Group position="center" style={{ marginTop: "20px" }}>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="LAST NAME"
+							placeholder="Enter Trainer's User Name"
+							{...form.getInputProps("title")}
+						/>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="NIC"
+							placeholder="Enter Trainer's  NIC"
+							{...form.getInputProps("tags")}
+						/>
+					</Group>
+
+					<Group spacing={40} position="left" style={{ marginTop: "40px" }}>
+						<DatePicker
+							size="md"
+							placeholder="Select date"
+							label="Select Date"
+							required
+							value={value}
+							onChange={onChange}
+							{...form.getInputProps("date")}
+						/>
+						<RadioGroup
+							style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
+							size="md"
+							orientation="horizontal"
+							label="Can Join"
+							color="gray"
+							required
+							{...form.getInputProps("gender")}
+						>
+							<Radio value="male" label="Male" />
+							<Radio value="female" label="Female" />
+						</RadioGroup>
+					</Group>
+					<Group position="center" style={{ marginTop: "20px" }}>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="ADDRESS"
+							placeholder="Enter Trainer's Address"
+							{...form.getInputProps("title")}
+						/>
+						<TextInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="PHONE NUMBER"
+							placeholder="Enter Trainer's Phone Number"
+							{...form.getInputProps("tags")}
+						/>
+					</Group>
+
+					<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
+						<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
+							<App />
+						</div>
+					</Group>
+
+					<TextInput
+						size="md"
+						width={500}
+						required
+						label="QUALIFICATION"
+						placeholder="Enter Trainer's Qualification"
+						style={{ marginTop: "30px", marginBottom: "30px" }}
+						{...form.getInputProps("details")}
+					/>
+					<Group position="center" style={{ marginTop: "20px" }}>
+						<PasswordStrength />
+						<PasswordInput
+							size="md"
+							style={{ width: "48%" }}
+							required
+							label="PHONE NUMBER"
+							placeholder="Enter Trainer's Phone Number"
+							{...form.getInputProps("tags")}
+						/>
+					</Group>
+					<Divider my="sm" size={"md"} />
+					<Group style={{ marginTop: "15px" }} position="center" mt="md">
+						<Button color={"blue[4]"} type="submit" radius="20px" size="xl" compact>
+							REGISTER
+						</Button>
 					</Group>
 				</form>
 			</Box>
