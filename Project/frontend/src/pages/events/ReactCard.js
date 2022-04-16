@@ -10,6 +10,8 @@ const ReactCard = () => {
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
+	const memberId = "123456789";
+
 	return (
 		<>
 			<h1>View evets by Members</h1>

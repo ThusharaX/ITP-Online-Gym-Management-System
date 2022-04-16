@@ -43,7 +43,7 @@ export function EventProvider({ children }) {
 			details: values.details,
 			gender: values.gender,
 			date: newDate,
-			tags: values.tags.split(","),
+			tags: String(values.tags).split(","),
 			trainer: values.trainer,
 		};
 		axios.post(baseURL, newEvent).then((res) => {
@@ -51,10 +51,28 @@ export function EventProvider({ children }) {
 			form.reset();
 		});
 	};
+	const updateEvent = (values) => {
+		let newDate = String(values.date).slice(0, 15) + String(values.time).slice(15);
+		let id = values.id;
+		const newEvent = {
+			title: values.title,
+			description: values.description,
+			details: values.details,
+			gender: values.gender,
+			date: newDate,
+			tags: String(values.tags).split(","),
+			trainer: values.trainer,
+		};
+		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
+			axios.get(baseURL).then((res) => {
+				setEvents(res.data);
+			});
+		});
+	};
 
 	// Delete event and update UI
 	const deleteEvent = (id) => {
-		axios.delete(`${baseURL}/${id}`).then((res) => {
+		axios.delete(`${baseURL}/${id}/`).then((res) => {
 			setEvents(events.filter((event) => event._id !== id));
 		});
 	};
@@ -79,7 +97,11 @@ export function EventProvider({ children }) {
 			onConfirm: () => deleteEvent(id),
 		});
 
-	return <EventContext.Provider value={{ events, confirmDelete, addEvent, form }}>{children}</EventContext.Provider>;
+	return (
+		<EventContext.Provider value={{ events, confirmDelete, updateEvent, addEvent, form }}>
+			{children}
+		</EventContext.Provider>
+	);
 }
 
 export default EventContext;

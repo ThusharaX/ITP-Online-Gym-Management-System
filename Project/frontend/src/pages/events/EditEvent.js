@@ -8,21 +8,23 @@ import { useForm } from "@mantine/form";
 
 const EditEvent = ({ event }) => {
 	const [opened, setOpened] = useState(false);
-	const { addEvent, form } = useContext(EventContext);
+	const { updateEvent } = useContext(EventContext);
 
 	// Form initial state
-	const form1 = useForm({
+	let form1 = useForm({
 		initialValues: {
+			id: event._id,
 			title: event.title,
 			tags: event.tags,
 			description: event.description,
 			details: event.details,
 			gender: event.gender,
 			date: new Date(event.date),
-			time: new Date(event.time),
+			time: new Date(event.date),
 			trainer: event.trainer,
 		},
 	});
+
 	// ("2022-03-31T18:30:23.000Z");
 	const [date, setDate] = useState({ ...form1.getInputProps("date") });
 	const [time, setTime] = useState({ ...form1.getInputProps("time") });
@@ -34,7 +36,6 @@ const EditEvent = ({ event }) => {
 				withCloseButton={false}
 				transition="fade"
 				transitionDuration={600}
-				transitionTimingFunction="ease"
 			>
 				<div
 					style={{
@@ -66,7 +67,13 @@ const EditEvent = ({ event }) => {
 							Update The Event
 						</Title>
 						<Divider my="sm" size={"md"} />
-						<form onSubmit={form.onSubmit((values) => addEvent(values))}>
+						<form
+							onSubmit={form1.onSubmit((values) => {
+								updateEvent(values);
+								form1.reset();
+								setOpened(false);
+							})}
+						>
 							<Group position="center" style={{ marginTop: "20px" }}>
 								<TextInput
 									size="md"

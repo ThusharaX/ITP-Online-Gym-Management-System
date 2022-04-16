@@ -10,7 +10,7 @@ const EventList = () => {
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
-
+	let x = "dd";
 	return (
 		<>
 			<div style={{ border: "2px solid #ccc", borderRadius: "20px", width: "100%", padding: "50px 0px 50px 0px" }}>
@@ -80,7 +80,10 @@ const EventList = () => {
 									<Button size="md" onClick={() => confirmDelete(item._id)} compact variant="light" color="red">
 										Delete
 									</Button>
+
 									<EditEvent event={item} />
+
+									{"debug: " + item._id}
 								</Group>
 							</Card>
 						</div>
