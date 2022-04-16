@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Button, TextInput, Group, Box, PasswordInput, RadioGroup, Radio, Title, Divider } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";

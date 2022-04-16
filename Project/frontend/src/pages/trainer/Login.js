@@ -9,12 +9,28 @@ import {
 	Text,
 	Container,
 	Group,
+	Box,
 	Button,
 } from "@mantine/core";
 
 export function AuthenticationTitle() {
 	return (
-		<Container size={420} my={40}>
+		<Box
+			sx={(theme) => ({
+				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+				textAlign: "left",
+				padding: "2rem",
+				borderRadius: theme.radius.md,
+				width: "350px",
+				cursor: "pointer",
+				borderRadius: "50px",
+				boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+
+				"&:hover": {
+					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
+				},
+			})}
+		>
 			<Title align="center" sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}>
 				Welcome back!
 			</Title>
@@ -24,7 +40,7 @@ export function AuthenticationTitle() {
 					Create account
 				</Anchor>
 			</Text>
-			<Paper withBorder shadow="md" p={30} mt={30} radius="md">
+			<div style={{ marginTop: "25px" }}>
 				<TextInput label="Email" placeholder="you@mantine.dev" required />
 				<PasswordInput label="Password" placeholder="Your password" required mt="md" />
 				<Group position="apart" mt="md">
@@ -33,10 +49,12 @@ export function AuthenticationTitle() {
 						Forgot password?
 					</Anchor>
 				</Group>
-				<Button fullWidth mt="xl">
-					Sign in
-				</Button>
-			</Paper>
-		</Container>
+				<Group style={{ margin: "-5px 20px 0px 0px " }} position="right" mt="md">
+					<Button radius={"md"} mt="xl">
+						Sign in
+					</Button>
+				</Group>
+			</div>
+		</Box>
 	);
 }

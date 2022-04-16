@@ -27,7 +27,7 @@ export function Dashboard() {
 		},
 	});
 	let cardStyle = {
-		padding: "30px",
+		padding: "30px 30px 30px 50px",
 		borderRadius: "md",
 		boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.5)",
 		width: "100%",

@@ -117,6 +117,27 @@ export function TrainerProvider({ children }) {
 			form.reset();
 		});
 	};
+	const updateTrainer = (values) => {
+		const newTrainer = {
+			fName: values.fName,
+			lName: values.lName,
+			uName: values.uName,
+			nic: values.nic,
+			dob: values.dob,
+			gender: values.gender,
+			address: values.address,
+			pNumber: values.pNumber,
+			password: values.password,
+			qualifications: values.qualifications.split(","),
+			trainer: values.trainer,
+		};
+		// axios.post(baseURL, newTrainer).then((res) => {
+		// 	setTrainers([...trainers, res.data]);
+		// 	form.reset();
+		// });
+		setTrainers([...trainers, res.data]);
+		form.reset();
+	};
 
 	// Delete trainer and update UI
 	const deleteTrainer = (id) => {
