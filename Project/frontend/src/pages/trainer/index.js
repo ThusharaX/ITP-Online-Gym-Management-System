@@ -3,15 +3,18 @@ import React from "react";
 // Page components
 import TrainerList from "./TrainerCard";
 import AddTrainer from "./AddTrainer";
-import ReactCard from "./ReactCard";
-import { AuthenticationTitle } from "./Login.js";
+import { AuthenticationTitle } from "./Login";
+import { Dashboard } from "./Dashboard";
+import { UserInfoIcons } from "./TrainerC";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
 const Trainers = () => {
 	return (
 		<>
-			<h1>Trainer Page</h1>
+			<h1>DASHBOARD</h1>
+			<Dashboard />
+
 			<div
 				style={{
 					display: "table",
@@ -21,12 +24,20 @@ const Trainers = () => {
 			>
 				<TrainerProvider>
 					{/* Trainer list */}
+					<h1>TRAINER LIST</h1>
 					<TrainerList />
+
+					<UserInfoIcons />
+					<UserInfoIcons />
+					<UserInfoIcons />
+
 					<br />
 					{/* Add new Trainer */}
+					<h1>TRAINER REGISTRATION</h1>
 					<AddTrainer />
+					<h1>TRAINER LOGIN</h1>
 					<AuthenticationTitle />
-					<ReactCard />
+					<h1>TRAINER PROFILE</h1>
 				</TrainerProvider>
 			</div>
 		</>

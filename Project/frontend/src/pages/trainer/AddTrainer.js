@@ -9,8 +9,7 @@ import { DropzoneButton } from "./Dropzone";
 const AddTrainer = () => {
 	const { addTrainer, form } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
-	// eslint-disable-next-line no-console
-	console.log("dddd");
+
 	return (
 		<>
 			<Box

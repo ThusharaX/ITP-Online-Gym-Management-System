@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-
 import axios from "axios";
 
 // Mantine imports
@@ -11,12 +10,71 @@ const TrainerContext = createContext();
 
 export function TrainerProvider({ children }) {
 	const [trainers, setTrainers] = useState([]);
+	const [isLoading, setLoading] = useState(false);
+
+	if (isLoading) {
+		return (
+			<div>
+				<Text size="sm">Loading...</Text>
+			</div>
+		);
+	}
+
+	let trainer = [
+		{
+			id: 1,
+			fName: "fName1",
+			lName: "lName1",
+			uName: "kiiii",
+			nic: "89612490852",
+			dob: "2012-04-23",
+			gender: "m",
+			email: "ddagjssdk@gmail.com",
+			address: "address1Malabbe",
+			pNumber: "078545652675",
+			Qualifications: ["css", "javascript", "mongoose", "node"],
+			password: "psw112345",
+		},
+		{
+			id: 2,
+			fName: "fName1",
+			lName: "lName1",
+			uName: "kiiii",
+			nic: "89612490852",
+			dob: "2012-04-23",
+			gender: "m",
+			email: "ddagjssdk@gmail.com",
+			address: "address1Malabbe",
+			pNumber: "078545652675",
+			Qualifications: ["css", "javascript", "mongoose", "node"],
+			password: "psw112345",
+		},
+		{
+			id: 3,
+			fName: "fName1",
+			lName: "lName1",
+			uName: "kiiii",
+			nic: "89612490852",
+			dob: "2012-04-23",
+			gender: "m",
+			email: "ddagjssdk@gmail.com",
+			address: "address1Malabbe",
+			pNumber: "078545652675",
+			Qualifications: ["css", "javascript", "mongoose", "node"],
+			password: "psw112345",
+		},
+	];
 
 	// Get all trainers
+	// useEffect(() => {
+	// 	axios.get(baseURL).then((res) => {
+	// 		setTrainers(res.data);
+	// 		setLoading(false);
+	// 	});
+	// }, []);
 	useEffect(() => {
-		axios.get(baseURL).then((res) => {
-			setTrainers(res.data);
-		});
+		setTrainers(trainer);
+		setLoading(false);
 	}, []);
 
 	// Form initial state
@@ -31,7 +89,6 @@ export function TrainerProvider({ children }) {
 			address: "address1Malabbe",
 			pNumber: "0123456789",
 			qualifications: ["css", "javascript", "mongoose", "node"],
-			expYears: 4,
 			password: "psw112345",
 			trainer: "6238afed94d1c551735ca084",
 		},
@@ -39,7 +96,6 @@ export function TrainerProvider({ children }) {
 
 	// Add new trainer
 	const addTrainer = (values) => {
-		let newDate = String(values.date).slice(0, 15) + String(values.time).slice(15);
 		const newTrainer = {
 			fName: values.fName,
 			lName: values.lName,
@@ -49,7 +105,6 @@ export function TrainerProvider({ children }) {
 			gender: values.gender,
 			address: values.address,
 			pNumber: values.pNumber,
-			expYears: values.expYears,
 			password: values.password,
 			qualifications: values.qualifications.split(","),
 			trainer: values.trainer,
