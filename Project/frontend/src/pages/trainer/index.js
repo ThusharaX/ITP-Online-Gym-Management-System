@@ -1,11 +1,10 @@
 import React from "react";
 
 // Page components
-import TrainerList from "./TrainerCard";
+import TrainerList from "./TrainerList";
 import AddTrainer from "./AddTrainer";
 import { AuthenticationTitle } from "./Login";
 import { Dashboard } from "./Dashboard";
-import { UserInfoIcons } from "./TrainerC";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
@@ -26,10 +25,6 @@ const Trainers = () => {
 					{/* Trainer list */}
 					<h1>TRAINER LIST</h1>
 					<TrainerList />
-
-					<UserInfoIcons />
-					<UserInfoIcons />
-					<UserInfoIcons />
 
 					<br />
 					{/* Add new Trainer */}
