@@ -13,6 +13,7 @@ export const login = async (request, response, next) => {
 					_id: user._id,
 					username: user.username,
 					token: authToken,
+					permissionLevel: user.permissionLevel,
 				};
 
 				request.handleResponse.successRespond(response)(data);
@@ -39,6 +40,7 @@ export const createUser = async (req, res, next) => {
 	const user = {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
+		nic: req.body.nic,
 		phoneNumber: req.body.phoneNumber,
 		email: req.body.email,
 		username: req.body.username,
