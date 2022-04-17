@@ -25,7 +25,6 @@ const EditEvent = ({ event }) => {
 		},
 	});
 
-	// ("2022-03-31T18:30:23.000Z");
 	const [date, setDate] = useState({ ...form1.getInputProps("date") });
 	const [time, setTime] = useState({ ...form1.getInputProps("time") });
 	return (

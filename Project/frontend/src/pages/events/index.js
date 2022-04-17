@@ -8,28 +8,27 @@ import ReactCard from "./ReactCard";
 // SampleProvider
 import { EventProvider } from "../../contexts/EventContext";
 
-const Events = () => {
+const Eventlist = () => {
 	return (
-		<>
-			<h1>Event Page</h1>
-			<div
-				style={{
-					display: "table",
-					borderCollapse: "separate",
-					borderSpacing: "50px",
-				}}
-			>
-				<EventProvider>
-					{/* Event list */}
-					<EventList />
-					<br />
-					{/* Add new Event */}
-					<AddEvent />
-					<ReactCard />
-				</EventProvider>
-			</div>
-		</>
+		<EventProvider>
+			<EventList />
+		</EventProvider>
 	);
 };
 
-export default Events;
+const Events = () => {
+	return (
+		<EventProvider>
+			<ReactCard />
+		</EventProvider>
+	);
+};
+const AddEvents = () => {
+	return (
+		<EventProvider>
+			<AddEvent />
+		</EventProvider>
+	);
+};
+
+export { Events, AddEvents, Eventlist };

@@ -5,7 +5,7 @@ import EventContext from "../../contexts/EventContext";
 import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea, Select } from "@mantine/core";
 
 const ReactCard = () => {
-	const { events, confirmDelete } = useContext(EventContext);
+	const { events } = useContext(EventContext);
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -93,7 +93,7 @@ const ReactCard = () => {
 									<Button
 										style={{ marginTop: "0px" }}
 										size="lg"
-										onClick={() => confirmDelete(item._id)}
+										// onClick={() => confirmDelete(item._id)}
 										compact
 										variant="light"
 										color="grape"

@@ -71,8 +71,8 @@ const EventList = () => {
 									</Text>
 								</Group>
 
-								<ScrollArea style={{ height: 100, marginTop: "10px" }} scrollbarSize={3} scrollHideDelay={100}>
-									<Text size="sm" style={{ margin: "-50px -40px 0px -40px", color: secondaryColor, lineHeight: 1.5 }}>
+								<ScrollArea style={{ height: 80, marginTop: "8px" }} scrollbarSize={3} scrollHideDelay={100}>
+									<Text size="sm" style={{ margin: "0px 0px 0px 0px", color: secondaryColor, lineHeight: 1.4 }}>
 										{item.description}
 									</Text>
 								</ScrollArea>
@@ -82,8 +82,6 @@ const EventList = () => {
 									</Button>
 
 									<EditEvent event={item} />
-
-									{"debug: " + item._id}
 								</Group>
 							</Card>
 						</div>
