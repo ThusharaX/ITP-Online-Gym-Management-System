@@ -1,4 +1,4 @@
-import { Box, Center, BackgroundImage, SimpleGrid, Card, Image, Text, useMantineTheme, Title } from "@mantine/core";
+import { SimpleGrid, Card, Text, useMantineTheme, Title } from "@mantine/core";
 
 export function Dashboard() {
 	const theme = useMantineTheme();
@@ -18,7 +18,7 @@ export function Dashboard() {
 			transform: `translate(${x}px, ${y}px)`,
 		},
 		backgroundColor: theme.colors.gray[0],
-		backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.5)), " + url[x],
+		backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.4)), " + url[x],
 		backgroundPosition: "0% " + y + "%",
 		"&:hover": {
 			backgroundColor: theme.colors.gray[1],
@@ -27,7 +27,7 @@ export function Dashboard() {
 		},
 	});
 	let cardStyle = {
-		padding: "30px 30px 30px 50px",
+		padding: "50px 30px 50px 50px",
 		borderRadius: "md",
 		boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.5)",
 		width: "100%",
@@ -43,19 +43,19 @@ export function Dashboard() {
 			color: "white",
 		},
 	});
-	let cardTextSx = { width: "70%", marginTop: "10px" };
+	let cardTextSx = { width: "70%", marginTop: "20px" };
 
 	return (
 		<>
-			<SimpleGrid cols={1} spacing="xs">
+			<SimpleGrid style={{ backgroundColor: "#222" }} cols={1} spacing="xs">
 				<Card
 					sx={cardTheme(theme, 0, 10)}
 					style={cardStyle}
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-					target="_blank"
+					href="/trainer/profile"
+					// target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						PROFILE
@@ -74,7 +74,7 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+					href="/new-event"
 					target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
@@ -93,7 +93,7 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+					href="/events"
 					target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
@@ -112,7 +112,7 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+					href="/requets"
 					target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
@@ -131,7 +131,7 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+					href="/workout-schedules"
 					target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
@@ -150,7 +150,7 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+					href="/blogs"
 					target="_blank"
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>

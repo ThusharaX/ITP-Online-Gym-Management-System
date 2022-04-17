@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import TrainerContext from "../../contexts/TrainerContext";
 import { Card, Text, Button, Group, useMantineTheme, createStyles, Avatar } from "@mantine/core";
-import { PhoneCall, At, BrandGmail, Friends } from "tabler-icons-react";
-
+import { PhoneCall, BrandGmail, Friends } from "tabler-icons-react";
+// import { TrainerProvider } from "../../contexts/TrainerContext";
 const useStyles = createStyles((theme) => ({
 	icon: {
 		color: theme.colorScheme === "dark" ? theme.colors.dark[3] : theme.colors.gray[5],
@@ -22,6 +22,7 @@ const TrainerList = () => {
 
 	return (
 		<>
+			{/* <TrainerContext.TrainerProvider> */}
 			<Group position="apart" spacing={"md"}>
 				<Button color="red" variant="subtle">
 					Back To Home
@@ -91,6 +92,7 @@ const TrainerList = () => {
 					))}
 				</Group>
 			</div>
+			{/* </TrainerContext.TrainerProvider> */}
 		</>
 	);
 };

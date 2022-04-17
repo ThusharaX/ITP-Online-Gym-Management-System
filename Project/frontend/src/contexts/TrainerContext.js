@@ -167,7 +167,9 @@ export function TrainerProvider({ children }) {
 		});
 
 	return (
-		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, form }}>{children}</TrainerContext.Provider>
+		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form }}>
+			{children}
+		</TrainerContext.Provider>
 	);
 }
 

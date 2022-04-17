@@ -4,16 +4,31 @@ import React from "react";
 import TrainerList from "./TrainerList";
 import AddTrainer from "./AddTrainer";
 import { AuthenticationTitle } from "./Login";
-import { Dashboard } from "./Dashboard";
+import { Dashboard as TrainerDashboard } from "./Dashboard";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
-const Trainers = () => {
+const Test = () => {
 	return (
 		<>
-			<h1>DASHBOARD</h1>
-			<Dashboard />
+			<div
+				style={{
+					display: "table",
+					borderCollapse: "separate",
+					borderSpacing: "50px",
+				}}
+			>
+				<TrainerProvider>
+					<TrainerList />
+				</TrainerProvider>
+			</div>
+		</>
+	);
+};
 
+const Trainer = () => {
+	return (
+		<>
 			<div
 				style={{
 					display: "table",
@@ -39,4 +54,4 @@ const Trainers = () => {
 	);
 };
 
-export default Trainers;
+export { Trainer, TrainerDashboard, TrainerList, AddTrainer, Test };
