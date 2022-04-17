@@ -2,7 +2,6 @@ import React from "react";
 
 // Page components
 import EventList from "./eventCard";
-import AddEvent from "./AddEvent";
 import ReactCard from "./ReactCard";
 
 // SampleProvider
@@ -23,12 +22,5 @@ const Events = () => {
 		</EventProvider>
 	);
 };
-const AddEvents = () => {
-	return (
-		<EventProvider>
-			<AddEvent />
-		</EventProvider>
-	);
-};
 
-export { Events, AddEvents, Eventlist };
+export { Events, Eventlist };

@@ -4,16 +4,29 @@ import EventContext from "../../contexts/EventContext";
 
 import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
 import EditEvent from "./EditEvent";
+import AddEvent from "./AddEvent";
 
 const EventList = () => {
 	const { events, confirmDelete } = useContext(EventContext);
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
-	let x = "dd";
+
 	return (
 		<>
-			<div style={{ border: "2px solid #ccc", borderRadius: "20px", width: "100%", padding: "50px 0px 50px 0px" }}>
+			<Group position="right" style={{ margin: " 50px 100px 50px 30px" }}>
+				<AddEvent />
+			</Group>
+
+			<div
+				style={{
+					margin: "0 auto",
+					border: "2px solid #ccc",
+					borderRadius: "20px",
+					width: "90%",
+					padding: "50px 30px 50px 30px",
+				}}
+			>
 				<Group position="center" spacing={50}>
 					{events.map((item) => (
 						<div key={item._id}>
