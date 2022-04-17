@@ -1,10 +1,11 @@
 import { createContext, useState, useEffect } from "react";
+import Joi from "joi";
+import { useForm, joiResolver } from "@mantine/form";
 
 import axios from "axios";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/events`;
 const EventContext = createContext();
@@ -19,8 +20,22 @@ export function EventProvider({ children }) {
 		});
 	}, []);
 
+	const schema = Joi.object({
+		title: Joi.string().min(5).max(20).message("Title should be between 5 and 20 characters"),
+		description: Joi.string()
+
+			.min(15)
+			.max(500)
+			.message("Description should be between 15 and 500 characters"),
+		date: Joi.date().min("now").required(),
+		time: Joi.date().required(),
+		tags: Joi.string().min(3).max(20).message("Tags should be between 3 and 50 characters"),
+		details: Joi.string().min(5).max(50).message("Details should be between 5 and 50 characters"),
+		gender: Joi.string().required(),
+	});
 	// Form initial state
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			title: "Cat doing weights",
 			tags: "cattower,lasers",
@@ -30,7 +45,6 @@ export function EventProvider({ children }) {
 			gender: "Both",
 			date: new Date(),
 			time: new Date(),
-			trainer: "6238afed94d1c551735ca084",
 		},
 	});
 
@@ -44,7 +58,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: values.trainer,
+			trainer: "1234567898",
 		};
 		axios.post(baseURL, newEvent).then((res) => {
 			setEvents([...events, res.data]);

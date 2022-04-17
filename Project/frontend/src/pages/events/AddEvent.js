@@ -3,6 +3,7 @@ import { Modal, Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Titl
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import App from "./FileUpload";
+
 // import { DropzoneButton } from "./Dropzone";
 
 const AddEvent = () => {
@@ -130,13 +131,6 @@ const AddEvent = () => {
 							</Button>
 						</Group>
 						{/* <DropzoneButton /> */}
-						<TextInput
-							size="xs"
-							required
-							label="debug trainer id"
-							placeholder="Event trainer"
-							{...form.getInputProps("trainer")}
-						/>
 					</form>
 				</Box>
 			</Modal>
