@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
 const NavBar = () => {
-	const handleLogOut = (event) => {
-		if (event) {
-			localStorage.removeItem("authToken");
-			window.location.href = "/userLogin";
-		}
-	};
+	const { logout } = useContext(UserContext);
 
 	return (
 		<div style={{ textDecoration: "none" }}>
@@ -18,7 +14,7 @@ const NavBar = () => {
 			</button>
 
 			{/* Logout button */}
-			<button onClick={handleLogOut}>Logout</button>
+			<button onClick={logout}>Logout</button>
 
 			{/* Dashboard button */}
 			<button>

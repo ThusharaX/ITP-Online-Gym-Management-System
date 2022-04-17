@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import DashboardAPI from "../../contexts/api/DashboardAPI";
 
 const Dashboard = () => {
@@ -13,6 +13,8 @@ const Dashboard = () => {
 	return (
 		<div>
 			<h1>Dashboard Page</h1>
+
+			<p>Logged User: {localStorage.getItem("username")}</p>
 
 			<p>{data.message}</p>
 		</div>
