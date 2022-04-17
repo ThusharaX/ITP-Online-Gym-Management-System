@@ -32,6 +32,13 @@ export default function (app) {
 	app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
 	//app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
+	//PersonalTrainer Request endpoints
+	app.post("/personal/", controller.insertPersonalTrainerReq); // insert one request
+	app.get("/personal/", controller.getAllPersonalTrainerReq); // get all request
+	app.get("/personal/:id", controller.getOnePersonalTrainerReq); // get one request
+	app.put("/personal/:id", controller.updatePersonalTrainerReq); // update one request
+	app.delete("/personal/:id", controller.deletePersonalTrainerReq); // delete one request
+
 	//Salary endpoints
 	app.post("/salary/", controller.insertSalary); // insert a salary
 	app.put("/salary/:id", controller.updateSalary); //update a salary

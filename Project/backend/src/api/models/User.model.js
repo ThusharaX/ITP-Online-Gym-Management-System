@@ -12,6 +12,11 @@ const UserSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		nic: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 		phoneNumber: {
 			type: String,
 			required: true,
