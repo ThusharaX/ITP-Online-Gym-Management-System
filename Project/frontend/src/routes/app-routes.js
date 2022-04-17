@@ -4,7 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 import CheckLoginStatus from "./CheckLoginStatus";
 
 // Pages
-import { Sample, Home, WorkoutProgram, UserLogin, Dashboard } from "../pages";
+import { Sample, Home, WorkoutProgram, UserLogin, Dashboard, PersonalTrainerRequest } from "../pages";
 // Error pages
 import Error404 from "../pages/error/Error404";
 
@@ -24,6 +24,7 @@ const AppRoutes = () => {
 					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
 						<Route exact path="/userLogin" element={<UserLogin />} />
 					</Route>
+					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
 					{/* Private Routes */}
 					<Route exact path="/dashboard" element={<PrivateRoute />}>
