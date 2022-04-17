@@ -1,19 +1,7 @@
 import React from "react";
-import {
-	TextInput,
-	PasswordInput,
-	Checkbox,
-	Anchor,
-	Paper,
-	Title,
-	Text,
-	Container,
-	Group,
-	Box,
-	Button,
-} from "@mantine/core";
+import { TextInput, PasswordInput, Checkbox, Anchor, Title, Text, Group, Box, Button } from "@mantine/core";
 
-export function AuthenticationTitle() {
+export function Login() {
 	return (
 		<Box
 			sx={(theme) => ({

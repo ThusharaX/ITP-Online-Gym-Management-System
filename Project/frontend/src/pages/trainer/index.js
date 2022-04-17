@@ -3,55 +3,32 @@ import React from "react";
 // Page components
 import TrainerList from "./TrainerList";
 import AddTrainer from "./AddTrainer";
-import { AuthenticationTitle } from "./Login";
+import { Login } from "./Login";
 import { Dashboard as TrainerDashboard } from "./Dashboard";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
 
-const Test = () => {
+const ListTrainers = () => {
 	return (
-		<>
-			<div
-				style={{
-					display: "table",
-					borderCollapse: "separate",
-					borderSpacing: "50px",
-				}}
-			>
-				<TrainerProvider>
-					<TrainerList />
-				</TrainerProvider>
-			</div>
-		</>
+		<TrainerProvider>
+			<TrainerList />
+		</TrainerProvider>
 	);
 };
 
-const Trainer = () => {
+const TrainerRegister = () => {
 	return (
-		<>
-			<div
-				style={{
-					display: "table",
-					borderCollapse: "separate",
-					borderSpacing: "50px",
-				}}
-			>
-				<TrainerProvider>
-					{/* Trainer list */}
-					<h1>TRAINER LIST</h1>
-					<TrainerList />
-
-					<br />
-					{/* Add new Trainer */}
-					<h1>TRAINER REGISTRATION</h1>
-					<AddTrainer />
-					<h1>TRAINER LOGIN</h1>
-					<AuthenticationTitle />
-					<h1>TRAINER PROFILE</h1>
-				</TrainerProvider>
-			</div>
-		</>
+		<TrainerProvider>
+			<AddTrainer />
+		</TrainerProvider>
+	);
+};
+const TrainerLogin = () => {
+	return (
+		<TrainerProvider>
+			<Login />
+		</TrainerProvider>
 	);
 };
 
-export { Trainer, TrainerDashboard, TrainerList, AddTrainer, Test };
+export { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister };
