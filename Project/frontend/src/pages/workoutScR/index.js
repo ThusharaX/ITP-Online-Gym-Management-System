@@ -5,35 +5,18 @@ import React from "react";
 import AddWorkoutScR from "./AddWorkoutScr";
 
 // WorkoutScR Provider
-import {WorkoutScRProvider} from "../../contexts/WorkoutScRContext";
+import { WorkoutScRProvider } from "../../contexts/WorkoutScRContext";
 
-const WorkoutScR =() => {
+const WorkoutScR = () => {
 	return (
-
-		<div>	
+		<div>
 			<h1>Workout SCR</h1>
 
 			<WorkoutScRProvider>
-
-				<AddWorkoutScR/>
-
+				<AddWorkoutScR />
 			</WorkoutScRProvider>
-
-				
-					
-
-				
-
-	
-	
 		</div>
-		
-
-        
-
-
-
 	);
 };
 
-export default WorkoutScR; 
+export default WorkoutScR;

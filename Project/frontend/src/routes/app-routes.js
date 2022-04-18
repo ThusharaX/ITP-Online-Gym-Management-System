@@ -59,8 +59,7 @@ const AppRoutes = () => {
 					<Route path="*" element={<Error404 />} />
 
 					{/* Workout Schedule Request*/}
-					<Route path = "/workoutscr" element={<WorkoutScR/>}/>
-
+					<Route path="/workoutscr" element={<WorkoutScR />} />
 				</Routes>
 				<Footer />
 			</Router>
