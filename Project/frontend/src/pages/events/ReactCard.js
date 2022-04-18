@@ -1,6 +1,18 @@
 import React, { useContext } from "react";
 import EventContext from "../../contexts/EventContext";
-import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea, Select } from "@mantine/core";
+import {
+	Box,
+	Card,
+	Image,
+	Text,
+	Badge,
+	Button,
+	Group,
+	useMantineTheme,
+	ScrollArea,
+	Select,
+	Container,
+} from "@mantine/core";
 
 const ReactCard = () => {
 	const { events } = useContext(EventContext);
@@ -10,19 +22,37 @@ const ReactCard = () => {
 	let memberID = "123456789";
 
 	return (
-		<div
+		<Box
+			sx={(theme) => ({
+				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+			})}
 			style={{
 				margin: "0 auto",
 				border: "2px solid #ccc",
 				borderRadius: "20px",
-				width: "90%",
-				padding: "50px 30px 50px 30px",
+				width: "100%",
+				padding: "100px 20px 50px 20px",
 			}}
 		>
 			<Group position="center" spacing={50}>
 				{events.map((item) => (
 					<div key={item._id}>
-						<Card shadow="lg" radius="lg" p="md" withBorder style={{ width: "300px" }}>
+						<Card
+							sx={(theme) => ({
+								border: "2px solid",
+								borderColor: theme.colorScheme === "dark" ? theme.colors.gray[1] : theme.colors.gray[6],
+								boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
+								"&:hover": {
+									backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[1],
+									boxShadow: theme.colorScheme === "dark" ? "0px 2px 15px 3px #777" : "0px 3px 20px 2px #bbb",
+								},
+							})}
+							// shadow="xl"
+							radius="lg"
+							p="md"
+							withBorder
+							style={{ width: "300px" }}
+						>
 							<Card.Section>
 								<Image
 									src="https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
@@ -81,7 +111,7 @@ const ReactCard = () => {
 									{item.description}
 								</Text>
 							</ScrollArea>
-							<Group spacing={"10px"} position="center" style={{ marginTop: "20px" }}>
+							<Group spacing={"15px"} position="center" style={{ marginTop: "20px" }}>
 								<Select
 									style={{ width: "140px", border: "2px solid #afa", borderRadius: "5px" }}
 									// label="Your "
@@ -98,8 +128,7 @@ const ReactCard = () => {
 									size="lg"
 									// onClick={() => confirmDelete(item._id)}
 									compact
-									variant="light"
-									color="grape"
+									color="teal"
 								>
 									Update
 								</Button>
@@ -108,7 +137,7 @@ const ReactCard = () => {
 					</div>
 				))}
 			</Group>
-		</div>
+		</Box>
 	);
 };
 
