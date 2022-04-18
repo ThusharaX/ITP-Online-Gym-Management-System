@@ -39,6 +39,7 @@ export const createUser = async (req, res, next) => {
 	const user = {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
+		nic: req.body.nic,
 		phoneNumber: req.body.phoneNumber,
 		email: req.body.email,
 		username: req.body.username,
