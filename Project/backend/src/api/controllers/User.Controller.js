@@ -13,6 +13,7 @@ export const login = async (request, response, next) => {
 					_id: user._id,
 					username: user.username,
 					token: authToken,
+					permissionLevel: user.permissionLevel,
 				};
 
 				request.handleResponse.successRespond(response)(data);
