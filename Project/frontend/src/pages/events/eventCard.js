@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { useNavigate } from "react-router-dom";
 import EventContext from "../../contexts/EventContext";
 
 import { Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
@@ -8,14 +8,20 @@ import AddEvent from "./AddEvent";
 
 const EventList = () => {
 	const { events, confirmDelete } = useContext(EventContext);
-
+	const navigate = useNavigate();
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
 	return (
 		<>
 			<Group position="apart" style={{ margin: " 50px 7% 3% 7%" }}>
-				<Button>Back to Home</Button>
+				<Button
+					onClick={() => {
+						navigate("/trainers");
+					}}
+				>
+					Back to Home
+				</Button>
 				<AddEvent />
 			</Group>
 

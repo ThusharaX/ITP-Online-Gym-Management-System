@@ -1,5 +1,16 @@
 import React, { useContext, useState, useRef } from "react";
-import { Button, TextInput, Group, Box, PasswordInput, RadioGroup, Radio, Title, Divider } from "@mantine/core";
+import {
+	useMantineTheme,
+	Button,
+	TextInput,
+	Group,
+	Box,
+	PasswordInput,
+	RadioGroup,
+	Radio,
+	Title,
+	Divider,
+} from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
 import { PasswordStrength } from "./pswBtn";
@@ -7,28 +18,40 @@ import { PasswordStrength } from "./pswBtn";
 import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
+	const theme = useMantineTheme();
+	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 	const { addTrainer, form } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
 
 	return (
-		<>
+		<Box
+			sx={(theme) => ({
+				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
+
+				width: "100%",
+				padding: "70px 0px",
+			})}
+		>
 			<Box
 				sx={(theme) => ({
-					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
+					border: "1px solid",
+					borderColor: theme.colorScheme === "dark" ? theme.colors.gray[8] : theme.colors.gray[4],
+					boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
 					textAlign: "left",
 					padding: theme.spacing.xl,
 					borderRadius: theme.radius.md,
 					width: "500px",
 					cursor: "pointer",
 					borderRadius: "50px",
-					boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+					margin: "10px auto",
 
 					"&:hover": {
-						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
+						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
 					},
 				})}
 			>
-				<Title align="center" order={1}>
+				<Title align="center" sx={(theme) => ({ color: TitleColor })}>
 					TRAINER REGISTRATION
 				</Title>
 
@@ -134,15 +157,15 @@ const AddTrainer = () => {
 							{...form.getInputProps("tags")}
 						/>
 					</Group>
-					<Divider my="sm" size={"md"} />
-					<Group style={{ marginTop: "15px" }} position="center" mt="md">
-						<Button color={"blue[4]"} type="submit" radius="20px" size="xl" compact>
+					<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
+					<Group style={{ marginTop: "20px" }} position="center" mt="md">
+						<Button color={"cyan"} type="submit" radius="4px" size="xl" compact>
 							REGISTER
 						</Button>
 					</Group>
 				</form>
 			</Box>
-		</>
+		</Box>
 	);
 };
 
