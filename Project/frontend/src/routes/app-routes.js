@@ -4,11 +4,25 @@ import PrivateRoute from "./PrivateRoute";
 import CheckLoginStatus from "./CheckLoginStatus";
 
 // Pages
-import { Sample, Home, WorkoutProgram, UserLogin, Dashboard, PersonalTrainerRequest, Events, Eventlist, TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister } from "../pages";
+import {
+	Sample,
+	Home,
+	WorkoutProgram,
+	UserLogin,
+	Dashboard,
+	PersonalTrainerRequest,
+	Events,
+	Eventlist,
+	TrainerDashboard,
+	TrainerLogin,
+	ListTrainers,
+	TrainerRegister,
+	Blog,
+	Write,
+} from "../pages";
 
 // Error pages
 import Error404 from "../pages/error/Error404";
-
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -27,9 +41,12 @@ const AppRoutes = () => {
 					<Route exact path="/trainers/login" element={<TrainerLogin />} />
 					<Route exact path="/trainers/register" element={<TrainerRegister />} />
 					<Route exact path="/trainers/list" element={<ListTrainers />} />
-            
+
 					<Route exact path="/events" element={<Events />} />
 					<Route exact path="/trainers/events" element={<Eventlist />} />
+
+					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/write" element={<Write />} />
 
 					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
 						<Route exact path="/userLogin" element={<UserLogin />} />

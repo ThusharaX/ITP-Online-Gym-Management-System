@@ -6,5 +6,22 @@ import { Events, Eventlist } from "./events";
 import UserLogin from "./userLogin";
 import Dashboard from "./dashboard";
 import PersonalTrainerRequest from "./personalTrainerRequest";
+import Blog from "./blog";
+import Write from "./write";
 
-export { Sample, Home, WorkoutProgram, UserLogin, Dashboard, PersonalTrainerRequest, Events, Eventlist, TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister };
+export {
+	Sample,
+	Home,
+	WorkoutProgram,
+	UserLogin,
+	Dashboard,
+	PersonalTrainerRequest,
+	Events,
+	Eventlist,
+	TrainerDashboard,
+	TrainerLogin,
+	ListTrainers,
+	TrainerRegister,
+	Blog,
+	Write,
+};
