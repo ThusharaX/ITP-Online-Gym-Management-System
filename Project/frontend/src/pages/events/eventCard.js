@@ -14,7 +14,8 @@ const EventList = () => {
 
 	return (
 		<>
-			<Group position="right" style={{ margin: " 50px 100px 50px 30px" }}>
+			<Group position="apart" style={{ margin: " 50px 7% 3% 7%" }}>
+				<Button>Back to Home</Button>
 				<AddEvent />
 			</Group>
 

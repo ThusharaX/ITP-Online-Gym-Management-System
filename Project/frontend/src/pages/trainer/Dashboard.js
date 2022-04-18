@@ -1,6 +1,9 @@
-import { SimpleGrid, Card, Text, useMantineTheme, Title } from "@mantine/core";
+import { SimpleGrid, Card, Text, useMantineTheme, Title, Button } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
+	const navigate = useNavigate();
+
 	const theme = useMantineTheme();
 	let url = [
 		"url(https://wallpapercave.com/wp/wp2483051.jpg)",
@@ -54,8 +57,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/trainer/profile"
-					// target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/trainers/profile");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						PROFILE
@@ -74,8 +79,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/new-event"
-					target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/new-event");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						PUBLISH EVENTS
@@ -93,8 +100,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/events"
-					target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/trainers/events");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						MANAGE EVENTS
@@ -112,8 +121,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/requets"
-					target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/requets");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						REQUEST MANAGEMENT
@@ -131,8 +142,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/workout-schedules"
-					target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/workout-schedules");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						WORKOUT SCHEDULES
@@ -150,8 +163,10 @@ export function Dashboard() {
 					shadow="sm"
 					p="xl"
 					component="a"
-					href="/blogs"
-					target="_blank"
+					href=""
+					onClick={() => {
+						navigate("/blogs");
+					}}
 				>
 					<Title order={2} className="your-class-name" style={{ marginTop: 10 }} sx={cardTitleSx}>
 						BLOGS

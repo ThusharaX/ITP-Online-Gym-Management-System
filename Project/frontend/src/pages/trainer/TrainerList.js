@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import TrainerContext from "../../contexts/TrainerContext";
 import { Card, Text, Button, Group, useMantineTheme, createStyles, Avatar } from "@mantine/core";
-import { PhoneCall, BrandGmail, Friends } from "tabler-icons-react";
+import { ChevronLeft, PhoneCall, BrandGmail, Friends } from "tabler-icons-react";
+import Joi from "joi";
+import { useForm, joiResolver } from "@mantine/form";
 
 const useStyles = createStyles((theme) => ({
 	icon: {
@@ -22,15 +24,12 @@ const TrainerList = () => {
 
 	return (
 		<>
-			<Group position="apart" spacing={"md"}>
+			<Group position="left" spacing={"0"}>
+				<ChevronLeft size={30} strokeWidth={2} color={"#bf7240"} />
 				<Button color="red" variant="subtle">
 					Back To Home
 				</Button>
-				<Button variant="light" color="violet">
-					Add a Trainer
-				</Button>
 			</Group>
-
 			<div style={{ border: "2px solid #ccc", borderRadius: "20px", width: "100%", padding: "50px 20px 50px 20px" }}>
 				<Group position="center" spacing={50}>
 					{trainers.map((item) => (
