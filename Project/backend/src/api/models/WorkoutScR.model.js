@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const WorkoutScRSchema = new mongoose.Schema({
-	mname: {
+	name: {
 		type: String,
 		required: true,
 	},
@@ -21,10 +21,10 @@ const WorkoutScRSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	rstatus: {
+	/*rstatus: {
 		type: String,
 		required: true,
-	},
+	},*/
 });
 
 module.exports = mongoose.model("WorkoutScR", WorkoutScRSchema);

@@ -18,6 +18,7 @@ import {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	WorkoutScR,
 } from "../pages";
 
 // Error pages
@@ -59,6 +60,9 @@ const AppRoutes = () => {
 
 					{/* 404 */}
 					<Route path="*" element={<Error404 />} />
+
+					{/* Workout Schedule Request*/}
+					<Route path="/workoutscr" element={<WorkoutScR />} />
 				</Routes>
 				<Footer />
 			</Router>
