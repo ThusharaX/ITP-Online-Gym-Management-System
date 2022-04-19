@@ -1,8 +1,131 @@
 import {
-	getTest,
-} from "./Test.controller";
+	insertSample,
+	getAllSamples,
+	getOneSample,
+	updateSample,
+	deleteSample,
+	searchSamples,
+} from "./Sample.controller";
+
+import {
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
+} from "./WorkoutProgram.controller";
+
+import {
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
+} from "./TrainerBD.controller";
+
+import {
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+} from "./PersonalTrainerReq.controller";
+
+import { login, createUser, getAdminDashboard } from "./User.Controller";
+
+import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
+
+import {
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateWorkout,
+	deleteWorkout,
+	searchWorkouts,
+} from "./Workout.controller";
+
+import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
+
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
+
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.controller";
+
+import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
 export default {
-    //Test Controllers
-    getTest,
+	//Sample Controllers
+	insertSample,
+	getAllSamples,
+	getOneSample,
+	updateSample,
+	deleteSample,
+	searchSamples,
+
+	//Workout Program Controllers
+	insertWorkoutProgram,
+	getAllWorkoutPrograms,
+	getOneWorkoutProgram,
+	updateWorkoutProgram,
+	deleteWorkoutProgram,
+	searchWorkoutPrograms,
+
+	//WorkoutScR controllers
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
+
+	//Blog Controllers
+	insertTrainerBD,
+	getAllTrainerBD,
+	getOneTrainerBD,
+	updateTrainerBD,
+	deleteTrainerBD,
+
+	//PersonalTrainerReq Controllers
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+
+	//Admin Controllers
+	login,
+	createUser,
+	getAdminDashboard,
+
+	//Workout Controllers
+	insertWorkout,
+	getAllWorkouts,
+	getOneWorkout,
+	updateWorkout,
+	deleteWorkout,
+	searchWorkouts,
+
+	//Notices Controllers
+	insertNotice,
+	getAllNotices,
+	getOneNotice,
+	updateNotice,
+	deleteNotice,
+
+	//Question Controllers
+	insertQuestion,
+	updateQuestion,
+	deleteQuestion,
+	getAllQuestions,
+
+	//Salary Controller
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
+
+	//Event Controllers
+	getEvent,
+	getEvents,
+	createEvents,
+	updateEvents,
+	deleteEvents,
 };

@@ -31,4 +31,9 @@ const unauthorizedRespond = (response) => {
 	};
 };
 
-export default { successRespond, notFoundRespond, errorRespond, unauthorizedRespond };
+export default {
+	successRespond,
+	notFoundRespond,
+	errorRespond,
+	unauthorizedRespond,
+};
