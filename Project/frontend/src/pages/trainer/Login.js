@@ -17,7 +17,7 @@ import TrainerContext from "../../contexts/TrainerContext";
 
 export function Login() {
 	const navigate = useNavigate();
-	const { login, form, isLoggedIn, isLoading } = useContext(TrainerContext);
+	const { login, lform, isLoggedIn, isLoading } = useContext(TrainerContext);
 	const theme = useMantineTheme();
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 
@@ -72,15 +72,15 @@ export function Login() {
 							Create account
 						</Anchor>
 					</Text>
-					<form onSubmit={form.onSubmit((values) => login(values))}>
+					<form onSubmit={lform.onSubmit((values) => login(values))}>
 						<div style={{ marginTop: "25px" }}>
-							<TextInput label="Email" placeholder="you@mantine.dev" required {...form.getInputProps("username")} />
+							<TextInput label="Email" placeholder="you@mantine.dev" required {...lform.getInputProps("username")} />
 							<PasswordInput
 								label="Password"
 								placeholder="Your password"
 								required
 								mt="md"
-								{...form.getInputProps("password")}
+								{...lform.getInputProps("password")}
 							/>
 							<Group position="apart" mt="md">
 								<Checkbox label="Remember me" />

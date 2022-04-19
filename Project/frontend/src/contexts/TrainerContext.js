@@ -20,7 +20,7 @@ export function TrainerProvider({ children }) {
 		lastName: Joi.string().min(5).max(20).message("Last Name should be between 4 and 20 characters"),
 		userName: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
 		nic: Joi.string().min(10).max(12).message("NIC should be Valid"),
-		// emaill: Joi.string().email(),
+		emaill: Joi.string(),
 		dob: Joi.date().max("now"),
 		gender: Joi.string().required(),
 		address: Joi.string().min(5).max(100).message("Address should be valid"),
@@ -89,7 +89,7 @@ export function TrainerProvider({ children }) {
 	}, []);
 
 	// Form initial state
-	const form1 = useForm({
+	const form = useForm({
 		// schema: joiResolver(schema),
 		initialValues: {
 			firstName: "first name",
@@ -113,7 +113,7 @@ export function TrainerProvider({ children }) {
 			id: "123456789",
 			firstName: values.firstName,
 			lastName: values.lastName,
-			userName: values.userName,
+			username: values.userName,
 			nic: values.nic,
 			email: values.email,
 			dob: values.dob,
@@ -122,7 +122,7 @@ export function TrainerProvider({ children }) {
 			phoneNumber: values.phoneNumber,
 			password: values.password,
 			qualifications: String(values.qualifications).split(","),
-			permissionLevel: "trainer",
+			permissionLevel: "TRAINER",
 		};
 		UserAPi.register(newTrainer).then((response) => {
 			// eslint-disable-next-line no-console
@@ -180,7 +180,7 @@ export function TrainerProvider({ children }) {
 			onConfirm: () => deleteTrainer(id),
 		});
 
-	const form = useForm({
+	const lform = useForm({
 		initialValues: {
 			username: "",
 			password: "",
@@ -194,7 +194,7 @@ export function TrainerProvider({ children }) {
 		setIsLoading(true);
 		UserAPi.login(values)
 			.then((response) => {
-				if (response.data.permissionLevel !== "trainer") {
+				if (response.data.permissionLevel !== "TRAINER") {
 					setIsLoading(false);
 					return alert("You are not a trainer");
 				} else {
@@ -202,7 +202,7 @@ export function TrainerProvider({ children }) {
 					localStorage.setItem("username", response.data.username);
 					localStorage.setItem("authToken", response.data.token);
 					localStorage.setItem("permissionLevel", response.data.permissionLevel);
-					window.location.href = "/dashboard";
+					window.location.href = "/trainers";
 					setIsLoggedIn(true);
 					setIsLoading(false);
 				}
@@ -215,25 +215,10 @@ export function TrainerProvider({ children }) {
 	};
 
 	return (
-		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form, login }}>
+		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form, lform, login }}>
 			{children}
 		</TrainerContext.Provider>
 	);
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// export const UserContext = createContext();
-// export function UserProvider({ children }) {
 
-// const form = useForm({
-// 	initialValues: {
-// 		username: "",
-// 		password: "",
-// 	},
-
-// 	validate: {
-// 		password: (value) => (value.length >= 4 ? null : "Password must be at least 4 characters"),
-// 	},
-// });
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export default TrainerContext;

@@ -10,6 +10,7 @@ import {
 	Center,
 	Box,
 	Button,
+	Image,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
@@ -64,21 +65,17 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-{
-	/* <button onClick={logout}>Logout</button>; */
-}
-
 function NavBar() {
 	const { logout } = useContext(UserContext);
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const links = [
 		{ link: "/userLogin", label: "Log In" },
 		{ link: "/dashboard", label: "Dashboard" },
-		{ link: "/logout", label: "Logout" },
+		{ link: "/trainers/login", label: "temp trainer login" },
+		{ link: "/trainers/register", label: "temp trainer register" },
+		{ link: "/trainers", label: "temp t " },
 	];
 	const navigate = useNavigate();
-	// eslint-disable-next-line no-console
-	console.log(links);
 	const [opened, toggleOpened] = useBooleanToggle(false);
 	const [active, setActive] = useState(links[0].link);
 	const { classes, cx } = useStyles();
@@ -101,7 +98,11 @@ function NavBar() {
 	return (
 		<Header height={60} mb={120}>
 			<Container className={classes.header}>
-				{/* <MantineLogo /> */}
+				<Image
+					width={50}
+					src="https://www.designfreelogoonline.com/wp-content/uploads/2020/08/00472-gym-04.png"
+				></Image>
+				<br />
 				<Group spacing={5} className={classes.links}>
 					{items}
 				</Group>

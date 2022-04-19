@@ -50,115 +50,113 @@ export function Dashboard() {
 	let cardTextSx = { width: "70%", marginTop: "30px", color: TextColor };
 
 	return (
-		<>
-			<SimpleGrid style={{ backgroundColor: bg }} cols={1} spacing="xs">
-				<Card
-					sx={cardTheme(theme, 0, 10)}
-					style={cardStyle}
-					shadow="sm"
-					p="xl"
-					component="a"
-					href=""
-					onClick={() => {
-						navigate("/trainers/profile");
-					}}
-				>
-					<Title order={1} className="your-class-name" sx={cardTitleSx}>
-						PROFILE
-					</Title>
+		<SimpleGrid style={{ backgroundColor: bg }} cols={1} spacing="xs">
+			<Card
+				sx={cardTheme(theme, 0, 10)}
+				style={cardStyle}
+				shadow="sm"
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/trainers/profile");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					PROFILE
+				</Title>
 
-					<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-						If you have an account, you can manage your account settings, view your subscriptions, and view your billing
-						history. You can also change your password. Within this account the trainer can access all the meterials
-						required to prepare, process and deliver the training.
-					</Text>
-				</Card>
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If you have an account, you can manage your account settings, view your subscriptions, and view your billing
+					history. You can also change your password. Within this account the trainer can access all the meterials
+					required to prepare, process and deliver the training.
+				</Text>
+			</Card>
 
-				<Card
-					sx={cardTheme(theme, 2, 10)}
-					style={cardStyle}
-					shadow="sm"
-					p="xl"
-					component="a"
-					href=""
-					onClick={() => {
-						navigate("/trainers/events");
-					}}
-				>
-					<Title order={1} className="your-class-name" sx={cardTitleSx}>
-						MANAGE EVENTS
-					</Title>
+			<Card
+				sx={cardTheme(theme, 2, 10)}
+				style={cardStyle}
+				shadow="sm"
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/trainers/events");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					MANAGE EVENTS
+				</Title>
 
-					<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-						If you have an account, you can manage your account settings, view your subscriptions, and view your billing
-						history. You can also change your password. Within this account the trainer can access all the meterials
-						required to prepare, process and deliver the training.
-					</Text>
-				</Card>
-				<Card
-					sx={cardTheme(theme, 3, 15)}
-					style={cardStyle}
-					shadow="sm"
-					p="xl"
-					component="a"
-					href=""
-					onClick={() => {
-						navigate("/requets");
-					}}
-				>
-					<Title order={1} className="your-class-name" sx={cardTitleSx}>
-						REQUEST MANAGEMENT
-					</Title>
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If you have an account, you can manage your account settings, view your subscriptions, and view your billing
+					history. You can also change your password. Within this account the trainer can access all the meterials
+					required to prepare, process and deliver the training.
+				</Text>
+			</Card>
+			<Card
+				sx={cardTheme(theme, 3, 15)}
+				style={cardStyle}
+				shadow="sm"
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/requets");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					REQUEST MANAGEMENT
+				</Title>
 
-					<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-						If you have an account, you can manage your account settings, view your subscriptions, and view your billing
-						history. You can also change your password. Within this account the trainer can access all the meterials
-						required to prepare, process and deliver the training.
-					</Text>
-				</Card>
-				<Card
-					sx={cardTheme(theme, 4, 15)}
-					style={cardStyle}
-					shadow="sm"
-					p="xl"
-					component="a"
-					href=""
-					onClick={() => {
-						navigate("/workout-schedules");
-					}}
-				>
-					<Title order={1} className="your-class-name" sx={cardTitleSx}>
-						WORKOUT SCHEDULES
-					</Title>
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If you have an account, you can manage your account settings, view your subscriptions, and view your billing
+					history. You can also change your password. Within this account the trainer can access all the meterials
+					required to prepare, process and deliver the training.
+				</Text>
+			</Card>
+			<Card
+				sx={cardTheme(theme, 4, 15)}
+				style={cardStyle}
+				shadow="sm"
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/workout-schedules");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					WORKOUT SCHEDULES
+				</Title>
 
-					<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-						If you have an account, you can manage your account settings, view your subscriptions, and view your billing
-						history. You can also change your password. Within this account the trainer can access all the meterials
-						required to prepare, process and deliver the training.
-					</Text>
-				</Card>
-				<Card
-					sx={cardTheme(theme, 5, 30)}
-					style={cardStyle}
-					shadow="sm"
-					p="xl"
-					component="a"
-					href=""
-					onClick={() => {
-						navigate("/blogs");
-					}}
-				>
-					<Title order={1} className="your-class-name" sx={cardTitleSx}>
-						BLOGS
-					</Title>
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If you have an account, you can manage your account settings, view your subscriptions, and view your billing
+					history. You can also change your password. Within this account the trainer can access all the meterials
+					required to prepare, process and deliver the training.
+				</Text>
+			</Card>
+			<Card
+				sx={cardTheme(theme, 5, 30)}
+				style={cardStyle}
+				shadow="sm"
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/blogs");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					BLOGS
+				</Title>
 
-					<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-						If you have an account, you can manage your account settings, view your subscriptions, and view your billing
-						history. You can also change your password. Within this account the trainer can access all the meterials
-						required to prepare, process and deliver the training.
-					</Text>
-				</Card>
-			</SimpleGrid>
-		</>
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If you have an account, you can manage your account settings, view your subscriptions, and view your billing
+					history. You can also change your password. Within this account the trainer can access all the meterials
+					required to prepare, process and deliver the training.
+				</Text>
+			</Card>
+		</SimpleGrid>
 	);
 }

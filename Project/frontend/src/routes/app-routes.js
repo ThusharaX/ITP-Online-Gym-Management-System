@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import PrivateRoute1 from "./PrivateRoute1";
 import CheckLoginStatus from "./CheckLoginStatus";
 
 // Pages
@@ -36,10 +37,8 @@ const AppRoutes = () => {
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
-					<Route exact path="/trainers/" element={<TrainerDashboard />} />
 					<Route exact path="/trainers/login" element={<TrainerLogin />} />
 					<Route exact path="/trainers/register" element={<TrainerRegister />} />
-					<Route exact path="/trainers/list" element={<ListTrainers />} />
 
 					<Route exact path="/events" element={<Events />} />
 					<Route exact path="/trainers/events" element={<Eventlist />} />
@@ -52,6 +51,10 @@ const AppRoutes = () => {
 					{/* Private Routes */}
 					<Route exact path="/dashboard" element={<PrivateRoute />}>
 						<Route exact path="/dashboard" element={<Dashboard />} />
+					</Route>
+					<Route exact path="/trainers" element={<PrivateRoute1 />}>
+						<Route exact path="/trainers" element={<TrainerDashboard />} />
+						<Route exact path="/trainers/list" element={<ListTrainers />} />
 					</Route>
 
 					{/* 404 */}
