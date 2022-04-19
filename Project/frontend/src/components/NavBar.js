@@ -16,7 +16,6 @@ import { useBooleanToggle } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { Sun, Moon } from "tabler-icons-react";
-import { Link } from "react-router-dom";
 
 // import { MantineLogo } from "../../shared/MantineLogo";
 
