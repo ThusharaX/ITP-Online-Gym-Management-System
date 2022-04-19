@@ -4,7 +4,22 @@ import PrivateRoute from "./PrivateRoute";
 import CheckLoginStatus from "./CheckLoginStatus";
 
 // Pages
-import { Sample, Home, WorkoutProgram, UserLogin, Dashboard, Notice } from "../pages";
+import {
+	Sample,
+	Home,
+	WorkoutProgram,
+	UserLogin,
+	Dashboard,
+	PersonalTrainerRequest,
+	Events,
+	Eventlist,
+	TrainerDashboard,
+	TrainerLogin,
+	ListTrainers,
+	TrainerRegister,
+	Notice,
+} from "../pages";
+
 // Error pages
 import Error404 from "../pages/error/Error404";
 
@@ -21,10 +36,20 @@ const AppRoutes = () => {
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
+
+					<Route exact path="/trainers/" element={<TrainerDashboard />} />
+					<Route exact path="/trainers/login" element={<TrainerLogin />} />
+					<Route exact path="/trainers/register" element={<TrainerRegister />} />
+					<Route exact path="/trainers/list" element={<ListTrainers />} />
+
+					<Route exact path="/events" element={<Events />} />
+					<Route exact path="/trainers/events" element={<Eventlist />} />
+
 					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
 						<Route exact path="/userLogin" element={<UserLogin />} />
 					</Route>
 					<Route exact path="/notice" element={<Notice />} />
+					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
 					{/* Private Routes */}
 					<Route exact path="/dashboard" element={<PrivateRoute />}>

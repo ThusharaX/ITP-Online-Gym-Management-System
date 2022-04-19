@@ -24,6 +24,14 @@ import {
 	deleteTrainerBD,
 } from "./TrainerBD.controller";
 
+import {
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+} from "./PersonalTrainerReq.controller";
+
 import { login, createUser, getAdminDashboard } from "./User.Controller";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
@@ -74,6 +82,13 @@ export default {
 	getOneTrainerBD,
 	updateTrainerBD,
 	deleteTrainerBD,
+
+	//PersonalTrainerReq Controllers
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
 
 	//Admin Controllers
 	login,
