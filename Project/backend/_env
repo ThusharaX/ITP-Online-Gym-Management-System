@@ -1,4 +1,0 @@
-DEV_ENVIRONMENT=Development
-DEV_MONGO_URI=mongodb+srv://luciferx:kVAb7B7UjaFdnMOb@itp-dev-backend.ij5ea.mongodb.net/gym-db?retryWrites=true&w=majority
-PORT=5000
-JWT_SECRET=d73969a19a69644d18160998034395127136e72170f42911bf5a0530f30548b7e1734a3325aa38f1be1de8ca37d4be3606569a513d87ac55204344d2ad9ef4ff
