@@ -7,6 +7,7 @@ import { Events, Eventlist } from "./events";
 import UserLogin from "./userLogin";
 import Dashboard from "./dashboard";
 import PersonalTrainerRequest from "./personalTrainerRequest";
+import Workout from "./workout";
 
 export {
 	Sample,
@@ -22,4 +23,5 @@ export {
 	ListTrainers,
 	TrainerRegister,
 	WorkoutScR,
+	Workout,
 };
