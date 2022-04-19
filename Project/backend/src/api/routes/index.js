@@ -47,7 +47,7 @@ export default function (app) {
 
 	// User endpoints
 	app.post("/user/login/", controller.login);
-	app.post("/user/register/", middleware.authenticate, controller.createUser);
+	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Event endpoints
