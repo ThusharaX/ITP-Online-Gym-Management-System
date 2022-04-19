@@ -25,9 +25,28 @@ import {
 import Error404 from "../pages/error/Error404";
 
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import FooterSection from "../components/Footer";
 
 const AppRoutes = () => {
+	const footerLinks = [
+		{
+			link: "#",
+			label: "Contact",
+		},
+		{
+			link: "#",
+			label: "Privacy",
+		},
+		{
+			link: "#",
+			label: "Blog",
+		},
+		{
+			link: "#",
+			label: "Careers",
+		},
+	];
+
 	return (
 		<>
 			<Router>
@@ -36,7 +55,6 @@ const AppRoutes = () => {
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
-					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
 					<Route exact path="/trainers/login" element={<TrainerLogin />} />
 					<Route exact path="/trainers/register" element={<TrainerRegister />} />
@@ -49,22 +67,26 @@ const AppRoutes = () => {
 					</Route>
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
-					{/* Private Routes */}
-					<Route exact path="/dashboard" element={<PrivateRoute />}>
+					{/* Admin Routes */}
+					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
+
+					<Route exact path="/dashboard" element={<PrivateRoute userType="ADMIN" />}>
 						<Route exact path="/dashboard" element={<Dashboard />} />
 					</Route>
+
+					{/* Trainer Routes */}
 					<Route exact path="/trainers" element={<PrivateRoute1 />}>
 						<Route exact path="/trainers" element={<TrainerDashboard />} />
 						<Route exact path="/trainers/list" element={<ListTrainers />} />
 					</Route>
 
-					{/* 404 */}
-					<Route path="*" element={<Error404 />} />
-
 					{/* Workout Schedule Request*/}
 					<Route path="/workoutscr" element={<WorkoutScR />} />
+
+					{/* 404 */}
+					<Route path="*" element={<Error404 />} />
 				</Routes>
-				<Footer />
+				<FooterSection links={footerLinks} />
 			</Router>
 		</>
 	);
