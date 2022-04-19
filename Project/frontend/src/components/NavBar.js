@@ -11,11 +11,14 @@ import {
 	Box,
 	Button,
 	Image,
+	Menu,
+	Divider,
+	Text,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-import { Sun, Moon } from "tabler-icons-react";
+import { Sun, Moon, Login, Dashboard, Registered } from "tabler-icons-react";
 
 // import { MantineLogo } from "../../shared/MantineLogo";
 
@@ -69,11 +72,10 @@ function NavBar() {
 	const { logout } = useContext(UserContext);
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const links = [
+		{ link: "/", label: "Home" },
 		{ link: "/userLogin", label: "Log In" },
 		{ link: "/dashboard", label: "Dashboard" },
-		{ link: "/trainers/login", label: "temp trainer login" },
-		{ link: "/trainers/register", label: "temp trainer register" },
-		{ link: "/trainers", label: "temp t " },
+		{ link: "/workoutProgram", label: "Workout Programs" },
 	];
 	const navigate = useNavigate();
 	const [opened, toggleOpened] = useBooleanToggle(false);
@@ -96,15 +98,37 @@ function NavBar() {
 	));
 
 	return (
-		<Header height={60} mb={120}>
+		<Header height={60} mb={50}>
 			<Container className={classes.header}>
-				<Image
-					width={50}
-					src="https://www.designfreelogoonline.com/wp-content/uploads/2020/08/00472-gym-04.png"
-				></Image>
+				<Link to="/">
+					<Image
+						width={50}
+						src="https://www.designfreelogoonline.com/wp-content/uploads/2020/08/00472-gym-04.png"
+					></Image>
+				</Link>
 				<br />
 				<Group spacing={5} className={classes.links}>
 					{items}
+
+					{/* Trainer Menu */}
+					<Menu control={<Button variant="outline">Trainer</Button>}>
+						<Menu.Label>Trainer</Menu.Label>
+						<Menu.Item icon={<Login size={14} />}>
+							<Link className={classes.link} to="/trainers/login">
+								Login
+							</Link>
+						</Menu.Item>
+						<Menu.Item icon={<Registered size={14} />}>
+							<Link className={classes.link} to="/trainers/register">
+								Register
+							</Link>
+						</Menu.Item>
+						<Menu.Item icon={<Dashboard size={14} />}>
+							<Link className={classes.link} to="/trainers">
+								Trainer Dashboard
+							</Link>
+						</Menu.Item>
+					</Menu>
 				</Group>
 
 				<Group position="center" my="xl">
