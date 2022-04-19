@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-import PrivateRoute1 from "./PrivateRoute1";
 import CheckLoginStatus from "./CheckLoginStatus";
 
 // Pages
@@ -9,7 +8,6 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	UserLogin,
 	Dashboard,
 	PersonalTrainerRequest,
 	Events,
@@ -20,6 +18,9 @@ import {
 	TrainerRegister,
 	WorkoutScR,
 	Workout,
+	AdminLogin,
+	AdminDashboard,
+	CommonLogin,
 } from "../pages";
 
 // Error pages
@@ -57,33 +58,42 @@ const AppRoutes = () => {
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
 
-					<Route exact path="/trainers/login" element={<TrainerLogin />} />
-					<Route exact path="/trainers/register" element={<TrainerRegister />} />
+					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
+						<Route exact path="/trainers/login" element={<TrainerLogin />} />
+					</Route>
+					<Route exact path="/trainers/register" element={<CheckLoginStatus />}>
+						<Route exact path="/trainers/register" element={<TrainerRegister />} />
+					</Route>
 
 					<Route exact path="/events" element={<Events />} />
 					<Route exact path="/trainers/events" element={<Eventlist />} />
 
-					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
-						<Route exact path="/userLogin" element={<UserLogin />} />
-					</Route>
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+
 					<Route exact path="/workout" element={<Workout />} />
 
-					{/* Admin Routes */}
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
-					<Route exact path="/dashboard" element={<PrivateRoute userType="ADMIN" />}>
-						<Route exact path="/dashboard" element={<Dashboard />} />
+					<Route path="/workoutscr" element={<WorkoutScR />} />
+
+					<Route exact path="/login" element={<CheckLoginStatus />}>
+						<Route exact path="/login" element={<CommonLogin />} />
+					</Route>
+
+					<Route exact path="/admin/login" element={<CheckLoginStatus />}>
+						<Route exact path="/admin/login" element={<AdminLogin />} />
+					</Route>
+
+					{/* Admin Routes */}
+					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
+						<Route exact path="/admin" element={<AdminDashboard />} />
 					</Route>
 
 					{/* Trainer Routes */}
-					<Route exact path="/trainers" element={<PrivateRoute1 />}>
+					<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
 						<Route exact path="/trainers" element={<TrainerDashboard />} />
 						<Route exact path="/trainers/list" element={<ListTrainers />} />
 					</Route>
-
-					{/* Workout Schedule Request*/}
-					<Route path="/workoutscr" element={<WorkoutScR />} />
 
 					{/* 404 */}
 					<Route path="*" element={<Error404 />} />

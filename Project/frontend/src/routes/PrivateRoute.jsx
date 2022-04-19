@@ -1,14 +1,26 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ userType }) => {
+const PrivateRoute = ({ permissionLevel }) => {
 	const isAuthenticated = localStorage.getItem("authToken") !== null;
-	// const permissionLevel = localStorage.getItem("permissionLevel") !== null;
 
 	if (isAuthenticated) {
 		return <Outlet />;
 	} else {
-		return <Navigate to="/userLogin" />;
+		if (permissionLevel === "ADMIN") {
+			return <Navigate to="/admin/login" />;
+		}
+		if (permissionLevel === "TRAINER") {
+			return <Navigate to="/trainers/login" />;
+		}
+		if (permissionLevel === "MEMBER") {
+			return <Navigate to="/member/login" />;
+		}
+		if (permissionLevel === "EMPLOYEE") {
+			return <Navigate to="/employee/login" />;
+		} else {
+			return <Navigate to="/" />;
+		}
 	}
 
 	// If authorized, return an outlet that will render child elements

@@ -12,13 +12,11 @@ import {
 	Button,
 	Image,
 	Menu,
-	Divider,
-	Text,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { useNavigate, Link } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-import { Sun, Moon, Login, Dashboard, Registered } from "tabler-icons-react";
+import { Sun, Moon, Dashboard, UserCircle, CalendarEvent } from "tabler-icons-react";
 
 // import { MantineLogo } from "../../shared/MantineLogo";
 
@@ -73,9 +71,8 @@ function NavBar() {
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const links = [
 		{ link: "/", label: "Home" },
-		{ link: "/userLogin", label: "Log In" },
-		{ link: "/dashboard", label: "Dashboard" },
 		{ link: "/workoutProgram", label: "Workout Programs" },
+		{ link: "/workout", label: "Workouts" },
 	];
 	const navigate = useNavigate();
 	const [opened, toggleOpened] = useBooleanToggle(false);
@@ -110,25 +107,70 @@ function NavBar() {
 				<Group spacing={5} className={classes.links}>
 					{items}
 
+					{/* {localStorage.getItem("permissionLevel") === "ADMIN" ? <p>Admin</p> : (localStorage.getItem("permissionLevel") === "TRAINER") ? <p>Trainer</p> : <p>User</p>} */}
+
+					{/* Admin Menu */}
+					{localStorage.getItem("permissionLevel") === "ADMIN" ? (
+						<Menu control={<Button variant="outline">Admin</Button>}>
+							<Menu.Label>Admin</Menu.Label>
+							<Menu.Item icon={<UserCircle size={14} />}>
+								<Link className={classes.link} to="/admin/profile">
+									Profile
+								</Link>
+							</Menu.Item>
+							<Menu.Item icon={<Dashboard size={14} />}>
+								<Link className={classes.link} to="/admin">
+									Admin Dashboard
+								</Link>
+							</Menu.Item>
+						</Menu>
+					) : (
+						<p></p>
+					)}
+
 					{/* Trainer Menu */}
-					<Menu control={<Button variant="outline">Trainer</Button>}>
-						<Menu.Label>Trainer</Menu.Label>
-						<Menu.Item icon={<Login size={14} />}>
-							<Link className={classes.link} to="/trainers/login">
-								Login
-							</Link>
-						</Menu.Item>
-						<Menu.Item icon={<Registered size={14} />}>
-							<Link className={classes.link} to="/trainers/register">
-								Register
-							</Link>
-						</Menu.Item>
-						<Menu.Item icon={<Dashboard size={14} />}>
-							<Link className={classes.link} to="/trainers">
-								Trainer Dashboard
-							</Link>
-						</Menu.Item>
-					</Menu>
+					{localStorage.getItem("permissionLevel") === "TRAINER" ? (
+						<Menu control={<Button variant="outline">Trainer</Button>}>
+							<Menu.Label>Trainer</Menu.Label>
+							<Menu.Item icon={<UserCircle size={14} />}>
+								<Link className={classes.link} to="/trainers/profile">
+									Profile
+								</Link>
+							</Menu.Item>
+							<Menu.Item icon={<CalendarEvent size={14} />}>
+								<Link className={classes.link} to="/trainers/events">
+									Manage Events
+								</Link>
+							</Menu.Item>
+							<Menu.Item icon={<Dashboard size={14} />}>
+								<Link className={classes.link} to="/trainers">
+									Trainer Dashboard
+								</Link>
+							</Menu.Item>
+						</Menu>
+					) : (
+						<p></p>
+					)}
+
+					{/* Member Menu */}
+					{localStorage.getItem("permissionLevel") === "MEMBER" ? (
+						<Menu control={<Button variant="outline">Member</Button>}>
+							<Menu.Label>Member</Menu.Label>
+							<Menu.Item icon={<UserCircle size={14} />}>
+								<Link className={classes.link} to="/member/profile">
+									Profile
+								</Link>
+							</Menu.Item>
+
+							<Menu.Item icon={<Dashboard size={14} />}>
+								<Link className={classes.link} to="/member">
+									Member Dashboard
+								</Link>
+							</Menu.Item>
+						</Menu>
+					) : (
+						<p></p>
+					)}
 				</Group>
 
 				<Group position="center" my="xl">
@@ -157,7 +199,12 @@ function NavBar() {
 						]}
 					/>
 				</Group>
-				<Button onClick={logout}>Logout</Button>
+
+				{localStorage.getItem("authToken") ? (
+					<Button onClick={logout}>Logout</Button>
+				) : (
+					<Button onClick={() => navigate("/login")}>Login</Button>
+				)}
 
 				<Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
 			</Container>

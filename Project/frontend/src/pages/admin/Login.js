@@ -3,7 +3,7 @@ import { TextInput, PasswordInput, Button, Group, Box } from "@mantine/core";
 
 import UserContext from "../../contexts/UserContext";
 
-const UserLogin = () => {
+const Login = () => {
 	const { login, form, isLoggedIn, isLoading } = useContext(UserContext);
 
 	return (
@@ -31,4 +31,4 @@ const UserLogin = () => {
 	);
 };
 
-export default UserLogin;
+export default Login;
