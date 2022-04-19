@@ -7,7 +7,7 @@ import UserAPi from "./api/UserAPI";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 export function TrainerProvider({ children }) {
@@ -20,12 +20,14 @@ export function TrainerProvider({ children }) {
 		lastName: Joi.string().min(5).max(20).message("Last Name should be between 4 and 20 characters"),
 		userName: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
 		nic: Joi.string().min(10).max(12).message("NIC should be Valid"),
-		emaill: Joi.string(),
+		email: Joi.string(),
 		dob: Joi.date().max("now"),
 		gender: Joi.string().required(),
 		address: Joi.string().min(5).max(100).message("Address should be valid"),
 		phoneNumber: Joi.string().min(10).max(10).message("Phone Number should valid"),
-		qualifications: Joi.string().min(5).max(100).message("Qualifications should be between 3 and 50 characters"),
+		qualifications: Joi.required(),
+		psw: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).strip(),
+		rep_psw: Joi.ref("psw"),
 	});
 
 	let trainer = [
@@ -77,12 +79,12 @@ export function TrainerProvider({ children }) {
 	];
 
 	// Get all trainers
-	// useEffect(() => {
-	// 	axios.get(baseURL).then((res) => {
-	// 		setTrainers(res.data);
-	// 		setLoading(false);
-	// 	});
-	// }, []);
+	useEffect(() => {
+		axios.get(baseURL).then((res) => {
+			setTrainers(res.data);
+			setLoading(false);
+		});
+	}, []);
 	useEffect(() => {
 		setTrainers(trainer);
 		setIsLoading(false);
@@ -90,7 +92,7 @@ export function TrainerProvider({ children }) {
 
 	// Form initial state
 	const form = useForm({
-		// schema: joiResolver(schema),
+		schema: joiResolver(schema),
 		initialValues: {
 			firstName: "first name",
 			lastName: "last name",
@@ -102,15 +104,15 @@ export function TrainerProvider({ children }) {
 			address: "address1Malabbe",
 			phoneNumber: "0123456789",
 			qualifications: ["css", "javascript", "mongoose", "node"],
-			password: "psw112345",
+			psw: "psw112345",
+			rep_psw: "psw112345",
 		},
 	});
 
 	// Add new trainer
 	const addTrainer = (values) => {
-		// setIsLoading(true);
+		setIsLoading(true);
 		const newTrainer = {
-			id: "123456789",
 			firstName: values.firstName,
 			lastName: values.lastName,
 			username: values.userName,
@@ -120,14 +122,14 @@ export function TrainerProvider({ children }) {
 			gender: values.gender,
 			address: values.address,
 			phoneNumber: values.phoneNumber,
-			password: values.password,
+			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
 			permissionLevel: "TRAINER",
 		};
 		UserAPi.register(newTrainer).then((response) => {
 			// eslint-disable-next-line no-console
 			console.log(response);
-			// setIsLoading(false);
+			setIsLoading(false);
 		});
 	};
 
@@ -135,15 +137,14 @@ export function TrainerProvider({ children }) {
 		const newTrainer = {
 			firstName: values.firstName,
 			lastName: values.lastName,
-			userName: values.userName,
+			username: values.userName,
 			nic: values.nic,
+			email: values.email,
 			dob: values.dob,
 			gender: values.gender,
 			address: values.address,
 			phoneNumber: values.phoneNumber,
-			password: values.password,
-			qualifications: values.qualifications.split(","),
-			trainer: values.trainer,
+			qualifications: String(values.qualifications).split(","),
 		};
 		// axios.post(baseURL, newTrainer).then((res) => {
 		// 	setTrainers([...trainers, res.data]);
@@ -208,8 +209,6 @@ export function TrainerProvider({ children }) {
 				}
 			})
 			.catch((err) => {
-				// eslint-disable-next-line no-console
-				console.log(err);
 				setIsLoading(false);
 			});
 	};

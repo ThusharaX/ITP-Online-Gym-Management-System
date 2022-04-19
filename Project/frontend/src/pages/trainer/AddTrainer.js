@@ -172,14 +172,14 @@ const AddTrainer = () => {
 					/>
 					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
-						<PasswordStrength />
+						<PasswordStrength fm={form} />
 						<PasswordInput
 							size="sm"
 							style={{ width: "48%" }}
 							required
 							label="CONFIRM PASSWORD"
 							placeholder="Confirm Password"
-							{...form.getInputProps("password")}
+							{...form.getInputProps("rep_psw")}
 						/>
 					</Group>
 					<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
