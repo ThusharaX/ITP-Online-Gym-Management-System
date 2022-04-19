@@ -1,69 +1,76 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
+import Joi from "joi";
+const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainers`;
+const TrainerContext = createContext();
+import UserAPi from "./api/UserAPI";
 
 // Mantine imports
 import { Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useModals } from "@mantine/modals";
-const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainers`;
-const TrainerContext = createContext();
-import UserAPi from "./api/UserAPI";
 
 export function TrainerProvider({ children }) {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [trainers, setTrainers] = useState([]);
-	const [isLoading, setLoading] = useState(false);
 
-	if (isLoading) {
-		return (
-			<div>
-				<Text size="sm">Loading...</Text>
-			</div>
-		);
-	}
+	const schema = Joi.object({
+		firstName: Joi.string().min(5).max(20).message("First Name should be between 4 and 20 characters"),
+		lastName: Joi.string().min(5).max(20).message("Last Name should be between 4 and 20 characters"),
+		userName: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
+		nic: Joi.string().min(10).max(12).message("NIC should be Valid"),
+		// emaill: Joi.string().email(),
+		dob: Joi.date().max("now"),
+		gender: Joi.string().required(),
+		address: Joi.string().min(5).max(100).message("Address should be valid"),
+		phoneNumber: Joi.string().min(10).max(10).message("Phone Number should valid"),
+		qualifications: Joi.string().min(5).max(100).message("Qualifications should be between 3 and 50 characters"),
+	});
 
 	let trainer = [
 		{
 			id: 1,
 			pUrl: "https://images3.alphacoders.com/607/thumbbig-607635.webp",
-			fName: "Jane",
-			lName: "Fingerlicker",
-			uName: "kiiii",
+			firstName: "Jane",
+			lastName: "Fingerlicker",
+			userName: "kiiii",
 			nic: "89612490852",
 			dob: "2012-04-23",
 			gender: "Male",
 			email: "jfingerlickerk@gmail.com",
 			address: "address1Malabbe",
-			pNumber: "078545652675",
+			phoneNumber: "078545652675",
 			Qualifications: ["css", "javascript", "mongoose", "node"],
 			password: "psw112345",
 		},
 		{
 			id: 2,
 			pUrl: "https://images2.alphacoders.com/608/thumbbig-608713.webp",
-			fName: "Jill",
-			lName: "Jailbreaker",
-			uName: "kiiii",
+			firstName: "Jill",
+			lastName: "Jailbreaker",
+			userName: "kiiii",
 			nic: "89612490852",
 			dob: "2012-04-23",
 			gender: "Male",
 			email: "jjbreaker@gmail.com",
 			address: "address1Malabbe",
-			pNumber: "078545652675",
+			phoneNumber: "078545652675",
 			Qualifications: ["css", "javascript", "mongoose", "node"],
 			password: "psw112345",
 		},
 		{
 			id: 3,
 			pUrl: "https://images7.alphacoders.com/800/thumbbig-800681.webp",
-			fName: "Bill",
-			lName: "Headbanger",
-			uName: "kiiii",
+			firstName: "Bill",
+			lastName: "Headbanger",
+			userName: "kiiii",
 			nic: "89612490852",
 			dob: "2012-04-23",
 			gender: "Male",
 			email: "ddagjssdk@gmail.com",
 			address: "address1Malabbe",
-			pNumber: "078545652675",
+			phoneNumber: "078545652675",
 			Qualifications: ["css", "javascript", "mongoose", "node"],
 			password: "psw112345",
 		},
@@ -78,56 +85,62 @@ export function TrainerProvider({ children }) {
 	// }, []);
 	useEffect(() => {
 		setTrainers(trainer);
-		setLoading(false);
+		setIsLoading(false);
 	}, []);
 
 	// Form initial state
-	const form = useForm({
+	const form1 = useForm({
+		// schema: joiResolver(schema),
 		initialValues: {
-			fName: "first name",
-			lName: "last name",
-			uName: "last name",
+			firstName: "first name",
+			lastName: "last name",
+			userName: "last name",
 			nic: "09612490852",
-			dob: "2012-04-23",
-			gender: "male",
+			email: "train@gmail.com",
+			dob: new Date(),
+			gender: "Female",
 			address: "address1Malabbe",
-			pNumber: "0123456789",
+			phoneNumber: "0123456789",
 			qualifications: ["css", "javascript", "mongoose", "node"],
 			password: "psw112345",
-			trainer: "6238afed94d1c551735ca084",
 		},
 	});
 
 	// Add new trainer
 	const addTrainer = (values) => {
+		// setIsLoading(true);
 		const newTrainer = {
-			fName: values.fName,
-			lName: values.lName,
-			uName: values.uName,
+			id: "123456789",
+			firstName: values.firstName,
+			lastName: values.lastName,
+			userName: values.userName,
 			nic: values.nic,
+			email: values.email,
 			dob: values.dob,
 			gender: values.gender,
 			address: values.address,
-			pNumber: values.pNumber,
+			phoneNumber: values.phoneNumber,
 			password: values.password,
-			qualifications: values.qualifications.split(","),
-			trainer: values.trainer,
+			qualifications: String(values.qualifications).split(","),
+			permissionLevel: "trainer",
 		};
-		axios.post(baseURL, newTrainer).then((res) => {
-			setTrainers([...trainers, res.data]);
-			form.reset();
+		UserAPi.register(newTrainer).then((response) => {
+			// eslint-disable-next-line no-console
+			console.log(response);
+			// setIsLoading(false);
 		});
 	};
+
 	const updateTrainer = (values) => {
 		const newTrainer = {
-			fName: values.fName,
-			lName: values.lName,
-			uName: values.uName,
+			firstName: values.firstName,
+			lastName: values.lastName,
+			userName: values.userName,
 			nic: values.nic,
 			dob: values.dob,
 			gender: values.gender,
 			address: values.address,
-			pNumber: values.pNumber,
+			phoneNumber: values.phoneNumber,
 			password: values.password,
 			qualifications: values.qualifications.split(","),
 			trainer: values.trainer,
@@ -137,7 +150,7 @@ export function TrainerProvider({ children }) {
 		// 	form.reset();
 		// });
 		setTrainers([...trainers, res.data]);
-		form.reset();
+		// form.reset();
 	};
 
 	// Delete trainer and update UI
@@ -167,18 +180,6 @@ export function TrainerProvider({ children }) {
 			onConfirm: () => deleteTrainer(id),
 		});
 
-	return (
-		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form }}>
-			{children}
-		</TrainerContext.Provider>
-	);
-}
-
-export const UserContext = createContext();
-export function UserProvider({ children }) {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
-
 	const form = useForm({
 		initialValues: {
 			username: "",
@@ -189,18 +190,22 @@ export function UserProvider({ children }) {
 			password: (value) => (value.length >= 4 ? null : "Password must be at least 4 characters"),
 		},
 	});
-
 	const login = (values) => {
 		setIsLoading(true);
 		UserAPi.login(values)
 			.then((response) => {
-				localStorage.setItem("uID", response.data._id);
-				localStorage.setItem("username", response.data.username);
-				localStorage.setItem("authToken", response.data.token);
-				localStorage.setItem("permissionLevel", response.data.permissionLevel);
-				window.location.href = "/dashboard";
-				setIsLoggedIn(true);
-				setIsLoading(false);
+				if (response.data.permissionLevel !== "trainer") {
+					setIsLoading(false);
+					return alert("You are not a trainer");
+				} else {
+					localStorage.setItem("uID", response.data._id);
+					localStorage.setItem("username", response.data.username);
+					localStorage.setItem("authToken", response.data.token);
+					localStorage.setItem("permissionLevel", response.data.permissionLevel);
+					window.location.href = "/dashboard";
+					setIsLoggedIn(true);
+					setIsLoading(false);
+				}
 			})
 			.catch((err) => {
 				// eslint-disable-next-line no-console
@@ -209,15 +214,26 @@ export function UserProvider({ children }) {
 			});
 	};
 
-	const logout = () => {
-		localStorage.removeItem("authToken");
-		localStorage.removeItem("uID");
-		localStorage.removeItem("username");
-		localStorage.removeItem("permissionLevel");
-		window.location.href = "/userLogin";
-	};
-
-	return <UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading }}>{children}</UserContext.Provider>;
+	return (
+		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form, login }}>
+			{children}
+		</TrainerContext.Provider>
+	);
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// export const UserContext = createContext();
+// export function UserProvider({ children }) {
 
+// const form = useForm({
+// 	initialValues: {
+// 		username: "",
+// 		password: "",
+// 	},
+
+// 	validate: {
+// 		password: (value) => (value.length >= 4 ? null : "Password must be at least 4 characters"),
+// 	},
+// });
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export default TrainerContext;

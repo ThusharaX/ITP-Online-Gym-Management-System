@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import TrainerContext from "../../contexts/TrainerContext";
-import { Box, Card, Text, Button, Group, useMantineTheme, createStyles, Avatar } from "@mantine/core";
+import { Box, Card, Text, Button, Group, createStyles, Avatar } from "@mantine/core";
 import { ChevronLeft, PhoneCall, BrandGmail, Friends } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -14,11 +15,10 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const TrainerList = () => {
+	const navigate = useNavigate();
 	const { classes } = useStyles();
 	const { trainers } = useContext(TrainerContext);
 
-	const theme = useMantineTheme();
-	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 	return (
 		<Box
 			sx={(theme) => ({
@@ -33,9 +33,15 @@ const TrainerList = () => {
 				height: "100%",
 			}}
 		>
-			<Group position="left" spacing={0}>
-				<ChevronLeft size={30} strokeWidth={2} color={"#bf7240"} />
-				<Button color="red" variant="subtle">
+			<Group position="left">
+				<Button
+					color="red"
+					variant="subtle"
+					onClick={() => {
+						navigate("/dashboard");
+					}}
+				>
+					<ChevronLeft size={30} strokeWidth={2} color={"#bf7240"} />
 					Back To Home
 				</Button>
 			</Group>
@@ -64,12 +70,12 @@ const TrainerList = () => {
 								<Group style={{ maxWidth: "100px" }} position="center" spacing={5}>
 									<Avatar src={item.pUrl} size={94} radius="md" />
 									<Text size="xs" sx={{}} weight={700} color="dimmed">
-										#{item.uName}
+										#{item.userName}
 									</Text>
 								</Group>
 								<div>
 									<Text size="lg" weight={500} className={classes.name}>
-										{item.fName} {item.lName}
+										{item.firstName} {item.lName}
 									</Text>
 
 									<Group noWrap spacing={10} mt={5}>
@@ -96,7 +102,7 @@ const TrainerList = () => {
 											Contact:
 										</Text>
 										<Text size="xs" color="dimmed">
-											{item.pNumber}
+											{item.phoneNumber}
 										</Text>
 									</Group>
 									<Group noWrap spacing={10} mt={5}>

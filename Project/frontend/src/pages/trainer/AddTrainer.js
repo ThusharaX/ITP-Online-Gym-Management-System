@@ -1,5 +1,8 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
+	Text,
+	Anchor,
 	useMantineTheme,
 	Button,
 	TextInput,
@@ -18,6 +21,7 @@ import { PasswordStrength } from "./pswBtn";
 import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
+	const navigate = useNavigate();
 	const theme = useMantineTheme();
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 	const { addTrainer, form } = useContext(TrainerContext);
@@ -54,6 +58,18 @@ const AddTrainer = () => {
 				<Title align="center" sx={(theme) => ({ color: TitleColor })}>
 					TRAINER REGISTRATION
 				</Title>
+				<Text color="dimmed" size="sm" align="center" mt={5}>
+					Already have an account?{" "}
+					<Anchor
+						href="#"
+						size="sm"
+						onClick={() => {
+							navigate("/trainers/login");
+						}}
+					>
+						Login
+					</Anchor>
+				</Text>
 
 				<Divider my="sm" size={"md"} />
 				<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
@@ -64,7 +80,7 @@ const AddTrainer = () => {
 							required
 							label="FIRST NAME"
 							placeholder="Enter Trainer's First Name"
-							{...form.getInputProps("title")}
+							{...form.getInputProps("firstName")}
 						/>
 						<TextInput
 							size="md"
@@ -72,7 +88,7 @@ const AddTrainer = () => {
 							required
 							label="LAST NAME"
 							placeholder="Enter Trainer's First Name"
-							{...form.getInputProps("tags")}
+							{...form.getInputProps("lastName")}
 						/>
 					</Group>
 					<Group position="center" style={{ marginTop: "20px" }}>
@@ -80,9 +96,9 @@ const AddTrainer = () => {
 							size="md"
 							style={{ width: "48%" }}
 							required
-							label="LAST NAME"
+							label="User NAME"
 							placeholder="Enter Trainer's User Name"
-							{...form.getInputProps("title")}
+							{...form.getInputProps("userName")}
 						/>
 						<TextInput
 							size="md"
@@ -90,19 +106,19 @@ const AddTrainer = () => {
 							required
 							label="NIC"
 							placeholder="Enter Trainer's  NIC"
-							{...form.getInputProps("tags")}
+							{...form.getInputProps("nic")}
 						/>
 					</Group>
 
 					<Group spacing={40} position="left" style={{ marginTop: "40px" }}>
 						<DatePicker
 							size="md"
-							placeholder="Select date"
-							label="Select Date"
+							placeholder="Date of Birth"
+							label="Date of Birth"
 							required
 							value={value}
 							onChange={onChange}
-							{...form.getInputProps("date")}
+							{...form.getInputProps("dob")}
 						/>
 						<RadioGroup
 							style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
@@ -113,8 +129,8 @@ const AddTrainer = () => {
 							required
 							{...form.getInputProps("gender")}
 						>
-							<Radio value="male" label="Male" />
-							<Radio value="female" label="Female" />
+							<Radio value="Male" label="Male" />
+							<Radio value="Female" label="Female" />
 						</RadioGroup>
 					</Group>
 					<Group position="center" style={{ marginTop: "20px" }}>
@@ -124,7 +140,7 @@ const AddTrainer = () => {
 							required
 							label="ADDRESS"
 							placeholder="Enter Trainer's Address"
-							{...form.getInputProps("title")}
+							{...form.getInputProps("address")}
 						/>
 						<TextInput
 							size="md"
@@ -132,7 +148,7 @@ const AddTrainer = () => {
 							required
 							label="PHONE NUMBER"
 							placeholder="Enter Trainer's Phone Number"
-							{...form.getInputProps("tags")}
+							{...form.getInputProps("phoneNumber")}
 						/>
 					</Group>
 
@@ -143,7 +159,16 @@ const AddTrainer = () => {
 						label="QUALIFICATION"
 						placeholder="Enter Trainer's Qualification"
 						style={{ marginTop: "30px", marginBottom: "30px" }}
-						{...form.getInputProps("details")}
+						{...form.getInputProps("qualifications")}
+					/>
+					<TextInput
+						size="md"
+						width={500}
+						required
+						label="Email"
+						placeholder="Enter Trainer's Email"
+						style={{ marginTop: "30px", marginBottom: "30px" }}
+						{...form.getInputProps("email")}
 					/>
 					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
@@ -154,7 +179,7 @@ const AddTrainer = () => {
 							required
 							label="CONFIRM PASSWORD"
 							placeholder="Confirm Password"
-							{...form.getInputProps("tags")}
+							{...form.getInputProps("password")}
 						/>
 					</Group>
 					<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
