@@ -17,6 +17,14 @@ import {
 	deleteTrainerBD,
 } from "./TrainerBD.service";
 
+import {
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+} from "./PersonalTrainerReq.service";
+
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
 
 import { authenticateUser, insertUser } from "./User.service";
@@ -105,4 +113,11 @@ export default {
 	updateEvents,
 	deleteEvents,
 	createEvents,
+
+	//PersonalRequest services
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
 };
