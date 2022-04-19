@@ -1,0 +1,10 @@
+.notice {
+	height: 300px;
+	width: 300px;
+	background: rgb(10, 4, 4);
+	border-radius: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
