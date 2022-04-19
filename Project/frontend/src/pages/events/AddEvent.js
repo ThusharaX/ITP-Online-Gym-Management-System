@@ -125,9 +125,12 @@ const AddEvent = () => {
 							{...form.getInputProps("details")}
 						/>
 						<Divider my="sm" size={"md"} />
-						<Group style={{ marginTop: "15px" }} position="center" mt="md">
-							<Button color={"blue[4]"} type="submit" radius="20px" size="xl" compact>
+						<Group spacing={130} style={{ marginTop: "15px" }} position="center" mt="md">
+							<Button color={"cyan"} type="submit" radius="3px" size="xl" compact>
 								Submit
+							</Button>
+							<Button onClick={() => setOpened(false)} color={"red"} type="button" radius="3px" size="xl" compact>
+								Cancel
 							</Button>
 						</Group>
 						{/* <DropzoneButton /> */}
@@ -135,7 +138,9 @@ const AddEvent = () => {
 				</Box>
 			</Modal>
 			<Group position="center">
-				<Button onClick={() => setOpened(true)}>Add Event</Button>
+				<Button size="md" color={"cyan"} onClick={() => setOpened(true)}>
+					Add Event
+				</Button>
 			</Group>
 		</>
 	);
