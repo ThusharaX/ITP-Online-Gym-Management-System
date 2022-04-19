@@ -1,70 +1,143 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
+import {
+	createStyles,
+	Header,
+	Container,
+	Group,
+	Burger,
+	useMantineColorScheme,
+	SegmentedControl,
+	Center,
+	Box,
+	Button,
+	Image,
+} from "@mantine/core";
+import { useBooleanToggle } from "@mantine/hooks";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
-
-import { useMantineColorScheme, SegmentedControl, Group, Center, Box } from "@mantine/core";
 import { Sun, Moon } from "tabler-icons-react";
-import { Link } from "react-router-dom";
 
-const NavBar = () => {
+// import { MantineLogo } from "../../shared/MantineLogo";
+
+const useStyles = createStyles((theme) => ({
+	header: {
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center",
+		height: "100%",
+	},
+
+	links: {
+		[theme.fn.smallerThan("xs")]: {
+			display: "none",
+		},
+	},
+
+	burger: {
+		[theme.fn.largerThan("xs")]: {
+			display: "none",
+		},
+	},
+
+	link: {
+		display: "block",
+		lineHeight: 1,
+		padding: "8px 12px",
+		borderRadius: theme.radius.sm,
+		textDecoration: "none",
+		color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7],
+		fontSize: theme.fontSizes.sm,
+		fontWeight: 500,
+
+		"&:hover": {
+			backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+		},
+	},
+
+	linkActive: {
+		"&, &:hover": {
+			backgroundColor:
+				theme.colorScheme === "dark"
+					? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
+					: theme.colors[theme.primaryColor][0],
+			color: theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 3 : 7],
+		},
+	},
+}));
+
+function NavBar() {
 	const { logout } = useContext(UserContext);
-
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+	const links = [
+		{ link: "/userLogin", label: "Log In" },
+		{ link: "/dashboard", label: "Dashboard" },
+		{ link: "/trainers/login", label: "temp trainer login" },
+		{ link: "/trainers/register", label: "temp trainer register" },
+		{ link: "/trainers", label: "temp t " },
+	];
+	const navigate = useNavigate();
+	const [opened, toggleOpened] = useBooleanToggle(false);
+	const [active, setActive] = useState(links[0].link);
+	const { classes, cx } = useStyles();
+
+	const items = links.map((link) => (
+		<a
+			key={link.label}
+			href={link.link}
+			className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+			onClick={(event) => {
+				event.preventDefault();
+				setActive(link.link);
+				navigate(link.link);
+			}}
+		>
+			{link.label}
+		</a>
+	));
 
 	return (
-		<div style={{ backgroundColor: colorScheme === "dark" ? "#373A40" : "#fff" }}>
-			<Group position="left" my="xl">
-				<style jsx>{`
-					.link {
-						color: ${colorScheme === "dark" ? "#fff" : "#000"};
-						text-decoration: none;
-					}
-				`}</style>
+		<Header height={60} mb={120}>
+			<Container className={classes.header}>
+				<Image
+					width={50}
+					src="https://www.designfreelogoonline.com/wp-content/uploads/2020/08/00472-gym-04.png"
+				></Image>
+				<br />
+				<Group spacing={5} className={classes.links}>
+					{items}
+				</Group>
 
-				<Link className="link" to="/">
-					Home
-				</Link>
-				<Link className="link" to="/userLogin">
-					Login
-				</Link>
-				<Link className="link" to="/workoutProgram">
-					Workout Programs
-				</Link>
-				<Link className="link" to="/dashboard">
-					Dashboard
-				</Link>
-				<button onClick={logout}>Logout</button>
+				<Group position="center" my="xl">
+					<SegmentedControl
+						value={colorScheme}
+						onChange={toggleColorScheme}
+						data={[
+							{
+								value: "light",
+								label: (
+									<Center>
+										<Sun size={16} />
+										<Box ml={10}>Light</Box>
+									</Center>
+								),
+							},
+							{
+								value: "dark",
+								label: (
+									<Center>
+										<Moon size={16} />
+										<Box ml={10}>Dark</Box>
+									</Center>
+								),
+							},
+						]}
+					/>
+				</Group>
+				<Button onClick={logout}>Logout</Button>
 
-				<SegmentedControl
-					style={{
-						justifyContent: "right",
-						margin: "0 auto",
-					}}
-					value={colorScheme}
-					onChange={toggleColorScheme}
-					data={[
-						{
-							value: "light",
-							label: (
-								<Center>
-									<Sun size={16} />
-									<Box ml={10}>Light</Box>
-								</Center>
-							),
-						},
-						{
-							value: "dark",
-							label: (
-								<Center>
-									<Moon size={16} />
-									<Box ml={10}>Dark</Box>
-								</Center>
-							),
-						},
-					]}
-				/>
-			</Group>
-		</div>
+				<Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
+			</Container>
+		</Header>
 	);
-};
-
+}
 export default NavBar;
