@@ -19,6 +19,7 @@ import {
 	ListTrainers,
 	TrainerRegister,
 	WorkoutScR,
+	Workout,
 } from "../pages";
 
 // Error pages
@@ -48,6 +49,7 @@ const AppRoutes = () => {
 						<Route exact path="/userLogin" element={<UserLogin />} />
 					</Route>
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					<Route exact path="/workout" element={<Workout />} />
 
 					{/* Private Routes */}
 					<Route exact path="/dashboard" element={<PrivateRoute />}>
