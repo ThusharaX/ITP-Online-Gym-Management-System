@@ -34,11 +34,10 @@ const EditEvent = ({ event }) => {
 				onClose={() => setOpened(false)}
 				withCloseButton={false}
 				transition="fade"
-				transitionDuration={600}
+				transitionDuration={400}
 			>
 				<div
 					style={{
-						backgroundColor: "",
 						margin: "-40px",
 						borderRadius: "53px",
 						border: "3px solid #ccc",
@@ -58,7 +57,7 @@ const EditEvent = ({ event }) => {
 							value: "dfdfdfdfdf",
 
 							"&:hover": {
-								backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
+								backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[1],
 							},
 						})}
 					>
@@ -147,15 +146,15 @@ const EditEvent = ({ event }) => {
 								required
 								label="Details"
 								placeholder="Enter Details"
-								style={{ marginTop: "30px", marginBottom: "30px" }}
+								style={{ marginTop: "30px", marginBottom: "20px" }}
 								{...form1.getInputProps("details")}
 							/>
 							<Divider my="sm" size={"md"} />
-							<Group spacing={"150px"} style={{ marginTop: "15px" }} position="center" mt="md">
-								<Button color={"blue[4]"} type="submit" radius="10px" size="xl" compact>
+							<Group spacing={"140px"} style={{ margin: "20px 0px 10px 0px" }} position="center" mt="md">
+								<Button color={"blue[4]"} type="submit" radius="4px" size="xl" compact>
 									Submit
 								</Button>
-								<Button onClick={() => setOpened(false)} color={"red"} type="button" radius="10px" size="xl" compact>
+								<Button onClick={() => setOpened(false)} color={"red"} type="button" radius="4px" size="xl" compact>
 									Cancel
 								</Button>
 							</Group>
@@ -172,7 +171,7 @@ const EditEvent = ({ event }) => {
 				</div>
 			</Modal>
 			<Group position="center">
-				<Button size="md" onClick={() => setOpened(true)} compact variant="light" color="blue">
+				<Button size="md" onClick={() => setOpened(true)} compact color="blue">
 					Update
 				</Button>
 			</Group>
