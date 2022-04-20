@@ -2,7 +2,8 @@ import React from "react";
 
 // Page components
 import WorkoutProgramList from "./WorkoutProgramList";
-import AddWorkoutModal from "./AddWorkoutModal";
+import AddWorkoutProgramModal from "./AddWorkoutProgramModal";
+import Search from "./Search";
 
 // WorkoutProgramProvider
 import { WorkoutProgramProvider } from "../../contexts/WorkoutProgramContext";
@@ -15,7 +16,9 @@ const WorkoutProgram = () => {
 			<h1 style={{ textAlign: "center" }}>Workout Programs</h1>
 
 			<WorkoutProgramProvider>
-				<AddWorkoutModal />
+				<Search />
+
+				<AddWorkoutProgramModal />
 
 				<SimpleGrid
 					cols={4}

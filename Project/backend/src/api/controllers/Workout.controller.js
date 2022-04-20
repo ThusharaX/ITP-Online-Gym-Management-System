@@ -77,3 +77,16 @@ export const searchWorkouts = async (request, response, next) => {
 			next();
 		});
 };
+
+// Increse workout views
+export const increaseViewCount = async (request, response, next) => {
+	await WorkoutService.increaseViewCount(request.params.id)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};

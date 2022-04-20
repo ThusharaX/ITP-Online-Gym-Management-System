@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
-import { Card, Image, Text, Badge, Button, Group, useMantineTheme } from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Group, useMantineTheme, Modal } from "@mantine/core";
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 
 import { Edit, Trash } from "tabler-icons-react";
+import EditWorkoutProgram from "./EditWorkoutProgram";
 
 function WorkoutProgramList() {
-	const { workoutPrograms, confirmDelete } = useContext(WorkoutProgramContext);
+	const { workoutPrograms, confirmDelete, editOpened, setEditOpened, setWorkoutProgram } =
+		useContext(WorkoutProgramContext);
 	const theme = useMantineTheme();
 
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
 	return (
 		<>
+			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Workout Program">
+				<EditWorkoutProgram />
+			</Modal>
+
 			{workoutPrograms.map((item) => (
 				<div key={item._id} style={{ width: 340, margin: "auto" }}>
 					<Card shadow="sm" p="lg">
@@ -21,7 +27,7 @@ function WorkoutProgramList() {
 
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.name}</Text>
-							<Badge color="green" variant="light">
+							<Badge color="green" variant="light" size="lg">
 								{item.fee}/=
 							</Badge>
 						</Group>
@@ -49,7 +55,10 @@ function WorkoutProgramList() {
 						{localStorage.getItem("permissionLevel") === "ADMIN" && (
 							<Group position="apart" mt="md" spacing="md">
 								<Button
-									onClick={() => handleEdit(item)}
+									onClick={() => {
+										setWorkoutProgram(item);
+										setEditOpened(true);
+									}}
 									variant="light"
 									color="blue"
 									compact
