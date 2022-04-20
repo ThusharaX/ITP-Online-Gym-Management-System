@@ -87,7 +87,7 @@ export function WorkoutProvider({ children }) {
 				</Text>
 			),
 			labels: {
-				confirm: "Delete workout Program",
+				confirm: "Delete workout",
 				cancel: "No don't delete it",
 			},
 			confirmProps: { color: "red" },
