@@ -4,6 +4,9 @@ import Posts from "../../components/posts/Posts";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./blog.css";
 
+// SampleProvider
+import { BlogProvider } from "../../contexts/BlogContext";
+
 export default function Blog() {
 	const location = useLocation();
 	//console.log(location);

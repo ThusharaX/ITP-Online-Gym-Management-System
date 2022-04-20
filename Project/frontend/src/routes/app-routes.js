@@ -19,6 +19,10 @@ import {
 	TrainerRegister,
 	Blog,
 	Write,
+	Blogs,
+	BlogsList,
+	BlogCreateRequest,
+	TrainerPackages,
 } from "../pages";
 
 // Error pages
@@ -47,11 +51,15 @@ const AppRoutes = () => {
 
 					<Route exact path="/blog" element={<Blog />} />
 					<Route exact path="/write" element={<Write />} />
+					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
+					<Route exact path="/package" element={<TrainerPackages />} />
+
+					<Route exact path="/blogs" element={<Blogs />} />
 
 					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
 						<Route exact path="/userLogin" element={<UserLogin />} />
 					</Route>
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
 					{/* Private Routes */}
 					<Route exact path="/dashboard" element={<PrivateRoute />}>
