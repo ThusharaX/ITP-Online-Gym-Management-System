@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { Trash } from "tabler-icons-react";
 import EventContext from "../../contexts/EventContext";
 import Search from "./search";
 import { Divider, Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
@@ -119,7 +119,13 @@ const EventList = () => {
 								</Text>
 							</ScrollArea>
 							<Group spacing={40} position="center" style={{ marginTop: "20px" }}>
-								<Button size="md" onClick={() => confirmDelete(item._id)} compact color="red">
+								<Button
+									leftIcon={<Trash size={18} />}
+									size="md"
+									onClick={() => confirmDelete(item._id)}
+									compact
+									color="red"
+								>
 									Delete
 								</Button>
 

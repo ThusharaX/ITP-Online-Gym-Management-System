@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Modal, Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Title, Divider } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
+import { ArrowAutofitUp } from "tabler-icons-react";
 import App from "./FileUpload";
 // import { DropzoneButton } from "./Dropzone";
 import { useForm } from "@mantine/form";
@@ -39,9 +40,9 @@ const EditEvent = ({ event }) => {
 				<div
 					style={{
 						margin: "-40px",
-						borderRadius: "53px",
+						borderRadius: "10px",
 						border: "3px solid #ccc",
-						width: "548px",
+						width: "540px",
 					}}
 				>
 					<Box
@@ -171,7 +172,7 @@ const EditEvent = ({ event }) => {
 				</div>
 			</Modal>
 			<Group position="center">
-				<Button size="md" onClick={() => setOpened(true)} compact color="blue">
+				<Button leftIcon={<ArrowAutofitUp size={18} />} size="md" onClick={() => setOpened(true)} compact color="blue">
 					Update
 				</Button>
 			</Group>

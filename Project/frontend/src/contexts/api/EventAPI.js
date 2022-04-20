@@ -20,9 +20,9 @@ class EventAPI {
 	static searchEvent(search) {
 		return axios.get(`${BASE_URL}/events/?search=${search}`, requestConfigJson);
 	}
-	// static getEventData() {
-	// 	return axios.get(`${BASE_URL}/events/`, requestConfig);
-	// }
+	static getEventData() {
+		return axios.get(`${BASE_URL}/events/`, requestConfig);
+	}
 }
 
 export default EventAPI;

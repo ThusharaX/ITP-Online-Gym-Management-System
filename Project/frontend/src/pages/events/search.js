@@ -41,7 +41,12 @@ function Search() {
 				/>
 
 				<Group position="right" mt="md">
-					<Button type="reset" onClick={handleResetSearch}>
+					<Button
+						variant="gradient"
+						gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
+						type="reset"
+						onClick={handleResetSearch}
+					>
 						Reset
 					</Button>
 				</Group>

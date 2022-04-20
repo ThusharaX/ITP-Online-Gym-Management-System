@@ -30,7 +30,7 @@ const ReactCard = () => {
 			}}
 		>
 			<Search />
-			<Group position="center" spacing={60}>
+			<Group style={{ marginTop: "50px" }} position="center" spacing={60}>
 				{events.map((item) => (
 					<div key={item._id}>
 						<Card
