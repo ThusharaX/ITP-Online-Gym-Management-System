@@ -10,7 +10,19 @@ import WorkoutProgramAPI from "./api/WorkoutProgramAPI";
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
+	// Workout Programs
 	const [workoutPrograms, setWorkoutPrograms] = useState([]);
+
+	// Workout Program
+	const [workoutProgram, setWorkoutProgram] = useState({
+		photoURL: "",
+		name: "",
+		description: "",
+		conducted_by: "",
+		fee: "",
+		day: "",
+		time: "",
+	});
 
 	// Get all workoutPrograms
 	useEffect(() => {
@@ -81,9 +93,43 @@ export function WorkoutProgramProvider({ children }) {
 			onConfirm: () => deleteWorkoutProgram(id),
 		});
 
+	// Edit workoutProgram
+	const editWorkoutProgram = (values) => {
+		const newWorkoutProgram = {
+			photoURL: values.photoURL,
+			name: values.name,
+			description: values.description,
+			conducted_by: values.conducted_by,
+			fee: values.fee,
+			day: values.day,
+			time: values.time,
+		};
+		WorkoutProgramAPI.editWorkoutProgram(values.id, newWorkoutProgram).then((response) => {
+			setWorkoutPrograms(
+				workoutPrograms.map((workoutProgram) => (workoutProgram._id === values.id ? response.data : workoutProgram))
+			);
+			form.reset();
+		});
+	};
+
+	// editWorkoutProgram Modal
+	const [editOpened, setEditOpened] = useState(false);
+
 	return (
 		<WorkoutProgramContext.Provider
-			value={{ workoutPrograms, confirmDelete, addWorkoutProgram, form, opened, setOpened }}
+			value={{
+				workoutPrograms,
+				confirmDelete,
+				form,
+				addWorkoutProgram,
+				opened,
+				setOpened,
+				editWorkoutProgram,
+				editOpened,
+				setEditOpened,
+				workoutProgram,
+				setWorkoutProgram,
+			}}
 		>
 			{children}
 		</WorkoutProgramContext.Provider>

@@ -16,6 +16,10 @@ class WorkoutProgramAPI {
 	static deleteWorkoutProgram(id) {
 		return axios.delete(`${BASE_URL}/workoutProgram/${id}`, requestConfig);
 	}
+
+	static editWorkoutProgram(id, newWorkoutProgram) {
+		return axios.put(`${BASE_URL}/workoutProgram/${id}`, newWorkoutProgram, requestConfigJson);
+	}
 }
 
 export default WorkoutProgramAPI;
