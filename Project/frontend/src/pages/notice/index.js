@@ -1,5 +1,4 @@
 import React from "react";
-import "./notice.css";
 
 // Page components
 import AddNotice from "./AddNotice";

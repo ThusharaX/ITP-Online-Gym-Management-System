@@ -16,11 +16,11 @@ const AddNotice = () => {
 						label="Category"
 						placeholder="Select one"
 						data={[
-							{ value: "hd", label: "Holiday" },
-							{ value: "promo", label: "Promotion" },
-							{ value: "offer", label: "Offer" },
-							{ value: "event", label: "Event" },
-							{ value: "sm", label: "System Maintaince" },
+							{ value: "Holiday", label: "Holiday" },
+							{ value: "Promotion", label: "Promotion" },
+							{ value: "Offer", label: "Offer" },
+							{ value: "Event", label: "Event" },
+							{ value: "System_Maintaince", label: "System Maintaince" },
 						]}
 						{...form.getInputProps("category")}
 					/>
