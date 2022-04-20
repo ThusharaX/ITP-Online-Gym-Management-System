@@ -50,6 +50,9 @@ export default function (app) {
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
+	// Trainer endpoints
+	app.get("/trainers/", controller.getTrainers); // get all/sort/search event
+
 	// Event endpoints
 	app.get("/events/", controller.getEvents); // get all/sort/search event
 	app.post("/events/", controller.createEvents); // insert one event

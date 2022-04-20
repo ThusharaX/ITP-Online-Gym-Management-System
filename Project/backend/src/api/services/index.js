@@ -47,6 +47,8 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
+
 export default {
 	// Sample services
 	insertSample,
@@ -122,4 +124,11 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+
+	// Trainer services
+	getTrainer,
+	getTrainers,
+	updateTrainers,
+	deleteTrainers,
+	createTrainers,
 };

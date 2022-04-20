@@ -21,6 +21,7 @@ import {
 	AdminDashboard,
 	AdminProfile,
 	CommonLogin,
+	TrainerProfile,
 } from "../pages";
 
 // Error pages
@@ -66,7 +67,6 @@ const AppRoutes = () => {
 					</Route>
 
 					<Route exact path="/events" element={<Events />} />
-					<Route exact path="/trainers/events" element={<Eventlist />} />
 
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
@@ -94,6 +94,8 @@ const AppRoutes = () => {
 					<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
 						<Route exact path="/trainers" element={<TrainerDashboard />} />
 						<Route exact path="/trainers/list" element={<ListTrainers />} />
+						<Route exact path="/trainers/events" element={<Eventlist />} />
+						<Route exact path="/trainers/profile" element={<TrainerProfile />} />
 					</Route>
 
 					{/* 404 */}

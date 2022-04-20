@@ -1,7 +1,7 @@
 import Sample from "./sample";
 import Home from "./home";
 import WorkoutProgram from "./workoutProgram";
-import { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister } from "./trainer";
+import { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister, TrainerProfile } from "./trainer";
 import WorkoutScR from "./workoutScR";
 import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
@@ -28,4 +28,5 @@ export {
 	AdminDashboard,
 	AdminProfile,
 	CommonLogin,
+	TrainerProfile,
 };

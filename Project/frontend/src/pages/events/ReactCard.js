@@ -1,40 +1,36 @@
 import React, { useContext } from "react";
 import EventContext from "../../contexts/EventContext";
-import {
-	Box,
-	Card,
-	Image,
-	Text,
-	Badge,
-	Button,
-	Group,
-	useMantineTheme,
-	ScrollArea,
-	Select,
-	Container,
-} from "@mantine/core";
-
+import { Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea, Select } from "@mantine/core";
+import Search from "./search";
 const ReactCard = () => {
 	const { events } = useContext(EventContext);
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
-
+	const gradient =
+		theme.colorScheme === "dark"
+			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.7)), "
+			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	let memberID = "123456789";
 
 	return (
 		<Box
 			sx={(theme) => ({
-				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+				marginTop: "-130px",
+				minHeight: "100vh",
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
 			})}
 			style={{
 				margin: "0 auto",
-				border: "2px solid #ccc",
-				borderRadius: "20px",
+				marginTop: "-125px",
+				marginBottom: "-125px",
+				border: "1px solid #aaa",
+				borderRadius: "5px",
 				width: "100%",
-				padding: "100px 20px 50px 20px",
+				padding: "200px 0px 100px 0px",
 			}}
 		>
-			<Group position="center" spacing={50}>
+			<Search />
+			<Group position="center" spacing={60}>
 				{events.map((item) => (
 					<div key={item._id}>
 						<Card
@@ -46,6 +42,7 @@ const ReactCard = () => {
 									backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[1],
 									boxShadow: theme.colorScheme === "dark" ? "0px 2px 15px 3px #777" : "0px 3px 20px 2px #bbb",
 								},
+								opacity: 0.9,
 							})}
 							// shadow="xl"
 							radius="lg"

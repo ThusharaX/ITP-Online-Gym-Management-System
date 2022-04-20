@@ -4,6 +4,7 @@ import React from "react";
 import TrainerList from "./TrainerList";
 import AddTrainer from "./AddTrainer";
 import { Login } from "./Login";
+import Profile from "./Profile";
 import { Dashboard as TrainerDashboard } from "./Dashboard";
 // SampleProvider
 import { TrainerProvider } from "../../contexts/TrainerContext";
@@ -31,4 +32,12 @@ const TrainerLogin = () => {
 	);
 };
 
-export { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister };
+const TrainerProfile = () => {
+	return (
+		<TrainerProvider>
+			<Profile />
+		</TrainerProvider>
+	);
+};
+
+export { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister, TrainerProfile };

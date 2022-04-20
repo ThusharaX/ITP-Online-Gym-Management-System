@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import EventContext from "../../contexts/EventContext";
-
+import Search from "./search";
 import { Divider, Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
 import EditEvent from "./EditEvent";
 import AddEvent from "./AddEvent";
@@ -11,25 +11,37 @@ const EventList = () => {
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
+	const gradient =
+		theme.colorScheme === "dark"
+			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.7)), "
+			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
+	const bg = theme.colorScheme === "dark" ? "#222" : "#ddd";
 
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				minHeight: "100vh",
 			})}
 			style={{
 				margin: "0 auto",
-				border: "2px solid #ccc",
-				borderRadius: "20px",
+
+				border: "1px solid #ccc",
+				borderRadius: "5px",
 				width: "100%",
-				padding: "50px 20px 50px 20px",
+				height: "100%",
+				marginTop: "-110px",
+				marginBottom: "-120px",
+				paddingBottom: "100px",
 			}}
 		>
-			<Group position="right" style={{ margin: " 10px 100px 30px 0px" }}>
+			<Group position="right" style={{ margin: " 100px 150px 30px 0px" }}>
 				<AddEvent />
 			</Group>
 			<Divider my="sm" />
-			<Group style={{ marginTop: "50px" }} position="center" spacing={50}>
+			<Search />
+			<Group style={{ marginTop: "50px" }} position="center" spacing={60}>
 				{events.map((item) => (
 					<div key={item._id}>
 						<Card
@@ -41,6 +53,7 @@ const EventList = () => {
 									backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[1],
 									boxShadow: theme.colorScheme === "dark" ? "0px 2px 15px 3px #777" : "0px 3px 20px 2px #bbb",
 								},
+								opacity: 0.9,
 							})}
 							radius="lg"
 							p="md"
