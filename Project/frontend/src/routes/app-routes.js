@@ -8,7 +8,6 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	Dashboard,
 	PersonalTrainerRequest,
 	Events,
 	Eventlist,
