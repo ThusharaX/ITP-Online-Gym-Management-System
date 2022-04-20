@@ -3,12 +3,13 @@ import React, { useContext, useState } from "react";
 import { Card, Image, Text, Badge, Button, Group, useMantineTheme, Modal } from "@mantine/core";
 import WorkoutContext from "../../contexts/WorkoutContext";
 
-import { Edit, Trash } from "tabler-icons-react";
+import { Edit, Trash, Eye } from "tabler-icons-react";
 import EditWorkout from "./EditWorkout";
 import View from "./View";
 
 function WorkoutList() {
-	const { workouts, confirmDelete, editOpened, setEditOpened, setWorkout } = useContext(WorkoutContext);
+	const { workouts, confirmDelete, editOpened, setEditOpened, setWorkout, incrementViewCount } =
+		useContext(WorkoutContext);
 	const theme = useMantineTheme();
 
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -37,6 +38,12 @@ function WorkoutList() {
 
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.workout_name}</Text>
+							<Badge sx={{ paddingLeft: 10, paddingRight: 10 }} color="green" variant="light" size="lg">
+								<Group position="center" spacing="xs">
+									<Eye />
+									{item.viewCount == 0 ? "0" : item.viewCount}
+								</Group>
+							</Badge>
 						</Group>
 
 						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
@@ -62,6 +69,7 @@ function WorkoutList() {
 							fullWidth
 							style={{ marginTop: 14 }}
 							onClick={() => {
+								incrementViewCount(item._id);
 								setWorkout(item);
 								setOpened(true);
 							}}

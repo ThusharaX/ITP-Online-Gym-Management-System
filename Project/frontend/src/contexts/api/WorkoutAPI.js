@@ -24,6 +24,10 @@ class WorkoutAPI {
 	static searchWorkout(search) {
 		return axios.get(`${BASE_URL}/workout/search/${search}`, requestConfigJson);
 	}
+
+	static incrementViewCount(id) {
+		return axios.put(`${BASE_URL}/workout/view/${id}`, requestConfigJson);
+	}
 }
 
 export default WorkoutAPI;

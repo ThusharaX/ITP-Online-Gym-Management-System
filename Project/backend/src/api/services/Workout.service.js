@@ -82,3 +82,19 @@ export const searchWorkouts = async (searchTerm) => {
 			throw new Error(error.message);
 		});
 };
+
+// Increse workout views
+export const increaseViewCount = async (workoutId) => {
+	await WorkoutModel.findByIdAndUpdate(workoutId, { $inc: { viewCount: 1 } });
+	return await WorkoutModel.findById(workoutId)
+		.then((workout) => {
+			if (workout) {
+				return workout;
+			} else {
+				throw new Error("Workout not found");
+			}
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
