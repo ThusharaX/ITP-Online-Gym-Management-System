@@ -117,6 +117,13 @@ export function WorkoutProvider({ children }) {
 	// editWorkout Modal
 	const [editOpened, setEditOpened] = useState(false);
 
+	// View Count increment
+	const incrementViewCount = (id) => {
+		WorkoutAPI.incrementViewCount(id).then((response) => {
+			setWorkouts(workouts.map((workout) => (workout._id === id ? response.data : workout)));
+		});
+	};
+
 	return (
 		<WorkoutContext.Provider
 			value={{
@@ -132,6 +139,7 @@ export function WorkoutProvider({ children }) {
 				setEditOpened,
 				workout,
 				setWorkout,
+				incrementViewCount,
 			}}
 		>
 			{children}
