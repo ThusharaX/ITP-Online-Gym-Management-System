@@ -8,8 +8,6 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	UserLogin,
-	Dashboard,
 	PersonalTrainerRequest,
 	Events,
 	Eventlist,
@@ -18,15 +16,40 @@ import {
 	ListTrainers,
 	TrainerRegister,
 	Notice,
+	WorkoutScR,
+	Workout,
+	AdminLogin,
+	AdminDashboard,
+	AdminProfile,
+	CommonLogin,
 } from "../pages";
 
 // Error pages
 import Error404 from "../pages/error/Error404";
 
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import FooterSection from "../components/Footer";
 
 const AppRoutes = () => {
+	const footerLinks = [
+		{
+			link: "#",
+			label: "Contact",
+		},
+		{
+			link: "#",
+			label: "Privacy",
+		},
+		{
+			link: "#",
+			label: "Blog",
+		},
+		{
+			link: "#",
+			label: "Careers",
+		},
+	];
+
 	return (
 		<>
 			<Router>
@@ -35,31 +58,49 @@ const AppRoutes = () => {
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
-					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
-					<Route exact path="/trainers/" element={<TrainerDashboard />} />
-					<Route exact path="/trainers/login" element={<TrainerLogin />} />
-					<Route exact path="/trainers/register" element={<TrainerRegister />} />
-					<Route exact path="/trainers/list" element={<ListTrainers />} />
+					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
+						<Route exact path="/trainers/login" element={<TrainerLogin />} />
+					</Route>
+					<Route exact path="/trainers/register" element={<CheckLoginStatus />}>
+						<Route exact path="/trainers/register" element={<TrainerRegister />} />
+					</Route>
 
 					<Route exact path="/events" element={<Events />} />
 					<Route exact path="/trainers/events" element={<Eventlist />} />
-
-					<Route exact path="/userLogin" element={<CheckLoginStatus />}>
-						<Route exact path="/userLogin" element={<UserLogin />} />
-					</Route>
 					<Route exact path="/notice" element={<Notice />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
-					{/* Private Routes */}
-					<Route exact path="/dashboard" element={<PrivateRoute />}>
-						<Route exact path="/dashboard" element={<Dashboard />} />
+					<Route exact path="/workout" element={<Workout />} />
+
+					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
+
+					<Route path="/workoutscr" element={<WorkoutScR />} />
+
+					<Route exact path="/login" element={<CheckLoginStatus />}>
+						<Route exact path="/login" element={<CommonLogin />} />
+					</Route>
+
+					<Route exact path="/admin/login" element={<CheckLoginStatus />}>
+						<Route exact path="/admin/login" element={<AdminLogin />} />
+					</Route>
+
+					{/* Admin Routes */}
+					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
+						<Route exact path="/admin" element={<AdminDashboard />} />
+						<Route exact path="/admin/profile" element={<AdminProfile />} />
+					</Route>
+
+					{/* Trainer Routes */}
+					<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
+						<Route exact path="/trainers" element={<TrainerDashboard />} />
+						<Route exact path="/trainers/list" element={<ListTrainers />} />
 					</Route>
 
 					{/* 404 */}
 					<Route path="*" element={<Error404 />} />
 				</Routes>
-				<Footer />
+				<FooterSection links={footerLinks} />
 			</Router>
 		</>
 	);

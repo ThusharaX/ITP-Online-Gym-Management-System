@@ -11,10 +11,10 @@ function PasswordRequirement({ meets, label }) {
 }
 
 const requirements = [
-	{ re: /[0-9]/, label: "Includes number" },
-	{ re: /[a-z]/, label: "Includes lowercase letter" },
-	{ re: /[A-Z]/, label: "Includes uppercase letter" },
-	{ re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
+	// { re: /[0-9]/, label: "Includes number" },
+	// { re: /[a-z]/, label: "Includes lowercase letter" },
+	// { re: /[A-Z]/, label: "Includes uppercase letter" },
+	// { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: "Includes special symbol" },
 ];
 
 function getStrength(password) {
@@ -29,7 +29,7 @@ function getStrength(password) {
 	return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 }
 
-export function PasswordStrength() {
+export function PasswordStrength(props) {
 	const [popoverOpened, setPopoverOpened] = useState(false);
 	const [value, setValue] = useState("");
 	const checks = requirements.map((requirement, index) => (
@@ -59,6 +59,7 @@ export function PasswordStrength() {
 					// description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
 					value={value}
 					onChange={(event) => setValue(event.currentTarget.value)}
+					{...props.fm.getInputProps("psw")}
 				/>
 			}
 		>

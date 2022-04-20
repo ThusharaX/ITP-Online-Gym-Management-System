@@ -38,6 +38,7 @@ import {
 	updateworkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 } from "./Workout.service";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
@@ -99,6 +100,7 @@ export default {
 	updateworkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 
 	//Notice Services
 	insertNotice,
