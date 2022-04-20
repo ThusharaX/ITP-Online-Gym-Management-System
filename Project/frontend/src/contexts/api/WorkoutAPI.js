@@ -10,10 +10,19 @@ class WorkoutAPI {
 	}
 
 	static addWorkout(newWorkout) {
-		return axios.post(`${BASE_URL}workout/`, newWorkout, requestConfigJson);
+		return axios.post(`${BASE_URL}/workout/`, newWorkout, requestConfigJson);
 	}
+
 	static deleteWorkout(id) {
 		return axios.delete(`${BASE_URL}/workout/${id}`, requestConfig);
+	}
+
+	static editWorkout(id, newWorkout) {
+		return axios.put(`${BASE_URL}/workout/${id}`, newWorkout, requestConfigJson);
+	}
+
+	static searchWorkout(search) {
+		return axios.get(`${BASE_URL}/workout/search/${search}`, requestConfigJson);
 	}
 }
 
