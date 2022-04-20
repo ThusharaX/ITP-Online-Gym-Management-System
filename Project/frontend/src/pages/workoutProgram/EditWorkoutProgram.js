@@ -1,15 +1,30 @@
 import React, { useContext } from "react";
 import { Button, TextInput, Group, Box } from "@mantine/core";
+import { useForm } from "@mantine/form";
 
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 
-const AddWorkoutProgram = () => {
-	const { addWorkoutProgram, form, setOpened } = useContext(WorkoutProgramContext);
+const EditWorkoutProgram = () => {
+	const { editWorkoutProgram, setEditOpened, workoutProgram } = useContext(WorkoutProgramContext);
+
+	// Form initial state
+	let form = useForm({
+		initialValues: {
+			id: workoutProgram._id,
+			photoURL: workoutProgram.photoURL,
+			name: workoutProgram.name,
+			description: workoutProgram.description,
+			conducted_by: workoutProgram.conducted_by,
+			fee: workoutProgram.fee,
+			day: workoutProgram.day,
+			time: workoutProgram.time,
+		},
+	});
 
 	return (
 		<>
 			<Box sx={{ maxWidth: 300 }} mx="auto">
-				<form onSubmit={form.onSubmit((values) => addWorkoutProgram(values))}>
+				<form onSubmit={form.onSubmit((values) => editWorkoutProgram(values))}>
 					<TextInput required label="Image URL" placeholder="Enter Image URL" {...form.getInputProps("photoURL")} />
 					<TextInput required label="Name" placeholder="Workout Program Name" {...form.getInputProps("name")} />
 					<TextInput
@@ -31,11 +46,11 @@ const AddWorkoutProgram = () => {
 					<Group position="right" mt="md">
 						<Button
 							onClick={() => {
-								setOpened(false);
+								setEditOpened(false);
 							}}
 							type="submit"
 						>
-							Create
+							Update
 						</Button>
 					</Group>
 				</form>
@@ -44,4 +59,4 @@ const AddWorkoutProgram = () => {
 	);
 };
 
-export default AddWorkoutProgram;
+export default EditWorkoutProgram;
