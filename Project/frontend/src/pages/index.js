@@ -7,7 +7,7 @@ import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
 import PersonalTrainerRequest from "./personalTrainerRequest";
 import Workout from "./workout";
-import { AdminLogin, AdminDashboard } from "./admin";
+import { AdminLogin, AdminDashboard, AdminProfile } from "./admin";
 import CommonLogin from "./commonLogin";
 
 export {
@@ -26,5 +26,6 @@ export {
 	Workout,
 	AdminLogin,
 	AdminDashboard,
+	AdminProfile,
 	CommonLogin,
 };

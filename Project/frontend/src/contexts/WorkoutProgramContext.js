@@ -119,6 +119,7 @@ export function WorkoutProgramProvider({ children }) {
 		<WorkoutProgramContext.Provider
 			value={{
 				workoutPrograms,
+				setWorkoutPrograms,
 				confirmDelete,
 				form,
 				addWorkoutProgram,
