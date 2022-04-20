@@ -52,7 +52,29 @@ export function SalaryProvider({ children }) {
 		});
 	};
 
-	return <SalaryContext.Provider value={{ salaries, addSalary, form }}>{children}</SalaryContext.Provider>;
+	//Edit Salary
+	const updateSalary = (values) => {
+		let id = values.id;
+		const newSalary = {
+			nic: values.nic,
+			year: values.year,
+			month: values.month,
+			basicSalary: values.basicSalary,
+			otHours: values.otHours,
+			otRate: values.otRate,
+			otTotal: values.otTotal,
+			totalSalary: values.totalSalary,
+		};
+		axios.put(`${baseURL}/${id}`, newSalary).then((res) => {
+			axios.get(baseURL).then((res) => {
+				setSalary(res.data);
+			});
+		});
+	};
+
+	return (
+		<SalaryContext.Provider value={{ salaries, addSalary, updateSalary, form }}>{children}</SalaryContext.Provider>
+	);
 }
 
 export default SalaryContext;

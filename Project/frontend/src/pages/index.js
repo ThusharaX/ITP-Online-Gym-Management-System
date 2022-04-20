@@ -6,7 +6,7 @@ import WorkoutScR from "./workoutScR";
 import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
 import PersonalTrainerRequest from "./personalTrainerRequest";
-import Salary from "./salary";
+import { Salary } from "./salary";
 import Workout from "./workout";
 import { AdminLogin, AdminDashboard } from "./admin";
 import CommonLogin from "./commonLogin";
