@@ -2,7 +2,6 @@ import React from "react";
 
 // Page components
 import AddSalary from "./AddSalary";
-import EditSalary from "./EditSalary";
 import "./index.css";
 
 // SalaryProvider

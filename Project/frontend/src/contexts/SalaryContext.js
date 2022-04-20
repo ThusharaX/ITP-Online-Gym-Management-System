@@ -52,7 +52,7 @@ export function SalaryProvider({ children }) {
 		});
 	};
 
-	//Edit Salary
+	/*//Edit Salary
 	const updateSalary = (values) => {
 		let id = values.id;
 		const newSalary = {
@@ -70,10 +70,10 @@ export function SalaryProvider({ children }) {
 				setSalary(res.data);
 			});
 		});
-	};
+	};*/
 
 	return (
-		<SalaryContext.Provider value={{ salaries, addSalary, updateSalary, form }}>{children}</SalaryContext.Provider>
+		<SalaryContext.Provider value={{ salaries, addSalary, form }}>{children}</SalaryContext.Provider>
 	);
 }
 
