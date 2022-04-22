@@ -77,4 +77,6 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+	// increse view count
+	app.put("/workout/view/:id", controller.increaseViewCount);
 }

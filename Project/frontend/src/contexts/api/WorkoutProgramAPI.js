@@ -20,6 +20,10 @@ class WorkoutProgramAPI {
 	static editWorkoutProgram(id, newWorkoutProgram) {
 		return axios.put(`${BASE_URL}/workoutProgram/${id}`, newWorkoutProgram, requestConfigJson);
 	}
+
+	static searchWorkoutProgram(search) {
+		return axios.get(`${BASE_URL}/workoutProgram/search/${search}`, requestConfigJson);
+	}
 }
 
 export default WorkoutProgramAPI;

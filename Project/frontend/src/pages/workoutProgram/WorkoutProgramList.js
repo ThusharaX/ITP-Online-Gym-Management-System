@@ -14,6 +14,10 @@ function WorkoutProgramList() {
 
 	return (
 		<>
+			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Workout Program">
+				<EditWorkoutProgram />
+			</Modal>
+
 			{workoutPrograms.map((item) => (
 				<div key={item._id} style={{ width: 340, margin: "auto" }}>
 					<Card shadow="sm" p="lg">
@@ -23,7 +27,7 @@ function WorkoutProgramList() {
 
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.name}</Text>
-							<Badge color="green" variant="light">
+							<Badge color="green" variant="light" size="lg">
 								{item.fee}/=
 							</Badge>
 						</Group>
@@ -50,9 +54,6 @@ function WorkoutProgramList() {
 
 						{localStorage.getItem("permissionLevel") === "ADMIN" && (
 							<Group position="apart" mt="md" spacing="md">
-								<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Workout Program">
-									<EditWorkoutProgram />
-								</Modal>
 								<Button
 									onClick={() => {
 										setWorkoutProgram(item);

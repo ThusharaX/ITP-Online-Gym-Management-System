@@ -43,6 +43,7 @@ import {
 	updateWorkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
@@ -102,6 +103,7 @@ export default {
 	updateWorkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 
 	//Notices Controllers
 	insertNotice,

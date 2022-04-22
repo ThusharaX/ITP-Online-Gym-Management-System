@@ -8,7 +8,6 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	Dashboard,
 	PersonalTrainerRequest,
 	Events,
 	Eventlist,
@@ -21,6 +20,7 @@ import {
 	Workout,
 	AdminLogin,
 	AdminDashboard,
+	AdminProfile,
 	CommonLogin,
 } from "../pages";
 
@@ -90,6 +90,7 @@ const AppRoutes = () => {
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
 						<Route exact path="/admin" element={<AdminDashboard />} />
+						<Route exact path="/admin/profile" element={<AdminProfile />} />
 					</Route>
 
 					{/* Trainer Routes */}

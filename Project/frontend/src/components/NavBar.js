@@ -113,16 +113,12 @@ function NavBar() {
 					{localStorage.getItem("permissionLevel") === "ADMIN" ? (
 						<Menu control={<Button variant="outline">Admin</Button>}>
 							<Menu.Label>Admin</Menu.Label>
-							<Menu.Item icon={<UserCircle size={14} />}>
-								<Link className={classes.link} to="/admin/profile">
-									Profile
-								</Link>
-							</Menu.Item>
-							<Menu.Item icon={<Dashboard size={14} />}>
-								<Link className={classes.link} to="/admin">
-									Admin Dashboard
-								</Link>
-							</Menu.Item>
+							<Link className={classes.link} to="/admin/profile">
+								<Menu.Item icon={<UserCircle size={14} />}>Profile</Menu.Item>
+							</Link>
+							<Link className={classes.link} to="/admin">
+								<Menu.Item icon={<Dashboard size={14} />}>Admin Dashboard</Menu.Item>
+							</Link>
 						</Menu>
 					) : (
 						<p></p>
@@ -132,21 +128,15 @@ function NavBar() {
 					{localStorage.getItem("permissionLevel") === "TRAINER" ? (
 						<Menu control={<Button variant="outline">Trainer</Button>}>
 							<Menu.Label>Trainer</Menu.Label>
-							<Menu.Item icon={<UserCircle size={14} />}>
-								<Link className={classes.link} to="/trainers/profile">
-									Profile
-								</Link>
-							</Menu.Item>
-							<Menu.Item icon={<CalendarEvent size={14} />}>
-								<Link className={classes.link} to="/trainers/events">
-									Manage Events
-								</Link>
-							</Menu.Item>
-							<Menu.Item icon={<Dashboard size={14} />}>
-								<Link className={classes.link} to="/trainers">
-									Trainer Dashboard
-								</Link>
-							</Menu.Item>
+							<Link className={classes.link} to="/trainers/profile">
+								<Menu.Item icon={<UserCircle size={14} />}>Profile</Menu.Item>
+							</Link>
+							<Link className={classes.link} to="/trainers/events">
+								<Menu.Item icon={<CalendarEvent size={14} />}>Manage Events</Menu.Item>
+							</Link>
+							<Link className={classes.link} to="/trainers">
+								<Menu.Item icon={<Dashboard size={14} />}>Trainer Dashboard</Menu.Item>
+							</Link>
 						</Menu>
 					) : (
 						<p></p>
@@ -156,17 +146,13 @@ function NavBar() {
 					{localStorage.getItem("permissionLevel") === "MEMBER" ? (
 						<Menu control={<Button variant="outline">Member</Button>}>
 							<Menu.Label>Member</Menu.Label>
-							<Menu.Item icon={<UserCircle size={14} />}>
-								<Link className={classes.link} to="/member/profile">
-									Profile
-								</Link>
-							</Menu.Item>
+							<Link className={classes.link} to="/member/profile">
+								<Menu.Item icon={<UserCircle size={14} />}>Profile</Menu.Item>
+							</Link>
 
-							<Menu.Item icon={<Dashboard size={14} />}>
-								<Link className={classes.link} to="/member">
-									Member Dashboard
-								</Link>
-							</Menu.Item>
+							<Link className={classes.link} to="/member">
+								<Menu.Item icon={<Dashboard size={14} />}>Member Dashboard</Menu.Item>
+							</Link>
 						</Menu>
 					) : (
 						<p></p>
