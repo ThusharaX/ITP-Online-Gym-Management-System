@@ -27,12 +27,12 @@ class WorkoutProgramAPI {
 
 	// Enroll WorkoutProgram
 	static enrollWorkoutProgram(data) {
-		return axios.post(`${BASE_URL}/workoutProgram/enroll`, data, requestConfigJson);
+		return axios.post(`${BASE_URL}/user/enroll`, data, requestConfigJson);
 	}
 
 	// Unenroll WorkoutProgram
 	static unenrollWorkoutProgram(data) {
-		return axios.post(`${BASE_URL}/workoutProgram/unenroll`, data, requestConfigJson);
+		return axios.post(`${BASE_URL}/user/unenroll`, data, requestConfigJson);
 	}
 
 	// Get enrolled WorkoutPrograms
