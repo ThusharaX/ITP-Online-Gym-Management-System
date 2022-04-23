@@ -6,8 +6,16 @@ import { Edit, Trash } from "tabler-icons-react";
 import EditWorkoutProgram from "./EditWorkoutProgram";
 
 function WorkoutProgramList() {
-	const { workoutPrograms, confirmDelete, editOpened, setEditOpened, setWorkoutProgram } =
-		useContext(WorkoutProgramContext);
+	const {
+		workoutPrograms,
+		confirmDelete,
+		editOpened,
+		setEditOpened,
+		setWorkoutProgram,
+		enrollWorkoutProgram,
+		unenrollWorkoutProgram,
+		enrolledWorkoutPrograms,
+	} = useContext(WorkoutProgramContext);
 	const theme = useMantineTheme();
 
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -48,9 +56,32 @@ function WorkoutProgramList() {
 							Time: {item.time}
 						</Text>
 
-						<Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }}>
-							Enroll Now
-						</Button>
+						{/* check if item._id is in enrolledWorkoutPrograms */}
+						{!enrolledWorkoutPrograms.includes(item._id) ? (
+							<Button
+								variant="light"
+								color="blue"
+								fullWidth
+								style={{ marginTop: 14 }}
+								onClick={() => {
+									enrollWorkoutProgram(item._id);
+								}}
+							>
+								Enroll Now
+							</Button>
+						) : (
+							<Button
+								variant="light"
+								color="red"
+								fullWidth
+								style={{ marginTop: 14 }}
+								onClick={() => {
+									unenrollWorkoutProgram(item._id);
+								}}
+							>
+								Unenroll
+							</Button>
+						)}
 
 						{localStorage.getItem("permissionLevel") === "ADMIN" && (
 							<Group position="apart" mt="md" spacing="md">

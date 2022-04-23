@@ -24,6 +24,21 @@ class WorkoutProgramAPI {
 	static searchWorkoutProgram(search) {
 		return axios.get(`${BASE_URL}/workoutProgram/search/${search}`, requestConfigJson);
 	}
+
+	// Enroll WorkoutProgram
+	static enrollWorkoutProgram(data) {
+		return axios.post(`${BASE_URL}/workoutProgram/enroll`, data, requestConfigJson);
+	}
+
+	// Unenroll WorkoutProgram
+	static unenrollWorkoutProgram(data) {
+		return axios.post(`${BASE_URL}/workoutProgram/unenroll`, data, requestConfigJson);
+	}
+
+	// Get enrolled WorkoutPrograms
+	static getEnrolledWorkoutPrograms(userID) {
+		return axios.get(`${BASE_URL}/user/enrolledWorkoutPrograms/${userID}`, requestConfig);
+	}
 }
 
 export default WorkoutProgramAPI;

@@ -7,6 +7,8 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	enrollWorkoutProgram,
+	unenrollWorkoutProgram,
 } from "./WorkoutProgram.service";
 
 import {
@@ -27,7 +29,7 @@ import {
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
 
-import { authenticateUser, insertUser } from "./User.service";
+import { authenticateUser, insertUser, getAllEnrolledWorkoutPrograms } from "./User.service";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
 
@@ -63,6 +65,8 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	enrollWorkoutProgram,
+	unenrollWorkoutProgram,
 
 	// Workout Services
 	insertWorkoutScR,
@@ -92,6 +96,7 @@ export default {
 	// Admin services
 	authenticateUser,
 	insertUser,
+	getAllEnrolledWorkoutPrograms,
 
 	// Workout services
 	insertWorkout,

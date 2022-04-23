@@ -17,6 +17,10 @@ export default function (app) {
 	app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
 	app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
 	app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
+	// Enroll Workout Program
+	app.post("/workoutProgram/enroll/", controller.enrollWorkoutProgram); // enroll one Workout Program
+	// Unenroll Workout Program
+	app.post("/workoutProgram/unenroll/", controller.unenrollWorkoutProgram); // unenroll one Workout Program
 
 	// Question endpoints
 	app.post("/question/", controller.insertQuestion); //insert one question
@@ -49,6 +53,8 @@ export default function (app) {
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+	// Get All Enrolled Workout Programs
+	app.get("/user/enrolledWorkoutPrograms/:id", controller.getAllEnrolledWorkoutPrograms);
 
 	// Event endpoints
 	app.get("/events/", controller.getEvents); // get all/sort/search event

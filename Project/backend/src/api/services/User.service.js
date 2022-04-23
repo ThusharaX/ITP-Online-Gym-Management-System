@@ -1,4 +1,5 @@
 import UserModel from "../models/User.model";
+import EnrollWorkoutProgramModel from "../models/EnrollWorkoutProgram.model";
 
 export const authenticateUser = async (username, password) => {
 	return await UserModel.findOne({ username })
@@ -19,6 +20,19 @@ export const insertUser = async (user) => {
 		.then(async (user) => {
 			await user.generateAuthToken();
 			return user;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Only return workoutProgram if user is enrolled
+export const getAllEnrolledWorkoutPrograms = async (userId) => {
+	return await EnrollWorkoutProgramModel.find({ user: userId })
+		.then((enrollWorkoutPrograms) => {
+			return enrollWorkoutPrograms.map((enrollWorkoutProgram) => {
+				return enrollWorkoutProgram.workoutProgram;
+			});
 		})
 		.catch((error) => {
 			throw new Error(error.message);

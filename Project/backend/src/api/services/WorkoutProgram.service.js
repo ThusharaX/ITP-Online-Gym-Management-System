@@ -1,4 +1,5 @@
 import WorkoutProgramModel from "../models/WorkoutProgram.model";
+import EnrollWorkoutProgramModel from "../models/EnrollWorkoutProgram.model";
 
 // Insert one Workout Program
 export const insertWorkoutProgram = async (workoutProgramData) => {
@@ -75,6 +76,37 @@ export const searchWorkoutPrograms = async (searchTerm) => {
 	})
 		.then((workoutPrograms) => {
 			return workoutPrograms;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// enrollWorkoutProgram
+export const enrollWorkoutProgram = async (enrollWorkoutProgramData) => {
+	return await EnrollWorkoutProgramModel.create(enrollWorkoutProgramData)
+		.then(async (enrollWorkoutProgram) => {
+			await enrollWorkoutProgram.save();
+			return enrollWorkoutProgram;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// unenrollWorkoutProgram
+export const unenrollWorkoutProgram = async (data) => {
+	// data.userId, data.workoutProgramId
+	return await EnrollWorkoutProgramModel.findOneAndDelete({
+		userId: data.userId,
+		workoutProgramId: data.workoutProgramId,
+	})
+		.then((enrollWorkoutProgram) => {
+			if (enrollWorkoutProgram) {
+				return enrollWorkoutProgram;
+			} else {
+				throw new Error("Enroll Workout Program not found");
+			}
 		})
 		.catch((error) => {
 			throw new Error(error.message);
