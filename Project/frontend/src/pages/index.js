@@ -5,6 +5,8 @@ import { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister } from ".
 import WorkoutScR from "./workoutScR";
 import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
+import Notice from "./notice";
+
 import PersonalTrainerRequest from "./personalTrainerRequest";
 import Workout from "./workout";
 import { AdminLogin, AdminDashboard, AdminProfile } from "./admin";
@@ -22,6 +24,7 @@ export {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Notice,
 	WorkoutScR,
 	Workout,
 	AdminLogin,
