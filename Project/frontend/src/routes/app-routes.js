@@ -15,6 +15,12 @@ import {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Blog,
+	Write,
+	Blogs,
+	BlogsList,
+	BlogCreateRequest,
+	TrainerPackages,
 	Salary,
 	Notice,
 	WorkoutScR,
@@ -27,7 +33,6 @@ import {
 
 // Error pages
 import Error404 from "../pages/error/Error404";
-
 import NavBar from "../components/NavBar";
 import FooterSection from "../components/Footer";
 
@@ -73,6 +78,15 @@ const AppRoutes = () => {
 					<Route exact path="/trainers/events" element={<Eventlist />} />
 					<Route exact path="/notice" element={<Notice />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+
+
+					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/write" element={<Write />} />
+					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
+					<Route exact path="/package" element={<TrainerPackages />} />
+
+					<Route exact path="/blogs" element={<Blogs />} />
 
 					<Route exact path="/workout" element={<Workout />} />
 
