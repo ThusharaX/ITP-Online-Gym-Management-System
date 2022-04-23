@@ -15,6 +15,8 @@ function WorkoutProgramList() {
 		enrollWorkoutProgram,
 		unenrollWorkoutProgram,
 		enrolledWorkoutPrograms,
+		enrollButtonDisabled,
+		setEnrollButtonDisabled,
 	} = useContext(WorkoutProgramContext);
 	const theme = useMantineTheme();
 
@@ -56,27 +58,30 @@ function WorkoutProgramList() {
 							Time: {item.time}
 						</Text>
 
-						{/* check if item._id is in enrolledWorkoutPrograms */}
 						{!enrolledWorkoutPrograms.includes(item._id) ? (
 							<Button
+								disabled={enrollButtonDisabled}
 								variant="light"
 								color="blue"
 								fullWidth
 								style={{ marginTop: 14 }}
 								onClick={() => {
 									enrollWorkoutProgram(item._id);
+									setEnrollButtonDisabled(true);
 								}}
 							>
 								Enroll Now
 							</Button>
 						) : (
 							<Button
+								disabled={enrollButtonDisabled}
 								variant="light"
 								color="red"
 								fullWidth
 								style={{ marginTop: 14 }}
 								onClick={() => {
 									unenrollWorkoutProgram(item._id);
+									setEnrollButtonDisabled(true);
 								}}
 							>
 								Unenroll

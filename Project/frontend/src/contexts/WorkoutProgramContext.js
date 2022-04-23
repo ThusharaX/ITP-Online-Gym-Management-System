@@ -35,7 +35,7 @@ export function WorkoutProgramProvider({ children }) {
 		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
 			setEnrolledWorkoutPrograms(response.data);
 		});
-	}, [enrolledWorkoutPrograms]);
+	}, []);
 
 	// Form initial state
 	const form = useForm({
@@ -121,35 +121,33 @@ export function WorkoutProgramProvider({ children }) {
 	// editWorkoutProgram Modal
 	const [editOpened, setEditOpened] = useState(false);
 
+	// Enroll Button State
+	const [enrollButtonDisabled, setEnrollButtonDisabled] = useState(false);
+
 	// Enroll workoutProgram
 	const enrollWorkoutProgram = (workoutProgramID) => {
 		const data = {
-			user: localStorage.getItem("uID"),
-			workoutProgram: workoutProgramID,
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
 		};
 
 		WorkoutProgramAPI.enrollWorkoutProgram(data).then((response) => {
-			setEnrolledWorkoutPrograms(
-				enrolledWorkoutPrograms.map((workoutProgram) =>
-					workoutProgram._id === workoutProgramID ? response.data : workoutProgram
-				)
-			);
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.concat(response.data));
+			setEnrollButtonDisabled(false);
 		});
 	};
 
 	// Unenroll workoutProgram
 	const unenrollWorkoutProgram = (workoutProgramID) => {
 		const data = {
-			user: localStorage.getItem("uID"),
-			workoutProgram: workoutProgramID,
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
 		};
 
 		WorkoutProgramAPI.unenrollWorkoutProgram(data).then((response) => {
-			setEnrolledWorkoutPrograms(
-				enrolledWorkoutPrograms.map((workoutProgram) =>
-					workoutProgram._id === workoutProgramID ? response.data : workoutProgram
-				)
-			);
+			// Remove workoutProgram from enrolledWorkoutPrograms
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.filter((workoutProgram) => workoutProgram !== response.data));
+			setEnrollButtonDisabled(false);
 		});
 	};
 
@@ -171,6 +169,8 @@ export function WorkoutProgramProvider({ children }) {
 				enrollWorkoutProgram,
 				unenrollWorkoutProgram,
 				enrolledWorkoutPrograms,
+				enrollButtonDisabled,
+				setEnrollButtonDisabled,
 			}}
 		>
 			{children}

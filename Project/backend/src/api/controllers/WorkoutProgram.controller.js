@@ -77,29 +77,3 @@ export const searchWorkoutPrograms = async (request, response, next) => {
 			next();
 		});
 };
-
-// enrollWorkoutProgram
-export const enrollWorkoutProgram = async (request, response, next) => {
-	await WorkoutProgramService.enrollWorkoutProgram(request.body)
-		.then((data) => {
-			request.handleResponse.successRespond(response)(data);
-			next();
-		})
-		.catch((error) => {
-			request.handleResponse.errorRespond(response)(error.message);
-			next();
-		});
-};
-
-// Unenroll Workout Program
-export const unenrollWorkoutProgram = async (request, response, next) => {
-	await WorkoutProgramService.unenrollWorkoutProgram(request.body)
-		.then((data) => {
-			request.handleResponse.successRespond(response)(data);
-			next();
-		})
-		.catch((error) => {
-			request.handleResponse.errorRespond(response)(error.message);
-			next();
-		});
-};

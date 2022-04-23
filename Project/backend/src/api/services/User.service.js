@@ -1,5 +1,4 @@
 import UserModel from "../models/User.model";
-import EnrollWorkoutProgramModel from "../models/EnrollWorkoutProgram.model";
 
 export const authenticateUser = async (username, password) => {
 	return await UserModel.findOne({ username })
@@ -26,15 +25,60 @@ export const insertUser = async (user) => {
 		});
 };
 
-// Only return workoutProgram if user is enrolled
-export const getAllEnrolledWorkoutPrograms = async (userId) => {
-	return await EnrollWorkoutProgramModel.find({ user: userId })
-		.then((enrollWorkoutPrograms) => {
-			return enrollWorkoutPrograms.map((enrollWorkoutProgram) => {
-				return enrollWorkoutProgram.workoutProgram;
+// enrollUserToWorkoutProgram
+export const enrollUserToWorkoutProgram = async (userId, workoutProgramId) => {
+	const user = await UserModel.findById(userId);
+	if (user.enrolledWorkoutPrograms.includes(workoutProgramId)) {
+		throw new Error("User is already enrolled to the workout program!");
+	} else {
+		return await UserModel.findByIdAndUpdate(
+			userId,
+			{
+				$push: {
+					enrolledWorkoutPrograms: workoutProgramId,
+				},
+			},
+			{ new: true }
+		)
+			.then(() => {
+				// return enrolled workout program
+				// return user.enrolledWorkoutPrograms;
+				return workoutProgramId;
+			})
+			.catch((error) => {
+				throw new Error(error.message);
 			});
-		})
-		.catch((error) => {
-			throw new Error(error.message);
-		});
+	}
+};
+
+// unenrollUserFromWorkoutProgram
+export const unenrollUserFromWorkoutProgram = async (userId, workoutProgramId) => {
+	const user = await UserModel.findById(userId);
+	if (!user.enrolledWorkoutPrograms.includes(workoutProgramId)) {
+		throw new Error("User is not enrolled to the workout program!");
+	} else {
+		return await UserModel.findByIdAndUpdate(
+			userId,
+			{
+				$pull: {
+					enrolledWorkoutPrograms: workoutProgramId,
+				},
+			},
+			{ new: true }
+		)
+			.then(() => {
+				// return enrolled workout program
+				// return user.enrolledWorkoutPrograms;
+				return workoutProgramId;
+			})
+			.catch((error) => {
+				throw new Error(error.message);
+			});
+	}
+};
+
+// getAllEnrolledWorkoutPrograms
+export const getAllEnrolledWorkoutPrograms = async (userId) => {
+	const user = await UserModel.findById(userId);
+	return await user.enrolledWorkoutPrograms;
 };
