@@ -29,12 +29,15 @@ import {
 	AdminDashboard,
 	AdminProfile,
 	CommonLogin,
+	QuestionList,
+	AddQuestion,
 } from "../pages";
 
 // Error pages
 import Error404 from "../pages/error/Error404";
 import NavBar from "../components/NavBar";
 import FooterSection from "../components/Footer";
+import Question from "../pages/question";
 
 const AppRoutes = () => {
 	const footerLinks = [
@@ -66,6 +69,7 @@ const AppRoutes = () => {
 					<Route exact path="/sample" element={<Sample />} />
 
 					<Route exact path="/salary" element={<Salary />} />
+					<Route exact path="/question" element={<Question />} />
 
 					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 						<Route exact path="/trainers/login" element={<TrainerLogin />} />
