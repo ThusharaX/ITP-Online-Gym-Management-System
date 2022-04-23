@@ -16,6 +16,7 @@ import {
 	ListTrainers,
 	TrainerRegister,
 	Salary,
+	Notice,
 	WorkoutScR,
 	Workout,
 	AdminLogin,
@@ -70,7 +71,7 @@ const AppRoutes = () => {
 
 					<Route exact path="/events" element={<Events />} />
 					<Route exact path="/trainers/events" element={<Eventlist />} />
-
+					<Route exact path="/notice" element={<Notice />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
 					<Route exact path="/workout" element={<Workout />} />
