@@ -4,7 +4,6 @@ const WorkoutSchema = new mongoose.Schema({
 	workout_name: {
 		type: String,
 		required: true,
-		unique: true,
 	},
 	workout_category: {
 		type: String,

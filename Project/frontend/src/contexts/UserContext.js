@@ -28,7 +28,7 @@ export function UserProvider({ children }) {
 				localStorage.setItem("username", response.data.username);
 				localStorage.setItem("authToken", response.data.token);
 				localStorage.setItem("permissionLevel", response.data.permissionLevel);
-				window.location.href = "/dashboard";
+				window.location.href = `/${response.data.permissionLevel.toLowerCase()}`;
 				setIsLoggedIn(true);
 				setIsLoading(false);
 			})
@@ -44,7 +44,7 @@ export function UserProvider({ children }) {
 		localStorage.removeItem("uID");
 		localStorage.removeItem("username");
 		localStorage.removeItem("permissionLevel");
-		window.location.href = "/userLogin";
+		window.location.href = "/";
 	};
 
 	return <UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading }}>{children}</UserContext.Provider>;

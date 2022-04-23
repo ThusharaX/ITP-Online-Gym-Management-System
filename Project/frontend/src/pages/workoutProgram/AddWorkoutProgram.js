@@ -4,7 +4,7 @@ import { Button, TextInput, Group, Box } from "@mantine/core";
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 
 const AddWorkoutProgram = () => {
-	const { addWorkoutProgram, form } = useContext(WorkoutProgramContext);
+	const { addWorkoutProgram, form, setOpened } = useContext(WorkoutProgramContext);
 
 	return (
 		<>
@@ -29,7 +29,14 @@ const AddWorkoutProgram = () => {
 					<TextInput required label="Time" placeholder="Workout Program Time" {...form.getInputProps("time")} />
 
 					<Group position="right" mt="md">
-						<Button type="submit">Add Workout Program</Button>
+						<Button
+							onClick={() => {
+								setOpened(false);
+							}}
+							type="submit"
+						>
+							Create
+						</Button>
 					</Group>
 				</form>
 			</Box>
