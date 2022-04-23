@@ -15,6 +15,7 @@ import {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Salary,
 	Notice,
 	WorkoutScR,
 	Workout,
@@ -58,6 +59,8 @@ const AppRoutes = () => {
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
+
+					<Route exact path="/salary" element={<Salary />} />
 
 					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 						<Route exact path="/trainers/login" element={<TrainerLogin />} />

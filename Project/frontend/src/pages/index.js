@@ -8,6 +8,7 @@ import Dashboard from "./dashboard";
 import Notice from "./notice";
 
 import PersonalTrainerRequest from "./personalTrainerRequest";
+import { Salary } from "./salary";
 import Workout from "./workout";
 import { AdminLogin, AdminDashboard, AdminProfile } from "./admin";
 import CommonLogin from "./commonLogin";
@@ -24,6 +25,7 @@ export {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Salary,
 	Notice,
 	WorkoutScR,
 	Workout,

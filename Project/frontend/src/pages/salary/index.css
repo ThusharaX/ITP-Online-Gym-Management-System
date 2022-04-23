@@ -1,0 +1,9 @@
+.salary-form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.salary-form-container h1 {
+	text-align: center;
+}
