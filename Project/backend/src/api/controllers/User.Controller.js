@@ -66,3 +66,16 @@ export const getAdminDashboard = async (req, res) => {
 		message: "Admin Dashboard",
 	});
 };
+
+// getAllEnrolledWorkoutPrograms
+export const getAllEnrolledWorkoutPrograms = async (req, res, next) => {
+	await UserService.getAllEnrolledWorkoutPrograms(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
