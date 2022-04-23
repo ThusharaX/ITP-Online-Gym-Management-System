@@ -72,9 +72,7 @@ export function SalaryProvider({ children }) {
 		});
 	};*/
 
-	return (
-		<SalaryContext.Provider value={{ salaries, addSalary, form }}>{children}</SalaryContext.Provider>
-	);
+	return <SalaryContext.Provider value={{ salaries, addSalary, form }}>{children}</SalaryContext.Provider>;
 }
 
 export default SalaryContext;

@@ -79,7 +79,6 @@ const AppRoutes = () => {
 					<Route exact path="/notice" element={<Notice />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
 
-
 					<Route exact path="/blog" element={<Blog />} />
 					<Route exact path="/write" element={<Write />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />

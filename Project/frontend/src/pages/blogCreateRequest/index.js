@@ -82,12 +82,12 @@ const BlogCreateRequest = () => {
 
 	return (
 		<div className="app">
-			<form onSubmit={handleSubmit}>
-				<h1>Create Blog</h1>
+			<form className="forms" onSubmit={handleSubmit}>
+				<h1 className="toph">Create Blog</h1>
 				{inputs.map((input) => (
 					<FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
 				))}
-				<button>Submit</button>
+				<button className="btn">Submit</button>
 			</form>
 		</div>
 	);
