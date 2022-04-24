@@ -3,24 +3,22 @@ const mongoose = require("mongoose");
 
 const Question = new mongoose.Schema({
 	//email, qTopic , question, date ,status, weekNo
-
-	Email: {
+	//	email,name,title,content
+	email: {
 		type: String,
+		required: true,
 	},
-	QTopic: {
+	name: {
 		type: String,
+		required: true,
 	},
-	Question: {
+	title: {
 		type: String,
+		required: true,
 	},
-	Date: {
+	content: {
 		type: String,
-	},
-	Status: {
-		type: String,
-	},
-	WeekNo: {
-		type: String,
+		required: true,
 	},
 });
 module.exports = mongoose.model("Question", Question);
