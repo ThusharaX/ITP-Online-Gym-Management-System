@@ -5,7 +5,18 @@ import { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister } from ".
 import WorkoutScR from "./workoutScR";
 import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
+import Notice from "./notice";
+
 import PersonalTrainerRequest from "./personalTrainerRequest";
+
+import BlogCreateRequest from "./blogCreateRequest";
+import Blog from "./blog";
+import Write from "./write";
+import TrainerPackages from "./trainerPackages";
+
+import { Blogs, BlogsList } from "./blogCreate";
+
+import { Salary } from "./salary";
 import Workout from "./workout";
 import { AdminLogin, AdminDashboard, AdminProfile } from "./admin";
 import CommonLogin from "./commonLogin";
@@ -22,6 +33,14 @@ export {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Blog,
+	Write,
+	Blogs,
+	BlogsList,
+	BlogCreateRequest,
+	TrainerPackages,
+	Salary,
+	Notice,
 	WorkoutScR,
 	Workout,
 	AdminLogin,

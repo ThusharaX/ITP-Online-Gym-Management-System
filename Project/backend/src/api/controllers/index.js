@@ -32,7 +32,14 @@ import {
 	deletePersonalTrainerReq,
 } from "./PersonalTrainerReq.controller";
 
-import { login, createUser, getAdminDashboard } from "./User.Controller";
+import {
+	login,
+	createUser,
+	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
+} from "./User.Controller";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
 
@@ -95,6 +102,9 @@ export default {
 	login,
 	createUser,
 	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
 
 	//Workout Controllers
 	insertWorkout,

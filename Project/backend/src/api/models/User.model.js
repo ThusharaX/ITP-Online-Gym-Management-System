@@ -39,6 +39,11 @@ const UserSchema = mongoose.Schema(
 			type: String,
 			required: false,
 		},
+		enrolledWorkoutPrograms: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+			},
+		],
 		permissionLevel: {
 			type: String,
 			required: true,
