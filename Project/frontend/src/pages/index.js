@@ -6,6 +6,7 @@ import WorkoutScR from "./workoutScR";
 import { Events, Eventlist } from "./events";
 import Dashboard from "./dashboard";
 import Notice from "./notice";
+import Feedback from "./feedback";
 
 import PersonalTrainerRequest from "./personalTrainerRequest";
 
@@ -43,6 +44,7 @@ export {
 	Notice,
 	WorkoutScR,
 	Workout,
+	Feedback,
 	AdminLogin,
 	AdminDashboard,
 	AdminProfile,

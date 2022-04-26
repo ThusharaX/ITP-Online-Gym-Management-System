@@ -84,6 +84,14 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+
+	// Feedback endpoints
+
+	app.post("/feedback/", controller.insertFeedback); //insert one feedback
+	app.put("/feedback/:id", controller.updateFeedback); //update one feedback
+	// app.delete("/feedback/:id", controller.deleteFeedback); //delete one feedback
+	app.get("/feedback/", controller.getAllFeedbacks); //get all feedbacks
+
 	// increse view count
 	app.put("/workout/view/:id", controller.increaseViewCount);
 }
