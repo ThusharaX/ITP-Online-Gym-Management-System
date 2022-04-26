@@ -66,7 +66,7 @@ export default function (app) {
 
 	// WorkoutScR endpoints
 	app.post("/WorkoutScR/", controller.insertWorkoutScR); // insert one WorkoutScR
-	app.get("/WorkoutScRList/", controller.getAllWorkoutScR); // get all WorkoutScR
+	app.get("/WorkoutScR/", controller.getAllWorkoutScR); // get all WorkoutScR
 	app.put("/WorkoutScR/:id", controller.updateWorkoutScR); // update one WorkoutScR
 	app.delete("/WorkoutScR/:id", controller.deleteWorkoutScR); // delete one WorkoutScR
 

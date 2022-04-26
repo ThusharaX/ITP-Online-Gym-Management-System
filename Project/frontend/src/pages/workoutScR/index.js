@@ -10,7 +10,7 @@ import { WorkoutScRProvider } from "../../contexts/WorkoutScRContext";
 const WorkoutScR = () => {
 	return (
 		<div>
-			<h1 style={{ textAlign: "center" }}>Workout Schedule Request</h1>
+			<h1>Workout SCR</h1>
 
 			<WorkoutScRProvider>
 				<AddWorkoutScR />

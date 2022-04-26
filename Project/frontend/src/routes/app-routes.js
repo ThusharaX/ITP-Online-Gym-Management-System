@@ -29,7 +29,6 @@ import {
 	AdminDashboard,
 	AdminProfile,
 	CommonLogin,
-	WorkoutScRList,
 } from "../pages";
 
 // Error pages
@@ -92,9 +91,7 @@ const AppRoutes = () => {
 
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
-					{/*Workout Schedule Request */}
 					<Route path="/workoutscr" element={<WorkoutScR />} />
-					<Route path="/workoutscrlist" element={<WorkoutScRList />} />
 
 					<Route exact path="/login" element={<CheckLoginStatus />}>
 						<Route exact path="/login" element={<CommonLogin />} />

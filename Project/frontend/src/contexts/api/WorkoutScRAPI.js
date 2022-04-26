@@ -6,7 +6,7 @@ const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
 class WorkoutScRAPI {
 	static getWorkoutScRData() {
-		return axios.get(`${BASE_URL}/workoutScrlist/`, requestConfig);
+		return axios.get(`${BASE_URL}/workoutScr/`, requestConfig);
 	}
 
 	static addWorkoutScR(newWorkoutScR) {
