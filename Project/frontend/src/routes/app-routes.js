@@ -17,8 +17,8 @@ import {
 	TrainerRegister,
 	Blog,
 	Write,
-	Blogs,
-	BlogsList,
+	// Blogs,
+	// BlogUpdate,
 	BlogCreateRequest,
 	TrainerPackages,
 	Salary,
@@ -32,6 +32,8 @@ import {
 	TrainerProfile,
 	QuestionList,
 	AddQuestion,
+	BlogCreate,
+	BD,
 } from "../pages";
 
 // Error pages
@@ -91,7 +93,10 @@ const AppRoutes = () => {
 					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 					<Route exact path="/package" element={<TrainerPackages />} />
 
-					<Route exact path="/blogs" element={<Blogs />} />
+					{/* <Route exact path="/blogs" element={<Blogs />} />
+					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
+
+					<Route exact path="/bd" element={<BD />} />
 
 					<Route exact path="/workout" element={<Workout />} />
 
