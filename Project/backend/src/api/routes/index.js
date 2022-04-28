@@ -32,15 +32,30 @@ export default function (app) {
 	app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
 	//app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
+	//PersonalTrainer Request endpoints
+	app.post("/personal/", controller.insertPersonalTrainerReq); // insert one request
+	app.get("/personal/", controller.getAllPersonalTrainerReq); // get all request
+	app.get("/personal/:id", controller.getOnePersonalTrainerReq); // get one request
+	app.put("/personal/:id", controller.updatePersonalTrainerReq); // update one request
+	app.delete("/personal/:id", controller.deletePersonalTrainerReq); // delete one request
+
 	//Salary endpoints
 	app.post("/salary/", controller.insertSalary); // insert a salary
 	app.put("/salary/:id", controller.updateSalary); //update a salary
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
 
-	// Admin endpoints
-	app.post("/admin/login/", controller.authAdmin);
-	app.post("/admin/register/", middleware.adminAuthenticate, controller.createAdmin);
+	// User endpoints
+	app.post("/user/login/", controller.login);
+	app.post("/user/register/", controller.createUser);
+	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+
+	// Enroll User to Workout Program
+	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
+	// Unenroll User from Workout Program
+	app.post("/user/unenroll/", controller.unenrollUserFromWorkoutProgram);
+	// Get All Enrolled Workout Programs
+	app.get("/user/enrolledWorkoutPrograms/:id", middleware.authenticate, controller.getAllEnrolledWorkoutPrograms);
 
 	// Event endpoints
 	app.get("/events/", controller.getEvents); // get all/sort/search event
@@ -69,11 +84,6 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
-
-	// Trainer endpoints
-	app.get("/trainers/", controller.getTrainers); // get all Trainers
-	app.post("/trainers/", controller.createTrainers); // insert one Trainer
-	app.get("/trainers/:id", controller.getTrainer); // Search Trainers
-	app.put("/trainers/:id", controller.updateTrainers); // update one Trainer
-	app.delete("/trainers/:id", controller.deleteTrainers); // delete one Trainer
+	// increse view count
+	app.put("/workout/view/:id", controller.increaseViewCount);
 }

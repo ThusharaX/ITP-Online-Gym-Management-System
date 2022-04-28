@@ -1,34 +1,53 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 
 // Mantine imports
-import { Text } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { useModals } from '@mantine/modals';
+import { Text } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { useModals } from "@mantine/modals";
 
-const baseURL = `${process.env.REACT_APP_BACKEND_URL}/workoutProgram`;
+import WorkoutProgramAPI from "./api/WorkoutProgramAPI";
+
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
-    const [workoutPrograms, setWorkoutPrograms] = useState([]);
+	// Enroll Workout Program
+	const [enrolledWorkoutPrograms, setEnrolledWorkoutPrograms] = useState([]);
 
-    // Get all workoutPrograms
+	// Workout Programs
+	const [workoutPrograms, setWorkoutPrograms] = useState([]);
+
+	// Workout Program
+	const [workoutProgram, setWorkoutProgram] = useState({
+		photoURL: "",
+		name: "",
+		description: "",
+		conducted_by: "",
+		fee: "",
+		day: "",
+		time: "",
+	});
+
+	// Get all workoutPrograms
 	useEffect(() => {
-		axios.get(baseURL).then((res) => {
-			setWorkoutPrograms(res.data);
+		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
+			setWorkoutPrograms(response.data);
+		});
+		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
+			setEnrolledWorkoutPrograms(response.data);
 		});
 	}, []);
 
-    // Form initial state
+	// Form initial state
 	const form = useForm({
 		initialValues: {
-			photoURL: "https://fakeimg.pl/350x200/?text=Zumba&font=Ubuntu",
-			name: "Zumba2",
-			description: "Zumba2 is a fitness program that involves cardio and Latin-inspired dance.", 
-			conducted_by: "Mr. Perera (Zumba Instructor)", 
+			photoURL:
+				"https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+			name: "Zumba",
+			description: "Zumba is a fitness program that involves cardio and Latin-inspired dance.",
+			conducted_by: "Mr. Perera (Zumba Instructor)",
 			fee: "Rs. 2500",
 			day: "Monday",
-			time: "10:00 AM - 11:00 AM"
+			time: "10:00 AM - 11:00 AM",
 		},
 	});
 
@@ -43,15 +62,18 @@ export function WorkoutProgramProvider({ children }) {
 			day: values.day,
 			time: values.time,
 		};
-		axios.post(baseURL, newWorkoutProgram).then((res) => {
-			setWorkoutPrograms([...workoutPrograms, res.data]);
+		WorkoutProgramAPI.addWorkoutProgram(newWorkoutProgram).then((response) => {
+			setWorkoutPrograms([...workoutPrograms, response.data]);
 			form.reset();
 		});
 	};
 
+	// AddWorkout Modal
+	const [opened, setOpened] = useState(false);
+
 	// Delete workoutProgram and update UI
 	const deleteWorkoutProgram = (id) => {
-		axios.delete(`${baseURL}/${id}`).then((res) => {
+		WorkoutProgramAPI.deleteWorkoutProgram(id).then(() => {
 			setWorkoutPrograms(workoutPrograms.filter((workoutProgram) => workoutProgram._id !== id));
 		});
 	};
@@ -60,24 +82,100 @@ export function WorkoutProgramProvider({ children }) {
 	const modals = useModals();
 	const confirmDelete = (id) =>
 		modals.openConfirmModal({
-			title: 'Delete Workout Program',
+			title: "Delete Workout Program",
 			centered: true,
 			children: (
 				<Text size="sm">
 					Are you sure you want to delete this workoutProgram? This action is destructive and cannot be undone.
 				</Text>
 			),
-			labels: { confirm: 'Delete workout Program', cancel: "No don't delete it" },
-			confirmProps: { color: 'red' },
-			onCancel: () => console.log('Cancel'),
+			labels: {
+				confirm: "Delete workout Program",
+				cancel: "No don't delete it",
+			},
+			confirmProps: { color: "red" },
+			// eslint-disable-next-line no-console
+			onCancel: () => console.log("Cancel"),
 			onConfirm: () => deleteWorkoutProgram(id),
 		});
 
-    return (
-        <WorkoutProgramContext.Provider value={{ workoutPrograms, confirmDelete, addWorkoutProgram, form }}>
-            {children}
-        </WorkoutProgramContext.Provider>
-    );
+	// Edit workoutProgram
+	const editWorkoutProgram = (values) => {
+		const newWorkoutProgram = {
+			photoURL: values.photoURL,
+			name: values.name,
+			description: values.description,
+			conducted_by: values.conducted_by,
+			fee: values.fee,
+			day: values.day,
+			time: values.time,
+		};
+		WorkoutProgramAPI.editWorkoutProgram(values.id, newWorkoutProgram).then((response) => {
+			setWorkoutPrograms(
+				workoutPrograms.map((workoutProgram) => (workoutProgram._id === values.id ? response.data : workoutProgram))
+			);
+			form.reset();
+		});
+	};
+
+	// editWorkoutProgram Modal
+	const [editOpened, setEditOpened] = useState(false);
+
+	// Enroll Button State
+	const [enrollButtonDisabled, setEnrollButtonDisabled] = useState(false);
+
+	// Enroll workoutProgram
+	const enrollWorkoutProgram = (workoutProgramID) => {
+		const data = {
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
+		};
+
+		WorkoutProgramAPI.enrollWorkoutProgram(data).then((response) => {
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.concat(response.data));
+			setEnrollButtonDisabled(false);
+		});
+	};
+
+	// Unenroll workoutProgram
+	const unenrollWorkoutProgram = (workoutProgramID) => {
+		const data = {
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
+		};
+
+		WorkoutProgramAPI.unenrollWorkoutProgram(data).then((response) => {
+			// Remove workoutProgram from enrolledWorkoutPrograms
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.filter((workoutProgram) => workoutProgram !== response.data));
+			setEnrollButtonDisabled(false);
+		});
+	};
+
+	return (
+		<WorkoutProgramContext.Provider
+			value={{
+				workoutPrograms,
+				setWorkoutPrograms,
+				confirmDelete,
+				form,
+				addWorkoutProgram,
+				opened,
+				setOpened,
+				editWorkoutProgram,
+				editOpened,
+				setEditOpened,
+				workoutProgram,
+				setWorkoutProgram,
+				enrollWorkoutProgram,
+				unenrollWorkoutProgram,
+				enrolledWorkoutPrograms,
+				enrollButtonDisabled,
+				setEnrollButtonDisabled,
+			}}
+		>
+			{children}
+		</WorkoutProgramContext.Provider>
+	);
 }
 
 export default WorkoutProgramContext;

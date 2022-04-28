@@ -1,0 +1,25 @@
+{
+	"parser": "@babel/eslint-parser",
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"extends": ["plugin:react/recommended", "plugin:react/jsx-runtime"],
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"rules": {
+		"indent": ["error", "tab"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"no-const-assign": "error",
+		"no-console": "error",
+		"no-duplicate-imports": ["error", { "includeExports": true }],
+		"react/prop-types": "off"
+	}
+}

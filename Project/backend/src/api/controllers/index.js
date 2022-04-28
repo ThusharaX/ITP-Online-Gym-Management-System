@@ -24,7 +24,22 @@ import {
 	deleteTrainerBD,
 } from "./TrainerBD.controller";
 
-import { authAdmin, createAdmin } from "./Admin.controller";
+import {
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+} from "./PersonalTrainerReq.controller";
+
+import {
+	login,
+	createUser,
+	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
+} from "./User.Controller";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
 
@@ -35,6 +50,7 @@ import {
 	updateWorkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
@@ -77,9 +93,20 @@ export default {
 	updateTrainerBD,
 	deleteTrainerBD,
 
+	//PersonalTrainerReq Controllers
+	insertPersonalTrainerReq,
+	getAllPersonalTrainerReq,
+	getOnePersonalTrainerReq,
+	updatePersonalTrainerReq,
+	deletePersonalTrainerReq,
+
 	//Admin Controllers
-	authAdmin,
-	createAdmin,
+	login,
+	createUser,
+	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
 
 	//Workout Controllers
 	insertWorkout,
@@ -88,6 +115,7 @@ export default {
 	updateWorkout,
 	deleteWorkout,
 	searchWorkouts,
+	increaseViewCount,
 
 	//Notices Controllers
 	insertNotice,
