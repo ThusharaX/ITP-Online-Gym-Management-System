@@ -1,24 +1,22 @@
 // create connect to database
 const mongoose = require("mongoose");
 
-const Question = new mongoose.Schema({
-	//email, qTopic , question, date ,status, weekNo
-	//	email,name,title,content
+const Feedback = new mongoose.Schema({
 	email: {
 		type: String,
 		required: true,
 	},
-	name: {
+	displayname: {
 		type: String,
 		required: true,
 	},
-	title: {
+	ftitle: {
 		type: String,
 		required: true,
 	},
-	content: {
+	feedback: {
 		type: String,
 		required: true,
 	},
 });
-module.exports = mongoose.model("Question", Question);
+module.exports = mongoose.model("Feedback", Feedback);

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TrainerContext from "../../contexts/TrainerContext";
-import { Box, Card, Text, Button, Group, createStyles, Avatar } from "@mantine/core";
+import { Box, Card, Text, Button, Group, createStyles, Avatar, useMantineTheme } from "@mantine/core";
 import { ChevronLeft, PhoneCall, BrandGmail, Friends } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -15,22 +15,32 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const TrainerList = () => {
+	const theme = useMantineTheme();
 	const navigate = useNavigate();
 	const { classes } = useStyles();
 	const { trainers } = useContext(TrainerContext);
+	const gradient =
+		theme.colorScheme === "dark"
+			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
+			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
+	const bg = theme.colorScheme === "dark" ? "#222" : "#ddd";
 
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
 			})}
 			style={{
 				margin: "0 auto",
 				border: "2px solid #ccc",
 				borderRadius: "md",
 				width: "100%",
-				padding: "50px 20px 50px 20px",
+				padding: "100px 20px 50px 20px",
 				height: "100%",
+				minHeight: "100vh",
+				marginTop: "-110px",
+				marginBottom: "-125px",
 			}}
 		>
 			<Group position="left">
