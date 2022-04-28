@@ -73,6 +73,7 @@ function NavBar() {
 		{ link: "/", label: "Home" },
 		{ link: "/workoutProgram", label: "Workout Programs" },
 		{ link: "/workout", label: "Workouts" },
+		{ link: "/events", label: "Events" },
 	];
 	const navigate = useNavigate();
 	const [opened, toggleOpened] = useBooleanToggle(false);

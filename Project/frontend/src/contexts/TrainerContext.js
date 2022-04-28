@@ -79,12 +79,12 @@ export function TrainerProvider({ children }) {
 	];
 
 	// Get all trainers
-	useEffect(() => {
-		axios.get(baseURL).then((res) => {
-			setTrainers(res.data);
-			setLoading(false);
-		});
-	}, []);
+	// useEffect(() => {
+	// 	axios.get(baseURL).then((res) => {
+	// 		setTrainers(res.data);
+	// 		setLoading(false);
+	// 	});
+	// }, []);
 	useEffect(() => {
 		setTrainers(trainer);
 		setIsLoading(false);

@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import Joi from "joi";
 import { useForm, joiResolver } from "@mantine/form";
-
+import EventAPI from "./api/EventAPI";
 import axios from "axios";
-
+// app.get("/events/:id",
 // Mantine imports
 import { Text } from "@mantine/core";
 import { useModals } from "@mantine/modals";
@@ -112,7 +112,7 @@ export function EventProvider({ children }) {
 		});
 
 	return (
-		<EventContext.Provider value={{ events, confirmDelete, updateEvent, addEvent, form }}>
+		<EventContext.Provider value={{ setEvents, events, confirmDelete, updateEvent, addEvent, form }}>
 			{children}
 		</EventContext.Provider>
 	);

@@ -26,6 +26,7 @@ export function Dashboard() {
 
 	let cardTheme = (theme, x, y) => ({
 		backgroundImage: gradient + url[x],
+		boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
 
 		backgroundPosition: "0% " + y + "%",
 		"&:hover": {
@@ -50,10 +51,18 @@ export function Dashboard() {
 	let cardTextSx = { width: "70%", marginTop: "30px", color: TextColor };
 
 	return (
-		<SimpleGrid style={{ backgroundColor: bg }} cols={1} spacing="xs">
+		<SimpleGrid
+			style={{ backgroundColor: bg, marginTop: "-50px", marginBottom: "-120px", padding: "60px 0px 100px 0px" }}
+			cols={1}
+			spacing="xs"
+			sx={(theme) => ({
+				// backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+			})}
+		>
 			<Card
 				sx={cardTheme(theme, 0, 10)}
-				style={cardStyle}
+				style={{ ...cardStyle }}
 				shadow="sm"
 				p="xl"
 				component="a"
@@ -74,9 +83,9 @@ export function Dashboard() {
 			</Card>
 
 			<Card
+				shadow="lg"
 				sx={cardTheme(theme, 2, 10)}
 				style={cardStyle}
-				shadow="sm"
 				p="xl"
 				component="a"
 				href=""
