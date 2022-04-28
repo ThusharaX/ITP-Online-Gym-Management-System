@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+import jwt from "jsonwebtoken";
 
 const TrainersSchema = new mongoose.Schema({
 	fName: {
@@ -65,19 +67,36 @@ const TrainersSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("trainers", TrainersSchema);
+TrainersSchema.pre("save", async function (next) {
+	const user = this;
+	const password = user.password;
 
-// {
-//   "fName":"fName1",
-//  "lName": "lName1",
-//   "uName": "uName1",
-//   "nic": "1234567899",
-//   "dob": "2012-04-23",
-//   "email":"dark@gmail.com",
-//   "gender": "male",
-//    "address":"address1",
-//    "pNumber" : "078545652685",
-//   "Qualifications": ["css", "javascript", "mongoose", "node"],
-//   "expYears": 4,
-//   "password": "psw1"
-// }
+	if (!user.isModified("password")) {
+		return next();
+	}
+
+	// Number of rounds hash function will execute
+	const salt = await bcrypt.genSalt(10);
+
+	const hash = await bcrypt.hashSync(password, salt);
+	user.password = hash;
+	return next();
+});
+
+TrainersSchema.methods.generateAuthToken = async function () {
+	const user = this;
+	const secret = process.env.JWT_SECRET;
+
+	const authToken = jwt.sign({ _id: user._id }, secret);
+	user.authToken = authToken;
+	await user.save();
+	return authToken;
+};
+
+TrainersSchema.methods.matchPassword = async function (enteredPassword) {
+	return await bcrypt.compare(enteredPassword, this.password);
+};
+
+const Trainer = mongoose.model("Trainer", TrainersSchema);
+
+module.exports = mongoose.model("trainers", TrainersSchema);

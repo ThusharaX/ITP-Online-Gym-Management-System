@@ -1,11 +1,11 @@
 let trainers = require("../models/Trainer.model");
+import UserModel from "../models/User.model";
 
 const createTrainers = async (trainer) => {
-	return await trainer
-		.save()
-		.then(async (savedTrainer) => {
-			await savedTrainer.save();
-			return savedTrainer;
+	return await UserModel.create(trainer)
+		.then(async (user) => {
+			await user.generateAuthToken();
+			return user;
 		})
 		.catch((error) => {
 			throw new Error(error.message);

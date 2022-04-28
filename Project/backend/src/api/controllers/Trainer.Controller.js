@@ -2,7 +2,7 @@ import TrainerService from "../services";
 const joi = require("joi");
 // const jwt = require("jsonwebtoken");
 let trainers = require("../models/Trainer.model");
-
+import logger from "../../util/logger";
 const bcrypt = require("bcryptjs");
 
 const registerValidation = (data) => {
@@ -23,27 +23,6 @@ const registerValidation = (data) => {
 
 	return schema.validate(data);
 };
-
-// const loginTrainers = async (req, res) => {
-// const { error } = loginValidation(req.body);
-// if (error) return res.status(400).send(error.details[0].message);
-// const emailExist = await trainers.findOne({ email: req.body.email });
-// if (!emailExist)
-//   return res.status(400).send("Email or password is incorrect");
-// const validPass = await bcrypt.compare(
-//   req.body.password,
-//   emailExist.password
-// );
-// if (!validPass) return res.status(400).send("Password is incorrect");
-// const token = jwt.sign(
-//   { _id: emailExist._id, type: "T" },
-//   process.env.TOKEN_SECRET
-// );
-// res.cookie("jwt", token, { httpOnly: true, maxAge: 9999999 });
-// res.header("auth-token", token).send(token);
-// res.status(200).json({ success: true, token: token, user: emailExist._id });
-// 	return {};
-// };
 
 const getTrainer = async (req, res, next) => {
 	await TrainerService.getTrainer(req.params.id)
@@ -77,35 +56,63 @@ const createTrainers = async (req, res, next) => {
 	if (emailExist) return res.status(400).json({ success: false, msg: "Email already exists" });
 	const nicExist = await trainers.findOne({ nic: req.body.nic });
 	if (nicExist) return res.status(400).json({ success: false, msg: "NIC already exists" });
-	const uNameExist = await trainers.findOne({ uName: req.body.uName });
+	const uNameExist = await trainers.findOne({ username: req.body.uName });
 	if (uNameExist) return res.status(400).json({ success: false, msg: "Username already exists" });
 
 	const salt = await bcrypt.genSalt(10);
 	const hashedPassword = await bcrypt.hash(req.body.password, salt);
 	const trainer = new trainers({
-		fName: req.body.fName,
-		lName: req.body.lName,
-		uName: req.body.uName,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		username: req.body.username,
 		nic: req.body.nic,
 		dob: req.body.dob,
 		email: req.body.email,
 		gender: req.body.gender,
 		address: req.body.address,
-		pNumber: req.body.pNumber,
-		Qualifications: req.body.Qualifications,
-		expYears: req.body.expYears,
+		phoneNumber: req.body.phoneNumber,
+		qualifications: req.body.qualifications,
+		permissionLevel: "TRAINER",
 		password: hashedPassword,
 	});
 	await TrainerService.createTrainers(trainer)
 		.then((data) => {
+			logger.info(`New user with ID ${data._id} created`);
 			req.handleResponse.successRespond(res)(data);
 			next();
 		})
 		.catch((error) => {
+			logger.error(error.message);
 			req.handleResponse.errorRespond(res)(error.message);
 			next();
 		});
 };
+
+// Create user
+// export const createUser = async (req, res, next) => {
+// 	const user = {
+// 		firstName: req.body.firstName,
+// 		lastName: req.body.lastName,
+// 		nic: req.body.nic,
+// 		phoneNumber: req.body.phoneNumber,
+// 		email: req.body.email,
+// 		username: req.body.username,
+// 		password: req.body.password,
+// 		permissionLevel: req.body.permissionLevel,
+// 	};
+
+// 	await UserService.insertUser(user)
+// 		.then((data) => {
+// 			logger.info(`New user with ID ${data._id} created`);
+// 			req.handleResponse.successRespond(res)(data);
+// 			next();
+// 		})
+// 		.catch((error) => {
+// 			logger.error(error.message);
+// 			req.handleResponse.errorRespond(res)(error.message);
+// 			next();
+// 		});
+// };
 
 const updateTrainers = async (req, res, next) => {
 	await TrainerService.updateTrainers(req.params.id, req.body)
