@@ -26,7 +26,12 @@ export function TrainerProvider({ children }) {
 		address: Joi.string().min(5).max(100).message("Address should be valid"),
 		phoneNumber: Joi.string().min(10).max(10).message("Phone Number should valid"),
 		qualifications: Joi.required(),
-		psw: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).strip(),
+		psw: Joi.string()
+			.strip()
+			.min(6)
+			.pattern(new RegExp("^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$"))
+			.strip()
+			.message("Password should be valid"),
 		rep_psw: Joi.ref("psw"),
 	});
 
@@ -210,6 +215,7 @@ export function TrainerProvider({ children }) {
 			})
 			.catch((err) => {
 				setIsLoading(false);
+				return alert(err.response.data.details.message);
 			});
 	};
 

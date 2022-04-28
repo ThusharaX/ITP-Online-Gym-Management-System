@@ -12,7 +12,6 @@ import {
 	Box,
 	Button,
 } from "@mantine/core";
-
 import TrainerContext from "../../contexts/TrainerContext";
 
 export function Login() {

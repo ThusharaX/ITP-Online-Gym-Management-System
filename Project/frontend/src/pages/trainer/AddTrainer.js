@@ -179,11 +179,23 @@ const AddTrainer = () => {
 					/>
 					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
-						<PasswordStrength fm={form} />
+						{/* <PasswordStrength fm={form} /> */}
+						<PasswordInput
+							size="sm"
+							required
+							label="PASSWORD"
+							style={{ width: "48%" }}
+							placeholder="Your password"
+							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
+							// value={value}
+							// onChange={(event) => setValue(event.currentTarget.value)}
+							{...form.getInputProps("psw")}
+						/>
 						<PasswordInput
 							size="sm"
 							style={{ width: "48%" }}
 							required
+							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
 							label="CONFIRM PASSWORD"
 							placeholder="Confirm Password"
 							{...form.getInputProps("rep_psw")}

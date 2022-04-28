@@ -22,17 +22,14 @@ export function EventProvider({ children }) {
 
 	const schema = Joi.object({
 		title: Joi.string().min(5).max(20).message("Title should be between 5 and 20 characters"),
-		description: Joi.string()
-
-			.min(15)
-			.max(500)
-			.message("Description should be between 15 and 500 characters"),
+		description: Joi.string().min(15).max(500).message("Description should be between 15 and 500 characters"),
 		date: Joi.date().min("now").required(),
 		time: Joi.date().required(),
 		tags: Joi.string().min(3).max(20).message("Tags should be between 3 and 50 characters"),
 		details: Joi.string().min(5).max(50).message("Details should be between 5 and 50 characters"),
 		gender: Joi.string().required(),
 	});
+
 	// Form initial state
 	const form = useForm({
 		schema: joiResolver(schema),
