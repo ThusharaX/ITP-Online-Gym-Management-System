@@ -50,8 +50,6 @@ export default function (app) {
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
-	// Trainer endpoints
-	app.get("/trainers/", controller.getTrainers); // get all/sort/search event
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
 	// Unenroll User from Workout Program
