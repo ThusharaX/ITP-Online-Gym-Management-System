@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 
 // Mantine imports
 import { Text } from "@mantine/core";
@@ -47,7 +46,16 @@ export function WorkoutScRProvider({ children }) {
 	};
 
 	return (
-		<WorkoutScRContext.Provider value={{ WorkoutScR, addWorkoutScR, form }}>{children}</WorkoutScRContext.Provider>
+		<WorkoutScRContext.Provider
+			value={{
+				WorkoutScR,
+				addWorkoutScR,
+				form,
+				setWorkoutScR,
+			}}
+		>
+			{children}
+		</WorkoutScRContext.Provider>
 	);
 }
 
