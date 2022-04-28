@@ -1,17 +1,25 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 
 // Mantine imports
-import { Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useModals } from "@mantine/modals";
-
 import SalaryAPI from "./api/SalaryAPI";
-
 const SalaryContext = createContext();
 
 export function SalaryProvider({ children }) {
-	const [salaries, setSalries] = useState([]);
+	//Salaries
+	const [salaries, setSalaries] = useState([]);
+
+	// Salary
+	const [salary, setSalary] = useState({
+		nic: "",
+		year: "",
+		month: "",
+		basicSalary: "",
+		otHours: "",
+		otRate: "",
+		otTotal: "",
+		totalSalary: "",
+	});
 
 	// Get all salaries
 	useEffect(() => {
@@ -47,14 +55,16 @@ export function SalaryProvider({ children }) {
 			totalSalary: values.totalSalary,
 		};
 		SalaryAPI.addSalary(newSalary).then((response) => {
-			setSalary([...salary, response.data]);
+			setSalaries([...salaries, response.data]);
 			form.reset();
 		});
 	};
 
-	/*//Edit Salary
-	const updateSalary = (values) => {
-		let id = values.id;
+	//Add Salary Modal
+	const [opened, setOpened] = useState(false);
+
+	//Edit Salary
+	const editSalary = (values) => {
 		const newSalary = {
 			nic: values.nic,
 			year: values.year,
@@ -65,14 +75,34 @@ export function SalaryProvider({ children }) {
 			otTotal: values.otTotal,
 			totalSalary: values.totalSalary,
 		};
-		axios.put(`${baseURL}/${id}`, newSalary).then((res) => {
-			axios.get(baseURL).then((res) => {
-				setSalary(res.data);
-			});
+		SalaryAPI.editSalary(values.id, newSalary).then((response) => {
+			setSalaries(salaries.map((salary) => (salary._id === values.id ? response.data : salary)));
+			form.reset();
 		});
-	};*/
+	};
 
-	return <SalaryContext.Provider value={{ salaries, addSalary, form }}>{children}</SalaryContext.Provider>;
+	//Edit Salary Modal
+	const [editOpened, setEditOpened] = useState(false);
+
+	return (
+		<SalaryContext.Provider
+			value={{
+				salaries,
+				salary,
+				addSalary,
+				form,
+				editSalary,
+				setSalaries,
+				setSalary,
+				setEditOpened,
+				editOpened,
+				opened,
+				setOpened,
+			}}
+		>
+			{children}
+		</SalaryContext.Provider>
+	);
 }
 
 export default SalaryContext;

@@ -1,22 +1,21 @@
 import React from "react";
 
 // Page Components
-
-import AddWorkoutScR from "./AddWorkoutScr";
+import WorkoutScRList from "./WorkoutScRList";
 
 // WorkoutScR Provider
 import { WorkoutScRProvider } from "../../contexts/WorkoutScRContext";
 
-const WorkoutScR = () => {
+const workoutScRList = () => {
 	return (
 		<div>
-			<h1 style={{ textAlign: "center" }}>Workout Schedule Request</h1>
+			<h1 style={{ textAlign: "center" }}>Workout Schedule Requests</h1>
 
 			<WorkoutScRProvider>
-				<AddWorkoutScR />
+				<WorkoutScRList />
 			</WorkoutScRProvider>
 		</div>
 	);
 };
 
-export default WorkoutScR;
+export default workoutScRList;
