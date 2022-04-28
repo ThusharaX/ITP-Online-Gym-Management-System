@@ -3,7 +3,7 @@ import axios from "axios";
 import Joi from "joi";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainers`;
 const TrainerContext = createContext();
-import UserAPi from "./api/UserAPI";
+import TrainerAPI from "./api/TrainerAPI";
 
 // Mantine imports
 import { Text } from "@mantine/core";
@@ -126,7 +126,7 @@ export function TrainerProvider({ children }) {
 			qualifications: String(values.qualifications).split(","),
 			permissionLevel: "TRAINER",
 		};
-		UserAPi.register(newTrainer).then((response) => {
+		TrainerAPI.register(newTrainer).then((response) => {
 			// eslint-disable-next-line no-console
 			console.log(response);
 			setIsLoading(false);
@@ -193,7 +193,7 @@ export function TrainerProvider({ children }) {
 	});
 	const login = (values) => {
 		setIsLoading(true);
-		UserAPi.login(values)
+		TrainerAPI.login(values)
 			.then((response) => {
 				if (response.data.permissionLevel !== "TRAINER") {
 					setIsLoading(false);
