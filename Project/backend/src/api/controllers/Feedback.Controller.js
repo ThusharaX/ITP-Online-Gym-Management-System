@@ -26,19 +26,6 @@ export const updateFeedback = async (request, response, next) => {
 		});
 };
 
-// //delete one feedback
-// export const deleteFeedback = async (request, response, next) => {
-// 	await FeedbackService.deleteFeedback(request.params.id)
-// 		.then((data) => {
-// 			request.handleResponse.successRespond(response)(data);
-// 			next();
-// 		})
-// 		.catch((error) => {
-// 			request.handleResponse.errorRespond(response)(error.message);
-// 			next();
-// 		});
-// };
-
 //get all feedbacks
 export const getAllFeedbacks = async (request, response, next) => {
 	await FeedbackService.getAllFeedbacks()

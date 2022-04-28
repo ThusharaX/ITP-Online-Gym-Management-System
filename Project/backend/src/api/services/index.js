@@ -53,6 +53,7 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
+import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
 	// Sample services
 	insertSample,
@@ -131,4 +132,9 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+
+	//Feedback services
+	insertFeedback,
+	getAllFeedbacks,
+	updateFeedback,
 };

@@ -29,21 +29,6 @@ export const updateFeedback = async (feedbackId, feedbackData) => {
 		});
 };
 
-// // delete one feedback
-// export const deleteFeedback = async (feedbackId) => {
-// 	return await FeedbackModel.findByIdAndRemove(feedbackId)
-// 		.then((feedback) => {
-// 			if (feedback) {
-// 				return feedback;
-// 			} else {
-// 				throw new Error("Feedback not found");
-// 			}
-// 		})
-// 		.catch((error) => {
-// 			throw new Error(error.message);
-// 		});
-// };
-
 // get all feedbacks
 export const getAllFeedbacks = async () => {
 	return await FeedbackModel.find({})
