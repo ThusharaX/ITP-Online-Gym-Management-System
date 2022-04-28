@@ -15,6 +15,14 @@ import {
 	TrainerLogin,
 	ListTrainers,
 	TrainerRegister,
+	Blog,
+	Write,
+	Blogs,
+	BlogsList,
+	BlogCreateRequest,
+	TrainerPackages,
+	Salary,
+	Notice,
 	WorkoutScR,
 	Workout,
 	AdminLogin,
@@ -22,13 +30,15 @@ import {
 	AdminProfile,
 	CommonLogin,
 	TrainerProfile,
+	QuestionList,
+	AddQuestion,
 } from "../pages";
 
 // Error pages
 import Error404 from "../pages/error/Error404";
-
 import NavBar from "../components/NavBar";
 import FooterSection from "../components/Footer";
+import Question from "../pages/question";
 
 const AppRoutes = () => {
 	const footerLinks = [
@@ -59,6 +69,9 @@ const AppRoutes = () => {
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
 
+					<Route exact path="/salary" element={<Salary />} />
+					<Route exact path="/question" element={<Question />} />
+
 					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 						<Route exact path="/trainers/login" element={<TrainerLogin />} />
 					</Route>
@@ -68,7 +81,17 @@ const AppRoutes = () => {
 
 					<Route exact path="/events" element={<Events />} />
 
+					<Route exact path="/trainers/events" element={<Eventlist />} />
+					<Route exact path="/notice" element={<Notice />} />
 					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+
+					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/write" element={<Write />} />
+					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
+					<Route exact path="/package" element={<TrainerPackages />} />
+
+					<Route exact path="/blogs" element={<Blogs />} />
 
 					<Route exact path="/workout" element={<Workout />} />
 

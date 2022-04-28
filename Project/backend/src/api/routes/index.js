@@ -52,6 +52,12 @@ export default function (app) {
 
 	// Trainer endpoints
 	app.get("/trainers/", controller.getTrainers); // get all/sort/search event
+	// Enroll User to Workout Program
+	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
+	// Unenroll User from Workout Program
+	app.post("/user/unenroll/", controller.unenrollUserFromWorkoutProgram);
+	// Get All Enrolled Workout Programs
+	app.get("/user/enrolledWorkoutPrograms/:id", middleware.authenticate, controller.getAllEnrolledWorkoutPrograms);
 
 	// Event endpoints
 	app.get("/events/", controller.getEvents); // get all/sort/search event
