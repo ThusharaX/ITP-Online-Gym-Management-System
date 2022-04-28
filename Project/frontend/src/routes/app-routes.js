@@ -32,6 +32,7 @@ import {
 	TrainerProfile,
 	QuestionList,
 	AddQuestion,
+	Feedback,
 } from "../pages";
 
 // Error pages
@@ -68,7 +69,6 @@ const AppRoutes = () => {
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
 					<Route exact path="/sample" element={<Sample />} />
-
 					<Route exact path="/salary" element={<Salary />} />
 					<Route exact path="/question" element={<Question />} />
 
@@ -106,6 +106,8 @@ const AppRoutes = () => {
 					<Route exact path="/admin/login" element={<CheckLoginStatus />}>
 						<Route exact path="/admin/login" element={<AdminLogin />} />
 					</Route>
+
+					<Route exact path="/feedback" element={<Feedback />} />
 
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
