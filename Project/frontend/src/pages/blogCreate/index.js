@@ -1,26 +1,74 @@
-import React from "react";
-import Joi from "joi";
-// Page components
-import BlogList from "./blogCard";
-import ReactCard from "./ReactCard";
+// import React from "react";
 
-// SampleProvider
+// // Page Components
+
+// import AddBlog from "./AddBlog";
+// import EditBlog from "./EditBlog";
+
+// // Blog Provider
+// import { BlogProvider } from "../../contexts/BlogContext";
+
+// const Blogs = () => {
+// 	return (
+// 		<div>
+// 			<h1>Blog</h1>
+
+// 			<BlogProvider>
+// 				<AddBlog />
+// 			</BlogProvider>
+// 		</div>
+// 	);
+// };
+
+// const BlogUpdate = () => {
+// 	return (
+// 		<div>
+// 			<h1>Blog Update</h1>
+
+// 			<BlogProvider>
+// 				<EditBlog />
+// 			</BlogProvider>
+// 		</div>
+// 	);
+// };
+
+// export { Blogs, BlogUpdate };
+
+import React from "react";
+
+// Page components
+import BlogList from "./BlogList";
+import AddBlogModal from "./AddBlogModal";
+
+// BlogProvider
 import { BlogProvider } from "../../contexts/BlogContext";
 
-const BlogsList = () => {
+import { SimpleGrid } from "@mantine/core";
+
+const BD = () => {
 	return (
-		<BlogProvider>
-			<BlogsList />
-		</BlogProvider>
+		<div>
+			<h1 style={{ textAlign: "center" }}>Blogs</h1>
+
+			<BlogProvider>
+				{/* <Search /> */}
+
+				<AddBlogModal />
+
+				<SimpleGrid
+					cols={4}
+					spacing="lg"
+					breakpoints={[
+						{ maxWidth: 1350, cols: 3, spacing: "md" },
+						{ maxWidth: 1020, cols: 2, spacing: "sm" },
+						{ maxWidth: 675, cols: 1, spacing: "sm" },
+					]}
+				>
+					<BlogList />
+				</SimpleGrid>
+			</BlogProvider>
+		</div>
 	);
 };
 
-const Blogs = () => {
-	return (
-		<BlogProvider>
-			<ReactCard />
-		</BlogProvider>
-	);
-};
-
-export { Blogs, BlogsList };
+export default BD;

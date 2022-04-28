@@ -8,13 +8,12 @@ import Notice from "./notice";
 import Feedback from "./feedback";
 
 import PersonalTrainerRequest from "./personalTrainerRequest";
-
 import BlogCreateRequest from "./blogCreateRequest";
 import Blog from "./blog";
 import Write from "./write";
 import TrainerPackages from "./trainerPackages";
-
-import { Blogs, BlogsList } from "./blogCreate";
+//import { Blogs, BlogUpdate } from "./blogCreate";
+import BD from "./blogCreate";
 
 import { Salary } from "./salary";
 import Workout from "./workout";
@@ -38,8 +37,8 @@ export {
 	TrainerRegister,
 	Blog,
 	Write,
-	Blogs,
-	BlogsList,
+	// Blogs,
+	// BlogUpdate,
 	BlogCreateRequest,
 	TrainerPackages,
 	Salary,
@@ -53,4 +52,5 @@ export {
 	CommonLogin,
 	WorkoutScRList,
 	TrainerProfile,
+	BD,
 };
