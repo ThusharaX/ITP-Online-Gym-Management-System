@@ -25,7 +25,12 @@ const EditWorkout = () => {
 	return (
 		<>
 			<Box sx={{ maxWidth: 300 }} mx="auto">
-				<form onSubmit={form.onSubmit((values) => editWorkout(values))}>
+				<form
+					onSubmit={form.onSubmit((values) => {
+						editWorkout(values);
+						setEditOpened(false);
+					})}
+				>
 					<TextInput required name="workout_name" label="Workout Name" {...form.getInputProps("workout_name")} />
 					<TextInput
 						required
@@ -51,13 +56,9 @@ const EditWorkout = () => {
 					<TextInput name="tips" label="Tips" {...form.getInputProps("tips")} />
 
 					<Group position="right" mt="md">
-						<Button
-							onClick={() => {
-								setEditOpened(false);
-							}}
-							type="submit"
-						>
-							Update
+						<Button type="submit">Update</Button>
+						<Button onClick={() => setEditOpened(false)} color="red">
+							Cancel
 						</Button>
 					</Group>
 				</form>

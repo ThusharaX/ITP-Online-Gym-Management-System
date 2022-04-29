@@ -2,14 +2,28 @@ import { createContext, useState, useEffect } from "react";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import WorkoutAPI from "./api/WorkoutAPI";
 
+import Joi from "joi";
+
 const WorkoutContext = createContext();
 
 export function WorkoutProvider({ children }) {
+	// Form Validation
+	const schema = Joi.object({
+		workout_name: Joi.string().min(5).max(50).message("Workout Name should be between 4 and 50 characters"),
+		workout_category: Joi.string().min(5).max(30).message("Workout Category should be between 4 and 30 characters"),
+		muscle_group: Joi.string().min(5).max(30).message("Muscle Group should be between 4 and 30 characters"),
+		starting_position_img: Joi.string().uri().allow(""),
+		mid_position_img: Joi.string().uri().allow(""),
+		instructions: Joi.string().min(5).max(500).message("Description should be between 5 and 500 characters"),
+		action: Joi.string().min(5).max(500).message("Action should be between 5 and 500 characters"),
+		tips: Joi.string().min(5).max(500).message("Tips should be between 5 and 500 characters"),
+	});
+
 	// Workouts
 	const [workouts, setWorkouts] = useState([]);
 
@@ -33,6 +47,7 @@ export function WorkoutProvider({ children }) {
 
 	// Form initial state
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			workout_name: "Workout Name",
 			workout_category: "Workout Category",
