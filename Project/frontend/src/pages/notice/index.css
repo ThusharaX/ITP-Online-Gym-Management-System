@@ -1,0 +1,9 @@
+.notice-form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.notice-form-container h1 {
+	text-align: center;
+}
