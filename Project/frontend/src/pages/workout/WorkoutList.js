@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import React, { useContext, useState } from "react";
-import { Card, Image, Text, Badge, Button, Group, useMantineTheme, Modal } from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Group, useMantineTheme, Modal, ScrollArea } from "@mantine/core";
 import WorkoutContext from "../../contexts/WorkoutContext";
 
 import { Edit, Trash, Eye } from "tabler-icons-react";
@@ -38,7 +38,7 @@ function WorkoutList() {
 
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.workout_name}</Text>
-							<Badge sx={{ paddingLeft: 10, paddingRight: 10 }} color="green" variant="light" size="lg">
+							<Badge sx={{ paddingLeft: 5, paddingRight: 5 }} color="green" variant="light" size="lg">
 								<Group position="center" spacing="xs">
 									<Eye />
 									{item.viewCount == 0 ? "0" : item.viewCount}
@@ -46,21 +46,26 @@ function WorkoutList() {
 							</Badge>
 						</Group>
 
-						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-							{item.instructions}
-						</Text>
-						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-							{item.tips}
-						</Text>
+						<ScrollArea style={{ height: 80 }} scrollbarSize={5} scrollHideDelay={100}>
+							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								{item.instructions}
+							</Text>
+						</ScrollArea>
 
 						<hr style={{ border: `1px solid ${secondaryColor}` }} />
 
-						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-							workout_category: {item.workout_category}
-						</Text>
-						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-							action: {item.action}
-						</Text>
+						<ScrollArea style={{ height: 80 }} scrollbarSize={5} scrollHideDelay={100}>
+							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								<i>Tips:</i> {item.tips}
+							</Text>
+
+							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								<i>Workout Category:</i> {item.workout_category}
+							</Text>
+							<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								<i>Action:</i> {item.action}
+							</Text>
+						</ScrollArea>
 
 						{/* On click open modal */}
 						<Button

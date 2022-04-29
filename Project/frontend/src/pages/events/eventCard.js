@@ -55,7 +55,7 @@ const EventList = () => {
 								},
 								opacity: 0.9,
 							})}
-							radius="lg"
+							radius="md"
 							p="md"
 							withBorder
 							style={{ width: "300px" }}
@@ -68,11 +68,11 @@ const EventList = () => {
 								/>
 							</Card.Section>
 
-							<Group position="apart" style={{ marginTop: "4px" }}>
+							<Group position="left" spacing="2px" style={{ marginTop: "5px" }}>
 								<Text weight={500} style={{ fontSize: "18px" }}>
 									{item.title}
 								</Text>
-								<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								<Text size="xs" style={{ color: secondaryColor }}>
 									{item.tags.map((tag) => (
 										<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
 											{tag}
@@ -80,7 +80,7 @@ const EventList = () => {
 									))}
 								</Text>
 							</Group>
-							<Group position="left" style={{ marginTop: "9px" }}>
+							<Group position="left" style={{ marginTop: "15px" }}>
 								<Text weight={400} style={{ fontSize: "15px", marginRight: "40px" }}>
 									Date:
 								</Text>

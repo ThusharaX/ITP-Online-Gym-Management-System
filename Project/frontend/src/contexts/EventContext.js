@@ -21,11 +21,11 @@ export function EventProvider({ children }) {
 	}, []);
 
 	const schema = Joi.object({
-		title: Joi.string().min(5).max(20).message("Title should be between 5 and 20 characters"),
+		title: Joi.string().min(10).max(50).message("Title should be between 10 and 50 characters"),
 		description: Joi.string().min(15).max(500).message("Description should be between 15 and 500 characters"),
 		date: Joi.date().min("now").required(),
 		time: Joi.date().required(),
-		tags: Joi.string().min(3).max(20).message("Tags should be between 3 and 50 characters"),
+		tags: Joi.string().min(3).max(50).message("Tags should be between 3 and 50 characters"),
 		details: Joi.string().min(5).max(50).message("Details should be between 5 and 50 characters"),
 		gender: Joi.string().required(),
 	});
@@ -72,7 +72,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: values.trainer,
+			trainer: "1234567898",
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
 			axios.get(baseURL).then((res) => {
@@ -109,7 +109,7 @@ export function EventProvider({ children }) {
 		});
 
 	return (
-		<EventContext.Provider value={{ setEvents, events, confirmDelete, updateEvent, addEvent, form }}>
+		<EventContext.Provider value={{ setEvents, events, confirmDelete, updateEvent, addEvent, form, schema }}>
 			{children}
 		</EventContext.Provider>
 	);

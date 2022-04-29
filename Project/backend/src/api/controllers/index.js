@@ -63,6 +63,7 @@ import { getTrainer, getTrainers, createTrainers, updateTrainers, deleteTrainers
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
+import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
 export default {
 	//Sample Controllers
 	insertSample,
@@ -149,4 +150,9 @@ export default {
 	createTrainers,
 	updateTrainers,
 	deleteTrainers,
+	//Feedback Controllers
+
+	getAllFeedbacks,
+	updateFeedback,
+	insertFeedback,
 };
