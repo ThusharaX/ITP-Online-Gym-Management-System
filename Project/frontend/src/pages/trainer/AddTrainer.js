@@ -23,6 +23,10 @@ import { DropzoneButton } from "./Dropzone";
 const AddTrainer = () => {
 	const navigate = useNavigate();
 	const theme = useMantineTheme();
+	const gradient =
+		theme.colorScheme === "dark"
+			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
+			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 	const { addTrainer, form } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
@@ -31,9 +35,11 @@ const AddTrainer = () => {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				marginTop: "-120px",
+				marginBottom: "-120px",
 				width: "100%",
-				padding: "70px 0px",
+				padding: "130px 0px",
 			})}
 		>
 			<Box
@@ -44,11 +50,12 @@ const AddTrainer = () => {
 					boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
 					textAlign: "left",
 					padding: theme.spacing.xl,
-					borderRadius: theme.radius.md,
-					width: "500px",
+					borderRadius: theme.radius.sm,
+					width: "600px",
 					cursor: "pointer",
 					borderRadius: "50px",
 					margin: "10px auto",
+					opacity: "0.9",
 
 					"&:hover": {
 						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],

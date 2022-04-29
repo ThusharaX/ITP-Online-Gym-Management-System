@@ -13,9 +13,13 @@ class SalaryAPI {
 		return axios.post(`${BASE_URL}/salary/`, newSalary, requestConfigJson);
 	}
 
-	/*static updateSample(id) {
-		return axios.delete(`${BASE_URL}/salary/${id}`, requestConfig);
-	}*/
+	static editSalary(id, newSalary) {
+		return axios.put(`${BASE_URL}/salary/${id}`, newSalary, requestConfigJson);
+	}
+
+	static searchSalary(search) {
+		return axios.get(`${BASE_URL}/salary/search/${search}`, requestConfigJson);
+	}
 }
 
 export default SalaryAPI;

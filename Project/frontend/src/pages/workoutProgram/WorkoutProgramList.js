@@ -38,7 +38,7 @@ function WorkoutProgramList() {
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.name}</Text>
 							<Badge color="green" variant="light" size="lg">
-								{item.fee}/=
+								Rs. {item.fee}/=
 							</Badge>
 						</Group>
 

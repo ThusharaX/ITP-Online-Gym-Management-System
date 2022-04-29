@@ -66,7 +66,7 @@ export default function (app) {
 
 	// WorkoutScR endpoints
 	app.post("/WorkoutScR/", controller.insertWorkoutScR); // insert one WorkoutScR
-	app.get("/WorkoutScR/", controller.getAllWorkoutScR); // get all WorkoutScR
+	app.get("/WorkoutScRList/", controller.getAllWorkoutScR); // get all WorkoutScR
 	app.put("/WorkoutScR/:id", controller.updateWorkoutScR); // update one WorkoutScR
 	app.delete("/WorkoutScR/:id", controller.deleteWorkoutScR); // delete one WorkoutScR
 
@@ -84,6 +84,12 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+
+	//Feedback endpoints
+	app.post("/feedback/", controller.insertFeedback); // insert one feedback
+	app.get("/feedback/", controller.getAllFeedbacks); // get all feedbacks
+	app.put("/feedback/:id", controller.updateFeedback); // update one feedback
+
 	// increse view count
 	app.put("/workout/view/:id", controller.increaseViewCount);
 }

@@ -22,18 +22,19 @@ const AddEvent = () => {
 			>
 				<Box
 					sx={(theme) => ({
-						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
+						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
 						textAlign: "left",
 						margin: "-40px",
 						padding: theme.spacing.xl,
-						borderRadius: theme.radius.md,
+						borderRadius: theme.radius.xs,
 						width: "500px",
 						cursor: "pointer",
 						borderRadius: "50px",
 						boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+						opacity: 0.9,
 
 						"&:hover": {
-							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[1],
+							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
 						},
 					})}
 				>

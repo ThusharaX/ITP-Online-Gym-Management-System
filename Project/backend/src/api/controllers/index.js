@@ -61,6 +61,7 @@ import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Sala
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
+import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
 export default {
 	//Sample Controllers
 	insertSample,
@@ -140,4 +141,10 @@ export default {
 	createEvents,
 	updateEvents,
 	deleteEvents,
+
+	//Feedback Controllers
+
+	getAllFeedbacks,
+	updateFeedback,
+	insertFeedback,
 };
