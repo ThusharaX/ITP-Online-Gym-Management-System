@@ -17,8 +17,8 @@ class NoticeAPI {
 		return axios.delete(`${BASE_URL}/notice/${id}`, requestConfig);
 	}
 
-	static editSample(id) {
-		return axios.put(`${BASE_URL}/notice/${id}`, requestConfig);
+	static editNotice(id, newNotice) {
+		return axios.put(`${BASE_URL}/notice/${id}`, newNotice, requestConfigJson);
 	}
 }
 
