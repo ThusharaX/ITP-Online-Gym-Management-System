@@ -52,13 +52,20 @@ function BlogList() {
 							Title : {item.title}
 						</Text>
 
-						{/* <hr style={{ border: `1px solid ${secondaryColor}` }} /> */}
+						<hr style={{ border: `1px solid ${secondaryColor}` }} />
 
 						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
 							Description : {item.description}
 						</Text>
+						<hr style={{ border: `1px solid ${secondaryColor}` }} />
 						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
 							Phone Number : {item.wNum}
+						</Text>
+						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+							Email : {item.email}
+						</Text>
+						<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+							FaceBook Profile Name : {item.fb}
 						</Text>
 
 						{/* On click open modal */}
