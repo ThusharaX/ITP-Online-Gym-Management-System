@@ -27,7 +27,13 @@ import {
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
 
-import { authenticateUser, insertUser } from "./User.service";
+import {
+	authenticateUser,
+	insertUser,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
+} from "./User.service";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
 
@@ -47,6 +53,7 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
+import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
 	// Sample services
 	insertSample,
@@ -92,6 +99,9 @@ export default {
 	// Admin services
 	authenticateUser,
 	insertUser,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
 
 	// Workout services
 	insertWorkout,
@@ -122,4 +132,9 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+
+	//Feedback services
+	insertFeedback,
+	getAllFeedbacks,
+	updateFeedback,
 };

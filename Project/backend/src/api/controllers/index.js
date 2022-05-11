@@ -32,7 +32,14 @@ import {
 	deletePersonalTrainerReq,
 } from "./PersonalTrainerReq.controller";
 
-import { login, createUser, getAdminDashboard } from "./User.Controller";
+import {
+	login,
+	createUser,
+	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
+} from "./User.Controller";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
 
@@ -54,6 +61,7 @@ import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Sala
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
+import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
 export default {
 	//Sample Controllers
 	insertSample,
@@ -95,6 +103,9 @@ export default {
 	login,
 	createUser,
 	getAdminDashboard,
+	getAllEnrolledWorkoutPrograms,
+	enrollUserToWorkoutProgram,
+	unenrollUserFromWorkoutProgram,
 
 	//Workout Controllers
 	insertWorkout,
@@ -130,4 +141,10 @@ export default {
 	createEvents,
 	updateEvents,
 	deleteEvents,
+
+	//Feedback Controllers
+
+	getAllFeedbacks,
+	updateFeedback,
+	insertFeedback,
 };

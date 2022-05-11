@@ -66,3 +66,46 @@ export const getAdminDashboard = async (req, res) => {
 		message: "Admin Dashboard",
 	});
 };
+
+// Enroll user to workout program
+export const enrollUserToWorkoutProgram = async (req, res, next) => {
+	const { userId, workoutProgramId } = req.body;
+
+	await UserService.enrollUserToWorkoutProgram(userId, workoutProgramId)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
+
+// unenrollUserFromWorkoutProgram
+export const unenrollUserFromWorkoutProgram = async (req, res, next) => {
+	const { userId, workoutProgramId } = req.body;
+
+	await UserService.unenrollUserFromWorkoutProgram(userId, workoutProgramId)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
+
+// getAllEnrolledWorkoutPrograms
+export const getAllEnrolledWorkoutPrograms = async (req, res, next) => {
+	await UserService.getAllEnrolledWorkoutPrograms(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};

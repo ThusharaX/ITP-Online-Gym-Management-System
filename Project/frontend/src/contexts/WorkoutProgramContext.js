@@ -2,14 +2,34 @@ import { createContext, useState, useEffect } from "react";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import WorkoutProgramAPI from "./api/WorkoutProgramAPI";
 
+import Joi from "joi";
+
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
+	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+	// Form Validation
+	const schema = Joi.object({
+		photoURL: Joi.string().uri().allow(""),
+		name: Joi.string().min(5).max(20).message("Name should be between 4 and 20 characters"),
+		description: Joi.string().min(15).max(500).message("Description should be between 15 and 500 characters"),
+		conducted_by: Joi.string().required(),
+		fee: Joi.number().min(0).max(10000).message("Fee should be between 0 and 10000"),
+		day: Joi.string()
+			.valid(...days)
+			.required(),
+		time: Joi.string().required(),
+	});
+
+	// Enroll Workout Program
+	const [enrolledWorkoutPrograms, setEnrolledWorkoutPrograms] = useState([]);
+
 	// Workout Programs
 	const [workoutPrograms, setWorkoutPrograms] = useState([]);
 
@@ -29,17 +49,21 @@ export function WorkoutProgramProvider({ children }) {
 		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
 			setWorkoutPrograms(response.data);
 		});
+		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
+			setEnrolledWorkoutPrograms(response.data);
+		});
 	}, []);
 
 	// Form initial state
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			photoURL:
 				"https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 			name: "Zumba",
 			description: "Zumba is a fitness program that involves cardio and Latin-inspired dance.",
 			conducted_by: "Mr. Perera (Zumba Instructor)",
-			fee: "Rs. 2500",
+			fee: 2500,
 			day: "Monday",
 			time: "10:00 AM - 11:00 AM",
 		},
@@ -115,9 +139,40 @@ export function WorkoutProgramProvider({ children }) {
 	// editWorkoutProgram Modal
 	const [editOpened, setEditOpened] = useState(false);
 
+	// Enroll Button State
+	const [enrollButtonDisabled, setEnrollButtonDisabled] = useState(false);
+
+	// Enroll workoutProgram
+	const enrollWorkoutProgram = (workoutProgramID) => {
+		const data = {
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
+		};
+
+		WorkoutProgramAPI.enrollWorkoutProgram(data).then((response) => {
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.concat(response.data));
+			setEnrollButtonDisabled(false);
+		});
+	};
+
+	// Unenroll workoutProgram
+	const unenrollWorkoutProgram = (workoutProgramID) => {
+		const data = {
+			userId: localStorage.getItem("uID"),
+			workoutProgramId: workoutProgramID,
+		};
+
+		WorkoutProgramAPI.unenrollWorkoutProgram(data).then((response) => {
+			// Remove workoutProgram from enrolledWorkoutPrograms
+			setEnrolledWorkoutPrograms(enrolledWorkoutPrograms.filter((workoutProgram) => workoutProgram !== response.data));
+			setEnrollButtonDisabled(false);
+		});
+	};
+
 	return (
 		<WorkoutProgramContext.Provider
 			value={{
+				days,
 				workoutPrograms,
 				setWorkoutPrograms,
 				confirmDelete,
@@ -130,6 +185,12 @@ export function WorkoutProgramProvider({ children }) {
 				setEditOpened,
 				workoutProgram,
 				setWorkoutProgram,
+				enrollWorkoutProgram,
+				unenrollWorkoutProgram,
+				enrolledWorkoutPrograms,
+				enrollButtonDisabled,
+				setEnrollButtonDisabled,
+				schema,
 			}}
 		>
 			{children}

@@ -6,8 +6,18 @@ import { Edit, Trash } from "tabler-icons-react";
 import EditWorkoutProgram from "./EditWorkoutProgram";
 
 function WorkoutProgramList() {
-	const { workoutPrograms, confirmDelete, editOpened, setEditOpened, setWorkoutProgram } =
-		useContext(WorkoutProgramContext);
+	const {
+		workoutPrograms,
+		confirmDelete,
+		editOpened,
+		setEditOpened,
+		setWorkoutProgram,
+		enrollWorkoutProgram,
+		unenrollWorkoutProgram,
+		enrolledWorkoutPrograms,
+		enrollButtonDisabled,
+		setEnrollButtonDisabled,
+	} = useContext(WorkoutProgramContext);
 	const theme = useMantineTheme();
 
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -28,7 +38,7 @@ function WorkoutProgramList() {
 						<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 							<Text weight={500}>{item.name}</Text>
 							<Badge color="green" variant="light" size="lg">
-								{item.fee}/=
+								Rs. {item.fee}/=
 							</Badge>
 						</Group>
 
@@ -48,9 +58,35 @@ function WorkoutProgramList() {
 							Time: {item.time}
 						</Text>
 
-						<Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }}>
-							Enroll Now
-						</Button>
+						{!enrolledWorkoutPrograms.includes(item._id) ? (
+							<Button
+								disabled={enrollButtonDisabled}
+								variant="light"
+								color="blue"
+								fullWidth
+								style={{ marginTop: 14 }}
+								onClick={() => {
+									enrollWorkoutProgram(item._id);
+									setEnrollButtonDisabled(true);
+								}}
+							>
+								Enroll Now
+							</Button>
+						) : (
+							<Button
+								disabled={enrollButtonDisabled}
+								variant="light"
+								color="red"
+								fullWidth
+								style={{ marginTop: 14 }}
+								onClick={() => {
+									unenrollWorkoutProgram(item._id);
+									setEnrollButtonDisabled(true);
+								}}
+							>
+								Unenroll
+							</Button>
+						)}
 
 						{localStorage.getItem("permissionLevel") === "ADMIN" && (
 							<Group position="apart" mt="md" spacing="md">
