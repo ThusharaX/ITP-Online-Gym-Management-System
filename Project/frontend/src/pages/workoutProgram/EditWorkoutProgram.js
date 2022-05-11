@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { Button, TextInput, Group, Box } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { Button, TextInput, Group, Box, Autocomplete } from "@mantine/core";
+import { useForm, joiResolver } from "@mantine/form";
 
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 
 const EditWorkoutProgram = () => {
-	const { editWorkoutProgram, setEditOpened, workoutProgram } = useContext(WorkoutProgramContext);
+	const { editWorkoutProgram, setEditOpened, workoutProgram, schema, days } = useContext(WorkoutProgramContext);
 
 	// Form initial state
 	let form = useForm({
+		// schema: joiResolver(schema),
 		initialValues: {
 			id: workoutProgram._id,
 			photoURL: workoutProgram.photoURL,
@@ -24,7 +25,12 @@ const EditWorkoutProgram = () => {
 	return (
 		<>
 			<Box sx={{ maxWidth: 300 }} mx="auto">
-				<form onSubmit={form.onSubmit((values) => editWorkoutProgram(values))}>
+				<form
+					onSubmit={form.onSubmit((values) => {
+						editWorkoutProgram(values);
+						setEditOpened(false);
+					})}
+				>
 					<TextInput required label="Image URL" placeholder="Enter Image URL" {...form.getInputProps("photoURL")} />
 					<TextInput required label="Name" placeholder="Workout Program Name" {...form.getInputProps("name")} />
 					<TextInput
@@ -40,17 +46,19 @@ const EditWorkoutProgram = () => {
 						{...form.getInputProps("conducted_by")}
 					/>
 					<TextInput required label="Fee" placeholder="Workout Program Fee" {...form.getInputProps("fee")} />
-					<TextInput required label="Day" placeholder="Workout Program Day" {...form.getInputProps("day")} />
+					<Autocomplete
+						required
+						label="Day"
+						placeholder="Workout Program Day"
+						data={days}
+						{...form.getInputProps("day")}
+					/>
 					<TextInput required label="Time" placeholder="Workout Program Time" {...form.getInputProps("time")} />
 
 					<Group position="right" mt="md">
-						<Button
-							onClick={() => {
-								setEditOpened(false);
-							}}
-							type="submit"
-						>
-							Update
+						<Button type="submit">Update</Button>
+						<Button onClick={() => setEditOpened(false)} color="red">
+							Cancel
 						</Button>
 					</Group>
 				</form>

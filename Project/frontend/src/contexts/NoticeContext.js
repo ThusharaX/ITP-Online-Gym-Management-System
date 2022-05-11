@@ -13,7 +13,13 @@ const NoticeContext = createContext();
 export function NoticeProvider({ children }) {
 	const [notices, setNotices] = useState([]);
 
-	// Get all samples
+	const [notice, setNotice] = useState({
+		title: "",
+		content: "",
+		category: "",
+	});
+
+	// Get all Notices
 	useEffect(() => {
 		NoticeAPI.getNoticeData().then((response) => {
 			setNotices(response.data);
@@ -29,7 +35,7 @@ export function NoticeProvider({ children }) {
 		},
 	});
 
-	// Add new sample
+	// Add new Notice
 	const addNotice = (values) => {
 		const newNotice = {
 			title: values.title,
@@ -41,6 +47,9 @@ export function NoticeProvider({ children }) {
 			form.reset();
 		});
 	};
+
+	// Add Notice Modal
+	const [opened, setOpened] = useState(false);
 
 	// Delete Notice and update UI
 	const deleteNotice = (id) => {
@@ -67,31 +76,39 @@ export function NoticeProvider({ children }) {
 			onConfirm: () => deleteNotice(id),
 		});
 
-	//Edit sample and update UI
-	const editNotice = (id) => {
-		NoticeAPI.editNotice(id).then(() => {
-			setNotices(notices.filter((notice) => notice._id !== id));
+	//Edit Notice and update UI
+	const editNotice = (values) => {
+		const newNotice = {
+			title: values.title,
+			content: values.content,
+			category: values.category,
+		};
+		NoticeAPI.editNotice(values.id, newNotice).then((response) => {
+			setNotices(notices.map((notice) => (notice._id === values.id ? response.data : notice)));
+			form.reset();
 		});
 	};
 
-	const confirmEdit = (id) =>
-		modals.openConfirmModal({
-			title: "Edit Notice",
-			centered: true,
-			children: (
-				<Text size="sm">
-					Are you sure you want to delete this Notice? This action is destructive and cannot be undone.
-				</Text>
-			),
-			labels: { confirm: "Edit notice", cancel: "No don't edit" },
-			confirmProps: { color: "blue" },
-			// eslint-disable-next-line no-console
-			onCancel: () => console.log("Cancel"),
-			onConfirm: () => editNotice(id),
-		});
+	// edit Notice Modal
+	const [editOpened, setEditOpened] = useState(false);
 
 	return (
-		<NoticeContext.Provider value={{ notices, confirmDelete, addNotice, editNotice, form }}>
+		<NoticeContext.Provider
+			value={{
+				notices,
+				notice,
+				opened,
+				setOpened,
+				editOpened,
+				setEditOpened,
+				confirmDelete,
+				addNotice,
+				editNotice,
+				setNotice,
+				setNotices,
+				form,
+			}}
+		>
 			{children}
 		</NoticeContext.Provider>
 	);
