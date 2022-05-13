@@ -82,3 +82,55 @@ export const getAllEnrolledWorkoutPrograms = async (userId) => {
 	const user = await UserModel.findById(userId);
 	return await user.enrolledWorkoutPrograms;
 };
+
+// Get all users email list where permissionLevel is MEMBER
+export const getMembersEmailList = async () => {
+	return await UserModel.find({ permissionLevel: "MEMBER" })
+		.then((data) => {
+			return data.map((user) => {
+				return user.email;
+			});
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Get all users email list where permissionLevel is TRAINER
+export const getTrainersEmailList = async () => {
+	return await UserModel.find({ permissionLevel: "TRAINER" })
+		.then((data) => {
+			return data.map((user) => {
+				return user.email;
+			});
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Get all users email list where permissionLevel is ADMIN
+export const getAdminsEmailList = async () => {
+	return await UserModel.find({ permissionLevel: "ADMIN" })
+		.then((data) => {
+			return data.map((user) => {
+				return user.email;
+			});
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Get all users email list where permissionLevel is EMPLOYEE
+export const getEmployeesEmailList = async () => {
+	return await UserModel.find({ permissionLevel: "EMPLOYEE" })
+		.then((data) => {
+			return data.map((user) => {
+				return user.email;
+			});
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

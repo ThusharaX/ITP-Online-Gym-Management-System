@@ -33,6 +33,7 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
 } from "./User.service";
 
 import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
@@ -102,6 +103,7 @@ export default {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
 
 	// Workout services
 	insertWorkout,
