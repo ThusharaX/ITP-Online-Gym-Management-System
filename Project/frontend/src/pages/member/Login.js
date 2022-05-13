@@ -9,7 +9,7 @@ const Login = () => {
 
 	return (
 		<div>
-			<h1>Member Login Page</h1>
+			<h1 style={{ textAlign: "center" }}>Member Login Page</h1>
 
 			{/* Align loader center */}
 			{isLoading && <Loader style={{ flex: 1, justifyContent: "center" }} />}
