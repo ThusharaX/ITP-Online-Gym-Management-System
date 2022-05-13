@@ -35,7 +35,6 @@ const AddEvent = () => {
 				overlayOpacity={0.75}
 				size={510}
 				style={{ borderRadius: "100px", opacity: 0.97 }}
-				overlayBlur={3}
 			>
 				<Box
 					sx={(theme) => ({

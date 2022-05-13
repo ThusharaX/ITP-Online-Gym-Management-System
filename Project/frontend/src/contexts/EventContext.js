@@ -55,7 +55,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: "1234567898",
+			trainer: "123456789812345678981234",
 		};
 		axios.post(baseURL, newEvent).then((res) => {
 			setEvents([...events, res.data]);
@@ -72,7 +72,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: "1234567898",
+			trainer: "123456789812345678981234",
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
 			axios.get(baseURL).then((res) => {
