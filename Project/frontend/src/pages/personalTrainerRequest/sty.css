@@ -1,4 +1,4 @@
-.app {
+/* .app {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -13,11 +13,14 @@
 	background-color: white;
 	padding: 0px 60px;
 	border-radius: 10px;
-}
+} */
 
-.toph {
-	color: rgb(77, 1, 77);
-	text-align: center;
+.topH {
+	color: white;
+	text-align: right;
+	margin-top: 8cm;
+	margin-right: 10cm;
+	margin-left: 25cm;
 }
 
 .btn {
@@ -35,39 +38,38 @@
 	margin-bottom: 30px;
 }
 
-/* .app {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)),
-		url("https://images.pexels.com/photos/136404/pexels-photo-136404.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-	background-size: cover;
-	background-position: center;
-}
-
-form {
-	background-color: white;
-	padding: 0px 60px;
-	border-radius: 10px;
-}
-
-h1 {
-	color: rgb(77, 1, 77);
-	text-align: center;
-}
-
-button {
+.main {
 	width: 100%;
-	height: 50px;
-	padding: 10px;
-	border: none;
-	background-color: rebeccapurple;
+	height: 100vh;
+}
+
+.myVideo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 100px;
+	margin-left: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	align-items: left;
 	color: white;
-	border-radius: 5px;
-	font-weight: bold;
-	font-size: 18px;
-	cursor: pointer;
-	margin-top: 15px;
-	margin-bottom: 30px;
-} */
+	/* margin-top: 8cm;
+	margin-right: 10cm;
+	margin-left: 25cm; */
+}
+
+.overlay {
+	position: absolute;
+	/* top: 0;
+	left: 0; */
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}

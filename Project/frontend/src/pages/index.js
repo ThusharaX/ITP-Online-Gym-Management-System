@@ -7,13 +7,15 @@ import Dashboard from "./dashboard";
 import Notice from "./notice";
 import Feedback from "./feedback";
 
-import PersonalTrainerRequest from "./personalTrainerRequest";
+//import PersonalTrainerRequest from "./personalTrainerRequest";
 import BlogCreateRequest from "./blogCreateRequest";
 import Blog from "./blog";
 import Write from "./write";
 import TrainerPackages from "./trainerPackages";
 //import { Blogs, BlogUpdate } from "./blogCreate";
 import BD from "./blogCreate";
+import Request from "./personalTrainerRequest";
+import RList from "./personalTrainerRequestList";
 
 import { Salary } from "./salary";
 import Workout from "./workout";
@@ -28,7 +30,7 @@ export {
 	Home,
 	WorkoutProgram,
 	Dashboard,
-	PersonalTrainerRequest,
+	//PersonalTrainerRequest,
 	Events,
 	Eventlist,
 	TrainerDashboard,
@@ -41,6 +43,7 @@ export {
 	// BlogUpdate,
 	BlogCreateRequest,
 	TrainerPackages,
+	Request,
 	Salary,
 	Notice,
 	WorkoutScR,
@@ -53,4 +56,5 @@ export {
 	WorkoutScRList,
 	TrainerProfile,
 	BD,
+	RList,
 };

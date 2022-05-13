@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Button, TextInput, Group, Box } from "@mantine/core";
+import { showNotification, updateNotification } from "@mantine/notifications";
+import { CheckIcon } from "@modulz/radix-icons";
 
 import BlogContext from "../../contexts/BlogContext";
 
@@ -24,7 +26,7 @@ const AddBlog = () => {
 					<TextInput required name="saturday" label="Saturday" {...form.getInputProps("saturday")} />
 					<TextInput required name="sunday" label="Sunday" {...form.getInputProps("sunday")} />
 
-					<Group position="right" mt="md">
+					{/* <Group position="right" mt="md">
 						<Button
 							onClick={() => {
 								setOpened(false);
@@ -32,6 +34,39 @@ const AddBlog = () => {
 							type="submit"
 						>
 							Create
+						</Button>
+					</Group> */}
+
+					<br />
+
+					<Group position="center">
+						<Button
+							variant="outline"
+							type="submit"
+							onClick={() => {
+								setOpened(false);
+								showNotification({
+									id: "load-data",
+									loading: true,
+									title: "Loading your data",
+									message: "Data will be loaded in 3 seconds, you cannot close this yet",
+									autoClose: false,
+									disallowClose: true,
+								});
+
+								setTimeout(() => {
+									updateNotification({
+										id: "load-data",
+										color: "teal",
+										title: "Data was successfully added!!!",
+										message: "Notification will close in 2 seconds, you can close this notification now",
+										icon: <CheckIcon />,
+										autoClose: 2000,
+									});
+								}, 3000);
+							}}
+						>
+							Create New Blog
 						</Button>
 					</Group>
 				</form>
