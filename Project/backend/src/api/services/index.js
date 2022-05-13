@@ -35,7 +35,13 @@ import {
 	unenrollUserFromWorkoutProgram,
 } from "./User.service";
 
-import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
+import {
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
+	getOneWorkoutScR,
+} from "./WorkoutScR.service";
 
 import {
 	insertWorkout,
@@ -76,6 +82,7 @@ export default {
 	updateWorkoutScR,
 	deleteWorkoutScR,
 	getAllWorkoutScR,
+	getOneWorkoutScR,
 
 	//question services
 	insertQuestion,
