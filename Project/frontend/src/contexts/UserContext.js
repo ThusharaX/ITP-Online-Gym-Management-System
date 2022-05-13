@@ -8,6 +8,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [message, setMessage] = useState(null);
 
 	const form = useForm({
 		initialValues: {
@@ -33,8 +34,7 @@ export function UserProvider({ children }) {
 				setIsLoading(false);
 			})
 			.catch((err) => {
-				// eslint-disable-next-line no-console
-				console.log(err);
+				setMessage(err.response.data.details.message);
 				setIsLoading(false);
 			});
 	};
@@ -47,7 +47,11 @@ export function UserProvider({ children }) {
 		window.location.href = "/";
 	};
 
-	return <UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading }}>{children}</UserContext.Provider>;
+	return (
+		<UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading, message }}>
+			{children}
+		</UserContext.Provider>
+	);
 }
 
 export default UserContext;
