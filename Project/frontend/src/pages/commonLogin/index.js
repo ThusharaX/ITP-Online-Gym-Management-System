@@ -29,7 +29,7 @@ const CommonLogin = () => {
 			</Button>
 			<br />
 			<Button variant="gradient" gradient={{ from: "teal", to: "blue", deg: 60 }}>
-				<Link style={{ textDecoration: "none", color: "#fff" }} to="/members/login">
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/member/login">
 					Member Login
 				</Link>
 			</Button>
