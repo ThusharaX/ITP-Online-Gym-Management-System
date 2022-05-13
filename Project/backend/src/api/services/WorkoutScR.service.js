@@ -54,3 +54,18 @@ export const getAllWorkoutScR = async () => {
 			throw new Error(error.message);
 		});
 };
+
+// Get one workout Program
+export const getOneWorkoutScR = async (workoutScRId) => {
+	return await WorkoutScRModel.findById(workoutScRId)
+		.then((workoutScR) => {
+			if (workoutScR) {
+				return workoutScR;
+			} else {
+				throw new Error("Workout Schedule Request not found");
+			}
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
