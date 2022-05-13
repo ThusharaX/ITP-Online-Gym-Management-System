@@ -38,6 +38,7 @@ import {
 	Feedback,
 	Request,
 	RList,
+	SampleReport,
 } from "../pages";
 
 // Error pages
@@ -73,6 +74,7 @@ const AppRoutes = () => {
 				<Routes>
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
+					<Route exact path="/sample-report" element={<SampleReport />} />
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/salary" element={<Salary />} />
 					<Route exact path="/question" element={<Question />} />

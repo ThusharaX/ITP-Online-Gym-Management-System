@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 // Page components
 import SampleList from "./SampleList";
@@ -11,6 +13,12 @@ const Sample = () => {
 	return (
 		<div>
 			<h1>Sample Page</h1>
+
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/sample-report">
+					Sample Report
+				</Link>
+			</Button>
 
 			<SampleProvider>
 				{/* Sample list */}
