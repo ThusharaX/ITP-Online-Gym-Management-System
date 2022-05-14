@@ -12,11 +12,14 @@ const SampleContext = createContext();
 
 export function SampleProvider({ children }) {
 	const [samples, setSamples] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	// Get all samples
 	useEffect(() => {
+		setIsLoading(true);
 		SampleAPI.getSampleData().then((response) => {
 			setSamples(response.data);
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -30,6 +33,7 @@ export function SampleProvider({ children }) {
 
 	// Add new sample
 	const addSample = (values) => {
+		setIsLoading(true);
 		const newSample = {
 			title: values.title,
 			content: values.content,
@@ -37,6 +41,7 @@ export function SampleProvider({ children }) {
 		SampleAPI.addSample(newSample).then((response) => {
 			setSamples([...samples, response.data]);
 			form.reset();
+			setIsLoading(false);
 		});
 	};
 
@@ -66,7 +71,9 @@ export function SampleProvider({ children }) {
 		});
 
 	return (
-		<SampleContext.Provider value={{ samples, confirmDelete, addSample, form }}>{children}</SampleContext.Provider>
+		<SampleContext.Provider value={{ samples, confirmDelete, addSample, form, isLoading }}>
+			{children}
+		</SampleContext.Provider>
 	);
 }
 

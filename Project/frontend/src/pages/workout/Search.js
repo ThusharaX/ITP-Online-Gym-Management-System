@@ -30,7 +30,7 @@ function Search() {
 	return (
 		<Box sx={{ maxWidth: 300 }} mx="auto">
 			<form onSubmit={form.onSubmit((values) => handleSearch(values))}>
-				<TextInput required label="Search" placeholder="Yoga" {...form.getInputProps("search")} />
+				<TextInput required label="Search" placeholder="Bench Press" {...form.getInputProps("search")} />
 
 				<Group position="right" mt="md">
 					<Button type="submit">Search</Button>
