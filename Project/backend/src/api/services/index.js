@@ -33,11 +33,18 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
 } from "./User.service";
 
-import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
+// import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
-import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
+import {
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
+	getOneWorkoutScR,
+} from "./WorkoutScR.service";
 
 import {
 	insertWorkout,
@@ -78,6 +85,7 @@ export default {
 	updateWorkoutScR,
 	deleteWorkoutScR,
 	getAllWorkoutScR,
+	getOneWorkoutScR,
 
 	//question services
 	insertQuestion,
@@ -104,6 +112,7 @@ export default {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
 
 	// Workout services
 	insertWorkout,

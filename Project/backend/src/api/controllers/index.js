@@ -41,7 +41,13 @@ import {
 	unenrollUserFromWorkoutProgram,
 } from "./User.Controller";
 
-import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.Controller";
+import {
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
+	getOneWorkoutScR,
+} from "./WorkoutScR.Controller";
 
 import {
 	insertWorkout,
@@ -86,6 +92,7 @@ export default {
 	updateWorkoutScR,
 	deleteWorkoutScR,
 	getAllWorkoutScR,
+	getOneWorkoutScR,
 
 	//Blog Controllers
 	insertTrainerBD,

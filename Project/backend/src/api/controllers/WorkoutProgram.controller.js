@@ -1,10 +1,24 @@
 import WorkoutProgramService from "../services";
+import sendMail from "../../util/sendMail";
 
 // Insert one Workout Program
 export const insertWorkoutProgram = async (request, response, next) => {
+	// Get all memebers email list
+	const emailList = await WorkoutProgramService.getMembersEmailList();
+
 	await WorkoutProgramService.insertWorkoutProgram(request.body)
 		.then((data) => {
 			request.handleResponse.successRespond(response)(data);
+			sendMail({
+				email: emailList,
+				subject: "New Workout Program Added",
+				html: `
+					<h1>${data.name}</h1>
+					<img src="${data.photoURL}" alt="${data.name}">
+					<p>${data.description}</p>
+				`,
+			});
+
 			next();
 		})
 		.catch((error) => {

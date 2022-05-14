@@ -23,6 +23,9 @@ import CommonLogin from "./commonLogin";
 import WorkoutScR from "./workoutScR";
 import WorkoutScRList from "./workoutScRList";
 
+import SampleReport from "./sample-report";
+import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
+
 export {
 	Sample,
 	Home,
@@ -53,4 +56,8 @@ export {
 	WorkoutScRList,
 	TrainerProfile,
 	BD,
+	SampleReport,
+	MemberLogin,
+	MemberDashboard,
+	MemberProfile,
 };

@@ -36,6 +36,10 @@ import {
 	BlogCreate,
 	BD,
 	Feedback,
+	SampleReport,
+	MemberLogin,
+	MemberDashboard,
+	MemberProfile,
 } from "../pages";
 
 // Error pages
@@ -71,6 +75,7 @@ const AppRoutes = () => {
 				<Routes>
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
+					<Route exact path="/sample-report" element={<SampleReport />} />
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/salary" element={<Salary />} />
 					<Route exact path="/question" element={<Question />} />
@@ -115,7 +120,17 @@ const AppRoutes = () => {
 						<Route exact path="/admin/login" element={<AdminLogin />} />
 					</Route>
 
+					<Route exact path="/member/login" element={<CheckLoginStatus />}>
+						<Route exact path="/member/login" element={<MemberLogin />} />
+					</Route>
+
 					<Route exact path="/feedback" element={<Feedback />} />
+
+					{/* Member Routes */}
+					<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
+						<Route exact path="/member" element={<MemberDashboard />} />
+						<Route exact path="/member/profile" element={<MemberProfile />} />
+					</Route>
 
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>

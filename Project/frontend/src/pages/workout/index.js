@@ -16,7 +16,7 @@ const Workout = () => {
 			<h1 style={{ textAlign: "center" }}>Workouts</h1>
 
 			<WorkoutProvider>
-				{/* <Search /> */}
+				<Search />
 
 				<AddWorkoutModal />
 

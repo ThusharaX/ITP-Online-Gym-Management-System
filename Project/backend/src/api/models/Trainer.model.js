@@ -97,6 +97,6 @@ TrainersSchema.methods.matchPassword = async function (enteredPassword) {
 	return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const Trainer = mongoose.model("Trainer", TrainersSchema);
+// const Trainer = mongoose.model("Trainer", TrainersSchema);
 
 module.exports = mongoose.model("trainers", TrainersSchema);
