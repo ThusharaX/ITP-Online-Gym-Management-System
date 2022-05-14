@@ -11,19 +11,25 @@ import { SalaryProvider } from "../../contexts/SalaryContext";
 
 const Salary = () => {
 	return (
-		<>
+		<div>
 			<div className="salary-form-container">
 				<h1>Salary</h1>
-
+			</div>
+			<div className="salary-form-container">
 				<SalaryProvider>
-					{/* Add new Sample */}
-					<Search />
+					{/* Add new Salary */}
 					<AddSalary />
+				</SalaryProvider>
+			</div>
+			<div className="salary-form-container">
+				<SalaryProvider>
+					{/* Search salary */}
+					<Search />
 					{/* Get all Salaries */}
 					<SalaryTableScrollArea />
 				</SalaryProvider>
 			</div>
-		</>
+		</div>
 	);
 };
 
