@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Text, Badge, Button, Group, useMantineTheme, Table } from "@mantine/core";
+import { Edit, Trash } from "tabler-icons-react";
 
 import WorkoutScRContext from "../../contexts/WorkoutScRContext";
 
 function WorkoutScRList() {
-	const { WorkoutScR } = useContext(WorkoutScRContext);
+	const { WorkoutScR, confirmDelete } = useContext(WorkoutScRContext);
 
 	const theme = useMantineTheme();
 
@@ -23,7 +24,9 @@ function WorkoutScRList() {
 			</td>
 			<td>
 				{" "}
-				<button>Delete</button>
+				<Button onClick={() => confirmDelete(element._id)} color="red" compact leftIcon={<Trash size={16} />}>
+					Delete
+				</Button>
 			</td>
 		</tr>
 	));
@@ -33,7 +36,7 @@ function WorkoutScRList() {
 			<Table>
 				<thead>
 					<tr>
-						<th>Name</th>
+						<th>Member Name</th>
 						<th>Age</th>
 						<th>Gender</th>
 						<th>Email Address</th>
