@@ -1,5 +1,5 @@
 import React from "react";
-import Joi from "joi";
+import { NotificationsProvider } from "@mantine/notifications";
 // Page components
 import EventList from "./eventCard";
 import ReactCard from "./ReactCard";
@@ -18,7 +18,9 @@ const Eventlist = () => {
 const Events = () => {
 	return (
 		<EventProvider>
-			<ReactCard />
+			<NotificationsProvider>
+				<ReactCard />
+			</NotificationsProvider>
 		</EventProvider>
 	);
 };

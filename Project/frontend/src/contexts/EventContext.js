@@ -10,13 +10,17 @@ import { useModals } from "@mantine/modals";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/events`;
 const EventContext = createContext();
 
+import ReactCard from "../pages/events/ReactCard";
+
 export function EventProvider({ children }) {
 	const [events, setEvents] = useState([]);
+	const [reactStatus, setReactStatus] = useState(0);
 
 	// Get all events
 	useEffect(() => {
 		axios.get(baseURL).then((res) => {
 			setEvents(res.data);
+			// eslint-disable-next-line no-console
 		});
 	}, []);
 
@@ -45,6 +49,39 @@ export function EventProvider({ children }) {
 		},
 	});
 
+	//Respond, If-You-Want
+	const RSVW = (value, eid) => {
+		let userid = "123456789812345678981238";
+		//
+		let s = events.filter((event) => event._id === eid);
+		let s1 = s[0].users.filter((user) => user.uid == userid);
+		let s2 = [];
+		//check if user is already RSVD
+		if (s1.length > 0) {
+			s2 = s[0].users.map((user) => {
+				if (user.uid === userid) {
+					user.status = value;
+				}
+				return user;
+			});
+		} else {
+			s2.push(...s[0].users);
+			s2.push({ uid: userid, status: value });
+		}
+		//update event with new RSVD status
+		axios.put(`${baseURL}/${eid}`, { users: s2 }).then((res) => {
+			axios
+				.get(baseURL)
+				.then((res) => {
+					setEvents(res.data);
+				})
+				.then(() => {
+					setReactStatus(res.status);
+					return 201;
+				});
+		});
+	};
+
 	// Add new event
 	const addEvent = (values) => {
 		let newDate = String(values.date).slice(0, 15) + String(values.time).slice(15);
@@ -56,6 +93,7 @@ export function EventProvider({ children }) {
 			date: newDate,
 			tags: String(values.tags).split(","),
 			trainer: "123456789812345678981234",
+			users: [],
 		};
 		axios.post(baseURL, newEvent).then((res) => {
 			setEvents([...events, res.data]);
@@ -109,7 +147,20 @@ export function EventProvider({ children }) {
 		});
 
 	return (
-		<EventContext.Provider value={{ setEvents, events, confirmDelete, updateEvent, addEvent, form, schema }}>
+		<EventContext.Provider
+			value={{
+				setReactStatus,
+				reactStatus,
+				setEvents,
+				events,
+				confirmDelete,
+				updateEvent,
+				addEvent,
+				RSVW,
+				form,
+				schema,
+			}}
+		>
 			{children}
 		</EventContext.Provider>
 	);

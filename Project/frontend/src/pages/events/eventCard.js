@@ -22,6 +22,7 @@ const EventList = () => {
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
 				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				filter: blur("8px"),
 				minHeight: "100vh",
 			})}
 			style={{
@@ -29,7 +30,7 @@ const EventList = () => {
 
 				border: "1px solid #ccc",
 				borderRadius: "5px",
-				width: "100%",
+				width: "99.99%",
 				height: "100%",
 				marginTop: "-110px",
 				marginBottom: "-120px",
