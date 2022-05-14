@@ -39,10 +39,24 @@ export const deleteWorkoutScR = async (request, response, next) => {
 		});
 };
 
-// Get Workout schedule Request
+// Get all Workout schedule Request
 export const getAllWorkoutScR = async (request, response, next) => {
 	await WorkoutScRService.getAllWorkoutScR()
 		.then(async (data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
+
+// Get one workout Schedule Request
+
+export const getOneWorkoutScR = async (request, response, next) => {
+	await WorkoutScRService.getOneWorkoutScR(request.params.id)
+		.then((data) => {
 			request.handleResponse.successRespond(response)(data);
 			next();
 		})

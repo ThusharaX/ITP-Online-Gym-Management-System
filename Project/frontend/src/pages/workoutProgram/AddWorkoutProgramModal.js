@@ -16,7 +16,9 @@ function AddWorkoutModal() {
 			</Modal>
 
 			<Group position="right" style={{ marginRight: "1rem", marginBottom: "1rem" }}>
-				<Button onClick={() => setOpened(true)}>Add Workout Program</Button>
+				{localStorage.getItem("permissionLevel") === "ADMIN" && (
+					<Button onClick={() => setOpened(true)}>Add Workout Program</Button>
+				)}
 			</Group>
 		</>
 	);

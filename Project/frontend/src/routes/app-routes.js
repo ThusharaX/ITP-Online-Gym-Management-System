@@ -39,6 +39,9 @@ import {
 	Request,
 	RList,
 	SampleReport,
+	MemberLogin,
+	MemberDashboard,
+	MemberProfile,
 } from "../pages";
 
 // Error pages
@@ -121,7 +124,17 @@ const AppRoutes = () => {
 						<Route exact path="/admin/login" element={<AdminLogin />} />
 					</Route>
 
+					<Route exact path="/member/login" element={<CheckLoginStatus />}>
+						<Route exact path="/member/login" element={<MemberLogin />} />
+					</Route>
+
 					<Route exact path="/feedback" element={<Feedback />} />
+
+					{/* Member Routes */}
+					<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
+						<Route exact path="/member" element={<MemberDashboard />} />
+						<Route exact path="/member/profile" element={<MemberProfile />} />
+					</Route>
 
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
