@@ -3,7 +3,7 @@ import React from "react";
 // Page components
 import AddSalary from "./AddSalary";
 import SalaryTableScrollArea from "./SalaryList";
-//import Search from "./Search";
+import Search from "./Search";
 import "./index.css";
 
 // SalaryProvider
@@ -17,18 +17,8 @@ const Salary = () => {
 
 				<SalaryProvider>
 					{/* Add new Sample */}
+					<Search />
 					<AddSalary />
-				</SalaryProvider>
-			</div>
-			{/*<div>*/}
-			{/*<SalaryProvider>*/}
-			{/* Get all Salaries */}
-			{/*<Search />*/}
-			{/*</SalaryProvider>*/}
-			{/*</div>*/}
-
-			<div>
-				<SalaryProvider>
 					{/* Get all Salaries */}
 					<SalaryTableScrollArea />
 				</SalaryProvider>
