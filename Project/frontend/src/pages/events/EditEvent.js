@@ -3,6 +3,7 @@ import { Modal, Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Titl
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import { ArrowAutofitUp } from "tabler-icons-react";
+import { showNotification } from "@mantine/notifications";
 import App from "./FileUpload";
 // import { DropzoneButton } from "./Dropzone";
 import Joi from "joi";
@@ -10,7 +11,27 @@ import { useForm, joiResolver } from "@mantine/form";
 
 const EditEvent = ({ event }) => {
 	const [opened, setOpened] = useState(false);
-	const { updateEvent } = useContext(EventContext);
+	const { updateEvent, eventStatus, setEventStatus } = useContext(EventContext);
+
+	const notify = () => {
+		setTimeout(() => {
+			if (eventStatus < 100) {
+				notify();
+			} else {
+				if (eventStatus == 201) {
+					showNotification({
+						title: "Event Updated Successfully",
+					});
+				} else {
+					showNotification({
+						title: "Error While Updating The Event",
+						color: "red",
+					});
+				}
+				setEventStatus(0);
+			}
+		}, 200);
+	};
 
 	const schema = Joi.object({
 		id: Joi.required(),
@@ -80,6 +101,7 @@ const EditEvent = ({ event }) => {
 						<form
 							onSubmit={form1.onSubmit((values) => {
 								updateEvent(values);
+								notify();
 								form1.reset();
 								setOpened(false);
 							})}
@@ -147,9 +169,9 @@ const EditEvent = ({ event }) => {
 									required
 									{...form1.getInputProps("gender")}
 								>
-									<Radio value="Dogs" label="Only for Dogs" />
-									<Radio value="Cats" label="Only for Cats" />
-									<Radio value="Both" label="Both" />
+									<Radio value="Boys" label="Only for Boys" />
+									<Radio value="Girls" label="Only for Girls" />
+									<Radio value="Both" label="Both Can Join" />
 								</RadioGroup>
 							</Group>
 							<TextInput
@@ -166,7 +188,16 @@ const EditEvent = ({ event }) => {
 								<Button color={"blue[4]"} type="submit" radius="4px" size="xl" compact>
 									Submit
 								</Button>
-								<Button onClick={() => setOpened(false)} color={"red"} type="button" radius="4px" size="xl" compact>
+								<Button
+									onClick={() => {
+										setOpened(false);
+									}}
+									color={"red"}
+									type="button"
+									radius="4px"
+									size="xl"
+									compact
+								>
 									Cancel
 								</Button>
 							</Group>

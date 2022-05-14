@@ -5,9 +5,10 @@ import Search from "./search";
 import { Divider, Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
 import EditEvent from "./EditEvent";
 import AddEvent from "./AddEvent";
+import { showNotification } from "@mantine/notifications";
 
 const EventList = () => {
-	const { events, confirmDelete } = useContext(EventContext);
+	const { events, confirmDelete, eventStatus, setEventStatus } = useContext(EventContext);
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -16,6 +17,26 @@ const EventList = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.7)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const bg = theme.colorScheme === "dark" ? "#222" : "#ddd";
+
+	const notify = () => {
+		setTimeout(() => {
+			if (eventStatus < 100) {
+				notify();
+			} else {
+				if (eventStatus == 201) {
+					showNotification({
+						title: "Event RSVP Successfully",
+					});
+				} else {
+					showNotification({
+						title: "Error While RSVP Event",
+						color: "red",
+					});
+				}
+				setEventStatus(0);
+			}
+		}, 200);
+	};
 
 	return (
 		<Box
@@ -123,7 +144,10 @@ const EventList = () => {
 								<Button
 									leftIcon={<Trash size={18} />}
 									size="md"
-									onClick={() => confirmDelete(item._id)}
+									onClick={() => {
+										confirmDelete(item._id);
+										notify();
+									}}
 									compact
 									color="red"
 								>

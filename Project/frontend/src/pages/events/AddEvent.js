@@ -12,6 +12,7 @@ import {
 	Divider,
 	useMantineTheme,
 } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import App from "./FileUpload";
@@ -20,10 +21,31 @@ import App from "./FileUpload";
 
 const AddEvent = () => {
 	const theme = useMantineTheme();
-	const { addEvent, form } = useContext(EventContext);
+	const { addEvent, form, eventStatus, setEventStatus } = useContext(EventContext);
 	const [opened, setOpened] = useState(false);
 	const [value, onChange] = useState(new Date());
 	const [value1, onChange1] = useState(new Date());
+
+	const notify = () => {
+		setTimeout(() => {
+			if (eventStatus < 100) {
+				notify();
+			} else {
+				if (eventStatus == 201) {
+					showNotification({
+						title: "Event RSVP Successfully",
+					});
+				} else {
+					showNotification({
+						title: "Error While RSVP Event",
+						color: "red",
+					});
+				}
+				setEventStatus(0);
+			}
+		}, 200);
+	};
+
 	return (
 		<>
 			<Modal
@@ -62,6 +84,7 @@ const AddEvent = () => {
 
 					<form
 						onSubmit={form.onSubmit((values) => {
+							notify();
 							addEvent(values);
 							form.reset();
 							setOpened(false);
@@ -128,9 +151,9 @@ const AddEvent = () => {
 								required
 								{...form.getInputProps("gender")}
 							>
-								<Radio value="Dogs" label="Only for Dogs" />
-								<Radio value="Cats" label="Only for Cats" />
-								<Radio value="Both" label="Both" />
+								<Radio value="Boys" label="Only for Boys" />
+								<Radio value="Girls" label="Only for Girls" />
+								<Radio value="Both" label="Both Can Join" />
 							</RadioGroup>
 						</Group>
 						<TextInput
@@ -156,7 +179,14 @@ const AddEvent = () => {
 				</Box>
 			</Modal>
 			<Group position="center">
-				<Button size="md" color={"cyan"} onClick={() => setOpened(true)}>
+				<Button
+					size="md"
+					color={"cyan"}
+					onClick={() => {
+						setOpened(true);
+						notify();
+					}}
+				>
 					Add Event
 				</Button>
 			</Group>

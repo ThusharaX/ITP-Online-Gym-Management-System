@@ -10,7 +10,9 @@ import { EventProvider } from "../../contexts/EventContext";
 const Eventlist = () => {
 	return (
 		<EventProvider>
-			<EventList />
+			<NotificationsProvider>
+				<EventList />
+			</NotificationsProvider>
 		</EventProvider>
 	);
 };

@@ -15,6 +15,7 @@ import ReactCard from "../pages/events/ReactCard";
 export function EventProvider({ children }) {
 	const [events, setEvents] = useState([]);
 	const [reactStatus, setReactStatus] = useState(0);
+	const [eventStatus, setEventStatus] = useState(0);
 
 	// Get all events
 	useEffect(() => {
@@ -52,24 +53,25 @@ export function EventProvider({ children }) {
 	//Respond, If-You-Want
 	const RSVW = (value, eid) => {
 		let userid = "123456789812345678981238";
-		//
-		let s = events.filter((event) => event._id === eid);
-		let s1 = s[0].users.filter((user) => user.uid == userid);
-		let s2 = [];
+		//get specific react for current user.
+		let event = events.filter((event) => event._id === eid);
+
+		let reacts = event[0].users.filter((user) => user.uid == userid);
+		let reactArr = [];
 		//check if user is already RSVD
-		if (s1.length > 0) {
-			s2 = s[0].users.map((user) => {
+		if (reacts.length > 0) {
+			reactArr = event[0].users.map((user) => {
 				if (user.uid === userid) {
 					user.status = value;
 				}
 				return user;
 			});
 		} else {
-			s2.push(...s[0].users);
-			s2.push({ uid: userid, status: value });
+			reactArr.push(...event[0].users);
+			reactArr.push({ uid: userid, status: value });
 		}
 		//update event with new RSVD status
-		axios.put(`${baseURL}/${eid}`, { users: s2 }).then((res) => {
+		axios.put(`${baseURL}/${eid}`, { users: reactArr }).then((res) => {
 			axios
 				.get(baseURL)
 				.then((res) => {
@@ -77,7 +79,6 @@ export function EventProvider({ children }) {
 				})
 				.then(() => {
 					setReactStatus(res.status);
-					return 201;
 				});
 		});
 	};
@@ -96,6 +97,7 @@ export function EventProvider({ children }) {
 			users: [],
 		};
 		axios.post(baseURL, newEvent).then((res) => {
+			setEventStatus(res.status);
 			setEvents([...events, res.data]);
 			form.reset();
 		});
@@ -113,9 +115,14 @@ export function EventProvider({ children }) {
 			trainer: "123456789812345678981234",
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
-			axios.get(baseURL).then((res) => {
-				setEvents(res.data);
-			});
+			axios
+				.get(baseURL)
+				.then((res) => {
+					setEvents(res.data);
+				})
+				.then(() => {
+					setEventStatus(res.status);
+				});
 		});
 	};
 
@@ -123,6 +130,7 @@ export function EventProvider({ children }) {
 	const deleteEvent = (id) => {
 		axios.delete(`${baseURL}/${id}/`).then((res) => {
 			setEvents(events.filter((event) => event._id !== id));
+			setEventStatus(res.status);
 		});
 	};
 
@@ -149,6 +157,8 @@ export function EventProvider({ children }) {
 	return (
 		<EventContext.Provider
 			value={{
+				eventStatus,
+				setEventStatus,
 				setReactStatus,
 				reactStatus,
 				setEvents,
