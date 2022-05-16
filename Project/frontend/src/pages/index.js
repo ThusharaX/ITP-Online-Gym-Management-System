@@ -25,6 +25,7 @@ import WorkoutScRList from "./workoutScRList";
 
 import SampleReport from "./sample-report";
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
+import { EmployeeLogin, EmployeeDashboard, EmployeeProfile } from "./employee";
 
 export {
 	Sample,
@@ -60,4 +61,7 @@ export {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	EmployeeLogin,
+	EmployeeDashboard,
+	EmployeeProfile,
 };

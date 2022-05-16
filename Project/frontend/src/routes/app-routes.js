@@ -40,6 +40,9 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	EmployeeLogin,
+	EmployeeDashboard,
+	EmployeeProfile,
 } from "../pages";
 
 // Error pages
@@ -124,12 +127,22 @@ const AppRoutes = () => {
 						<Route exact path="/member/login" element={<MemberLogin />} />
 					</Route>
 
+					<Route exact path="/employee/login" element={<CheckLoginStatus />}>
+						<Route exact path="/employee/login" element={<EmployeeLogin />} />
+					</Route>
+
 					<Route exact path="/feedback" element={<Feedback />} />
 
 					{/* Member Routes */}
 					<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
 						<Route exact path="/member" element={<MemberDashboard />} />
 						<Route exact path="/member/profile" element={<MemberProfile />} />
+					</Route>
+
+					{/* Employee Routes */}
+					<Route exact path="/employee" element={<PrivateRoute permissionLevel="EMPLOYEE" />}>
+						<Route exact path="/employee" element={<EmployeeDashboard />} />
+						<Route exact path="/employee/profile" element={<EmployeeProfile />} />
 					</Route>
 
 					{/* Admin Routes */}
