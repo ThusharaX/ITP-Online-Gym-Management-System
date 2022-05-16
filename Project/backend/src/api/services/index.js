@@ -36,8 +36,6 @@ import {
 	getMembersEmailList,
 } from "./User.service";
 
-// import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
-
 import {
 	insertWorkoutScR,
 	updateWorkoutScR,
@@ -61,6 +59,8 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
+
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
@@ -148,4 +148,11 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+
+	// Trainer services
+	getTrainer,
+	updateTrainers,
+	deleteTrainers,
+	getTrainers,
+	createTrainers,
 };

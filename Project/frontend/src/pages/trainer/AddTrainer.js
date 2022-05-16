@@ -28,7 +28,7 @@ const AddTrainer = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { addTrainer, form } = useContext(TrainerContext);
+	const { addTrainer, form, isLoading } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
 
 	return (
@@ -79,7 +79,12 @@ const AddTrainer = () => {
 				</Text>
 
 				<Divider my="sm" size={"md"} />
-				<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
+				<form
+					onSubmit={form.onSubmit((values) => {
+						addTrainer(values);
+						isLoading(true);
+					})}
+				>
 					<Group position="center" style={{ marginTop: "20px" }}>
 						<TextInput
 							size="md"

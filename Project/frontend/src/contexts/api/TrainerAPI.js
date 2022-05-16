@@ -13,16 +13,15 @@ class TrainerAPI {
 		return axios.post(`${BASE_URL}/trainer/register/`, values, requestConfigJson);
 	}
 
-	static getTrainerData() {
-		return axios.get(`${BASE_URL}/trainers/`, requestConfig);
-	}
-
-	static addTrainer(newTrainer) {
-		return axios.post(`${BASE_URL}/trainers/`, newTrainer, requestConfigJson);
+	static getTrainerData(id) {
+		return axios.get(`${BASE_URL}/trainer/${id}`, requestConfig);
 	}
 
 	static deleteTrainer(id) {
-		return axios.delete(`${BASE_URL}/trainers/${id}`, requestConfig);
+		return axios.delete(`${BASE_URL}/trainer/${id}`, requestConfig);
+	}
+	static updateTrainer(id) {
+		return axios.put(`${BASE_URL}/trainers/${id}`, requestConfig);
 	}
 }
 

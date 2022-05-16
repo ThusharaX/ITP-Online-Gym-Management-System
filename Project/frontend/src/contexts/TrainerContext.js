@@ -14,6 +14,7 @@ export function TrainerProvider({ children }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [trainers, setTrainers] = useState([]);
+	const [trainer, setTrainer] = useState({});
 
 	const schema = Joi.object({
 		firstName: Joi.string().min(5).max(20).message("First Name should be between 4 and 20 characters"),
@@ -34,54 +35,6 @@ export function TrainerProvider({ children }) {
 			.message("Password should be valid"),
 		rep_psw: Joi.ref("psw"),
 	});
-
-	let trainer = [
-		{
-			id: 1,
-			pUrl: "https://images3.alphacoders.com/607/thumbbig-607635.webp",
-			firstName: "Jane",
-			lastName: "Fingerlicker",
-			userName: "kiiii",
-			nic: "89612490852",
-			dob: "2012-04-23",
-			gender: "Male",
-			email: "jfingerlickerk@gmail.com",
-			address: "address1Malabbe",
-			phoneNumber: "078545652675",
-			Qualifications: ["css", "javascript", "mongoose", "node"],
-			password: "psw112345",
-		},
-		{
-			id: 2,
-			pUrl: "https://images2.alphacoders.com/608/thumbbig-608713.webp",
-			firstName: "Jill",
-			lastName: "Jailbreaker",
-			userName: "kiiii",
-			nic: "89612490852",
-			dob: "2012-04-23",
-			gender: "Male",
-			email: "jjbreaker@gmail.com",
-			address: "address1Malabbe",
-			phoneNumber: "078545652675",
-			Qualifications: ["css", "javascript", "mongoose", "node"],
-			password: "psw112345",
-		},
-		{
-			id: 3,
-			pUrl: "https://images7.alphacoders.com/800/thumbbig-800681.webp",
-			firstName: "Bill",
-			lastName: "Headbanger",
-			userName: "kiiii",
-			nic: "89612490852",
-			dob: "2012-04-23",
-			gender: "Male",
-			email: "ddagjssdk@gmail.com",
-			address: "address1Malabbe",
-			phoneNumber: "078545652675",
-			Qualifications: ["css", "javascript", "mongoose", "node"],
-			password: "psw112345",
-		},
-	];
 
 	// Get all trainers
 	// useEffect(() => {
@@ -114,6 +67,13 @@ export function TrainerProvider({ children }) {
 		},
 	});
 
+	const getTrainer = (id) => {
+		TrainerAPI.getTrainerData(id).then((res) => {
+			setIsLoading(false);
+			return res.data;
+		});
+	};
+
 	// Add new trainer
 	const addTrainer = (values) => {
 		setIsLoading(true);
@@ -138,6 +98,8 @@ export function TrainerProvider({ children }) {
 	};
 
 	const updateTrainer = (values) => {
+		//eslint-disable-next-line no-console
+		console.log("puka");
 		const newTrainer = {
 			firstName: values.firstName,
 			lastName: values.lastName,
@@ -148,14 +110,23 @@ export function TrainerProvider({ children }) {
 			gender: values.gender,
 			address: values.address,
 			phoneNumber: values.phoneNumber,
+			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
 		};
-		// axios.post(baseURL, newTrainer).then((res) => {
-		// 	setTrainers([...trainers, res.data]);
+
+		//eslint-disable-next-line no-console
+		console.log(newTrainer);
+		isLoading(false);
+		// TrainerAPI.updateTrainer(newTrainer).then((response) => {
+		// 	// eslint-disable-next-line no-console
+		// 	console.log(response);
+		// 	setIsLoading(false);
 		// 	form.reset();
 		// });
-		setTrainers([...trainers, res.data]);
-		// form.reset();
+
+		// axios.post(baseURL, newTrainer).then((res) => {
+		// 	setTrainers([...trainers, res.data]);
+		// });
 	};
 
 	// Delete trainer and update UI
@@ -219,7 +190,20 @@ export function TrainerProvider({ children }) {
 	};
 
 	return (
-		<TrainerContext.Provider value={{ trainers, confirmDelete, addTrainer, updateTrainer, form, lform, login }}>
+		<TrainerContext.Provider
+			value={{
+				getTrainer,
+				trainers,
+				confirmDelete,
+				addTrainer,
+				updateTrainer,
+				form,
+				lform,
+				login,
+				trainer,
+				setTrainer,
+			}}
+		>
 			{children}
 		</TrainerContext.Provider>
 	);

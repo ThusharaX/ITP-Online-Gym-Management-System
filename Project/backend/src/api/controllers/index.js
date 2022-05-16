@@ -157,8 +157,8 @@ export default {
 	createTrainer,
 	updateTrainers,
 	deleteTrainers,
-	//Feedback Controllers
 
+	//Feedback Controllers
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,

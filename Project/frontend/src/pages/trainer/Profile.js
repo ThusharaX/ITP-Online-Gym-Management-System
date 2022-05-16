@@ -32,7 +32,9 @@ const AddTrainer = () => {
 	const navigate = useNavigate();
 
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { addTrainer, form } = useContext(TrainerContext);
+	const { updateTrainer, form, trainer, setTrainer, getTrainer } = useContext(TrainerContext);
+	// eslint-disable-next-line no-console
+	console.log(getTrainer("6263d11cbb23827c5af68d79"));
 	const [value, onChange] = useState(new Date());
 	const form1 = {
 		firstName: "first name",
@@ -130,7 +132,13 @@ const AddTrainer = () => {
 					</Title>
 
 					<Divider my="sm" size={"md"} />
-					<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
+					<form
+						onSubmit={form.onSubmit((values) => {
+							updateTrainer(values);
+							//eslint-disable-next-line no-console
+							console.log("puka");
+						})}
+					>
 						<Group position="center" style={{ marginTop: "20px" }}>
 							<TextInput
 								size="md"

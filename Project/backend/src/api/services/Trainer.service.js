@@ -1,21 +1,9 @@
-let trainers = require("../models/Trainer.model");
-import UserModel from "../models/User.model";
-
-const createTrainers = async (trainer) => {
-	return await UserModel.create(trainer)
-		.then(async (user) => {
-			await user.generateAuthToken();
-			return user;
-		})
-		.catch((error) => {
-			throw new Error(error.message);
-		});
-};
+import users from "../models/User.model";
 
 const getTrainers = async (search) => {
 	if (search) {
 		var xt = new RegExp(search);
-		return await trainers
+		return await users
 			.find({ title: xt })
 			.then((newTrainer) => {
 				return newTrainer;
@@ -24,7 +12,7 @@ const getTrainers = async (search) => {
 				throw new Error(error.message);
 			});
 	} else {
-		return await trainers
+		return await users
 			.find()
 			.then((updatedTrainer) => {
 				return updatedTrainer;
@@ -36,11 +24,25 @@ const getTrainers = async (search) => {
 };
 
 const getTrainer = async (id) => {
-	return await trainers
+	return await users
 		.findById(id)
-		.then((event) => {
-			if (event) {
-				return event;
+		.then((trainer) => {
+			if (trainer) {
+				let NewTrainer = {
+					_id: trainer._id,
+					firstName: trainer.firstName,
+					lastName: trainer.lastName,
+					username: trainer.username,
+					nic: trainer.nic,
+					dob: trainer.dob,
+					email: trainer.email,
+					gender: trainer.gender,
+					qualifications: trainer.qualifications,
+					phoneNumber: trainer.phoneNumber,
+					createdAt: trainer.createdAt,
+				};
+
+				return NewTrainer;
 			} else {
 				throw new Error("Trainer not found");
 			}
@@ -51,7 +53,7 @@ const getTrainer = async (id) => {
 };
 
 const updateTrainers = async (id, body) => {
-	return await trainers
+	return await users
 		.updateOne({ _id: id }, { $set: body })
 		.then((updatedTrainer) => {
 			if (updatedTrainer) {
@@ -66,7 +68,7 @@ const updateTrainers = async (id, body) => {
 };
 
 const deleteTrainers = async (id) => {
-	return await trainers
+	return await users
 		.deleteOne({ _id: id })
 		.then((removedTrainer) => {
 			if (removedTrainer) {
@@ -85,5 +87,4 @@ module.exports = {
 	updateTrainers,
 	deleteTrainers,
 	getTrainers,
-	createTrainers,
 };

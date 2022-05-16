@@ -1,4 +1,4 @@
-import { TrainerService, UserService } from "../services";
+import TrainerService, { UserService } from "../services";
 // import UserService from "../services";
 
 const joi = require("joi");
@@ -23,6 +23,8 @@ const registerValidation = (data) => {
 };
 
 const getTrainer = async (req, res, next) => {
+	// eslint-disable-next-line no-console
+	console.log(req.params.id);
 	await TrainerService.getTrainer(req.params.id)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
@@ -96,6 +98,7 @@ export const createTrainer = async (req, res, next) => {
 const updateTrainers = async (req, res, next) => {
 	await TrainerService.updateTrainers(req.params.id, req.body)
 		.then((data) => {
+			logger.info(`Updated trainer with ID ${data._id}`);
 			req.handleResponse.successRespond(res)(data);
 			next();
 		})
