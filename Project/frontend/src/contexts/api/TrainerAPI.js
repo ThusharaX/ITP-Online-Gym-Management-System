@@ -10,7 +10,7 @@ class TrainerAPI {
 	}
 
 	static register(values) {
-		return axios.post(`${BASE_URL}/user/register/`, values, requestConfigJson);
+		return axios.post(`${BASE_URL}/trainer/register/`, values, requestConfigJson);
 	}
 
 	static getTrainerData() {

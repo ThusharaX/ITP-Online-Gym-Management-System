@@ -44,6 +44,23 @@ const UserSchema = mongoose.Schema(
 				type: mongoose.Schema.Types.ObjectId,
 			},
 		],
+
+		// Required trainer fields
+		address: {
+			type: String,
+		},
+		qualifications: [
+			{
+				type: String,
+			},
+		],
+		dob: {
+			type: Date,
+		},
+		gender: {
+			type: String,
+		},
+
 		permissionLevel: {
 			type: String,
 			required: true,

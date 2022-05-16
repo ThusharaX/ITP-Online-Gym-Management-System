@@ -129,11 +129,10 @@ export function TrainerProvider({ children }) {
 			phoneNumber: values.phoneNumber,
 			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
-			permissionLevel: "TRAINER",
 		};
 		TrainerAPI.register(newTrainer).then((response) => {
 			// eslint-disable-next-line no-console
-			console.log(response);
+			// console.log(response);
 			setIsLoading(false);
 		});
 	};
