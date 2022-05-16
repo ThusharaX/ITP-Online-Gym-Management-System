@@ -63,7 +63,7 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.controller";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
@@ -141,6 +141,7 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
 	//Event Controllers
 	getEvent,

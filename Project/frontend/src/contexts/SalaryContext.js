@@ -1,13 +1,45 @@
 import { createContext, useState, useEffect } from "react";
 
 // Mantine imports
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import SalaryAPI from "./api/SalaryAPI";
+
+import Joi from "joi";
+
 const SalaryContext = createContext();
 
 export function SalaryProvider({ children }) {
+	const months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+
 	//Salaries
 	const [salaries, setSalaries] = useState([]);
+
+	// Form Validation
+	const schema = Joi.object({
+		nic: Joi.string().max(12).message("NIC should be 12 characters").required(),
+		year: Joi.number().min(1000).message("Year should be include 4 numbers").required(),
+		month: Joi.string()
+			.valid(...months)
+			.required(),
+		basicSalary: Joi.number().required(),
+		otHours: Joi.number().required(),
+		otRate: Joi.number().required(),
+		otTotal: Joi.number().required(),
+		totalSalary: Joi.number().required(),
+	});
 
 	// Salary
 	const [salary, setSalary] = useState({
@@ -30,6 +62,7 @@ export function SalaryProvider({ children }) {
 
 	// Form initial state
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			nic: "",
 			year: "",
@@ -98,6 +131,8 @@ export function SalaryProvider({ children }) {
 				editOpened,
 				opened,
 				setOpened,
+				schema,
+				months,
 			}}
 		>
 			{children}

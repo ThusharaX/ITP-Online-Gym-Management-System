@@ -25,7 +25,7 @@ import {
 	deletePersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -103,6 +103,7 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
 	// Admin services
 	authenticateUser,
