@@ -96,6 +96,7 @@ const updateTrainer = async (req, res, next) => {
 		.then((data) => {
 			logger.info(`Updated trainer with ID ${data._id}`);
 			req.handleResponse.successRespond(res)(data);
+
 			next();
 		})
 		.catch((error) => {

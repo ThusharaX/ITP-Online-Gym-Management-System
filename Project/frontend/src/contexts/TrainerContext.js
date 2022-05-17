@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useContext } from "react";
+// import requestConfig from "./config";
+// import requestConfigJson from "./configJson";
 import axios from "axios";
 import Joi from "joi";
-const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainers`;
+const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainer`;
 const TrainerContext = createContext();
 import TrainerAPI from "./api/TrainerAPI";
 
@@ -157,21 +159,12 @@ export function TrainerProvider({ children }) {
 			gender: values.gender,
 			address: values.address,
 			phoneNumber: values.phoneNumber,
-			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
 		};
-
-		// eslint-disable-next-line no-console
-		console.log(newTrainer);
-		// isLoading(false);
 		TrainerAPI.updateTrainer("6263d11cbb23827c5af68d79", newTrainer).then((res) => {
-			// setIsLoading(false);
-			// form.reset();
+			setTrainer(newTrainer);
 		});
-
-		// axios.post(baseURL, newTrainer).then((res) => {
-		// 	setTrainers([...trainers, res.data]);
-		// });
+		//setIsLoading(false);
 	};
 
 	// Delete trainer and update UI

@@ -58,6 +58,8 @@ const updateTrainers = async (id, body) => {
 		.updateOne({ _id: id }, { $set: body })
 		.then((updatedTrainer) => {
 			if (updatedTrainer) {
+				// eslint-disable-next-line no-console
+				console.log(updatedTrainer);
 				return updatedTrainer;
 			} else {
 				throw new Error("Trainer not found");

@@ -12,16 +12,6 @@ const ReactCard = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.7)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 
-	const getStatuses = (eid) => {
-		let event = events.filter((event) => event._id === eid)[0].users;
-		let user = event.filter((user) => user.uid === "123456789812345678981238")[0];
-		//return status;
-		if (user != undefined) {
-			return user.status;
-		}
-		return "0";
-	};
-
 	const notify = () => {
 		setTimeout(() => {
 			if (reactStatus < 100) {
@@ -40,6 +30,16 @@ const ReactCard = () => {
 				setReactStatus(0);
 			}
 		}, 200);
+	};
+
+	const getStatuses = (eid) => {
+		let event = events.filter((event) => event._id === eid)[0].users;
+		let user = event.filter((user) => user.uid === "123456789812345678981238")[0];
+		//return status;
+		if (user != undefined) {
+			return user.status;
+		}
+		return "0";
 	};
 
 	let statuses = [];

@@ -112,11 +112,7 @@ const Profile = () => {
 					</Title>
 
 					<Divider my="sm" size={"md"} />
-					<form
-						onSubmit={formProfile.onSubmit((values) => {
-							updateTrainer(values);
-						})}
-					>
+					<form onSubmit={formProfile.onSubmit((values) => updateTrainer(values))}>
 						<Group position="center" style={{ marginTop: "20px" }}>
 							<TextInput
 								size="md"
