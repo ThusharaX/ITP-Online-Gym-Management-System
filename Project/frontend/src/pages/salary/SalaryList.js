@@ -3,7 +3,6 @@ import { createStyles, Table, ScrollArea, ActionIcon, Modal } from "@mantine/cor
 import SalaryContext from "../../contexts/SalaryContext";
 import { Pencil } from "tabler-icons-react";
 import EditSalary from "./EditSalary";
-import AddSalary from "./AddSalary";
 
 const useStyles = createStyles((theme) => ({
 	header: {
@@ -18,6 +17,7 @@ const useStyles = createStyles((theme) => ({
 			left: 0,
 			right: 0,
 			bottom: 0,
+			backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
 			borderBottom: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[3] : theme.colors.gray[2]}`,
 		},
 	},
@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
 function SalaryTableScrollArea() {
 	const { classes, cx } = useStyles();
 	const [scrolled, setScrolled] = useState(false);
-	const { salaries, setSalary, setEditOpened, editOpened, opened, setOpened } = useContext(SalaryContext);
+	const { salaries, setSalary, setEditOpened, editOpened } = useContext(SalaryContext);
 
 	const rows = salaries.map((row) => (
 		<tr key={row._id}>
@@ -65,11 +65,6 @@ function SalaryTableScrollArea() {
 
 	return (
 		<>
-			{/*Add salary modal*/}
-			<Modal opened={opened} onClose={() => setOpened(false)} title="New Salary">
-				<AddSalary />
-			</Modal>
-
 			{/*Edit salary Modal*/}
 			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Salary">
 				<EditSalary />
@@ -88,6 +83,7 @@ function SalaryTableScrollArea() {
 							<th>OT rate</th>
 							<th>Total OT</th>
 							<th>Total Salary</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>{rows}</tbody>

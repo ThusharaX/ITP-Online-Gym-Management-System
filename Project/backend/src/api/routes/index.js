@@ -44,6 +44,7 @@ export default function (app) {
 	app.put("/salary/:id", controller.updateSalary); //update a salary
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
+	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
 	app.post("/user/login/", controller.login);
