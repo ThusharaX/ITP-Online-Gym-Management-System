@@ -55,7 +55,6 @@ export default function (app) {
 	app.post("/trainer/register/", controller.createTrainer);
 	app.get("/trainer/:id", controller.getTrainer);
 	app.get("/trainer/", controller.getTrainers);
-
 	app.put("/trainer/:id", controller.updateTrainer);
 	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 

@@ -24,6 +24,7 @@ class TrainerAPI {
 	static deleteTrainer(id) {
 		return axios.delete(`${BASE_URL}/trainer/${id}`, requestConfigJson);
 	}
+
 	static updateTrainer(id, trainer) {
 		return axios.put(`${BASE_URL}/trainer/${id}`, trainer, requestConfigJson);
 	}

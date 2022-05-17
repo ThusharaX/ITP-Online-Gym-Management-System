@@ -1,5 +1,4 @@
 import TrainerService, { UserService } from "../services";
-// import UserService from "../services";
 
 const joi = require("joi");
 let users = require("../models/User.model");
@@ -105,6 +104,7 @@ const updateTrainer = async (req, res, next) => {
 		});
 };
 
+//to be implemented somehow
 const deleteTrainers = async (req, res, next) => {
 	await TrainerService.deleteTrainers({ _id: req.params.id })
 		.then((data) => {

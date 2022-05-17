@@ -4,18 +4,31 @@ const getTrainers = async (search) => {
 	if (search) {
 		var xt = new RegExp(search);
 		return await users
-			.find({ title: xt })
-			.then((newTrainer) => {
-				return newTrainer;
+			.find({ title: xt, permissionLevel: "TRAINER" })
+			.then((trainers) => {
+				trainers = trainers.map((trainer) => {
+					return {
+						_id: trainer._id,
+						firstName: trainer.firstName,
+						lastName: trainer.lastName,
+						nic: trainer.nic,
+						dob: trainer.dob,
+						username: trainer.username,
+						phoneNumber: trainer.phoneNumber,
+						email: trainer.email,
+					};
+				});
+
+				return trainers;
 			})
 			.catch((error) => {
 				throw new Error(error.message);
 			});
 	} else {
 		return await users
-			.find()
-			.then((updatedTrainer) => {
-				return updatedTrainer;
+			.find({ permissionLevel: "TRAINER" })
+			.then((trainers) => {
+				return trainers;
 			})
 			.catch((error) => {
 				throw new Error(error.message);

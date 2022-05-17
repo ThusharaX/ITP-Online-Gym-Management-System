@@ -1,6 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
-// import requestConfig from "./config";
-// import requestConfigJson from "./configJson";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import Joi from "joi";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainer`;
@@ -49,14 +47,6 @@ export function TrainerProvider({ children }) {
 			.message("Password should be valid"),
 		rep_psw: Joi.ref("psw"),
 	});
-
-	// Get all trainers
-	// useEffect(() => {
-	// 	axios.get(baseURL).then((res) => {
-	// 		setTrainers(res.data);
-	// 		setLoading(false);
-	// 	});
-	// }, []);
 
 	const form = useForm({
 		schema: joiResolver(schema),
@@ -118,6 +108,10 @@ export function TrainerProvider({ children }) {
 			formProfile.setFieldValue("address", res.data.address);
 			formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
 			formProfile.setFieldValue("qualifications", res.data.qualifications);
+		});
+
+		TrainerAPI.getTrainers().then((res) => {
+			setTrainers(res.data);
 		});
 	}, []);
 
