@@ -53,6 +53,7 @@ export default function (app) {
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);
 	app.get("/trainer/:id", controller.getTrainer);
+	app.put("/trainer/:id", controller.updateTrainer);
 	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Enroll User to Workout Program

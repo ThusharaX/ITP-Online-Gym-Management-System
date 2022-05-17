@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "@mantine/form";
+
 import {
 	useMantineTheme,
 	TextInput,
@@ -16,8 +18,12 @@ import TrainerContext from "../../contexts/TrainerContext";
 
 export function Login() {
 	const navigate = useNavigate();
-	const { login, lform, isLoggedIn, isLoading } = useContext(TrainerContext);
+	const { login, isLoggedIn, isLoading } = useContext(TrainerContext);
 	const theme = useMantineTheme();
+
+	const form = useForm({
+		initialValues: { username: "", password: "" },
+	});
 	const gradient =
 		theme.colorScheme === "dark"
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
@@ -78,15 +84,15 @@ export function Login() {
 							Create account
 						</Anchor>
 					</Text>
-					<form onSubmit={lform.onSubmit((values) => login(values))}>
+					<form onSubmit={form.onSubmit((values) => login(values))}>
 						<div style={{ marginTop: "25px" }}>
-							<TextInput label="Email" placeholder="you@mantine.dev" required {...lform.getInputProps("username")} />
+							<TextInput label="Email" placeholder="you@mantine.dev" required {...form.getInputProps("username")} />
 							<PasswordInput
 								label="Password"
 								placeholder="Your password"
 								required
 								mt="md"
-								{...lform.getInputProps("password")}
+								{...form.getInputProps("password")}
 							/>
 							<Group position="apart" mt="md">
 								<Checkbox label="Remember me" />

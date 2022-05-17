@@ -15,40 +15,24 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-// import dropzoneChildren from "./Dropzone.tsx";
 import { DropzoneButton } from "./Dropzone";
 
-const AddTrainer = () => {
+const Profile = () => {
 	const theme = useMantineTheme();
 	const gradient =
 		theme.colorScheme === "dark"
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const bg = theme.colorScheme === "dark" ? "#222" : "#ddd";
-
 	let cardTheme = (theme) => ({
 		backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
 	});
 	const navigate = useNavigate();
-
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { updateTrainer, form, trainer, setTrainer, getTrainer } = useContext(TrainerContext);
-	// eslint-disable-next-line no-console
-	console.log(getTrainer("6263d11cbb23827c5af68d79"));
-	const [value, onChange] = useState(new Date());
-	const form1 = {
-		firstName: "first name",
-		lastName: "last name",
-		userName: "user_name",
-		nic: "09612490852",
-		email: "train@gmail.com",
-		dob: new Date(),
-		gender: "Female",
-		address: "address1Malabbe",
-		phoneNumber: "0123456789",
-		qualifications: ["css", "javascript", "mongoose", "node"],
-	};
 	const textstyle = (theme) => ({ fontSize: "15px", marginTop: "20px", fontWeight: "400", color: TitleColor });
+
+	const { updateTrainer, formProfile, trainer } = useContext(TrainerContext);
+	const [date, setDate] = useState(new Date());
 	return (
 		<Box
 			sx={(theme) => ({
@@ -60,7 +44,7 @@ const AddTrainer = () => {
 				padding: "150px 0px",
 			})}
 		>
-			<Group position="left" spacing={0}>
+			<Group position="center" spacing={20} style={{}}>
 				<Box
 					sx={(theme) => ({
 						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
@@ -68,12 +52,11 @@ const AddTrainer = () => {
 						borderColor: theme.colorScheme === "dark" ? theme.colors.gray[8] : theme.colors.gray[4],
 						boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
 						textAlign: "center",
-						padding: theme.spacing.xl,
+						padding: theme.spacing.md,
 						borderRadius: theme.radius.md,
 						width: "300px",
 						height: "1040px",
 						borderRadius: "50px",
-						margin: "0px auto",
 						paddingTop: "30px",
 						opacity: 0.9,
 					})}
@@ -89,22 +72,22 @@ const AddTrainer = () => {
 						/>
 					</Group>
 					<Title sx={(theme) => ({ color: TitleColor, marginTop: "20px" })} order={2}>
-						{form1.firstName} {form1.lastName}
+						{trainer.firstName} {trainer.lastName}
 					</Title>
 					<Text sx={(theme) => ({ color: TitleColor })} style={{ marginTop: "10px" }} weight={500}>
-						@{form1.userName}{" "}
+						@{trainer.username}{" "}
 					</Text>
 					<Text sx={(theme) => ({ color: TitleColor })} style={{ marginTop: "30px" }}>
 						About
 					</Text>
 					<Divider my="sm" size={"md"} />
-					<Text sx={(theme) => ({ color: TitleColor, marginTop: "10px" })}>Gender: {form1.gender}</Text>
-					<Text sx={textstyle}>Email: {form1.email}</Text>
-					<Text sx={textstyle}>PhoneNumber: {form1.phoneNumber}</Text>
-					<Text sx={textstyle}> Address: {form1.address}</Text>
-					<Text sx={textstyle}>NIC: {form1.nic}</Text>
-					<Text sx={textstyle}>Qualifications: {form1.qualifications.join(", ")}</Text>
-					{/* <Text>{form1.dob}</Text> */}
+					<Text sx={(theme) => ({ color: TitleColor, marginTop: "10px" })}>Gender: {trainer.gender}</Text>
+					<Text sx={textstyle}>Email: {trainer.email}</Text>
+					<Text sx={textstyle}>PhoneNumber: {trainer.phoneNumber}</Text>
+					<Text sx={textstyle}> Address: {trainer.address}</Text>
+					<Text sx={textstyle}>NIC: {trainer.nic}</Text>
+					<Text sx={textstyle}>Qualifications: {trainer.qualifications.join(", ")}</Text>
+					<Text sx={textstyle}>{Date(trainer.dob).toString().slice(3, 15)}</Text>
 				</Box>
 				<Box
 					sx={(theme) => ({
@@ -117,10 +100,7 @@ const AddTrainer = () => {
 						borderRadius: theme.radius.md,
 						width: "600px",
 						height: "1040px",
-						cursor: "pointer",
 						borderRadius: "50px",
-						margin: "10px auto",
-						marginLeft: "-480px",
 						opacity: 0.9,
 						"&:hover": {
 							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
@@ -133,10 +113,8 @@ const AddTrainer = () => {
 
 					<Divider my="sm" size={"md"} />
 					<form
-						onSubmit={form.onSubmit((values) => {
+						onSubmit={formProfile.onSubmit((values) => {
 							updateTrainer(values);
-							//eslint-disable-next-line no-console
-							console.log("puka");
 						})}
 					>
 						<Group position="center" style={{ marginTop: "20px" }}>
@@ -146,7 +124,7 @@ const AddTrainer = () => {
 								required
 								label="FIRST NAME"
 								placeholder="Enter Trainer's First Name"
-								{...form.getInputProps("firstName")}
+								{...formProfile.getInputProps("firstName")}
 							/>
 							<TextInput
 								size="md"
@@ -154,7 +132,7 @@ const AddTrainer = () => {
 								required
 								label="LAST NAME"
 								placeholder="Enter Trainer's First Name"
-								{...form.getInputProps("lastName")}
+								{...formProfile.getInputProps("lastName")}
 							/>
 						</Group>
 						<Group position="center" style={{ marginTop: "20px" }}>
@@ -164,7 +142,7 @@ const AddTrainer = () => {
 								required
 								label="User NAME"
 								placeholder="Enter Trainer's User Name"
-								{...form.getInputProps("userName")}
+								{...formProfile.getInputProps("username")}
 							/>
 							<TextInput
 								size="md"
@@ -172,7 +150,7 @@ const AddTrainer = () => {
 								required
 								label="NIC"
 								placeholder="Enter Trainer's  NIC"
-								{...form.getInputProps("nic")}
+								{...formProfile.getInputProps("nic")}
 							/>
 						</Group>
 
@@ -182,9 +160,9 @@ const AddTrainer = () => {
 								placeholder="Date of Birth"
 								label="Date of Birth"
 								required
-								value={value}
-								onChange={onChange}
-								{...form.getInputProps("dob")}
+								value={date}
+								onChange={setDate}
+								{...formProfile.getInputProps("dob")}
 							/>
 							<RadioGroup
 								style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
@@ -193,12 +171,13 @@ const AddTrainer = () => {
 								label="Can Join"
 								color="gray"
 								required
-								{...form.getInputProps("gender")}
+								{...formProfile.getInputProps("gender")}
 							>
 								<Radio value="Male" label="Male" />
 								<Radio value="Female" label="Female" />
 							</RadioGroup>
 						</Group>
+
 						<Group position="center" style={{ marginTop: "20px" }}>
 							<TextInput
 								size="md"
@@ -206,7 +185,7 @@ const AddTrainer = () => {
 								required
 								label="ADDRESS"
 								placeholder="Enter Trainer's Address"
-								{...form.getInputProps("address")}
+								{...formProfile.getInputProps("address")}
 							/>
 							<TextInput
 								size="md"
@@ -214,7 +193,7 @@ const AddTrainer = () => {
 								required
 								label="PHONE NUMBER"
 								placeholder="Enter Trainer's Phone Number"
-								{...form.getInputProps("phoneNumber")}
+								{...formProfile.getInputProps("phoneNumber")}
 							/>
 						</Group>
 
@@ -225,8 +204,9 @@ const AddTrainer = () => {
 							label="QUALIFICATION"
 							placeholder="Enter Trainer's Qualification"
 							style={{ marginTop: "30px", marginBottom: "30px" }}
-							{...form.getInputProps("qualifications")}
+							{...formProfile.getInputProps("qualifications")}
 						/>
+
 						<TextInput
 							size="md"
 							width={500}
@@ -234,13 +214,13 @@ const AddTrainer = () => {
 							label="Email"
 							placeholder="Enter Trainer's Email"
 							style={{ marginTop: "30px", marginBottom: "30px" }}
-							{...form.getInputProps("email")}
+							{...formProfile.getInputProps("email")}
 						/>
 						<DropzoneButton />
 
 						<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
 						<Group style={{ marginTop: "20px" }} position="center" mt="md">
-							<Button color={"cyan"} type="submit" radius="4px" size="xl" compact>
+							<Button color={"cyan"} size="xl" type="submit" compact>
 								Update
 							</Button>
 						</Group>
@@ -251,4 +231,4 @@ const AddTrainer = () => {
 	);
 };
 
-export default AddTrainer;
+export default Profile;

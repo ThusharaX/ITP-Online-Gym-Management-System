@@ -23,8 +23,6 @@ const registerValidation = (data) => {
 };
 
 const getTrainer = async (req, res, next) => {
-	// eslint-disable-next-line no-console
-	console.log(req.params.id);
 	await TrainerService.getTrainer(req.params.id)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
@@ -79,8 +77,6 @@ export const createTrainer = async (req, res, next) => {
 		qualifications: req.body.qualifications,
 		permissionLevel: "TRAINER",
 	};
-	// eslint-disable-next-line no-console
-	console.log(trainer);
 
 	await UserService.insertUser(trainer)
 		.then((data) => {
@@ -95,7 +91,7 @@ export const createTrainer = async (req, res, next) => {
 		});
 };
 
-const updateTrainers = async (req, res, next) => {
+const updateTrainer = async (req, res, next) => {
 	await TrainerService.updateTrainers(req.params.id, req.body)
 		.then((data) => {
 			logger.info(`Updated trainer with ID ${data._id}`);
@@ -124,6 +120,6 @@ module.exports = {
 	getTrainer,
 	getTrainers,
 	createTrainer,
-	updateTrainers,
+	updateTrainer,
 	deleteTrainers,
 };

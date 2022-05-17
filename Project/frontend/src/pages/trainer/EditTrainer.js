@@ -8,7 +8,7 @@ import { useForm } from "@mantine/form";
 
 const EditTrainer = ({ trainer }) => {
 	const [opened, setOpened] = useState(false);
-	const { updateTrainer, form } = useContext(TrainerContext);
+	const { addTrainer, form } = useContext(TrainerContext);
 
 	// Form initial state
 	const form1 = useForm({
@@ -66,12 +66,7 @@ const EditTrainer = ({ trainer }) => {
 							Update The Trainer
 						</Title>
 						<Divider my="sm" size={"md"} />
-						<form
-							onSubmit={form.onSubmit((values) => {
-								updateTrainer(values); //eslint-disable-next-line no-console
-								console.log("pukoooo");
-							})}
-						>
+						<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
 							<Group position="center" style={{ marginTop: "20px" }}>
 								<TextInput
 									size="md"

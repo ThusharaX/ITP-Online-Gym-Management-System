@@ -10,8 +10,6 @@ import { useModals } from "@mantine/modals";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/events`;
 const EventContext = createContext();
 
-import ReactCard from "../pages/events/ReactCard";
-
 export function EventProvider({ children }) {
 	const [events, setEvents] = useState([]);
 	const [reactStatus, setReactStatus] = useState(0);
@@ -21,7 +19,6 @@ export function EventProvider({ children }) {
 	useEffect(() => {
 		axios.get(baseURL).then((res) => {
 			setEvents(res.data);
-			// eslint-disable-next-line no-console
 		});
 	}, []);
 

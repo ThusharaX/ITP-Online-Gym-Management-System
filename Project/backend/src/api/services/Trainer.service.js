@@ -35,6 +35,7 @@ const getTrainer = async (id) => {
 					username: trainer.username,
 					nic: trainer.nic,
 					dob: trainer.dob,
+					address: trainer.address,
 					email: trainer.email,
 					gender: trainer.gender,
 					qualifications: trainer.qualifications,

@@ -14,12 +14,24 @@ export function TrainerProvider({ children }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [trainers, setTrainers] = useState([]);
-	const [trainer, setTrainer] = useState({});
+	const init = {
+		firstName: "first name",
+		lastName: "last name",
+		username: "user_name",
+		nic: "09612490852",
+		email: "email@gmail.com",
+		address: "address",
+		dob: new Date(),
+		gender: "Female",
+		phoneNumber: "0123456789",
+		qualifications: ["css", "javascript", "mongoose", "node"],
+	};
+	const [trainer, setTrainer] = useState(init);
 
 	const schema = Joi.object({
 		firstName: Joi.string().min(5).max(20).message("First Name should be between 4 and 20 characters"),
 		lastName: Joi.string().min(5).max(20).message("Last Name should be between 4 and 20 characters"),
-		userName: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
+		username: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
 		nic: Joi.string().min(10).max(12).message("NIC should be Valid"),
 		email: Joi.string(),
 		dob: Joi.date().max("now"),
@@ -43,18 +55,13 @@ export function TrainerProvider({ children }) {
 	// 		setLoading(false);
 	// 	});
 	// }, []);
-	useEffect(() => {
-		setTrainers(trainer);
-		setIsLoading(false);
-	}, []);
 
-	// Form initial state
 	const form = useForm({
 		schema: joiResolver(schema),
 		initialValues: {
 			firstName: "first name",
 			lastName: "last name",
-			userName: "last name",
+			username: "last name",
 			nic: "09612490852",
 			email: "train@gmail.com",
 			dob: new Date(),
@@ -67,10 +74,54 @@ export function TrainerProvider({ children }) {
 		},
 	});
 
+	const schemaProfile = Joi.object({
+		firstName: Joi.string().min(5).max(20).message("First Name should be between 4 and 20 characters"),
+		lastName: Joi.string().min(5).max(20).message("Last Name should be between 4 and 20 characters"),
+		username: Joi.string().min(5).max(20).message("User Name should be between 4 and 20 characters"),
+		nic: Joi.string().min(10).max(12).message("NIC should be Valid"),
+		email: Joi.string(),
+		dob: Joi.date().max("now"),
+		gender: Joi.any().allow("Male", "Female"),
+		address: Joi.string().min(5).max(100).message("Address should be valid"),
+		phoneNumber: Joi.string().min(10).max(10).message("Phone Number should valid"),
+		qualifications: Joi.required(),
+	});
+
+	const formProfile = useForm({
+		schema: joiResolver(schemaProfile),
+		initialValues: {
+			firstName: "first name",
+			lastName: "last name",
+			username: "last name",
+			nic: "09612490852",
+			email: "train@gmail.com",
+			dob: new Date(),
+			gender: "Female",
+			address: "address1Malabbe",
+			phoneNumber: "0123456789",
+			qualifications: ["css", "javascript", "mongoose", "node"],
+		},
+	});
+
+	useEffect(() => {
+		TrainerAPI.getTrainerData("6263d11cbb23827c5af68d79").then((res) => {
+			setTrainer(res.data);
+			formProfile.setFieldValue("firstName", res.data.firstName);
+			formProfile.setFieldValue("lastName", res.data.lastName);
+			formProfile.setFieldValue("username", res.data.username);
+			formProfile.setFieldValue("nic", res.data.nic);
+			formProfile.setFieldValue("email", res.data.email);
+			formProfile.setFieldValue("dob", res.data.dob);
+			formProfile.setFieldValue("gender", res.data.gender);
+			formProfile.setFieldValue("address", res.data.address);
+			formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
+			formProfile.setFieldValue("qualifications", res.data.qualifications);
+		});
+	}, []);
+
 	const getTrainer = (id) => {
 		TrainerAPI.getTrainerData(id).then((res) => {
-			setIsLoading(false);
-			return res.data;
+			setTrainer(res.data);
 		});
 	};
 
@@ -80,7 +131,7 @@ export function TrainerProvider({ children }) {
 		const newTrainer = {
 			firstName: values.firstName,
 			lastName: values.lastName,
-			username: values.userName,
+			username: values.username,
 			nic: values.nic,
 			email: values.email,
 			dob: values.dob,
@@ -91,19 +142,15 @@ export function TrainerProvider({ children }) {
 			qualifications: String(values.qualifications).split(","),
 		};
 		TrainerAPI.register(newTrainer).then((response) => {
-			// eslint-disable-next-line no-console
-			// console.log(response);
 			setIsLoading(false);
 		});
 	};
 
 	const updateTrainer = (values) => {
-		//eslint-disable-next-line no-console
-		console.log("puka");
 		const newTrainer = {
 			firstName: values.firstName,
 			lastName: values.lastName,
-			username: values.userName,
+			username: values.username,
 			nic: values.nic,
 			email: values.email,
 			dob: values.dob,
@@ -114,15 +161,13 @@ export function TrainerProvider({ children }) {
 			qualifications: String(values.qualifications).split(","),
 		};
 
-		//eslint-disable-next-line no-console
+		// eslint-disable-next-line no-console
 		console.log(newTrainer);
-		isLoading(false);
-		// TrainerAPI.updateTrainer(newTrainer).then((response) => {
-		// 	// eslint-disable-next-line no-console
-		// 	console.log(response);
-		// 	setIsLoading(false);
-		// 	form.reset();
-		// });
+		// isLoading(false);
+		TrainerAPI.updateTrainer("6263d11cbb23827c5af68d79", newTrainer).then((res) => {
+			// setIsLoading(false);
+			// form.reset();
+		});
 
 		// axios.post(baseURL, newTrainer).then((res) => {
 		// 	setTrainers([...trainers, res.data]);
@@ -198,7 +243,7 @@ export function TrainerProvider({ children }) {
 				addTrainer,
 				updateTrainer,
 				form,
-				lform,
+				formProfile,
 				login,
 				trainer,
 				setTrainer,
