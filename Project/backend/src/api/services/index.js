@@ -60,6 +60,8 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
+
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
 	// Sample services
@@ -147,4 +149,11 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+
+	// Trainer services
+	getTrainer,
+	updateTrainers,
+	deleteTrainers,
+	getTrainers,
+	createTrainers,
 };

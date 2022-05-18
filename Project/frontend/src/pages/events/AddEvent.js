@@ -1,5 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Modal, Button, TextInput, Group, Box, Textarea, RadioGroup, Radio, Title, Divider } from "@mantine/core";
+import {
+	Modal,
+	Button,
+	TextInput,
+	Group,
+	Box,
+	Textarea,
+	RadioGroup,
+	Radio,
+	Title,
+	Divider,
+	useMantineTheme,
+} from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
 import App from "./FileUpload";
@@ -7,10 +20,32 @@ import App from "./FileUpload";
 // import { DropzoneButton } from "./Dropzone";
 
 const AddEvent = () => {
-	const { addEvent, form } = useContext(EventContext);
+	const theme = useMantineTheme();
+	const { addEvent, form, eventStatus, setEventStatus } = useContext(EventContext);
 	const [opened, setOpened] = useState(false);
 	const [value, onChange] = useState(new Date());
 	const [value1, onChange1] = useState(new Date());
+
+	const notify = () => {
+		setTimeout(() => {
+			if (eventStatus < 100) {
+				notify();
+			} else {
+				if (eventStatus == 201) {
+					showNotification({
+						title: "Event RSVP Successfully",
+					});
+				} else {
+					showNotification({
+						title: "Error While RSVP Event",
+						color: "red",
+					});
+				}
+				setEventStatus(0);
+			}
+		}, 200);
+	};
+
 	return (
 		<>
 			<Modal
@@ -19,6 +54,9 @@ const AddEvent = () => {
 				withCloseButton={false}
 				transition="fade"
 				transitionDuration={600}
+				overlayOpacity={0.75}
+				size={510}
+				style={{ borderRadius: "100px", opacity: 0.97 }}
 			>
 				<Box
 					sx={(theme) => ({
@@ -29,9 +67,10 @@ const AddEvent = () => {
 						borderRadius: theme.radius.xs,
 						width: "500px",
 						cursor: "pointer",
-						borderRadius: "50px",
+						borderRadius: "30px",
+						border: "1px solid #bbb",
 						boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-						opacity: 0.9,
+						opacity: 1,
 
 						"&:hover": {
 							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
@@ -45,6 +84,7 @@ const AddEvent = () => {
 
 					<form
 						onSubmit={form.onSubmit((values) => {
+							notify();
 							addEvent(values);
 							form.reset();
 							setOpened(false);
@@ -111,9 +151,9 @@ const AddEvent = () => {
 								required
 								{...form.getInputProps("gender")}
 							>
-								<Radio value="Dogs" label="Only for Dogs" />
-								<Radio value="Cats" label="Only for Cats" />
-								<Radio value="Both" label="Both" />
+								<Radio value="Boys" label="Only for Boys" />
+								<Radio value="Girls" label="Only for Girls" />
+								<Radio value="Both" label="Both Can Join" />
 							</RadioGroup>
 						</Group>
 						<TextInput
@@ -139,7 +179,14 @@ const AddEvent = () => {
 				</Box>
 			</Modal>
 			<Group position="center">
-				<Button size="md" color={"cyan"} onClick={() => setOpened(true)}>
+				<Button
+					size="md"
+					color={"cyan"}
+					onClick={() => {
+						setOpened(true);
+						notify();
+					}}
+				>
 					Add Event
 				</Button>
 			</Group>

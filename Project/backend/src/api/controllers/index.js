@@ -65,6 +65,8 @@ import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from 
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
 
+import { getTrainer, getTrainers, createTrainer, updateTrainer, deleteTrainers } from "./Trainer.Controller";
+
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
 import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
@@ -150,8 +152,14 @@ export default {
 	updateEvents,
 	deleteEvents,
 
-	//Feedback Controllers
+	//Trainer Controllers
+	getTrainer,
+	getTrainers,
+	createTrainer,
+	updateTrainer,
+	deleteTrainers,
 
+	//Feedback Controllers
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,
