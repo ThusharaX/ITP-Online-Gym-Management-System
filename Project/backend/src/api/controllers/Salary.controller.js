@@ -51,3 +51,16 @@ export const getOneSalary = async (request, response, next) => {
 			next();
 		});
 };
+
+// Search Salaries
+export const searchSalaries = async (request, response, next) => {
+	await SalaryService.searchSalaries(request.params.search)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};

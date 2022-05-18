@@ -44,11 +44,19 @@ export default function (app) {
 	app.put("/salary/:id", controller.updateSalary); //update a salary
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
+	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+
+	// Trainer endpoints
+	app.post("/trainer/register/", controller.createTrainer);
+	app.get("/trainer/:id", controller.getTrainer);
+	app.get("/trainer/", controller.getTrainers);
+	app.put("/trainer/:id", controller.updateTrainer);
+	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
