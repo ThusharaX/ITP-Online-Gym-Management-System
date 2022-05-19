@@ -16,6 +16,7 @@ import TrainerPackages from "./trainerPackages";
 import BD from "./blogCreate";
 import Request from "./personalTrainerRequest";
 import RList from "./personalTrainerRequestList";
+import PReport from "./personalTrainerRequest-report";
 
 import { Salary } from "./salary";
 import Workout from "./workout";
@@ -64,4 +65,5 @@ export {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	PReport,
 };

@@ -19,6 +19,9 @@ class PersonalTrainerRequestAPI {
 	static editRequest(id, newRequest) {
 		return axios.put(`${BASE_URL}/personal/${id}`, newRequest, requestConfigJson);
 	}
+	static searchRequest(search) {
+		return axios.get(`${BASE_URL}/personal/search/${search}`, requestConfigJson);
+	}
 }
 
 export default PersonalTrainerRequestAPI;

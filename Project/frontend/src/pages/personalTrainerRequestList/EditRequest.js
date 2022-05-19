@@ -1,22 +1,24 @@
 import React, { useContext } from "react";
-import { Button, TextInput, Group, Box } from "@mantine/core";
+import { Button, TextInput, Group, Box, Select } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { showNotification, updateNotification } from "@mantine/notifications";
+import { CheckIcon } from "@modulz/radix-icons";
 
 import PersonalTrainerRequestContext from "../../contexts/PersonalTrainerRequestContext";
 
 const EditRequest = () => {
-	const { editRequest, requests, setEditOpened } = useContext(PersonalTrainerRequestContext);
+	const { editRequest, request, setEditOpened } = useContext(PersonalTrainerRequestContext);
 
 	// Form initial state
 	let form = useForm({
 		initialValues: {
-			id: requests._id,
-			name: requests.name,
-			perTrainer: requests.perTrainer,
-			timeSlot: requests.timeSlot,
-			TrainDay: requests.TrainDay,
-			package: requests.package,
-			status: requests.status,
+			id: request._id,
+			name: request.name,
+			perTrainer: request.perTrainer,
+			timeSlot: request.timeSlot,
+			TrainDay: request.TrainDay,
+			package: request.package,
+			status: request.status,
 		},
 	});
 
@@ -29,9 +31,19 @@ const EditRequest = () => {
 					<TextInput required name="timeSlot" label="Time Slot" {...form.getInputProps("timeSlot")} />
 					<TextInput required name="TrainDay" label="Train Day" {...form.getInputProps("TrainDay")} />
 					<TextInput required name="package" label="Package" {...form.getInputProps("package")} />
-					<TextInput required name="status" label="Status" {...form.getInputProps("status")} />
+					<Select
+						label="Select Status"
+						placeholder="Pick one"
+						data={[
+							{ value: "Pending", label: "Pending" },
+							{ value: "Blocked", label: "Blocked" },
+							{ value: "Active", label: "Active" },
+						]}
+						mt="sm"
+						{...form.getInputProps("status")}
+					/>
 
-					<Group position="right" mt="md">
+					{/* <Group position="right" mt="md">
 						<Button
 							type="submit"
 							onClick={() => {
@@ -39,6 +51,38 @@ const EditRequest = () => {
 							}}
 						>
 							Update
+						</Button>
+					</Group> */}
+					<br />
+
+					<Group position="center">
+						<Button
+							type="submit"
+							variant="outline"
+							onClick={() => {
+								setEditOpened(false);
+								showNotification({
+									id: "load-data",
+									loading: true,
+									title: "Loading your data",
+									message: "Data will be loaded in 3 seconds, you cannot close this yet",
+									autoClose: false,
+									disallowClose: true,
+								});
+
+								setTimeout(() => {
+									updateNotification({
+										id: "load-data",
+										color: "teal",
+										title: "Data was loaded",
+										message: "Notification will close in 2 seconds, you can close this notification now",
+										icon: <CheckIcon />,
+										autoClose: 2000,
+									});
+								}, 3000);
+							}}
+						>
+							Update Request
 						</Button>
 					</Group>
 				</form>

@@ -1,69 +1,97 @@
 import React, { useState, useContext } from "react";
 import {
-	Text,
 	Badge,
-	Button,
-	Group,
-	useMantineTheme,
 	Table,
-	Card,
+	Select,
+	ScrollArea,
+	Button,
 	Modal,
-	Avatar,
-	Grid,
-	Container,
+	ActionIcon,
+	useMantineTheme,
+	Pagination,
 } from "@mantine/core";
 import PersonalTrainerRequestContext from "../../contexts/PersonalTrainerRequestContext";
-
-import { Edit, Trash, Typography } from "tabler-icons-react";
 import EditRequest from "./EditRequest";
+import { Edit, Mail, Trash } from "tabler-icons-react";
 
 function PersonalTrainerRequestList() {
-	const { Request, confirmDelete, setEditOpened, setRequest, editOpened } = useContext(PersonalTrainerRequestContext);
+	const { requests, confirmDelete, setEditOpened, setRequest, editOpened } = useContext(PersonalTrainerRequestContext);
 	const theme = useMantineTheme();
+	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.dark[9];
 
-	// const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
+	const rows = requests.map((item) => (
+		<tr key={item._id}>
+			<td>{item.name}</td>
+			<td>{item.perTrainer}</td>
+			<td>{item.timeSlot}</td>
+			<td>{item.TrainDay}</td>
+			<td>{item.package}</td>
 
-	const rows = Request.map((row) => (
-		<tr key={row._id}>
-			<td>
-				{/* <Grid Container>
-					<Grid item sm={2}>
-						<Avatar alt={row.name} src="./" color="red" />
-					</Grid>
-					<br />
-					<Grid item sm={10}> */}
-				{row.name}
-				{/* </Grid>
-				</Grid> */}
-			</td>
-			<td>{row.perTrainer}</td>
-			<td>{row.timeSlot}</td>
-			<td>{row.TrainDay}</td>
-			<td>{row.package}</td>
+			{/* <td>
+				<Select data={rolesData} defaultValue={item.status} />
+				{item.status}
+			</td> */}
+
 			<td
 				style={{
 					fontWeight: "bold",
 					fontSize: "0.75rem",
 					color: "white",
 					backgroundColor:
-						(row.status === "Active" && "yellow") ||
-						(row.status === "Pending" && "green") ||
-						(row.status === "Blocked" && "red"),
+						(item.status === "Active" && "orange") ||
+						(item.status === "Pending" && "green") ||
+						(item.status === "Blocked" && "red"),
 					borderRadius: 8,
 					padding: "3px 10px",
 					display: "inline-block",
 				}}
 			>
-				{row.status}
+				{item.status}
 			</td>
+
+			<td>{Math.floor(Math.random() * 6 + 5)} days ago</td>
+
+			{/* <td>
+				{Math.random() > 0.5 ? (
+					<Badge fullWidth color="blue">
+						Active
+					</Badge>
+				) : (
+					<Badge color="orange" fullWidth>
+						Disabled
+					</Badge>
+				)}
+			</td> */}
+			{/* <td>
+				{Math.random() > 0.5 ? (
+					<Button
+						onClick={() => {}}
+						// variant="light"
+						color="blue"
+						compact
+					>
+						Active
+					</Button>
+				) : (
+					<Button
+						onClick={() => {}}
+						// variant="light"
+						color="orange"
+						compact
+					>
+						Disabled
+					</Button>
+				)}
+			</td> */}
+
 			<td>
 				<Button
 					onClick={() => {
-						setRequest(row);
+						setRequest(item);
 						setEditOpened(true);
 					}}
-					variant="light"
-					color="blue"
+					variant="gradient"
+					gradient={{ from: "teal", to: "lime", deg: 105 }}
 					compact
 					leftIcon={<Edit size={16} />}
 				>
@@ -71,8 +99,25 @@ function PersonalTrainerRequestList() {
 				</Button>
 			</td>
 			<td>
-				<Button onClick={() => confirmDelete(row._id)} color="red" compact leftIcon={<Trash size={16} />}>
+				<Button
+					onClick={() => confirmDelete(item._id)}
+					variant="gradient"
+					gradient={{ from: "orange", to: "red" }}
+					compact
+					leftIcon={<Trash size={16} />}
+				>
 					Delete
+				</Button>
+			</td>
+			<td>
+				<Button
+					onClick={() => {}}
+					variant="gradient"
+					compact
+					leftIcon={<Mail size={16} />}
+					gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 35 }}
+				>
+					Send Mail
 				</Button>
 			</td>
 		</tr>
@@ -83,24 +128,28 @@ function PersonalTrainerRequestList() {
 			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Request ">
 				<EditRequest />
 			</Modal>
+			<ScrollArea>
+				<Table striped highlightOnHover sx={{ minWidth: 800 }} verticalSpacing="sm">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Personal Trainer</th>
+							<th>Time Slot</th>
+							<th>Train Day</th>
+							<th>Package</th>
+							<th>Status</th>
+							<th>Last Active Date</th>
 
-			<Table>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Personal Trainer</th>
-						<th>Time Slots</th>
-						<th>Train Day</th>
-						<th>Package</th>
-						<th>Status</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>{rows}</tbody>
-			</Table>
+							<th>Edit</th>
+							<th>Delete</th>
+							<th>Send E-mail</th>
+						</tr>
+					</thead>
+					<tbody>{rows}</tbody>
+				</Table>
+				<Pagination total={10} />;
+			</ScrollArea>
 		</>
 	);
 }
-
 export default PersonalTrainerRequestList;

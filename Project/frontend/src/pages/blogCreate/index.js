@@ -49,15 +49,15 @@ import { NotificationsProvider } from "@mantine/notifications";
 const BD = () => {
 	return (
 		<div>
-			<h1 style={{ textAlign: "center" }}>Blogs</h1>
+			{/* <h1 style={{ textAlign: "center" }}>Personal Trainer Details</h1> */}
 
 			<NotificationsProvider>
 				<BlogProvider>
 					{/* <Search /> */}
 
-					<AddBlogModal />
+					{/* <AddBlogModal /> */}
 
-					<SimpleGrid
+					{/* <SimpleGrid
 						cols={4}
 						spacing="lg"
 						breakpoints={[
@@ -65,9 +65,10 @@ const BD = () => {
 							{ maxWidth: 1020, cols: 2, spacing: "sm" },
 							{ maxWidth: 675, cols: 1, spacing: "sm" },
 						]}
-					>
-						<BlogList />
-					</SimpleGrid>
+					> */}
+					<BlogList />
+					<AddBlogModal />
+					{/* </SimpleGrid> */}
 				</BlogProvider>
 			</NotificationsProvider>
 		</div>
