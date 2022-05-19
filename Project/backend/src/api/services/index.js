@@ -26,7 +26,7 @@ import {
 	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -60,6 +60,8 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
+
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
@@ -104,6 +106,7 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
 	// Admin services
 	authenticateUser,
@@ -148,4 +151,11 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+
+	// Trainer services
+	getTrainer,
+	updateTrainers,
+	deleteTrainers,
+	getTrainers,
+	createTrainers,
 };

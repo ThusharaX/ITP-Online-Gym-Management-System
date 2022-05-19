@@ -153,7 +153,7 @@ export function Dashboard() {
 				component="a"
 				href=""
 				onClick={() => {
-					navigate("/blogs");
+					navigate("/blog");
 				}}
 			>
 				<Title order={1} className="your-class-name" sx={cardTitleSx}>
