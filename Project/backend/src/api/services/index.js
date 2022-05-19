@@ -62,6 +62,8 @@ import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from ".
 
 import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
+import { getEmployee, updateEmployees, deleteEmployees, getEmployees, createEmployees } from "./Employee.service";
+
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
 	// Sample services
@@ -156,4 +158,11 @@ export default {
 	deleteTrainers,
 	getTrainers,
 	createTrainers,
+
+	//Employee services
+	getEmployee,
+	updateEmployees,
+	deleteEmployees,
+	getEmployees,
+	createEmployees,
 };

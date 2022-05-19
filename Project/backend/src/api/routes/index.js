@@ -58,6 +58,12 @@ export default function (app) {
 	app.put("/trainer/:id", controller.updateTrainer);
 	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
+	// Employee endpoints
+	app.post("/employee/register/", controller.createEmployee);
+	app.get("/employee/:id", controller.getEmployee);
+	app.get("/employee/", controller.getEmployees);
+	app.put("/employee/:id", controller.updateEmployee);
+
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
 	// Unenroll User from Workout Program

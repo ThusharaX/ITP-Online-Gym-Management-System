@@ -67,6 +67,8 @@ import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalarie
 
 import { getTrainer, getTrainers, createTrainer, updateTrainer, deleteTrainers } from "./Trainer.Controller";
 
+import { getEmployee, getEmployees, createEmployee, updateEmployee, deleteEmployees } from "./Employee.Controller";
+
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
 import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
@@ -158,6 +160,13 @@ export default {
 	createTrainer,
 	updateTrainer,
 	deleteTrainers,
+
+	//Employee Controllers
+	getEmployee,
+	getEmployees,
+	createEmployee,
+	updateEmployee,
+	deleteEmployees,
 
 	//Feedback Controllers
 	getAllFeedbacks,
