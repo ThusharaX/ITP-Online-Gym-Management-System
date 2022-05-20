@@ -34,6 +34,7 @@ import {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
 } from "./User.service";
 
 import {
@@ -107,13 +108,14 @@ export default {
 	getOneSalary,
 	searchSalaries,
 
-	// Admin services
+	// User services
 	authenticateUser,
 	insertUser,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
 
 	// Workout services
 	insertWorkout,
