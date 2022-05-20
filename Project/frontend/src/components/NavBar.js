@@ -190,7 +190,10 @@ function NavBar() {
 				{localStorage.getItem("authToken") ? (
 					<Button onClick={logout}>Logout</Button>
 				) : (
-					<Button onClick={() => navigate("/login")}>Login</Button>
+					<>
+						<Button onClick={() => navigate("/login")}>Login</Button>
+						<Button onClick={() => navigate("/signUp")}>Register</Button>
+					</>
 				)}
 
 				<Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
