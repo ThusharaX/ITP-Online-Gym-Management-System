@@ -12,16 +12,13 @@ const PersonalTrainerRequestContext = createContext();
 export function PersonalTrainerRequestProvider({ children }) {
 	const [requests, setRequests] = useState([]);
 
-	// Salary
 	const [request, setRequest] = useState({
-		nic: "",
-		year: "",
-		month: "",
-		basicSalary: "",
-		otHours: "",
-		otRate: "",
-		otTotal: "",
-		totalSalary: "",
+		name: "",
+		perTrainer: "",
+		timeSlot: "",
+		TrainDay: "",
+		package: "",
+		status: "",
 	});
 
 	const form = useForm({

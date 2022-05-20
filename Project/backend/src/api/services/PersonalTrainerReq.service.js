@@ -73,7 +73,13 @@ export const deletePersonalTrainerReq = async (reqId) => {
 // Search sample titles or content
 export const searchPersonalTrainerReq = async (searchTerm) => {
 	return await PersonalTrainerReqModel.find({
-		$or: [{ name: { $regex: searchTerm, $options: "i" } }, { content: { $regex: searchTerm, $options: "i" } }],
+		$or: [
+			{ perTrainer: { $regex: searchTerm, $options: "i" } },
+			{ package: { $regex: searchTerm, $options: "i" } },
+			{ name: { $regex: searchTerm, $options: "i" } },
+			{ TrainDay: { $regex: searchTerm, $options: "i" } },
+			{ status: { $regex: searchTerm, $options: "i" } },
+		],
 	})
 		.then((personalTrainerReq) => {
 			return personalTrainerReq;
