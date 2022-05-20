@@ -8,7 +8,7 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	PersonalTrainerRequest,
+	// PersonalTrainerRequest,
 	Events,
 	Eventlist,
 	TrainerDashboard,
@@ -36,6 +36,14 @@ import {
 	BlogCreate,
 	BD,
 	Feedback,
+	Request,
+	RList,
+	SampleReport,
+	MemberLogin,
+	MemberDashboard,
+	MemberProfile,
+	SignUp,
+	PReport,
 } from "../pages";
 
 // Error pages
@@ -71,6 +79,7 @@ const AppRoutes = () => {
 				<Routes>
 					{/* Public Routes */}
 					<Route exact path="/" element={<Home />} />
+					<Route exact path="/sample-report" element={<SampleReport />} />
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/salary" element={<Salary />} />
 					<Route exact path="/question" element={<Question />} />
@@ -86,13 +95,16 @@ const AppRoutes = () => {
 
 					<Route exact path="/trainers/events" element={<Eventlist />} />
 					<Route exact path="/notice" element={<Notice />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
-					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/blogs" element={<Blog />} />
 					<Route exact path="/write" element={<Write />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 					<Route exact path="/package" element={<TrainerPackages />} />
+					<Route exact path="/personal" element={<Request />} />
+					<Route exact path="/reqList" element={<RList />} />
+					<Route exact path="/pReport" element={<PReport />} />
 
 					{/* <Route exact path="/blogs" element={<Blogs />} />
 					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
@@ -110,12 +122,25 @@ const AppRoutes = () => {
 					<Route exact path="/login" element={<CheckLoginStatus />}>
 						<Route exact path="/login" element={<CommonLogin />} />
 					</Route>
+					<Route exact path="/signUp" element={<CheckLoginStatus />}>
+						<Route exact path="/signUp" element={<SignUp />} />
+					</Route>
 
 					<Route exact path="/admin/login" element={<CheckLoginStatus />}>
 						<Route exact path="/admin/login" element={<AdminLogin />} />
 					</Route>
 
+					<Route exact path="/member/login" element={<CheckLoginStatus />}>
+						<Route exact path="/member/login" element={<MemberLogin />} />
+					</Route>
+
 					<Route exact path="/feedback" element={<Feedback />} />
+
+					{/* Member Routes */}
+					<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
+						<Route exact path="/member" element={<MemberDashboard />} />
+						<Route exact path="/member/profile" element={<MemberProfile />} />
+					</Route>
 
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>

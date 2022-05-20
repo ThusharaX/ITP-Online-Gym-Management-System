@@ -109,3 +109,16 @@ export const getAllEnrolledWorkoutPrograms = async (req, res, next) => {
 			next();
 		});
 };
+
+// Delete user
+export const deleteUser = async (req, res, next) => {
+	await UserService.deleteUser(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};

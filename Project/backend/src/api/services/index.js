@@ -23,9 +23,10 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -33,9 +34,17 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
+	deleteUser,
 } from "./User.service";
 
-import { insertWorkoutScR, updateWorkoutScR, deleteWorkoutScR, getAllWorkoutScR } from "./WorkoutScR.service";
+import {
+	insertWorkoutScR,
+	updateWorkoutScR,
+	deleteWorkoutScR,
+	getAllWorkoutScR,
+	getOneWorkoutScR,
+} from "./WorkoutScR.service";
 
 import {
 	insertWorkout,
@@ -52,6 +61,8 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
+
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
@@ -76,6 +87,7 @@ export default {
 	updateWorkoutScR,
 	deleteWorkoutScR,
 	getAllWorkoutScR,
+	getOneWorkoutScR,
 
 	//question services
 	insertQuestion,
@@ -95,13 +107,16 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
-	// Admin services
+	// User services
 	authenticateUser,
 	insertUser,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	getMembersEmailList,
+	deleteUser,
 
 	// Workout services
 	insertWorkout,
@@ -132,9 +147,17 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
 	//Feedback services
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+
+	// Trainer services
+	getTrainer,
+	updateTrainers,
+	deleteTrainers,
+	getTrainers,
+	createTrainers,
 };

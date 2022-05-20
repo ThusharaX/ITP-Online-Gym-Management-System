@@ -54,3 +54,16 @@ export const getOneSalary = async (salaryId) => {
 			throw new Error(error.message);
 		});
 };
+
+// Search salary from nic or month
+export const searchSalaries = async (searchTerm) => {
+	return await SalaryModel.find({
+		$or: [{ nic: { $regex: searchTerm, $options: "i" } }, { month: { $regex: searchTerm, $options: "i" } }],
+	})
+		.then((Salaries) => {
+			return Salaries;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

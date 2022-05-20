@@ -11,6 +11,7 @@ const eventValidation = (data) => {
 		gender: joi.string().required().length(4),
 		date: joi.date().required(),
 		trainer: joi.string().required().min(23).max(25),
+		users: joi.required(),
 	});
 
 	return schema.validate(data);
@@ -51,6 +52,7 @@ const createEvents = async (req, res, next) => {
 		gender: req.body.gender,
 		date: req.body.date,
 		trainer: req.body.trainer,
+		users: req.body.users,
 	});
 	await EventService.createEvents(event)
 		.then((data) => {

@@ -6,10 +6,19 @@ import { useForm } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import BlogAPI from "./api/BlogAPI";
+import Joi from "joi";
 
 const BlogContext = createContext();
 
 export function BlogProvider({ children }) {
+	// //Form Validations
+	// const schema = Joi.object({
+	// 	description: Joi.string().min(5).max(30).message("description should be between 10 and 1000 characters"),
+	// 	fb: Joi.string().min(5).max(100).message("Facebook should be valid one"),
+	// 	wNum: Joi.string().min(10).max(10).message("Phone Number should valid"),
+	// 	email: Joi.string().message("Email should be valid one"),
+	// });
+
 	// Blogss
 	const [blogs, setBlogs] = useState([]);
 
