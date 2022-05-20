@@ -16,7 +16,7 @@ const AddPersonalTrainerRequest = () => {
 	return (
 		<>
 			<Box>
-				<Container size="xs" px="xs" className="content">
+				<Container size="xs" px="xs" className="contentTrainer">
 					<Card shadow="xl" p="xl" component="a" target="_blank">
 						<h1 style={{ textAlign: "center" }}>Create Personal Trainer Request</h1>
 
