@@ -1,8 +1,8 @@
-import PersonalTrainerReq from "../models/PersonalTrainerReq.model";
+import PersonalTrainerReqModel from "../models/PersonalTrainerReq.model";
 
 // Insert one request
 export const insertPersonalTrainerReq = async (reqData) => {
-	return await PersonalTrainerReq.create(reqData)
+	return await PersonalTrainerReqModel.create(reqData)
 		.then(async (personalTrainerReq) => {
 			await personalTrainerReq.save();
 			return personalTrainerReq;
@@ -14,7 +14,7 @@ export const insertPersonalTrainerReq = async (reqData) => {
 
 // Get all request
 export const getAllPersonalTrainerReq = async () => {
-	return await PersonalTrainerReq.find({})
+	return await PersonalTrainerReqModel.find({})
 		.then((personalTrainerReq) => {
 			return personalTrainerReq;
 		})
@@ -25,7 +25,7 @@ export const getAllPersonalTrainerReq = async () => {
 
 // Get one request
 export const getOnePersonalTrainerReq = async (reqId) => {
-	return await PersonalTrainerReq.findById(reqId)
+	return await PersonalTrainerReqModel.findById(reqId)
 		.then((personalTrainerReq) => {
 			if (personalTrainerReq) {
 				return personalTrainerReq;
@@ -40,7 +40,7 @@ export const getOnePersonalTrainerReq = async (reqId) => {
 
 // Update one request
 export const updatePersonalTrainerReq = async (reqId, reqData) => {
-	return await PersonalTrainerReq.findByIdAndUpdate(reqId, reqData, {
+	return await PersonalTrainerReqModel.findByIdAndUpdate(reqId, reqData, {
 		new: true,
 	})
 		.then((personalTrainerReq) => {
@@ -57,7 +57,7 @@ export const updatePersonalTrainerReq = async (reqId, reqData) => {
 
 // Delete one sample
 export const deletePersonalTrainerReq = async (reqId) => {
-	return await PersonalTrainerReq.findByIdAndDelete(reqId)
+	return await PersonalTrainerReqModel.findByIdAndDelete(reqId)
 		.then((personalTrainerReq) => {
 			if (personalTrainerReq) {
 				return personalTrainerReq;
@@ -71,14 +71,20 @@ export const deletePersonalTrainerReq = async (reqId) => {
 };
 
 // Search sample titles or content
-// export const searchPersonalTrainerReq = async (searchTerm) => {
-// 	return await PersonalTrainerReqModel.find({
-// 		$or: [{ title: { $regex: searchTerm, $options: "i" } }, { content: { $regex: searchTerm, $options: "i" } }],
-// 	})
-// 		.then((personalTrainerReq) => {
-// 			return personalTrainerReq;
-// 		})
-// 		.catch((error) => {
-// 			throw new Error(error.message);
-// 		});
-// };
+export const searchPersonalTrainerReq = async (searchTerm) => {
+	return await PersonalTrainerReqModel.find({
+		$or: [
+			{ perTrainer: { $regex: searchTerm, $options: "i" } },
+			{ package: { $regex: searchTerm, $options: "i" } },
+			{ name: { $regex: searchTerm, $options: "i" } },
+			{ TrainDay: { $regex: searchTerm, $options: "i" } },
+			{ status: { $regex: searchTerm, $options: "i" } },
+		],
+	})
+		.then((personalTrainerReq) => {
+			return personalTrainerReq;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

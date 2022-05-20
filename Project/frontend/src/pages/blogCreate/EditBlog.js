@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Button, TextInput, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { showNotification, updateNotification } from "@mantine/notifications";
+import { CheckIcon } from "@modulz/radix-icons";
 
 import BlogContext from "../../contexts/BlogContext";
 
@@ -46,12 +48,34 @@ const EditBlog = () => {
 					<TextInput required name="saturday" label="Saturday" {...form.getInputProps("saturday")} />
 					<TextInput required name="sunday" label="Sunday" {...form.getInputProps("sunday")} />
 
-					<Group position="right" mt="md">
+					<br />
+
+					<Group position="center">
 						<Button
+							type="submit"
+							variant="outline"
 							onClick={() => {
 								setEditOpened(false);
+								showNotification({
+									id: "load-data",
+									loading: true,
+									title: "Loading your data",
+									message: "Data will be loaded in 3 seconds, you cannot close this yet",
+									autoClose: false,
+									disallowClose: true,
+								});
+
+								setTimeout(() => {
+									updateNotification({
+										id: "load-data",
+										color: "teal",
+										title: "Data was loaded",
+										message: "Notification will close in 2 seconds, you can close this notification now",
+										icon: <CheckIcon />,
+										autoClose: 2000,
+									});
+								}, 3000);
 							}}
-							type="submit"
 						>
 							Update
 						</Button>

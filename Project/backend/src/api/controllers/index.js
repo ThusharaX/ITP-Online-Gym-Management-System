@@ -30,6 +30,7 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.controller";
 
 import {
@@ -108,6 +109,7 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
 	//User Controllers
 	login,
