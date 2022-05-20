@@ -44,29 +44,33 @@ import AddBlogModal from "./AddBlogModal";
 import { BlogProvider } from "../../contexts/BlogContext";
 
 import { SimpleGrid } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 const BD = () => {
 	return (
 		<div>
-			<h1 style={{ textAlign: "center" }}>Blogs</h1>
+			{/* <h1 style={{ textAlign: "center" }}>Personal Trainer Details</h1> */}
 
-			<BlogProvider>
-				{/* <Search /> */}
+			<NotificationsProvider>
+				<BlogProvider>
+					{/* <Search /> */}
 
-				<AddBlogModal />
+					{/* <AddBlogModal /> */}
 
-				<SimpleGrid
-					cols={4}
-					spacing="lg"
-					breakpoints={[
-						{ maxWidth: 1350, cols: 3, spacing: "md" },
-						{ maxWidth: 1020, cols: 2, spacing: "sm" },
-						{ maxWidth: 675, cols: 1, spacing: "sm" },
-					]}
-				>
+					{/* <SimpleGrid
+						cols={4}
+						spacing="lg"
+						breakpoints={[
+							{ maxWidth: 1350, cols: 3, spacing: "md" },
+							{ maxWidth: 1020, cols: 2, spacing: "sm" },
+							{ maxWidth: 675, cols: 1, spacing: "sm" },
+						]}
+					> */}
 					<BlogList />
-				</SimpleGrid>
-			</BlogProvider>
+					<AddBlogModal />
+					{/* </SimpleGrid> */}
+				</BlogProvider>
+			</NotificationsProvider>
 		</div>
 	);
 };

@@ -8,7 +8,7 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	PersonalTrainerRequest,
+	// PersonalTrainerRequest,
 	Events,
 	Eventlist,
 	TrainerDashboard,
@@ -36,10 +36,13 @@ import {
 	BlogCreate,
 	BD,
 	Feedback,
+	Request,
+	RList,
 	SampleReport,
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	PReport,
 } from "../pages";
 
 // Error pages
@@ -91,13 +94,16 @@ const AppRoutes = () => {
 
 					<Route exact path="/trainers/events" element={<Eventlist />} />
 					<Route exact path="/notice" element={<Notice />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
-					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/blogs" element={<Blog />} />
 					<Route exact path="/write" element={<Write />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 					<Route exact path="/package" element={<TrainerPackages />} />
+					<Route exact path="/personal" element={<Request />} />
+					<Route exact path="/reqList" element={<RList />} />
+					<Route exact path="/pReport" element={<PReport />} />
 
 					{/* <Route exact path="/blogs" element={<Blogs />} />
 					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}

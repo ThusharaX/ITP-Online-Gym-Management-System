@@ -23,6 +23,7 @@ function TrainerPackages() {
 			{/* <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 				<MantineProvider theme={{ colorScheme }}>
 					<Paper padding="md" radius={0} style={{ minHeight: "100vh" }}> */}
+
 			<Cards />
 			{/* <LightDarkButton /> */}
 			{/* </Paper>

@@ -23,6 +23,7 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
@@ -144,6 +145,7 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
 	//Feedback services
 	insertFeedback,
