@@ -156,6 +156,10 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Enroll workoutProgram
 	const enrollWorkoutProgram = (workoutProgramID) => {
+		if (!localStorage.getItem("permissionLevel")) {
+			window.location.href = "/login";
+		}
+
 		const data = {
 			userId: localStorage.getItem("uID"),
 			workoutProgramId: workoutProgramID,
