@@ -42,6 +42,7 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	SignUp,
 	PReport,
 } from "../pages";
 
@@ -120,6 +121,9 @@ const AppRoutes = () => {
 
 					<Route exact path="/login" element={<CheckLoginStatus />}>
 						<Route exact path="/login" element={<CommonLogin />} />
+					</Route>
+					<Route exact path="/signUp" element={<CheckLoginStatus />}>
+						<Route exact path="/signUp" element={<SignUp />} />
 					</Route>
 
 					<Route exact path="/admin/login" element={<CheckLoginStatus />}>

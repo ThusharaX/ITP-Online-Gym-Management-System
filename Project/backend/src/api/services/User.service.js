@@ -134,3 +134,14 @@ export const getEmployeesEmailList = async () => {
 			throw new Error(error.message);
 		});
 };
+
+// Delete user
+export const deleteUser = async (userId) => {
+	return await UserModel.findByIdAndDelete(userId)
+		.then(() => {
+			return userId;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

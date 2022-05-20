@@ -40,6 +40,7 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
 } from "./User.Controller";
 
 import {
@@ -110,13 +111,14 @@ export default {
 	deletePersonalTrainerReq,
 	searchPersonalTrainerReq,
 
-	//Admin Controllers
+	//User Controllers
 	login,
 	createUser,
 	getAdminDashboard,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
 
 	//Workout Controllers
 	insertWorkout,
