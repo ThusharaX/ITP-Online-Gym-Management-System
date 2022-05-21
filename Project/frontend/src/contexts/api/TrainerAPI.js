@@ -5,16 +5,28 @@ import requestConfigJson from "./configJson";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
 class TrainerAPI {
-	static getTrainerData() {
-		return axios.get(`${BASE_URL}/trainers/`, requestConfig);
+	static login(values) {
+		return axios.post(`${BASE_URL}/user/login/`, values, requestConfigJson);
 	}
 
-	static addTrainer(newTrainer) {
-		return axios.post(`${BASE_URL}/trainers/`, newTrainer, requestConfigJson);
+	static register(values) {
+		return axios.post(`${BASE_URL}/trainer/register/`, values, requestConfigJson);
+	}
+
+	static getTrainerData(id) {
+		return axios.get(`${BASE_URL}/trainer/${id}`, requestConfigJson);
+	}
+
+	static getTrainers() {
+		return axios.get(`${BASE_URL}/trainer/`, requestConfigJson);
 	}
 
 	static deleteTrainer(id) {
-		return axios.delete(`${BASE_URL}/trainers/${id}`, requestConfig);
+		return axios.delete(`${BASE_URL}/trainer/${id}`, requestConfigJson);
+	}
+
+	static updateTrainer(id, trainer) {
+		return axios.put(`${BASE_URL}/trainer/${id}`, trainer, requestConfigJson);
 	}
 }
 

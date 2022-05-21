@@ -25,30 +25,41 @@ export default function (app) {
 	app.get("/question/", controller.getAllQuestions); //get all questions
 
 	//TrainerDB endpoints
-	app.post("/blog/", controller.insertTrainerBD); // insert one sample
+	app.post("/blog/", middleware.authenticate, controller.insertTrainerBD); // insert one sample
 	app.get("/blog/", controller.getAllTrainerBD); // get all samples
 	app.get("/blog/:id", controller.getOneTrainerBD); // get one sample
-	app.put("/blog/:id", controller.updateTrainerBD); // update one sample
-	app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
+	app.put("/blog/:id", middleware.authenticate, controller.updateTrainerBD); // update one sample
+	app.delete("/blog/:id", middleware.authenticate, controller.deleteTrainerBD); // delete one sample
 	//app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
 	//PersonalTrainer Request endpoints
-	app.post("/personal/", controller.insertPersonalTrainerReq); // insert one request
+	app.post("/personal/", middleware.authenticate, controller.insertPersonalTrainerReq); // insert one request
 	app.get("/personal/", controller.getAllPersonalTrainerReq); // get all request
 	app.get("/personal/:id", controller.getOnePersonalTrainerReq); // get one request
-	app.put("/personal/:id", controller.updatePersonalTrainerReq); // update one request
-	app.delete("/personal/:id", controller.deletePersonalTrainerReq); // delete one request
+	app.put("/personal/:id", middleware.authenticate, controller.updatePersonalTrainerReq); // update one request
+	app.delete("/personal/:id", middleware.authenticate, controller.deletePersonalTrainerReq); // delete one request
+	app.get("/personal/search/:search", controller.searchPersonalTrainerReq); // search Workout Programs
 
 	//Salary endpoints
 	app.post("/salary/", controller.insertSalary); // insert a salary
 	app.put("/salary/:id", controller.updateSalary); //update a salary
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
+	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
+	app.get("/user/:id", controller.getUserDetails);
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
+
+	// Trainer endpoints
+	app.post("/trainer/register/", controller.createTrainer);
+	app.get("/trainer/:id", controller.getTrainer);
+	app.get("/trainer/", controller.getTrainers);
+	app.put("/trainer/:id", controller.updateTrainer);
+	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
