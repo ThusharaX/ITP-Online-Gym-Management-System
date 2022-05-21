@@ -28,6 +28,10 @@ class WorkoutAPI {
 	static incrementViewCount(id) {
 		return axios.put(`${BASE_URL}/workout/view/${id}`, requestConfigJson);
 	}
+
+	static getMostPopularWorkouts() {
+		return axios.get(`${BASE_URL}/workouts/popular/`, requestConfig);
+	}
 }
 
 export default WorkoutAPI;
