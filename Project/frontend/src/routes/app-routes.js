@@ -42,6 +42,7 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	WorkoutReport,
 	SignUp,
 	PReport,
 } from "../pages";
@@ -112,6 +113,7 @@ const AppRoutes = () => {
 					<Route exact path="/bd" element={<BD />} />
 
 					<Route exact path="/workout" element={<Workout />} />
+					<Route exact path="/workout-report" element={<WorkoutReport />} />
 
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 

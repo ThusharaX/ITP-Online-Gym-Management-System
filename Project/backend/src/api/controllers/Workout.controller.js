@@ -90,3 +90,16 @@ export const increaseViewCount = async (request, response, next) => {
 			next();
 		});
 };
+
+// Get most popular workouts
+export const getMostPopularWorkouts = async (request, response, next) => {
+	await WorkoutService.getAllWorkoutsOrderByViewCount()
+		.then(async (data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
