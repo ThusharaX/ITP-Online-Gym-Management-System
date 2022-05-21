@@ -23,6 +23,7 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
@@ -34,6 +35,8 @@ import {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
+	getUserDetails,
 } from "./User.service";
 
 import {
@@ -52,6 +55,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 } from "./Workout.service";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
@@ -109,13 +113,15 @@ export default {
 	getOneSalary,
 	searchSalaries,
 
-	// Admin services
+	// User services
 	authenticateUser,
 	insertUser,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
+	getUserDetails,
 
 	// Workout services
 	insertWorkout,
@@ -125,6 +131,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 
 	//Notice Services
 	insertNotice,
@@ -146,6 +153,7 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
 	//Feedback services
 	insertFeedback,

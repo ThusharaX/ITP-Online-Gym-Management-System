@@ -1,9 +1,11 @@
 .sidebar {
-	flex: 3;
+	/* flex: 3; */
 	height: fit-content;
 	margin: 20px;
 	padding-bottom: 30px;
-	background-color: #fdfbfb;
+	/* background-color: background-color: #000000; */
+	background-color: #f8002f;
+	background-image: linear-gradient(326deg, #f8002f 0%, #000c14 74%);
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
@@ -20,13 +22,13 @@
 	margin: 10px;
 	padding: 5px;
 	width: 80%;
-	border-top: solid 1px #a7a4a4;
-	border-bottom: solid 1px #a7a4a4;
+	border-top: solid 1px #ffffff;
+	border-bottom: solid 1px #ffffff;
 	text-align: center;
 	font-family: "Varela Round", sans-serif;
 	font-size: 12px;
 	line-height: 19px;
-	color: #222222;
+	color: #ffffff;
 	font-weight: 600;
 }
 

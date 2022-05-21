@@ -9,27 +9,28 @@ export default function Post({ img }) {
 				<div className="postCats">
 					<span className="postCat">
 						<Link className="link" to="/posts?cat=Music">
-							Music
+							Fitness
 						</Link>
 					</span>
 					<span className="postCat">
 						<Link className="link" to="/posts?cat=Music">
-							Life
+							Healthy
 						</Link>
 					</span>
 				</div>
 				<span className="postTitle">
 					<Link to="/post/abc" className="link">
-						Lorem ipsum dolor sit amet
+						Growth
 					</Link>
 				</span>
 				<hr />
 				<span className="postDate">1 hour ago</span>
 			</div>
 			<p className="postDesc">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda officia architecto deserunt deleniti? Labore
-				ipsum aspernatur magnam fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione atque,
-				exercitationem quibusdam, reiciendis odio laboriosam?
+				Equipment maintenance and repair costs Large equipment such as treadmills and ellipticals have a lot of moving
+				parts and take on heavy usage from members. Compared with dumbbells or kettlebells, large machines may need more
+				upkeep. This means that you may choose to purchase equipment that needs less maintenance, but take a lease on
+				machines that take on wear and tear thus needing frequent maintenance or repairs.
 			</p>
 		</div>
 	);

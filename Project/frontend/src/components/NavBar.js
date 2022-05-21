@@ -96,7 +96,7 @@ function NavBar() {
 	));
 
 	return (
-		<Header height={60} mb={50}>
+		<Header height={60} mb={0}>
 			<Container className={classes.header}>
 				<Link to="/">
 					<Image
@@ -190,7 +190,10 @@ function NavBar() {
 				{localStorage.getItem("authToken") ? (
 					<Button onClick={logout}>Logout</Button>
 				) : (
-					<Button onClick={() => navigate("/login")}>Login</Button>
+					<>
+						<Button onClick={() => navigate("/login")}>Login</Button>
+						<Button onClick={() => navigate("/signUp")}>Register</Button>
+					</>
 				)}
 
 				<Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />

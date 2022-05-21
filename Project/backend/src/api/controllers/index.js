@@ -30,6 +30,7 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.controller";
 
 import {
@@ -39,6 +40,8 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
+	getUserDetails,
 } from "./User.Controller";
 
 import {
@@ -57,6 +60,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
@@ -109,14 +113,17 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
-	//Admin Controllers
+	//User Controllers
 	login,
 	createUser,
 	getAdminDashboard,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
+	getUserDetails,
 
 	//Workout Controllers
 	insertWorkout,
@@ -126,6 +133,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 
 	//Notices Controllers
 	insertNotice,
