@@ -12,6 +12,7 @@ import Joi from "joi";
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
+	const [isLoading, setIsLoading] = useState(false);
 	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 	// Form Validation
@@ -185,6 +186,16 @@ export function WorkoutProgramProvider({ children }) {
 		});
 	};
 
+	const [allWorkoutProgramsWithTotalRevenue, setAllWorkoutProgramsWithTotalRevenue] = useState([]);
+
+	const getAllWorkoutProgramsWithTotalRevenue = () => {
+		setIsLoading(true);
+		WorkoutProgramAPI.getAllWorkoutProgramsWithTotalRevenue().then((response) => {
+			setAllWorkoutProgramsWithTotalRevenue(response.data);
+			setIsLoading(false);
+		});
+	};
+
 	return (
 		<WorkoutProgramContext.Provider
 			value={{
@@ -208,6 +219,9 @@ export function WorkoutProgramProvider({ children }) {
 				setEnrollButtonDisabled,
 				schema,
 				fillWithDummyData,
+				isLoading,
+				getAllWorkoutProgramsWithTotalRevenue,
+				allWorkoutProgramsWithTotalRevenue,
 			}}
 		>
 			{children}

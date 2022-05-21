@@ -7,6 +7,7 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 } from "./WorkoutProgram.service";
 
 import {
@@ -37,6 +38,7 @@ import {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
 import {
@@ -83,6 +85,7 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 
 	// Workout Services
 	insertWorkoutScR,
@@ -120,6 +123,7 @@ export default {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
 	insertWorkout,

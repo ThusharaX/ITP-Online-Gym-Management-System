@@ -17,6 +17,8 @@ export default function (app) {
 	app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
 	app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
 	app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
+	// getTotalRevenue
+	app.get("/getAllWorkoutProgramsWithTotalRevenue/", controller.getAllWorkoutProgramsWithTotalRevenue);
 
 	// Question endpoints
 	app.post("/question/", controller.insertQuestion); //insert one question

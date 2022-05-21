@@ -14,6 +14,8 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 } from "./WorkoutProgram.controller";
 
 import {
@@ -90,6 +92,8 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 
 	//WorkoutScR controllers
 	insertWorkoutScR,

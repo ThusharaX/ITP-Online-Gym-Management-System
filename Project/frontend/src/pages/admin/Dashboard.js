@@ -12,6 +12,14 @@ const Dashboard = () => {
 					Generate Workout Report
 				</Link>
 			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/workoutProgram-report">
+					Generate Workout Program Report
+				</Link>
+			</Button>
 		</div>
 	);
 };

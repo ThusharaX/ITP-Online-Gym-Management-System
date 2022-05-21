@@ -30,6 +30,10 @@ const WorkoutProgramSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		enrolledUserCount: {
+			type: Number,
+			default: 0,
+		},
 	},
 	{
 		timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
