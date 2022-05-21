@@ -36,6 +36,7 @@ import {
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
 	deleteUser,
+	getUserDetails,
 } from "./User.service";
 
 import {
@@ -117,6 +118,7 @@ export default {
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
 	deleteUser,
+	getUserDetails,
 
 	// Workout services
 	insertWorkout,

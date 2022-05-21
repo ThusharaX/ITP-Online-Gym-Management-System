@@ -145,3 +145,14 @@ export const deleteUser = async (userId) => {
 			throw new Error(error.message);
 		});
 };
+
+// Get user details
+export const getUserDetails = async (userId) => {
+	return await UserModel.findById(userId)
+		.then((user) => {
+			return user;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

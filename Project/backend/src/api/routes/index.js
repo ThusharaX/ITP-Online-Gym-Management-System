@@ -48,10 +48,11 @@ export default function (app) {
 	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
+	app.get("/user/:id", controller.getUserDetails);
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
-	app.delete("/user/:id", controller.deleteUser);
+	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);

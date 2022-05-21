@@ -41,6 +41,7 @@ import {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
+	getUserDetails,
 } from "./User.Controller";
 
 import {
@@ -119,6 +120,7 @@ export default {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
+	getUserDetails,
 
 	//Workout Controllers
 	insertWorkout,

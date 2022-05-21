@@ -12,6 +12,22 @@ export function UserProvider({ children }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState(null);
 
+	const [user, setUser] = useState({
+		uID: "",
+		avatar: "",
+		firstName: "",
+		lastName: "",
+		nic: "",
+		phoneNumber: "",
+		email: "",
+		username: "",
+		enrolledWorkoutPrograms: [],
+		permissionLevel: "",
+		createdAt: "",
+		updatedAt: "",
+		qualifications: [],
+	});
+
 	const form = useForm({
 		initialValues: {
 			username: "",
@@ -97,8 +113,27 @@ export function UserProvider({ children }) {
 			});
 	};
 
+	// Get user details
+	// const getUserDetails = (uid) => {
+	// 	setIsLoading(true);
+	// 	UserAPi.getUserDetails(uid).then((response) => {
+	// 		setUser(response.data);
+	// 		// eslint-disable-next-line no-console
+	// 		console.log(response.data);
+	// 		setIsLoading(false);
+	// 	});
+	// };
+
+	useEffect(() => {
+		if (localStorage.getItem("uID")) {
+			UserAPi.getUserDetails(localStorage.getItem("uID")).then((response) => {
+				setUser(response.data);
+			});
+		}
+	}, []);
+
 	return (
-		<UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading, message, signUp, SignUpForm }}>
+		<UserContext.Provider value={{ login, logout, form, isLoggedIn, isLoading, message, signUp, SignUpForm, user }}>
 			{children}
 		</UserContext.Provider>
 	);
