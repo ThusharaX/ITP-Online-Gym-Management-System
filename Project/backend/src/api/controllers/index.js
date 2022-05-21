@@ -57,6 +57,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
@@ -122,6 +123,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 
 	//Notices Controllers
 	insertNotice,
