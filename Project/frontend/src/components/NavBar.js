@@ -96,7 +96,7 @@ function NavBar() {
 	));
 
 	return (
-		<Header height={60} mb={50}>
+		<Header height={60} mb={0}>
 			<Container className={classes.header}>
 				<Link to="/">
 					<Image

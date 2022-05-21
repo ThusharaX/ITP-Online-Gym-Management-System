@@ -4,6 +4,7 @@ import React from "react";
 import QuestionList from "./QuestionList";
 import AddQuestion from "./AddQuestion";
 import FAQ from "./FAQ";
+import FAQQ from "./FAQQ";
 
 // QuestionProvider
 import { QuestionProvider } from "../../contexts/QuestionContext";
@@ -11,8 +12,7 @@ import { QuestionProvider } from "../../contexts/QuestionContext";
 const Question = () => {
 	return (
 		<div>
-			<h1>Question Page</h1>
-
+			<FAQQ />
 			<QuestionProvider>
 				{/* Question list */}
 				<QuestionList />
@@ -20,7 +20,7 @@ const Question = () => {
 				{/* Add new Question */}
 				<AddQuestion />
 			</QuestionProvider>
-			<FAQ />
+			{/* <FAQ /> */}
 		</div>
 	);
 };

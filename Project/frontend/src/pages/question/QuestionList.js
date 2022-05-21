@@ -9,21 +9,24 @@ const QuestionList = () => {
 	return (
 		<>
 			<ul>
-				{questions.map((item) => (
-					<li key={item._id}>
-						<h2>{item.title}</h2>
-						<p>
-							<strong>ID:</strong> {item._id}
-							<br />|<strong>Email :</strong> {item.email}
-							<br />|<strong>Name :</strong> {item.name}
-							<br />|<strong>Question title:</strong> {item.title}
-							<br />|<strong>Question:</strong> {item.content}
-						</p>
-						<Button onClick={() => confirmDelete(item._id)} color="red" compact>
-							Delete
-						</Button>
-					</li>
-				))}
+				{/* Sort questions by createdAt */}
+				{questions
+					.sort((a, b) => a.createdAt - b.createdAt)
+					.map((question) => (
+						<li key={question._id}>
+							<h2>{question.title}</h2>
+							<p>
+								<strong>ID:</strong> {question._id}
+								<br />|<strong>Email :</strong> {question.email}
+								<br />|<strong>Name :</strong> {question.name}
+								<br />|<strong>Question title:</strong> {question.title}
+								<br />|<strong>Question:</strong> {question.content}
+							</p>
+							<Button onClick={() => confirmDelete(question._id)} color="red" compact>
+								Delete
+							</Button>
+						</li>
+					))}
 			</ul>
 		</>
 	);
