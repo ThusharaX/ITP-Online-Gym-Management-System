@@ -9,17 +9,19 @@ const AddFeedback = () => {
 
 	return (
 		<>
-			<Box sx={{ maxWidth: 300 }} mx="auto">
-				<form onSubmit={form.onSubmit((values) => addFeedback(values))}>
-					<TextInput required label="Email" placeholder="Email" {...form.getInputProps("email")} />
-					<TextInput required label="Name" placeholder="Name" {...form.getInputProps("displayname")} />
-					<TextInput required label="Feedback Title" placeholder="Feedback Title" {...form.getInputProps("ftitle")} />
-					<TextInput required label="Feedback" placeholder="Feedback Content" {...form.getInputProps("feedback")} />
-					<Group position="right" mt="md">
-						<Button type="submit">submit Feedback</Button>
-					</Group>
-				</form>
-			</Box>
+			<div align="right" style={{ paddingTop: "10%" }}>
+				<Box sx={{ maxWidth: 300 }} mx="auto">
+					<form onSubmit={form.onSubmit((values) => addFeedback(values))}>
+						<TextInput required label="Email" placeholder="Email" {...form.getInputProps("email")} />
+						<TextInput required label="Name" placeholder="Name" {...form.getInputProps("displayname")} />
+						<TextInput required label="Feedback Title" placeholder="Feedback Title" {...form.getInputProps("ftitle")} />
+						<TextInput required label="Feedback" placeholder="Feedback Content" {...form.getInputProps("feedback")} />
+						<Group position="right" mt="md">
+							<Button type="submit">submit Feedback</Button>
+						</Group>
+					</form>
+				</Box>
+			</div>
 		</>
 	);
 };
