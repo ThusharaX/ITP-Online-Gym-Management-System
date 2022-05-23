@@ -12,12 +12,12 @@ import {
 	Radio,
 	Title,
 	Divider,
+	Image,
 	useMantineTheme,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
-import App from "./FileUpload";
 
 const AddEvent = () => {
 	const theme = useMantineTheme();
@@ -35,7 +35,7 @@ const AddEvent = () => {
 
 		if (!file) return;
 
-		const storageRef = ref(storage, `files/${file.name}`);
+		const storageRef = ref(storage, `events/${file.name}`);
 		const uploadTask = uploadBytesResumable(storageRef, file);
 
 		uploadTask.on(
@@ -168,13 +168,14 @@ const AddEvent = () => {
 								{...form.getInputProps("time")}
 							/>
 						</Group>
-						<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
+						<Group spacing={5} position="left" style={{ marginTop: "20px" }}>
 							<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
 								{/* <App /> */}
-								<form onSubmit={handleSubmit} className="form">
-									<input type="file" />
-									<button type="submit">Upload</button>
-								</form>
+								<input form="saveImg" type="file" required />
+								<Button color={"teal"} form="saveImg" type="submit" compact>
+									Upload
+								</Button>
+
 								{!imgUrl && (
 									<div className="outerbar">
 										<div className="innerbar" style={{ width: `${progresspercent}%` }}>
@@ -182,10 +183,18 @@ const AddEvent = () => {
 										</div>
 									</div>
 								)}
-								{imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />}
+								{imgUrl && (
+									<Image
+										radius="md"
+										style={{ marginRight: "30px", margin: "10px 0px 0px 2px" }}
+										src={imgUrl}
+										alt="uploaded file"
+										height={120}
+									/>
+								)}
 							</div>
 							<RadioGroup
-								style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
+								style={{ border: " 1px solid #ddd", padding: "14px", borderRadius: "5px", margin: "20px 0px 0px 10px" }}
 								size="md"
 								orientation="vertical"
 								label="Can Join"
@@ -207,6 +216,7 @@ const AddEvent = () => {
 							style={{ marginTop: "30px", marginBottom: "30px" }}
 							{...form.getInputProps("details")}
 						/>
+
 						<Divider my="sm" size={"md"} />
 						<Group spacing={130} style={{ marginTop: "15px" }} position="center" mt="md">
 							<Button color={"cyan"} type="submit" radius="3px" size="xl" compact>
@@ -217,6 +227,7 @@ const AddEvent = () => {
 							</Button>
 						</Group>
 					</form>
+					<form id="saveImg" onSubmit={handleSubmit} className="form"></form>
 				</Box>
 			</Modal>
 			<Group position="center">

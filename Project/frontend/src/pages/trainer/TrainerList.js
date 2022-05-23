@@ -56,7 +56,7 @@ const TrainerList = () => {
 				</Button>
 			</Group>
 
-			<Group style={{ marginTop: "30px" }} position="center" spacing={50}>
+			<Group style={{ marginTop: "80px" }} position="center" spacing={50}>
 				{trainers.map((item) => (
 					<div key={item._id}>
 						<Card
@@ -78,7 +78,7 @@ const TrainerList = () => {
 						>
 							<Group noWrap>
 								<Group style={{ maxWidth: "100px" }} position="center" spacing={5}>
-									<Avatar src={item.pUrl} size={94} radius="md" />
+									<Avatar src={item.avatar} size={94} radius="md" />
 									<Text size="xs" sx={{}} weight={700} color="dimmed">
 										#{item.username}
 									</Text>

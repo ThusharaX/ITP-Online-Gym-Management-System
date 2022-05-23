@@ -17,7 +17,6 @@ import {
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
 import { PasswordStrength } from "./pswBtn";
-// import dropzoneChildren from "./Dropzone.tsx";
 import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {

@@ -32,13 +32,15 @@ const Profile = () => {
 	const textstyle = (theme) => ({ fontSize: "15px", marginTop: "20px", fontWeight: "400", color: TitleColor });
 
 	const { updateTrainer, formProfile, trainer } = useContext(TrainerContext);
+	// eslint-disable-next-line no-console
+	console.log(trainer);
 	const [date, setDate] = useState(new Date());
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
 				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
-				marginTop: "-130px",
+				marginTop: "-100px",
 				marginBottom: "-130px",
 				// width: "100%",
 				padding: "150px 0px",
@@ -55,7 +57,7 @@ const Profile = () => {
 						padding: theme.spacing.md,
 						borderRadius: theme.radius.md,
 						width: "300px",
-						height: "1040px",
+						height: "840px",
 						borderRadius: "50px",
 						paddingTop: "30px",
 						opacity: 0.9,
@@ -67,7 +69,7 @@ const Profile = () => {
 							width={150}
 							height={150}
 							style={{ boxShadow: "5px 5px 20px #aaa ", borderRadius: "200px" }}
-							src="http://cdn2.peopleimages.com/picture/1301022-hes-always-in-the-gym-fit_400_400.jpg"
+							src={trainer.url}
 							alt="Random unsplash image"
 						/>
 					</Group>
@@ -99,7 +101,7 @@ const Profile = () => {
 						padding: theme.spacing.xl,
 						borderRadius: theme.radius.md,
 						width: "600px",
-						height: "1040px",
+						height: "840px",
 						borderRadius: "50px",
 						opacity: 0.9,
 						"&:hover": {
@@ -107,13 +109,13 @@ const Profile = () => {
 						},
 					})}
 				>
-					<Title order={3} align="center" sx={(theme) => ({ color: TitleColor })}>
+					<Title order={1} align="center" sx={(theme) => ({ color: TitleColor })}>
 						Main Details
 					</Title>
 
 					<Divider my="sm" size={"md"} />
 					<form onSubmit={formProfile.onSubmit((values) => updateTrainer(values))}>
-						<Group position="center" style={{ marginTop: "20px" }}>
+						<Group position="center" style={{ marginTop: "40px" }}>
 							<TextInput
 								size="md"
 								style={{ width: "48%" }}
@@ -212,7 +214,6 @@ const Profile = () => {
 							style={{ marginTop: "30px", marginBottom: "30px" }}
 							{...formProfile.getInputProps("email")}
 						/>
-						<DropzoneButton />
 
 						<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
 						<Group style={{ marginTop: "20px" }} position="center" mt="md">

@@ -109,6 +109,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
+			url: values.url,
 			trainer: "123456789812345678981234",
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
