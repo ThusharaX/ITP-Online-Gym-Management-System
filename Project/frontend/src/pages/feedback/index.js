@@ -12,11 +12,13 @@ const Feedback = () => {
 		<div
 			style={{
 				backgroundImage:
-					"url(https://images.unsplash.com/photo-1600026453194-11ae289732b8?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876)",
+					"url(https://images.unsplash.com/photo-1620595324936-b17d3ce50073?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872)",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
-				height: "100vh",
+				height: "100%",
+				width: "100%",
+				// height: "100vh",
 			}}
 		>
 			<h1 align="center">Feedback Page</h1>
@@ -24,7 +26,6 @@ const Feedback = () => {
 			<FeedbackProvider>
 				{/* Feedback list */}
 				<FeedbackList />
-
 				{/* Add new Feedback */}
 				<AddFeedback />
 			</FeedbackProvider>
