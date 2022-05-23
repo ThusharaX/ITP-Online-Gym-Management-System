@@ -1,4 +1,5 @@
 import UserModel from "../models/User.model";
+import WorkoutProgramModel from "../models/WorkoutProgram.model";
 
 export const authenticateUser = async (username, password) => {
 	return await UserModel.findOne({ username })
@@ -31,6 +32,9 @@ export const enrollUserToWorkoutProgram = async (userId, workoutProgramId) => {
 	if (user.enrolledWorkoutPrograms.includes(workoutProgramId)) {
 		throw new Error("User is already enrolled to the workout program!");
 	} else {
+		// increase the enrolledUserCount
+		await WorkoutProgramModel.findByIdAndUpdate(workoutProgramId, { $inc: { enrolledUserCount: 1 } }, { new: true });
+
 		return await UserModel.findByIdAndUpdate(
 			userId,
 			{
@@ -57,6 +61,8 @@ export const unenrollUserFromWorkoutProgram = async (userId, workoutProgramId) =
 	if (!user.enrolledWorkoutPrograms.includes(workoutProgramId)) {
 		throw new Error("User is not enrolled to the workout program!");
 	} else {
+		await WorkoutProgramModel.findByIdAndUpdate(workoutProgramId, { $inc: { enrolledUserCount: -1 } }, { new: true });
+
 		return await UserModel.findByIdAndUpdate(
 			userId,
 			{
@@ -140,6 +146,17 @@ export const deleteUser = async (userId) => {
 	return await UserModel.findByIdAndDelete(userId)
 		.then(() => {
 			return userId;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Get user details
+export const getUserDetails = async (userId) => {
+	return await UserModel.findById(userId)
+		.then((user) => {
+			return user;
 		})
 		.catch((error) => {
 			throw new Error(error.message);

@@ -7,6 +7,7 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 } from "./WorkoutProgram.service";
 
 import {
@@ -36,6 +37,8 @@ import {
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
 	deleteUser,
+	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
 import {
@@ -54,6 +57,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 } from "./Workout.service";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
@@ -81,6 +85,7 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 
 	// Workout Services
 	insertWorkoutScR,
@@ -117,6 +122,8 @@ export default {
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
 	deleteUser,
+	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
 	insertWorkout,
@@ -126,6 +133,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 
 	//Notice Services
 	insertNotice,

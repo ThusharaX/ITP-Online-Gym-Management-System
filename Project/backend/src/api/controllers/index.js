@@ -14,6 +14,8 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 } from "./WorkoutProgram.controller";
 
 import {
@@ -41,6 +43,7 @@ import {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
+	getUserDetails,
 } from "./User.Controller";
 
 import {
@@ -59,6 +62,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
@@ -88,6 +92,8 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 
 	//WorkoutScR controllers
 	insertWorkoutScR,
@@ -119,6 +125,7 @@ export default {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
+	getUserDetails,
 
 	//Workout Controllers
 	insertWorkout,
@@ -128,6 +135,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 
 	//Notices Controllers
 	insertNotice,

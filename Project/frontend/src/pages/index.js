@@ -27,6 +27,9 @@ import WorkoutScR from "./workoutScR";
 import WorkoutScRList from "./workoutScRList";
 
 import SampleReport from "./sample-report";
+import WorkoutReport from "./workout-report";
+import WorkoutProgramReport from "./workoutProgram-report";
+
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
 import SignUp from "./signUp";
 
@@ -66,6 +69,8 @@ export {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	WorkoutReport,
 	SignUp,
 	PReport,
+	WorkoutProgramReport,
 };

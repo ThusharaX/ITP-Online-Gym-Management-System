@@ -4,7 +4,7 @@ import { Button, TextInput, NumberInput, Group, Box, Autocomplete } from "@manti
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 
 const AddWorkoutProgram = () => {
-	const { addWorkoutProgram, form, setOpened, days } = useContext(WorkoutProgramContext);
+	const { addWorkoutProgram, form, setOpened, days, fillWithDummyData } = useContext(WorkoutProgramContext);
 
 	return (
 		<>
@@ -40,6 +40,10 @@ const AddWorkoutProgram = () => {
 					<TextInput required label="Time" placeholder="Workout Program Time" {...form.getInputProps("time")} />
 
 					<Group position="right" mt="md">
+						{/* Demo button for fill from with dummy data */}
+						<Button onClick={() => fillWithDummyData()} color="green">
+							Demo
+						</Button>
 						<Button type="submit">Create</Button>
 						<Button onClick={() => setOpened(false)} color="red">
 							Cancel

@@ -12,6 +12,8 @@ import Joi from "joi";
 const WorkoutContext = createContext();
 
 export function WorkoutProvider({ children }) {
+	const [isLoading, setIsLoading] = useState(false);
+
 	// Form Validation
 	const schema = Joi.object({
 		workout_name: Joi.string().min(5).max(50).message("Workout Name should be between 4 and 50 characters"),
@@ -42,6 +44,12 @@ export function WorkoutProvider({ children }) {
 	useEffect(() => {
 		WorkoutAPI.getWorkoutData().then((response) => {
 			setWorkouts(response.data);
+		});
+		// Get most popular workouts
+		setIsLoading(true);
+		WorkoutAPI.getMostPopularWorkouts().then((response) => {
+			setPopularWorkouts(response.data);
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -139,6 +147,9 @@ export function WorkoutProvider({ children }) {
 		});
 	};
 
+	// Most popular workouts
+	const [popularWorkouts, setPopularWorkouts] = useState([]);
+
 	return (
 		<WorkoutContext.Provider
 			value={{
@@ -155,6 +166,8 @@ export function WorkoutProvider({ children }) {
 				workout,
 				setWorkout,
 				incrementViewCount,
+				popularWorkouts,
+				isLoading,
 			}}
 		>
 			{children}
