@@ -25,11 +25,11 @@ export default function (app) {
 	app.get("/question/", controller.getAllQuestions); //get all questions
 
 	//TrainerDB endpoints
-	app.post("/blog/", middleware.authenticate, controller.insertTrainerBD); // insert one sample
+	app.post("/blog/", controller.insertTrainerBD); // insert one sample
 	app.get("/blog/", controller.getAllTrainerBD); // get all samples
 	app.get("/blog/:id", controller.getOneTrainerBD); // get one sample
-	app.put("/blog/:id", middleware.authenticate, controller.updateTrainerBD); // update one sample
-	app.delete("/blog/:id", middleware.authenticate, controller.deleteTrainerBD); // delete one sample
+	app.put("/blog/:id", controller.updateTrainerBD); // update one sample
+	app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
 	//app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
 	//PersonalTrainer Request endpoints

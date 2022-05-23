@@ -11,6 +11,11 @@
 	flex-direction: column;
 	align-items: center;
 }
+.sidebar:hover {
+	transform: scale(1.09) perspective(0px);
+	box-shadow: 4px 4px 4px rgba(60, 60, 93, 0.33);
+	cursor: pointer;
+}
 
 .sidebarItem {
 	display: flex;
