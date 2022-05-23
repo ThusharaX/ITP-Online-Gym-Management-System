@@ -123,6 +123,34 @@ export function EventProvider({ children }) {
 		});
 	};
 
+	//Report
+	const Report = () => {
+		let numbers = events.map((event) => {
+			if (event.users.length > 0) return [event.users, event];
+			else return [0, event];
+		});
+		let arr;
+		let newnumb = numbers.map((status) => {
+			arr = [0, 0, 0, 0, 0];
+			if (status[0] !== 0) {
+				status[0].map((user) => {
+					if (user.status === "1") {
+						arr[0]++;
+					} else if (user.status === "2") {
+						arr[1]++;
+					} else if (user.status === "3") {
+						arr[2]++;
+					} else if (user.status === "4") {
+						arr[3]++;
+					}
+				});
+			}
+			arr[4] = status[1];
+			return arr;
+		});
+		return newnumb;
+	};
+
 	// Delete event and update UI
 	const deleteEvent = (id) => {
 		axios.delete(`${baseURL}/${id}/`).then((res) => {
@@ -147,13 +175,13 @@ export function EventProvider({ children }) {
 			onCancel: () => {
 				let x = 5;
 			},
-			// onCancel: () => console.log("Cancel"),
 			onConfirm: () => deleteEvent(id),
 		});
 
 	return (
 		<EventContext.Provider
 			value={{
+				Report,
 				eventStatus,
 				setEventStatus,
 				setReactStatus,
