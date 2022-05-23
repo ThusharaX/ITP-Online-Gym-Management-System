@@ -47,8 +47,10 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Get all workoutPrograms
 	useEffect(() => {
+		setIsLoading(true);
 		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
 			setWorkoutPrograms(response.data);
+			setIsLoading(false);
 		});
 		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
 			setEnrolledWorkoutPrograms(response.data);
