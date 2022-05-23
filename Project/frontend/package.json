@@ -25,6 +25,7 @@
 		"browserify-zlib": "^0.2.0",
 		"buffer": "^6.0.3",
 		"dayjs": "^1.11.0",
+		"firebase": "^9.8.1",
 		"joi": "^17.6.0",
 		"process": "^0.11.10",
 		"react": "^17.0.2",

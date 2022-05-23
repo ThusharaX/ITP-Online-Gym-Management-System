@@ -1,10 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import Joi from "joi";
 import { useForm, joiResolver } from "@mantine/form";
-import EventAPI from "./api/EventAPI";
 import axios from "axios";
-// app.get("/events/:id",
-// Mantine imports
 import { Text } from "@mantine/core";
 import { useModals } from "@mantine/modals";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/events`;
@@ -30,6 +27,7 @@ export function EventProvider({ children }) {
 		tags: Joi.string().min(3).max(50).message("Tags should be between 3 and 50 characters"),
 		details: Joi.string().min(5).max(50).message("Details should be between 5 and 50 characters"),
 		gender: Joi.string().required(),
+		url: Joi.string().required(),
 	});
 
 	// Form initial state
@@ -44,6 +42,7 @@ export function EventProvider({ children }) {
 			gender: "Both",
 			date: new Date(),
 			time: new Date(),
+			url: "mkkknb",
 		},
 	});
 
@@ -92,6 +91,7 @@ export function EventProvider({ children }) {
 			tags: String(values.tags).split(","),
 			trainer: "123456789812345678981234",
 			users: [],
+			url: values.url,
 		};
 		axios.post(baseURL, newEvent).then((res) => {
 			setEventStatus(res.status);
