@@ -33,6 +33,12 @@ const CommonLogin = () => {
 					Member Login
 				</Link>
 			</Button>
+			<br />
+			<Button variant="gradient" gradient={{ from: "cyan", to: "blue", deg: 60 }}>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/employee/login">
+					Employee Login
+				</Link>
+			</Button>
 		</div>
 	);
 };

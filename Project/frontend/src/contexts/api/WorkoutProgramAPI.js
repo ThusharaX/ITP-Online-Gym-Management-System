@@ -39,6 +39,11 @@ class WorkoutProgramAPI {
 	static getEnrolledWorkoutPrograms(userID) {
 		return axios.get(`${BASE_URL}/user/enrolledWorkoutPrograms/${userID}`, requestConfig);
 	}
+
+	// getAllWorkoutProgramsWithTotalRevenue
+	static getAllWorkoutProgramsWithTotalRevenue() {
+		return axios.get(`${BASE_URL}/getAllWorkoutProgramsWithTotalRevenue`, requestConfig);
+	}
 }
 
 export default WorkoutProgramAPI;

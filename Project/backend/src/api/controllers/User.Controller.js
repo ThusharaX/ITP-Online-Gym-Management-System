@@ -38,6 +38,7 @@ export const login = async (request, response, next) => {
 // Create user
 export const createUser = async (req, res, next) => {
 	const user = {
+		avatar: "https://www.seekpng.com/png/full/514-5147412_default-avatar-icon.png",
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		nic: req.body.nic,
@@ -100,6 +101,32 @@ export const unenrollUserFromWorkoutProgram = async (req, res, next) => {
 // getAllEnrolledWorkoutPrograms
 export const getAllEnrolledWorkoutPrograms = async (req, res, next) => {
 	await UserService.getAllEnrolledWorkoutPrograms(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
+
+// Delete user
+export const deleteUser = async (req, res, next) => {
+	await UserService.deleteUser(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
+
+// Get user details
+export const getUserDetails = async (req, res, next) => {
+	await UserService.getUserDetails(req.params.id)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
 			next();

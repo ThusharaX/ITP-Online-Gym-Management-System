@@ -17,6 +17,8 @@ export default function (app) {
 	app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
 	app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
 	app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
+	// getTotalRevenue
+	app.get("/getAllWorkoutProgramsWithTotalRevenue/", controller.getAllWorkoutProgramsWithTotalRevenue);
 
 	// Question endpoints
 	app.post("/question/", controller.insertQuestion); //insert one question
@@ -48,9 +50,11 @@ export default function (app) {
 	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
+	app.get("/user/:id", controller.getUserDetails);
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);
@@ -94,6 +98,7 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+	app.get("/workouts/popular", controller.getMostPopularWorkouts); // get most popular workouts
 
 	//Feedback endpoints
 	app.post("/feedback/", controller.insertFeedback); // insert one feedback
