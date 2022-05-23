@@ -58,6 +58,18 @@ export function WorkoutProgramProvider({ children }) {
 	const form = useForm({
 		schema: joiResolver(schema),
 		initialValues: {
+			photoURL: "",
+			name: "",
+			description: "",
+			conducted_by: "",
+			fee: "",
+			day: "",
+			time: "",
+		},
+	});
+
+	const fillWithDummyData = () => {
+		form.setValues({
 			photoURL:
 				"https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 			name: "Zumba",
@@ -66,8 +78,8 @@ export function WorkoutProgramProvider({ children }) {
 			fee: 2500,
 			day: "Monday",
 			time: "10:00 AM - 11:00 AM",
-		},
-	});
+		});
+	};
 
 	// Add new workoutProgram
 	const addWorkoutProgram = (values) => {
@@ -144,6 +156,10 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Enroll workoutProgram
 	const enrollWorkoutProgram = (workoutProgramID) => {
+		if (!localStorage.getItem("permissionLevel")) {
+			window.location.href = "/login";
+		}
+
 		const data = {
 			userId: localStorage.getItem("uID"),
 			workoutProgramId: workoutProgramID,
@@ -191,6 +207,7 @@ export function WorkoutProgramProvider({ children }) {
 				enrollButtonDisabled,
 				setEnrollButtonDisabled,
 				schema,
+				fillWithDummyData,
 			}}
 		>
 			{children}

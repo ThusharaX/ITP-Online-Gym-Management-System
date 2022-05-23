@@ -1,10 +1,23 @@
 import TrainerBDService from "../services";
+import sendMail from "../../util/sendMail";
 
 // Insert one sample
 export const insertTrainerBD = async (request, response, next) => {
+	// Get all trainers email list
+	const emailList = await TrainerBDService.getMembersEmailList();
+
 	await TrainerBDService.insertTrainerBD(request.body)
 		.then((data) => {
 			request.handleResponse.successRespond(response)(data);
+			sendMail({
+				email: emailList,
+				subject: "Your Newly Created Blog Successfully Added",
+				html: `
+					<h1>${data.name}</h1>
+					<img src="${data.photoURL}" alt="${data.name}">
+					<p>${data.description}</p>
+				`,
+			});
 			next();
 		})
 		.catch((error) => {

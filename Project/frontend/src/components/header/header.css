@@ -7,24 +7,25 @@
 	flex-direction: column;
 	align-items: center;
 	font-family: "Lora", serif;
-	color: #444444;
+	color: #ffffff;
 }
 
 .headerTitleSm {
 	position: absolute;
-	top: 18%;
+	top: 65%;
 	font-size: 20px;
 }
 
 .headerTitleLg {
 	position: absolute;
-	top: 20%;
+	top: 50%;
 	font-size: 100px;
 }
 
 .headerImg {
 	width: 100%;
-	height: 450px;
-	margin-top: 80px;
+	height: 700px;
+	margin-top: 6px;
+	margin-bottom: 50px;
 	object-fit: cover;
 }

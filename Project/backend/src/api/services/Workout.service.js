@@ -98,3 +98,15 @@ export const increaseViewCount = async (workoutId) => {
 			throw new Error(error.message);
 		});
 };
+
+// Get all workouts oder by most viewCount
+export const getAllWorkoutsOrderByViewCount = async () => {
+	return await WorkoutModel.find({})
+		.sort({ viewCount: -1 })
+		.then((workouts) => {
+			return workouts;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

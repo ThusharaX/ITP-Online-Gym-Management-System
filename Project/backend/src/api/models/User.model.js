@@ -4,6 +4,9 @@ import jwt from "jsonwebtoken";
 
 const UserSchema = mongoose.Schema(
 	{
+		avatar: {
+			type: String,
+		},
 		firstName: {
 			type: String,
 			required: true,
@@ -44,6 +47,23 @@ const UserSchema = mongoose.Schema(
 				type: mongoose.Schema.Types.ObjectId,
 			},
 		],
+
+		// Required trainer fields
+		address: {
+			type: String,
+		},
+		qualifications: [
+			{
+				type: String,
+			},
+		],
+		dob: {
+			type: Date,
+		},
+		gender: {
+			type: String,
+		},
+
 		permissionLevel: {
 			type: String,
 			required: true,

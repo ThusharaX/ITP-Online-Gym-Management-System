@@ -31,20 +31,8 @@ const EventsSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+
+	users: [{ uid: { type: mongoose.Schema.Types.ObjectId }, status: { type: String } }],
 });
 
 module.exports = mongoose.model("events", EventsSchema);
-
-// {
-// "title":"title1",
-// "tags": ["css", "javascript", "mongoose", "node"],
-// "description": "description1",
-// "details": "details1",
-// "gender": "gender1",
-// "date": "2012-04-23T18:25:43.511Z"
-//  "trainer": "6238afed94d1c551735ca084"
-// }
-
-// {
-//   "title":"holl up"
-// }

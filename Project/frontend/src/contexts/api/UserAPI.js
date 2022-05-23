@@ -12,6 +12,14 @@ class UserAPI {
 	static register(values) {
 		return axios.post(`${BASE_URL}/user/register/`, values, requestConfigJson);
 	}
+
+	static getUserDetails(uid) {
+		return axios.get(`${BASE_URL}/user/${uid}/`, requestConfig);
+	}
+
+	static deleteUser(uid) {
+		return axios.delete(`${BASE_URL}/user/${uid}/`, requestConfig);
+	}
 }
 
 export default UserAPI;

@@ -8,7 +8,7 @@ import {
 	Sample,
 	Home,
 	WorkoutProgram,
-	PersonalTrainerRequest,
+	// PersonalTrainerRequest,
 	Events,
 	Eventlist,
 	TrainerDashboard,
@@ -36,10 +36,15 @@ import {
 	BlogCreate,
 	BD,
 	Feedback,
+	Request,
+	RList,
 	SampleReport,
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	WorkoutReport,
+	SignUp,
+	PReport,
 } from "../pages";
 
 // Error pages
@@ -91,13 +96,16 @@ const AppRoutes = () => {
 
 					<Route exact path="/trainers/events" element={<Eventlist />} />
 					<Route exact path="/notice" element={<Notice />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
-					<Route exact path="/blog" element={<Blog />} />
+					<Route exact path="/blogs" element={<Blog />} />
 					<Route exact path="/write" element={<Write />} />
-					<Route exact path="/request" element={<PersonalTrainerRequest />} />
+					{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 					<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 					<Route exact path="/package" element={<TrainerPackages />} />
+					<Route exact path="/personal" element={<Request />} />
+					<Route exact path="/reqList" element={<RList />} />
+					<Route exact path="/pReport" element={<PReport />} />
 
 					{/* <Route exact path="/blogs" element={<Blogs />} />
 					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
@@ -105,6 +113,7 @@ const AppRoutes = () => {
 					<Route exact path="/bd" element={<BD />} />
 
 					<Route exact path="/workout" element={<Workout />} />
+					<Route exact path="/workout-report" element={<WorkoutReport />} />
 
 					<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
 
@@ -114,6 +123,9 @@ const AppRoutes = () => {
 
 					<Route exact path="/login" element={<CheckLoginStatus />}>
 						<Route exact path="/login" element={<CommonLogin />} />
+					</Route>
+					<Route exact path="/signUp" element={<CheckLoginStatus />}>
+						<Route exact path="/signUp" element={<SignUp />} />
 					</Route>
 
 					<Route exact path="/admin/login" element={<CheckLoginStatus />}>
