@@ -45,6 +45,8 @@ import {
 	WorkoutReport,
 	SignUp,
 	PReport,
+	Member_List,
+	MemberReport,
 } from "../pages";
 
 // Error pages
@@ -84,6 +86,7 @@ const AppRoutes = () => {
 					<Route exact path="/sample" element={<Sample />} />
 					<Route exact path="/salary" element={<Salary />} />
 					<Route exact path="/question" element={<Question />} />
+					<Route exact path="/memberReport" element={<MemberReport />} />
 
 					<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 						<Route exact path="/trainers/login" element={<TrainerLogin />} />
@@ -143,6 +146,8 @@ const AppRoutes = () => {
 						<Route exact path="/member" element={<MemberDashboard />} />
 						<Route exact path="/member/profile" element={<MemberProfile />} />
 					</Route>
+
+					<Route exact path="/memberList" element={<Member_List />} />
 
 					{/* Admin Routes */}
 					<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>

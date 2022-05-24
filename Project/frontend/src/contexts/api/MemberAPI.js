@@ -12,6 +12,26 @@ class UserAPI {
 	static MemberRegister(values) {
 		return axios.post(`${BASE_URL}/user/register/`, values, requestConfigJson);
 	}
+
+	static getMemberData(id) {
+		return axios.get(`${BASE_URL}/user/${id}`, requestConfigJson);
+	}
+
+	static getMembers() {
+		return axios.get(`${BASE_URL}/user/`, requestConfig);
+	}
+
+	static deleteMember(id) {
+		return axios.delete(`${BASE_URL}/user/${id}`, requestConfig);
+	}
+
+	static editMember(id, newMember) {
+		return axios.put(`${BASE_URL}/user/${id}`, newMember, requestConfigJson);
+	}
+
+	static searchMember(search) {
+		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
+	}
 }
 
 export default UserAPI;
