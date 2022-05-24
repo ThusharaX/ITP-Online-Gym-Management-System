@@ -2,14 +2,24 @@ import { createContext, useState, useEffect } from "react";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import PersonalTrainerRequestAPI from "./api/PersonalTrainerRequestAPI";
+import Joi from "joi";
 
 const PersonalTrainerRequestContext = createContext();
 
 export function PersonalTrainerRequestProvider({ children }) {
+	// Form Validation
+	const schema = Joi.object({
+		name: Joi.string().min(5).max(50).message(" Name should be between 4 and 50 characters"),
+		perTrainer: Joi.string().required(),
+		timeSlot: Joi.string().required(),
+		TrainDay: Joi.string().required(),
+		package: Joi.string().required(),
+		status: Joi.string().required(),
+	});
 	const [requests, setRequests] = useState([]);
 
 	const [request, setRequest] = useState({
@@ -22,6 +32,7 @@ export function PersonalTrainerRequestProvider({ children }) {
 	});
 
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			name: "",
 			perTrainer: "",
