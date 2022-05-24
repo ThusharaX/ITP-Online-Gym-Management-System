@@ -73,6 +73,8 @@ function NavBar() {
 		{ link: "/", label: "Home" },
 		{ link: "/workoutProgram", label: "Workout Programs" },
 		{ link: "/workout", label: "Workouts" },
+		{ link: "/blogs", label: "Blogs" },
+		{ link: "/package", label: "Packages" },
 		{ link: "/events", label: "Events" },
 	];
 	const navigate = useNavigate();
