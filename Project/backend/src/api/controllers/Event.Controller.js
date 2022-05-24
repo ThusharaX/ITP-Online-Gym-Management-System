@@ -1,6 +1,7 @@
 import EventService from "../services";
 const joi = require("joi");
 let events = require("../models/Event.model");
+import sendMail from "../../util/sendMail";
 
 const eventValidation = (data) => {
 	const schema = joi.object({
@@ -59,6 +60,18 @@ const createEvents = async (req, res, next) => {
 	await EventService.createEvents(event)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
+			// eslint-disable-next-line no-console
+			console.log(data.url);
+			sendMail({
+				email: ["darklaneanjana@gmail.com"],
+				subject: "New Event Added",
+				html: `
+					<h1>${data.title}</h1>
+					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
+					<p>${data.description}</p>
+					
+				`,
+			});
 			next();
 		})
 		.catch((error) => {
@@ -83,6 +96,16 @@ const deleteEvents = async (req, res, next) => {
 	await EventService.deleteEvents(req.params.id)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
+			sendMail({
+				email: ["darklaneanjana@gmail.com"],
+				subject: "Event Deleted",
+				html: `
+					<h1>${data.title}</h1>
+					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
+					<p>${data.description}</p>
+					
+				`,
+			});
 			next();
 		})
 		.catch((error) => {

@@ -70,7 +70,6 @@ const Profile = () => {
 							height={150}
 							style={{ boxShadow: "5px 5px 20px #aaa ", borderRadius: "200px" }}
 							src={trainer.url}
-							alt="Random unsplash image"
 						/>
 					</Group>
 					<Title sx={(theme) => ({ color: TitleColor, marginTop: "20px" })} order={2}>
