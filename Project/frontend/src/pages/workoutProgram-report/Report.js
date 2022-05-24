@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { Button, createStyles, Text as MantineText } from "@mantine/core";
+import { Button, createStyles, Text as MantineText, LoadingOverlay, Table } from "@mantine/core";
 
 import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
+
+import BarChart from "./BarChart";
 
 const styles = StyleSheet.create({
 	page: {
@@ -90,18 +92,49 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Report = () => {
-	const { isLoading, getAllWorkoutProgramsWithTotalRevenue, allWorkoutProgramsWithTotalRevenue } =
-		useContext(WorkoutProgramContext);
+	const {
+		isLoading,
+		getAllWorkoutProgramsWithTotalRevenue,
+		allWorkoutProgramsWithTotalRevenue,
+		finalTotalRevenue,
+		totalRevenueData,
+		totalRevenueLabelsData,
+	} = useContext(WorkoutProgramContext);
+
+	const rows = allWorkoutProgramsWithTotalRevenue.map((workoutProgram) => (
+		<tr key={workoutProgram._id}>
+			<td>{workoutProgram.name}</td>
+			<td>{workoutProgram.totalRevenue}</td>
+		</tr>
+	));
 
 	useEffect(() => {
 		getAllWorkoutProgramsWithTotalRevenue();
 	}, []);
 
-	// Calculate total revenue
-	let finalTotalRevenue = 0;
-	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
-		finalTotalRevenue += workoutProgram.totalRevenue;
-	});
+	const data = {
+		labels: totalRevenueLabelsData,
+		datasets: [
+			{
+				label: "Total Revenue by Workout Program",
+				backgroundColor: "rgba(255,99,132,0.2)",
+				// backgroundColor: [
+				// 	"rgba(255, 99, 132, 0.2)",
+				// 	"rgba(255, 159, 64, 0.2)",
+				// 	"rgba(255, 205, 86, 0.2)",
+				// 	"rgba(75, 192, 192, 0.2)",
+				// 	"rgba(54, 162, 235, 0.2)",
+				// 	"rgba(153, 102, 255, 0.2)",
+				// 	"rgba(201, 203, 207, 0.2)",
+				// ],
+				borderColor: "rgba(255,99,132,1)",
+				borderWidth: 1,
+				hoverBackgroundColor: "rgba(255,99,132,0.4)",
+				hoverBorderColor: "rgba(255,99,132,1)",
+				data: totalRevenueData,
+			},
+		],
+	};
 
 	const { classes } = useStyles();
 
@@ -132,39 +165,80 @@ const Report = () => {
 
 	return (
 		<div>
-			<div className={classes.root}>
-				<div className={classes.stat}>
-					<MantineText className={classes.count}>Rs.{finalTotalRevenue}.00</MantineText>
-					<MantineText className={classes.title}>Total Revenue From Workout Programs</MantineText>
+			<div>
+				<LoadingOverlay visible={isLoading} />
+
+				<h2 style={{ marginLeft: "20px" }}>Total Revenue by Workout Program</h2>
+				<div
+					style={{
+						flex: 1,
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-around",
+						margin: "20px",
+					}}
+				>
+					<BarChart data={data} />
+					<Table
+						horizontalSpacing="xl"
+						verticalSpacing="xs"
+						fontSize="sm"
+						// striped
+						// highlightOnHover
+						style={{ marginTop: 10, marginBottom: 10, width: "40%", height: "50%" }}
+						sx={(theme) => ({
+							// backgroundColor: theme.colors.gray[0],
+							backgroundColor: `${theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white}`,
+							// "&:hover": {
+							// 	backgroundColor: theme.colors.gray[1],
+							// },
+							borderLeft: `3px solid ${theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white}`,
+						})}
+					>
+						<thead>
+							<tr>
+								<th>Workout Program</th>
+								<th>Total Revenue (Rs.)</th>
+							</tr>
+						</thead>
+						<tbody>{rows}</tbody>
+					</Table>
 				</div>
+
+				<div className={classes.root}>
+					<div className={classes.stat}>
+						<MantineText className={classes.count}>Rs.{finalTotalRevenue}.00</MantineText>
+						<MantineText className={classes.title}>Total Revenue From Workout Programs</MantineText>
+					</div>
+				</div>
+				<br />
+
+				<h1
+					style={{
+						marginLeft: "20px",
+						marginRight: "20px",
+					}}
+				>
+					Report Preview
+				</h1>
+				<PDFViewer
+					showToolbar={false}
+					style={{
+						width: "95%",
+						height: "500px",
+						marginLeft: "20px",
+						marginRight: "20px",
+					}}
+				>
+					<WorkoutProgramReport />
+				</PDFViewer>
+
+				<PDFDownloadLink document={<WorkoutProgramReport />} fileName="Workout Program Monthly Revenue Report.pdf">
+					<Button className={classes.downloadButton} disabled={isLoading}>
+						{isLoading ? "Generating Report..." : "Download now!"}
+					</Button>
+				</PDFDownloadLink>
 			</div>
-			<br />
-
-			<PDFDownloadLink document={<WorkoutProgramReport />} fileName="Workout Program Monthly Revenue Report.pdf">
-				<Button className={classes.downloadButton} disabled={isLoading}>
-					{isLoading ? "Generating Report..." : "Download now!"}
-				</Button>
-			</PDFDownloadLink>
-
-			<h1
-				style={{
-					marginLeft: "20px",
-					marginRight: "20px",
-				}}
-			>
-				Report Preview
-			</h1>
-			<PDFViewer
-				showToolbar={false}
-				style={{
-					width: "95%",
-					height: "500px",
-					marginLeft: "20px",
-					marginRight: "20px",
-				}}
-			>
-				<WorkoutProgramReport />
-			</PDFViewer>
 		</div>
 	);
 };

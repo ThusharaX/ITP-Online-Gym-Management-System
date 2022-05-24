@@ -47,8 +47,10 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Get all workoutPrograms
 	useEffect(() => {
+		setIsLoading(true);
 		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
 			setWorkoutPrograms(response.data);
+			setIsLoading(false);
 		});
 		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
 			setEnrolledWorkoutPrograms(response.data);
@@ -196,6 +198,24 @@ export function WorkoutProgramProvider({ children }) {
 		});
 	};
 
+	// Calculate total revenue
+	let finalTotalRevenue = 0;
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		finalTotalRevenue += workoutProgram.totalRevenue;
+	});
+
+	// Get all totalRevenues new array
+	let totalRevenueData = [];
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		totalRevenueData.push(workoutProgram.totalRevenue);
+	});
+
+	// Get all workoutProgram names new array
+	let totalRevenueLabelsData = [];
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		totalRevenueLabelsData.push(workoutProgram.name);
+	});
+
 	return (
 		<WorkoutProgramContext.Provider
 			value={{
@@ -222,6 +242,9 @@ export function WorkoutProgramProvider({ children }) {
 				isLoading,
 				getAllWorkoutProgramsWithTotalRevenue,
 				allWorkoutProgramsWithTotalRevenue,
+				finalTotalRevenue,
+				totalRevenueData,
+				totalRevenueLabelsData,
 			}}
 		>
 			{children}
