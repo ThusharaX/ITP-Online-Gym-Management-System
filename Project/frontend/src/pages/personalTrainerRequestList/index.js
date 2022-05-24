@@ -3,6 +3,7 @@ import React from "react";
 // Page Components
 import PersonalTrainerRequestList from "./PersonalTrainerRequestList";
 import Search from "./Search";
+import Chart from "./Chart";
 
 // PersonalTrainerRequest Provider
 import { PersonalTrainerRequestProvider } from "../../contexts/PersonalTrainerRequestContext";
@@ -16,6 +17,7 @@ const RList = () => {
 			<NotificationsProvider>
 				<PersonalTrainerRequestProvider>
 					<Search />
+					{/* <Chart /> */}
 					<PersonalTrainerRequestList />
 				</PersonalTrainerRequestProvider>
 			</NotificationsProvider>
