@@ -27,6 +27,7 @@ import {
 	Workout,
 	AdminLogin,
 	AdminDashboard,
+	EventReport,
 	AdminProfile,
 	CommonLogin,
 	WorkoutScRList,
@@ -156,6 +157,8 @@ const AppRoutes = () => {
 						</Route>
 
 						{/* Trainer Routes */}
+						<Route exact path="/event-report" element={<EventReport />} />
+
 						<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
 							<Route exact path="/trainers" element={<TrainerDashboard />} />
 							<Route exact path="/trainers/list" element={<ListTrainers />} />

@@ -1,4 +1,6 @@
 import React, { useContext, useState } from "react";
+import { storage } from "../../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {
 	Modal,
 	Button,
@@ -10,14 +12,12 @@ import {
 	Radio,
 	Title,
 	Divider,
+	Image,
 	useMantineTheme,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import EventContext from "../../contexts/EventContext";
-import App from "./FileUpload";
-
-// import { DropzoneButton } from "./Dropzone";
 
 const AddEvent = () => {
 	const theme = useMantineTheme();
@@ -25,6 +25,36 @@ const AddEvent = () => {
 	const [opened, setOpened] = useState(false);
 	const [value, onChange] = useState(new Date());
 	const [value1, onChange1] = useState(new Date());
+
+	const [imgUrl, setImgUrl] = useState(null);
+	const [progresspercent, setProgresspercent] = useState(0);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const file = e.target[0]?.files[0];
+
+		if (!file) return;
+
+		const storageRef = ref(storage, `events/${file.name}`);
+		const uploadTask = uploadBytesResumable(storageRef, file);
+
+		uploadTask.on(
+			"state_changed",
+			(snapshot) => {
+				const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+				setProgresspercent(progress);
+			},
+			(error) => {
+				alert(error);
+			},
+			() => {
+				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setImgUrl(downloadURL);
+					form.setFieldValue("url", downloadURL);
+				});
+			}
+		);
+	};
 
 	const notify = () => {
 		setTimeout(() => {
@@ -138,12 +168,33 @@ const AddEvent = () => {
 								{...form.getInputProps("time")}
 							/>
 						</Group>
-						<Group spacing={5} position="left" style={{ marginTop: "40px" }}>
+						<Group spacing={5} position="left" style={{ marginTop: "20px" }}>
 							<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
-								<App />
+								{/* <App /> */}
+								<input form="saveImg" type="file" required />
+								<Button color={"teal"} form="saveImg" type="submit" compact>
+									Upload
+								</Button>
+
+								{!imgUrl && (
+									<div className="outerbar">
+										<div className="innerbar" style={{ width: `${progresspercent}%` }}>
+											{progresspercent}%
+										</div>
+									</div>
+								)}
+								{imgUrl && (
+									<Image
+										radius="md"
+										style={{ marginRight: "30px", margin: "10px 0px 0px 2px" }}
+										src={imgUrl}
+										alt="uploaded file"
+										height={120}
+									/>
+								)}
 							</div>
 							<RadioGroup
-								style={{ border: " 1px solid #ddd", padding: "7px", borderRadius: "5px" }}
+								style={{ border: " 1px solid #ddd", padding: "14px", borderRadius: "5px", margin: "20px 0px 0px 10px" }}
 								size="md"
 								orientation="vertical"
 								label="Can Join"
@@ -165,6 +216,7 @@ const AddEvent = () => {
 							style={{ marginTop: "30px", marginBottom: "30px" }}
 							{...form.getInputProps("details")}
 						/>
+
 						<Divider my="sm" size={"md"} />
 						<Group spacing={130} style={{ marginTop: "15px" }} position="center" mt="md">
 							<Button color={"cyan"} type="submit" radius="3px" size="xl" compact>
@@ -174,8 +226,8 @@ const AddEvent = () => {
 								Cancel
 							</Button>
 						</Group>
-						{/* <DropzoneButton /> */}
 					</form>
+					<form id="saveImg" onSubmit={handleSubmit} className="form"></form>
 				</Box>
 			</Modal>
 			<Group position="center">

@@ -17,7 +17,6 @@ import {
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
 import { PasswordStrength } from "./pswBtn";
-// import dropzoneChildren from "./Dropzone.tsx";
 import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
@@ -108,9 +107,9 @@ const AddTrainer = () => {
 							size="md"
 							style={{ width: "48%" }}
 							required
-							label="User NAME"
+							label="USER NAME"
 							placeholder="Enter Trainer's User Name"
-							{...form.getInputProps("userName")}
+							{...form.getInputProps("username")}
 						/>
 						<TextInput
 							size="md"
