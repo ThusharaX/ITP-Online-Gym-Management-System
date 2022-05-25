@@ -15,7 +15,7 @@ const FeedbackList = () => {
 			<Container my="md" background>
 				<Grid>
 					{feedbacks.map((item) => (
-						<Grid.Col xs={4} key={item._id}>
+						<Grid.Col xs={12} key={item._id}>
 							{/* <strong>ID:</strong> {item._id} */}
 							{/* <br />|<strong>Email :</strong> {item.email} */}
 							{/* <br />|<strong></strong> {item.displayname}
@@ -29,10 +29,10 @@ const FeedbackList = () => {
 							{/* <EditFeedback feedback={item} /> */}
 
 							<Card shadow="sm" p="lg">
-								<h1>
+								<h2>
 									{" "}
-									<Card.Section align="center">{item.displayname}</Card.Section>
-								</h1>
+									<Card.Section>{item.displayname}</Card.Section>
+								</h2>
 
 								<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 									<Text weight={500}>{item.ftitle}</Text>
