@@ -17,7 +17,7 @@ const Member_List = () => {
 				<h1>Member</h1>
 			</div>
 			<div>
-				<Button style={{marginLeft:20}}>
+				<Button style={{ marginLeft: 20 }}>
 					<Link style={{ textDecoration: "none", color: "#fff" }} to="/memberReport">
 						Member Report
 					</Link>

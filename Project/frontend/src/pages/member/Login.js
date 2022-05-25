@@ -21,12 +21,18 @@ export function Login() {
 	const navigate = useNavigate();
 	const { login, form, isLoggedIn, isLoading, message } = useContext(MemberContext);
 	const theme = useMantineTheme();
+
+	const gradient =
+		theme.colorScheme === "dark"
+			? "linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.6)), "
+			: "linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
+				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692037.jpg)",
 				marginTop: "-120px",
 				height: "100vh",
 				width: "100%",

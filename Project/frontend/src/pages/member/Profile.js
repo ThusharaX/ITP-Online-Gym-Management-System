@@ -66,7 +66,7 @@ const Profile = () => {
 					<Text sx={textstyle}>Email: {member.email}</Text>
 					<Text sx={textstyle}>PhoneNumber: {member.phoneNumber}</Text>
 					<Text sx={textstyle}>NIC: {member.nic}</Text>
-					<Text sx={textstyle}>{Date(member.dob).toString().slice(3, 15)}</Text>
+					<Text sx={textstyle}>{member.dob.toString().slice(3, 15)}</Text>
 				</Box>
 				<Box
 					sx={(theme) => ({
@@ -94,7 +94,6 @@ const Profile = () => {
 					<form
 						onSubmit={formProfile.onSubmit((values) => {
 							editMember(values);
-							setEditOpened(false);
 						})}
 					>
 						<Group position="center" style={{ marginTop: "20px" }}>

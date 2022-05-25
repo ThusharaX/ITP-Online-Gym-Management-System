@@ -106,21 +106,20 @@ export function MemberProvider({ children }) {
 		},
 	});
 
-	// useEffect(() => {
-	// 	MemberAPI.getMemberData("627ecb08f2f73a9cc7a5a536").then((res) => {
-	// 		setMember(res.data);
-	// 		formProfile.setFieldValue("firstName", res.data.firstName);
-	// 		formProfile.setFieldValue("lastName", res.data.lastName);
-	// 		formProfile.setFieldValue("username", res.data.username);
-	// 		formProfile.setFieldValue("nic", res.data.nic);
-	// 		formProfile.setFieldValue("email", res.data.email);
-	// 		formProfile.setFieldValue("dob", res.data.dob);
-	// 		formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
-	// 	});
-	// 	MemberAPI.getMembers().then((res) => {
-	// 		setMembers(res.data);
-	// 	});
-	// });
+	useEffect(() => {
+		if (localStorage.getItem("uID")) {
+			MemberAPI.getMemberData(localStorage.getItem("uID")).then((res) => {
+				setMember(res.data);
+				formProfile.setFieldValue("firstName", res.data.firstName);
+				formProfile.setFieldValue("lastName", res.data.lastName);
+				formProfile.setFieldValue("username", res.data.username);
+				formProfile.setFieldValue("nic", res.data.nic);
+				formProfile.setFieldValue("email", res.data.email);
+				formProfile.setFieldValue("dob", res.data.dob);
+				formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
+			});
+		}
+	}, []);
 
 	// Delete Member and update UI
 	const deleteMember = (id) => {
