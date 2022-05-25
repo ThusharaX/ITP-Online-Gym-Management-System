@@ -5,6 +5,8 @@ import WorkoutProgramContext from "../../contexts/WorkoutProgramContext";
 import { Edit, Trash } from "tabler-icons-react";
 import EditWorkoutProgram from "./EditWorkoutProgram";
 
+import WorkoutProgramSkeleton from "./WorkoutProgramSkeleton";
+
 function WorkoutProgramList() {
 	const {
 		workoutPrograms,
@@ -17,13 +19,17 @@ function WorkoutProgramList() {
 		enrolledWorkoutPrograms,
 		enrollButtonDisabled,
 		setEnrollButtonDisabled,
+		isLoading,
 	} = useContext(WorkoutProgramContext);
+
 	const theme = useMantineTheme();
 
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
 	return (
 		<>
+			{isLoading ? <WorkoutProgramSkeleton isLoading={isLoading} /> : <></>}
+
 			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Workout Program">
 				<EditWorkoutProgram />
 			</Modal>

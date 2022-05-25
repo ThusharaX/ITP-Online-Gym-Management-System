@@ -1,33 +1,42 @@
 import React, { useContext } from "react";
-import { Button } from "@mantine/core";
+import { Button, Grid, Skeleton, Container, Card, Image, Text, Badge, Group, useMantineTheme } from "@mantine/core";
 
 import QuestionContext from "../../contexts/QuestionContext";
 
 const QuestionList = () => {
 	const { questions, confirmDelete } = useContext(QuestionContext);
 
+	const theme = useMantineTheme();
+	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
+
 	return (
 		<>
-			<ul>
-				{/* Sort questions by createdAt */}
-				{questions
-					.sort((a, b) => a.createdAt - b.createdAt)
-					.map((question) => (
-						<li key={question._id}>
-							<h2>{question.title}</h2>
-							<p>
-								<strong>ID:</strong> {question._id}
-								<br />|<strong>Email :</strong> {question.email}
-								<br />|<strong>Name :</strong> {question.name}
-								<br />|<strong>Question title:</strong> {question.title}
-								<br />|<strong>Question:</strong> {question.content}
-							</p>
-							<Button onClick={() => confirmDelete(question._id)} color="red" compact>
-								Delete
-							</Button>
-						</li>
+			<Container my="md" background>
+				<Grid>
+					{questions.map((item) => (
+						<Grid.Col xs={6} key={item._id}>
+							<Card shadow="sm" p="lg">
+								<h3>
+									<Card.Section align="right">{item.name}</Card.Section>
+								</h3>
+
+								<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
+									<Text weight={500} align="center">
+										Related to {item.title}
+									</Text>
+									<Badge color="pink" variant="light">
+										New Questios
+									</Badge>
+								</Group>
+
+								<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+									{item.content}
+								</Text>
+							</Card>
+						</Grid.Col>
 					))}
-			</ul>
+				</Grid>
+			</Container>
 		</>
 	);
 };

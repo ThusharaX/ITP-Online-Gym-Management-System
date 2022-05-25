@@ -24,6 +24,30 @@ const Dashboard = () => {
 					Employees
 				</Link>
 			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/workoutProgram-report">
+					Generate Workout Program Report
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/reqList">
+					Set Personal Trainer Request Status
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/pReport">
+					Generate Personal Trainer Request Report
+				</Link>
+			</Button>
 		</div>
 	);
 };

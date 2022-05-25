@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		textAlign: "center",
 		margin: 10,
-		textTransform: "uppercase",
+		// textTransform: "uppercase",
 	},
 	section: {
 		margin: 10,
@@ -35,17 +35,16 @@ const Report = () => {
 			<Page size="A4" style={styles.page}>
 				<View style={styles.title}>
 					<Text>Most Popular Workouts</Text>
-				</View>
 
-				{popularWorkouts.map((workout) => (
-					<View key={workout._id} style={styles.section}>
-						<Text style={styles.row}>
-							<h2>{workout.workout_name}</h2>
-							<h2> --------------------- </h2>
-							<h2>{workout.viewCount}</h2>
-						</Text>
-					</View>
-				))}
+					{popularWorkouts.map((workout) => (
+						<View key={workout._id} style={styles.section}>
+							<View style={styles.row}>
+								<Text>{workout.workout_name}</Text>
+								<Text>{workout.viewCount}</Text>
+							</View>
+						</View>
+					))}
+				</View>
 			</Page>
 		</Document>
 	);

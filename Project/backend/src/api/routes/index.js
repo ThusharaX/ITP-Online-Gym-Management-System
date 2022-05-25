@@ -17,6 +17,8 @@ export default function (app) {
 	app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
 	app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
 	app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
+	// getTotalRevenue
+	app.get("/getAllWorkoutProgramsWithTotalRevenue/", controller.getAllWorkoutProgramsWithTotalRevenue);
 
 	// Question endpoints
 	app.post("/question/", controller.insertQuestion); //insert one question
@@ -25,19 +27,19 @@ export default function (app) {
 	app.get("/question/", controller.getAllQuestions); //get all questions
 
 	//TrainerDB endpoints
-	app.post("/blog/", middleware.authenticate, controller.insertTrainerBD); // insert one sample
+	app.post("/blog/", controller.insertTrainerBD); // insert one sample
 	app.get("/blog/", controller.getAllTrainerBD); // get all samples
 	app.get("/blog/:id", controller.getOneTrainerBD); // get one sample
-	app.put("/blog/:id", middleware.authenticate, controller.updateTrainerBD); // update one sample
-	app.delete("/blog/:id", middleware.authenticate, controller.deleteTrainerBD); // delete one sample
+	app.put("/blog/:id", controller.updateTrainerBD); // update one sample
+	app.delete("/blog/:id", controller.deleteTrainerBD); // delete one sample
 	//app.get("/blog/search/:search", controller.searchTrainerDB); // search samples
 
 	//PersonalTrainer Request endpoints
-	app.post("/personal/", middleware.authenticate, controller.insertPersonalTrainerReq); // insert one request
+	app.post("/personal/", controller.insertPersonalTrainerReq); // insert one request
 	app.get("/personal/", controller.getAllPersonalTrainerReq); // get all request
 	app.get("/personal/:id", controller.getOnePersonalTrainerReq); // get one request
-	app.put("/personal/:id", middleware.authenticate, controller.updatePersonalTrainerReq); // update one request
-	app.delete("/personal/:id", middleware.authenticate, controller.deletePersonalTrainerReq); // delete one request
+	app.put("/personal/:id", controller.updatePersonalTrainerReq); // update one request
+	app.delete("/personal/:id", controller.deletePersonalTrainerReq); // delete one request
 	app.get("/personal/search/:search", controller.searchPersonalTrainerReq); // search Workout Programs
 
 	//Salary endpoints

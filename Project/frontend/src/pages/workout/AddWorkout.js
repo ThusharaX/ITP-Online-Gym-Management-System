@@ -4,7 +4,7 @@ import { Button, TextInput, Group, Box } from "@mantine/core";
 import WorkoutContext from "../../contexts/WorkoutContext";
 
 const AddWorkout = () => {
-	const { addWorkout, form, setOpened } = useContext(WorkoutContext);
+	const { addWorkout, form, setOpened, fillWithDummyData } = useContext(WorkoutContext);
 
 	return (
 		<>
@@ -40,8 +40,18 @@ const AddWorkout = () => {
 					<TextInput name="tips" label="Tips" {...form.getInputProps("tips")} />
 
 					<Group position="right" mt="md">
+						{/* Demo button for fill from with dummy data */}
+						<Button onClick={() => fillWithDummyData()} color="green">
+							Demo
+						</Button>
 						<Button type="submit">Create</Button>
-						<Button onClick={() => setOpened(false)} color="red">
+						<Button
+							onClick={() => {
+								setOpened(false);
+								form.reset();
+							}}
+							color="red"
+						>
 							Cancel
 						</Button>
 					</Group>
