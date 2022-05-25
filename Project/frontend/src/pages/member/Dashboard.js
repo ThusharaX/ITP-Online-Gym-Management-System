@@ -92,7 +92,7 @@ const Dashboard = () => {
 				</Title>
 
 				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-					If any notices or special situvations we notices you with notice. Regularly check the notice page.
+					If you want to request personal trainer. You can request using this card.
 				</Text>
 			</Card>
 
@@ -112,7 +112,7 @@ const Dashboard = () => {
 				</Title>
 
 				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
-					If any notices or special situvations we notices you with notice. Regularly check the notice page.
+					If you want to know your personal trainer... Try this and view your trainer details.
 				</Text>
 			</Card>
 		</SimpleGrid>
