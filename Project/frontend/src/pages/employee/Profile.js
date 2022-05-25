@@ -92,10 +92,12 @@ const Profile = () => {
 					</Title>
 
 					<Divider my="sm" size={"md"} />
-					<form onSubmit={formProfile.onSubmit((values) => {
+					<form
+						onSubmit={formProfile.onSubmit((values) => {
 							editEmployee(values);
 							setEditOpened(false);
-						})}>
+						})}
+					>
 						<Group position="center" style={{ marginTop: "20px" }}>
 							<TextInput
 								size="md"

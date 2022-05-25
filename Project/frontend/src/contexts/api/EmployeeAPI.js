@@ -28,11 +28,10 @@ class UserAPI {
 	static editEmployee(id, newEmployee) {
 		return axios.put(`${BASE_URL}/user/${id}`, newEmployee, requestConfigJson);
 	}
-	
+
 	static searchEmployee(search) {
 		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
 	}
-
 }
 
 export default UserAPI;

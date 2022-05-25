@@ -7,13 +7,13 @@ import EmployeeContext from "../../contexts/EmployeeContext";
 
 const EditEmployee = () => {
 	const { editEmployee, employee, setEditOpened, schema, editOpened } = useContext(EmployeeContext);
-    const [date, setDate] = useState(new Date());
+	const [date, setDate] = useState(new Date());
 
 	// Form initial state
 	let form = useForm({
 		//schema: joiResolver(schema),
 		initialValues: {
-            id:employee._id,
+			id: employee._id,
 			firstName: employee.firstName,
 			lastName: employee.lastName,
 			username: employee.username,
@@ -37,23 +37,23 @@ const EditEmployee = () => {
 						<TextInput required label="First Name" placeholder="First Name" {...form.getInputProps("firstName")} />
 						<TextInput required label="Last Name" placeholder="Last Name" {...form.getInputProps("lastName")} />
 						<TextInput required label="Username" placeholder="Username" {...form.getInputProps("username")} />
-						<TextInput
-							required
-							label="NIC"
-							placeholder="NIC"
-							{...form.getInputProps("nic")}
-						/>
+						<TextInput required label="NIC" placeholder="NIC" {...form.getInputProps("nic")} />
 						<TextInput required label="Email" placeholder="Email" {...form.getInputProps("email")} />
 						<DatePicker
-								size="md"
-								placeholder="Date of Birth"
-								label="Date of Birth"
-								required
-								value={date}
-								onChange={setDate}
-								{...form.getInputProps("dob")}
-							/>
-						<TextInput required label="Phone Number" placeholder="Phone Number" {...form.getInputProps("phoneNumber")} />
+							size="md"
+							placeholder="Date of Birth"
+							label="Date of Birth"
+							required
+							value={date}
+							onChange={setDate}
+							{...form.getInputProps("dob")}
+						/>
+						<TextInput
+							required
+							label="Phone Number"
+							placeholder="Phone Number"
+							{...form.getInputProps("phoneNumber")}
+						/>
 						<TextInput
 							required
 							label="Qualifications"

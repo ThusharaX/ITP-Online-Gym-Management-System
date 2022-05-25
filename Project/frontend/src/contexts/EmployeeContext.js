@@ -112,7 +112,7 @@ export function EmployeeProvider({ children }) {
 	useEffect(() => {
 		EmployeeAPI.getEmployeeData(localStorage.getItem("uID")).then((res) => {
 			setEmployee(res.data);
-			formProfile.setFieldValue("id",res.data._id);
+			formProfile.setFieldValue("id", res.data._id);
 			formProfile.setFieldValue("firstName", res.data.firstName);
 			formProfile.setFieldValue("lastName", res.data.lastName);
 			formProfile.setFieldValue("username", res.data.username);
@@ -169,7 +169,7 @@ export function EmployeeProvider({ children }) {
 				setEmployees,
 				editOpened,
 				setEditOpened,
-				setEmployee
+				setEmployee,
 			}}
 		>
 			{children}

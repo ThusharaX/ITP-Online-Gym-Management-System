@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
 function EmployeeTableScrollArea() {
 	const { classes, cx } = useStyles();
 	const [scrolled, setScrolled] = useState(false);
-	const { employees, setEmployee, confirmDelete , setEditOpened, editOpened } = useContext(EmployeeContext);
+	const { employees, setEmployee, confirmDelete, setEditOpened, editOpened } = useContext(EmployeeContext);
 
 	const rows = employees.map((row) => (
 		<tr key={row._id}>

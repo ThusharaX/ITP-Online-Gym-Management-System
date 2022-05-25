@@ -32,8 +32,6 @@ class UserAPI {
 	static searchUser(search) {
 		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
 	}
-
-	
 }
 
 export default UserAPI;

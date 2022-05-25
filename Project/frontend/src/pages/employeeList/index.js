@@ -17,11 +17,11 @@ const Employee_List = () => {
 				<h1>Employee</h1>
 			</div>
 			<div>
-			<Button style={{marginLeft:20}}>
-				<Link style={{ textDecoration: "none", color: "#fff" }} to="/employeList">
-					Employee Report
-				</Link>
-			</Button>
+				<Button style={{ marginLeft: 20 }}>
+					<Link style={{ textDecoration: "none", color: "#fff" }} to="/employeList">
+						Employee Report
+					</Link>
+				</Button>
 				<EmployeeProvider>
 					{/*search employee */}
 					<Search />

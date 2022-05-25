@@ -48,9 +48,9 @@ const AddSalary = () => {
 			</Modal>
 
 			<Group position="left" style={{ marginLeft: 20, marginBottom: "1rem" }}>
-			{localStorage.getItem("permissionLevel") === "ADMIN" && (
-				<Button onClick={() => setOpened(true)}>Add New Salary</Button>
-			)}
+				{localStorage.getItem("permissionLevel") === "ADMIN" && (
+					<Button onClick={() => setOpened(true)}>Add New Salary</Button>
+				)}
 			</Group>
 		</>
 	);
