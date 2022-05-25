@@ -22,6 +22,7 @@ import CommonLogin from "./commonLogin";
 
 import WorkoutScR from "./workoutScR";
 import WorkoutScRList from "./workoutScRList";
+import ViewMyWorkoutScR from "./myWorkoutScr/ViewMyWorkoutScr";
 
 import SampleReport from "./sample-report";
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
@@ -60,4 +61,5 @@ export {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	ViewMyWorkoutScR,
 };

@@ -16,6 +16,10 @@ class WorkoutScRAPI {
 	static deleteWorkoutScR(id) {
 		return axios.delete(`${BASE_URL}/workoutScr/${id}`, requestConfig);
 	}
+
+	static getOneWorkoutData(id) {
+		return axios.get(`${BASE_URL}/workoutScr/${id}`, requestConfig);
+	}
 }
 
 export default WorkoutScRAPI;

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Button, TextInput, Group, Box, NumberInput } from "@mantine/core";
 import WorkoutScRContext from "../../contexts/WorkoutScRContext";
 
 const AddWorkoutScR = () => {
-	const { addWorkoutScR, form } = useContext(WorkoutScRContext);
+	const { addWorkoutScR, form, getOneWorkoutData} = useContext(WorkoutScRContext);
 
 	return (
 		<>
@@ -27,6 +28,11 @@ const AddWorkoutScR = () => {
 
 					<Group position="center" mt="xl">
 						<Button type="submit">Submit</Button>
+						<Button color="green" type="submit">
+							<Link to="/myworkoutscr">Workout Request Schedule
+							</Link>
+							
+						</Button>
 					</Group>
 				</form>
 			</Box>

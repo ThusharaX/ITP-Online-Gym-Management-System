@@ -40,6 +40,7 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	ViewMyWorkoutScR,
 } from "../pages";
 
 // Error pages
@@ -111,6 +112,7 @@ const AppRoutes = () => {
 					{/*Workout Schedule Request */}
 					<Route path="/workoutscr" element={<WorkoutScR />} />
 					<Route path="/workoutscrlist" element={<WorkoutScRList />} />
+					<Route path="/myworkoutscr" element={<ViewMyWorkoutScR />} />
 
 					<Route exact path="/login" element={<CheckLoginStatus />}>
 						<Route exact path="/login" element={<CommonLogin />} />

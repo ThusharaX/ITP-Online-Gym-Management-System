@@ -29,6 +29,13 @@ export function WorkoutScRProvider({ children }) {
 		},
 	});
 
+	// Get One Workout Schedule Request
+	const getOneWorkoutData = (id) => {
+		WorkoutScRAPI.getOneWorkoutData(id).then(() => {
+			setWorkoutScR(WorkoutScR.filter((getOneworkout) => getOneworkout._id !== id));
+		});
+	};
+
 	// Add new workout schedule request
 	const addWorkoutScR = (values) => {
 		const newWorkoutScR = {
@@ -53,7 +60,7 @@ export function WorkoutScRProvider({ children }) {
 		});
 	};
 
-	// Delete Workout Schedule Requests
+	//  Confirm Delete Workout Schedule Requests
 
 	const modals = useModals();
 	const confirmDelete = (id) => {
@@ -85,6 +92,7 @@ export function WorkoutScRProvider({ children }) {
 				form,
 				setWorkoutScR,
 				confirmDelete,
+				getOneWorkoutData,
 			}}
 		>
 			{children}
