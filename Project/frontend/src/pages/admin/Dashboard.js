@@ -12,16 +12,44 @@ const Dashboard = () => {
 					Generate Workout Report
 				</Link>
 			</Button>
-
+			<br />
+			<br />
+			<br />
 			<Button style={{ margin: 20 }}>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/memberList">
 					Members
 				</Link>
 			</Button>
-
+			<br />
+			<br />
+			<br />
 			<Button style={{ margin: 20 }}>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/notice">
 					Notices
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/workoutProgram-report">
+					Generate Workout Program Report
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/reqList">
+					Set Personal Trainer Request Status
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/pReport">
+					Generate Personal Trainer Request Report
 				</Link>
 			</Button>
 		</div>

@@ -80,3 +80,18 @@ export const searchWorkoutPrograms = async (searchTerm) => {
 			throw new Error(error.message);
 		});
 };
+
+// Get total fee for a Workout Program (enrolledUserCount * fee)
+export const getTotalRevenue = async (workoutProgramId) => {
+	return await WorkoutProgramModel.findById(workoutProgramId)
+		.then((workoutProgram) => {
+			if (workoutProgram) {
+				return workoutProgram.enrolledUserCount * workoutProgram.fee;
+			} else {
+				throw new Error("Workout Program not found");
+			}
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

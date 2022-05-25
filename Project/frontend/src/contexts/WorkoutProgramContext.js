@@ -12,6 +12,7 @@ import Joi from "joi";
 const WorkoutProgramContext = createContext();
 
 export function WorkoutProgramProvider({ children }) {
+	const [isLoading, setIsLoading] = useState(false);
 	const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 	// Form Validation
@@ -46,8 +47,10 @@ export function WorkoutProgramProvider({ children }) {
 
 	// Get all workoutPrograms
 	useEffect(() => {
+		setIsLoading(true);
 		WorkoutProgramAPI.getWorkoutProgramData().then((response) => {
 			setWorkoutPrograms(response.data);
+			setIsLoading(false);
 		});
 		WorkoutProgramAPI.getEnrolledWorkoutPrograms(localStorage.getItem("uID")).then((response) => {
 			setEnrolledWorkoutPrograms(response.data);
@@ -185,6 +188,34 @@ export function WorkoutProgramProvider({ children }) {
 		});
 	};
 
+	const [allWorkoutProgramsWithTotalRevenue, setAllWorkoutProgramsWithTotalRevenue] = useState([]);
+
+	const getAllWorkoutProgramsWithTotalRevenue = () => {
+		setIsLoading(true);
+		WorkoutProgramAPI.getAllWorkoutProgramsWithTotalRevenue().then((response) => {
+			setAllWorkoutProgramsWithTotalRevenue(response.data);
+			setIsLoading(false);
+		});
+	};
+
+	// Calculate total revenue
+	let finalTotalRevenue = 0;
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		finalTotalRevenue += workoutProgram.totalRevenue;
+	});
+
+	// Get all totalRevenues new array
+	let totalRevenueData = [];
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		totalRevenueData.push(workoutProgram.totalRevenue);
+	});
+
+	// Get all workoutProgram names new array
+	let totalRevenueLabelsData = [];
+	allWorkoutProgramsWithTotalRevenue.forEach((workoutProgram) => {
+		totalRevenueLabelsData.push(workoutProgram.name);
+	});
+
 	return (
 		<WorkoutProgramContext.Provider
 			value={{
@@ -208,6 +239,12 @@ export function WorkoutProgramProvider({ children }) {
 				setEnrollButtonDisabled,
 				schema,
 				fillWithDummyData,
+				isLoading,
+				getAllWorkoutProgramsWithTotalRevenue,
+				allWorkoutProgramsWithTotalRevenue,
+				finalTotalRevenue,
+				totalRevenueData,
+				totalRevenueLabelsData,
 			}}
 		>
 			{children}

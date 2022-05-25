@@ -2,22 +2,38 @@ import { createContext, useState, useEffect } from "react";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import BlogAPI from "./api/BlogAPI";
+
 import Joi from "joi";
 
 const BlogContext = createContext();
 
 export function BlogProvider({ children }) {
-	// //Form Validations
-	// const schema = Joi.object({
-	// 	description: Joi.string().min(5).max(30).message("description should be between 10 and 1000 characters"),
-	// 	fb: Joi.string().min(5).max(100).message("Facebook should be valid one"),
-	// 	wNum: Joi.string().min(10).max(10).message("Phone Number should valid"),
-	// 	email: Joi.string().message("Email should be valid one"),
-	// });
+	//Form Validations
+	const schema = Joi.object({
+		trname: Joi.string().min(5).max(100).message("Trainer Name should be between 10 and 1000 characters").required(),
+		title: Joi.string().min(5).max(50).message("Title should be between 10 and 1000 characters").required(),
+		description: Joi.string()
+			.min(5)
+			.max(1000)
+			.message("description should be between 10 and 1000 characters")
+			.required(),
+		fb: Joi.string().min(2).max(50).message("Facebook should be valid one").required(),
+		wNum: Joi.string().min(2).max(10).message("Phone Number should valid").required(),
+		email: Joi.string()
+			.email({ minDomainSegments: 2, tlds: { allow: ["com", "lk"] } })
+			.required(),
+		monday: Joi.string().required(),
+		tuesday: Joi.string().required(),
+		wednesday: Joi.string().required(),
+		thursday: Joi.string().required(),
+		friday: Joi.string().required(),
+		saturday: Joi.string().required(),
+		sunday: Joi.string().required(),
+	});
 
 	// Blogss
 	const [blogs, setBlogs] = useState([]);
@@ -47,6 +63,7 @@ export function BlogProvider({ children }) {
 
 	// Form initial state
 	const form = useForm({
+		schema: joiResolver(schema),
 		initialValues: {
 			trname: "",
 			title: "",
@@ -63,6 +80,24 @@ export function BlogProvider({ children }) {
 			sunday: "",
 		},
 	});
+	//demo details
+	const fillWithDummyData = () => {
+		form.setValues({
+			trname: "Andrew",
+			title: "Personal Trainer",
+			description: "Description ",
+			fb: "Andrew Res",
+			wNum: "07112345675",
+			email: "andrew@gmail.com",
+			monday: "Available",
+			tuesday: "Available",
+			wednesday: "Available",
+			thursday: "Available",
+			friday: "Available",
+			saturday: "Available",
+			sunday: "Available",
+		});
+	};
 
 	// Add new blog
 	const addBlog = (values) => {
@@ -168,6 +203,7 @@ export function BlogProvider({ children }) {
 				setEditOpened,
 				blog,
 				setBlog,
+				fillWithDummyData,
 			}}
 		>
 			{children}

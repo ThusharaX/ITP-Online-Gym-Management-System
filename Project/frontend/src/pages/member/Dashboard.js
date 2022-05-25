@@ -75,6 +75,46 @@ const Dashboard = () => {
 					If any notices or special situvations we notices you with notice. Regularly check the notice page.
 				</Text>
 			</Card>
+
+			<Card
+				shadow="lg"
+				sx={cardTheme(theme, 2, 10)}
+				style={cardStyle}
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/personal");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					Create Personal Trainer Request
+				</Title>
+
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If any notices or special situvations we notices you with notice. Regularly check the notice page.
+				</Text>
+			</Card>
+
+			<Card
+				shadow="lg"
+				sx={cardTheme(theme, 2, 10)}
+				style={cardStyle}
+				p="xl"
+				component="a"
+				href=""
+				onClick={() => {
+					navigate("/bd");
+				}}
+			>
+				<Title order={1} className="your-class-name" sx={cardTitleSx}>
+					Watch Personal Trainer Details
+				</Title>
+
+				<Text color={"#eee"} sx={cardTextSx} weight={500} size="md">
+					If any notices or special situvations we notices you with notice. Regularly check the notice page.
+				</Text>
+			</Card>
 		</SimpleGrid>
 	);
 };
