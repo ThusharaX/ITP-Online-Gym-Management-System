@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
@@ -34,8 +34,7 @@ const Profile = () => {
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 	const textstyle = (theme) => ({ fontSize: "15px", marginTop: "20px", fontWeight: "400", color: TitleColor });
 
-	const { updateTrainer, formProfile, trainer } = useContext(TrainerContext);
-	const [date, setDate] = useState(new Date());
+	const { updateTrainer, formProfile, trainer, date, setDate, TrainerAPI, setTrainer } = useContext(TrainerContext);
 
 	const [opened, setOpen] = useState(false);
 	const [imgUrl, setImgUrl] = useState(null);
@@ -62,12 +61,29 @@ const Profile = () => {
 			() => {
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					setImgUrl(downloadURL);
-					formProfile.setFieldValue("url", downloadURL);
+					formProfile.setFieldValue("avatar", downloadURL);
 				});
 			}
 		);
 	};
 
+	useEffect(() => {
+		TrainerAPI.getTrainerData(localStorage.getItem("uID")).then((res) => {
+			setTrainer(res.data);
+			formProfile.setFieldValue("avatar", res.data.firstName);
+			formProfile.setFieldValue("firstName", res.data.firstName);
+			formProfile.setFieldValue("lastName", res.data.lastName);
+			formProfile.setFieldValue("username", res.data.username);
+			formProfile.setFieldValue("nic", res.data.nic);
+			formProfile.setFieldValue("email", res.data.email);
+			formProfile.setFieldValue("gender", res.data.gender);
+			formProfile.setFieldValue("address", res.data.address);
+			formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
+			formProfile.setFieldValue("qualifications", res.data.qualifications);
+			formProfile.setFieldValue("dob", res.data.dob);
+			setDate(res.data.dob);
+		});
+	}, []);
 	return (
 		<Box
 			sx={(theme) => ({
@@ -105,7 +121,7 @@ const Profile = () => {
 							width={150}
 							height={150}
 							style={{ boxShadow: "5px 5px 20px #aaa ", borderRadius: "200px" }}
-							src={trainer.url}
+							src={trainer.avatar}
 							onClick={() => setOpen((o) => !o)}
 						/>
 					</Group>
@@ -176,7 +192,12 @@ const Profile = () => {
 					</Title>
 
 					<Divider my="sm" size={"md"} />
-					<form onSubmit={formProfile.onSubmit((values) => updateTrainer(values))}>
+					<form
+						onSubmit={formProfile.onSubmit((values) => {
+							updateTrainer(values);
+							setImgUrl(null);
+						})}
+					>
 						<Group position="center" style={{ marginTop: "40px" }}>
 							<TextInput
 								size="md"

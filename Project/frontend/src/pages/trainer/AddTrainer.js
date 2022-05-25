@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
@@ -20,9 +20,16 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import { PasswordStrength } from "./pswBtn";
 
 const AddTrainer = () => {
+	const user = localStorage.getItem("permissionLevel");
+	// useEffect(() => {
+	// 	if (!((user == "ADMIN") | (user == "TRAINER"))) {
+	// 		navigate("/");
+	// 		return alert("You need to be a Admin");
+	// 	}
+	// }, []);
+
 	const navigate = useNavigate();
 	const theme = useMantineTheme();
 	const gradient =
@@ -117,6 +124,7 @@ const AddTrainer = () => {
 				<form
 					onSubmit={form.onSubmit((values) => {
 						addTrainer(values);
+						navigate("/trainers/list");
 						// isLoading(true);
 					})}
 				>

@@ -1,5 +1,4 @@
 let events = require("../models/Event.model");
-////9 CRUDS
 
 export const getEvent = async (id) => {
 	return await events
