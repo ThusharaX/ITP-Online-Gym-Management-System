@@ -48,6 +48,7 @@ import {
 	WorkoutReport,
 	SignUp,
 	PReport,
+	Employee_List,
 } from "../pages";
 
 // Error pages
@@ -114,6 +115,8 @@ const AppRoutes = () => {
 					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
 
 					<Route exact path="/bd" element={<BD />} />
+
+					<Route exact path="/employeeList" element={<Employee_List />} />
 
 					<Route exact path="/workout" element={<Workout />} />
 					<Route exact path="/workout-report" element={<WorkoutReport />} />

@@ -26,7 +26,14 @@ import {
 	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
+import {
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
+	searchSalaries,
+	getOneEmployeeSalary,
+} from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -37,6 +44,9 @@ import {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsers,
 } from "./User.service";
 
 import {
@@ -112,6 +122,7 @@ export default {
 	getAllSalaries,
 	getOneSalary,
 	searchSalaries,
+	getOneEmployeeSalary,
 
 	// User services
 	authenticateUser,
@@ -122,6 +133,9 @@ export default {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsers,
 
 	// Workout services
 	insertWorkout,

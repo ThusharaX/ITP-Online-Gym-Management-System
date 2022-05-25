@@ -5,16 +5,8 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
 
-// MemberProvider
+//EmployeeProvider
 import { EmployeeProvider } from "../../contexts/EmployeeContext";
-
-// const MemberRegister = () => {
-// 	return (
-// 		<MemberProvider>
-// 			<AddMember />
-// 		</MemberProvider>
-// 	);
-// };
 
 const EmployeeLogin = () => {
 	return (

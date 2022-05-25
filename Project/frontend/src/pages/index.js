@@ -31,6 +31,7 @@ import WorkoutReport from "./workout-report";
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
 import { EmployeeLogin, EmployeeDashboard, EmployeeProfile } from "./employee";
 import SignUp from "./signUp";
+import { Employee_List } from "./employeeList";
 
 export {
 	Sample,
@@ -74,4 +75,5 @@ export {
 	WorkoutReport,
 	SignUp,
 	PReport,
+	Employee_List,
 };

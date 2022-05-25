@@ -156,3 +156,50 @@ export const getUserDetails = async (userId) => {
 			throw new Error(error.message);
 		});
 };
+
+//Get all Users where permission is EMPLOYEE
+export const getAllEmployees = async () => {
+	return await UserModel.find({ permissionLevel: "EMPLOYEE" })
+		.then((data) => {
+			return data.map((user) => {
+				return user;
+			});
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Update user
+export const updateUser = async (userId, userData) => {
+	return await UserModel.findByIdAndUpdate(userId, userData, {
+		new: true,
+	})
+		.then((user) => {
+			if (user) {
+				return user;
+			} else {
+				throw new Error("User not found");
+			}
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
+
+// Search User from first name,last name or nic
+export const searchUsers = async (searchTerm) => {
+	return await UserModel.find({
+		$or: [
+			{ firstName: { $regex: searchTerm, $options: "i" } },
+			{ lastName: { $regex: searchTerm, $options: "i" } },
+			{ nic: { $regex: searchTerm, $options: "i" } },
+		],
+	})
+		.then((users) => {
+			return users;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};
