@@ -55,9 +55,6 @@ export default function (app) {
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
-	app.get("/user/", controller.getAllMembers);
-	app.put("/user/:id", controller.updateUser);
-	app.get("/user/search/:search", controller.searchUsers);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);
