@@ -91,3 +91,36 @@ export const searchWorkoutPrograms = async (request, response, next) => {
 			next();
 		});
 };
+
+// getTotalRevenue
+export const getTotalRevenue = async (request, response, next) => {
+	await WorkoutProgramService.getTotalRevenue(request.params.id)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
+
+// getAllWorkoutPrograms with total revenue
+export const getAllWorkoutProgramsWithTotalRevenue = async (request, response, next) => {
+	const workoutPrograms = await WorkoutProgramService.getAllWorkoutPrograms();
+
+	for (let i = 0; i < workoutPrograms.length; i++) {
+		const totalRevenue = await WorkoutProgramService.getTotalRevenue(workoutPrograms[i].id);
+		workoutPrograms[i].totalRevenue = totalRevenue;
+	}
+
+	// Build new object with total revenue
+	const newWorkoutPrograms = workoutPrograms.map((workoutProgram) => {
+		return {
+			...workoutProgram._doc,
+			totalRevenue: workoutProgram.totalRevenue,
+		};
+	});
+	request.handleResponse.successRespond(response)(newWorkoutPrograms);
+	next();
+};

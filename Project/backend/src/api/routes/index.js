@@ -17,6 +17,8 @@ export default function (app) {
 	app.put("/workoutProgram/:id", controller.updateWorkoutProgram); // update one Workout Program
 	app.delete("/workoutProgram/:id", controller.deleteWorkoutProgram); // delete one wWrkout Program
 	app.get("/workoutProgram/search/:search", controller.searchWorkoutPrograms); // search Workout Programs
+	// getTotalRevenue
+	app.get("/getAllWorkoutProgramsWithTotalRevenue/", controller.getAllWorkoutProgramsWithTotalRevenue);
 
 	// Question endpoints
 	app.post("/question/", controller.insertQuestion); //insert one question
@@ -38,17 +40,28 @@ export default function (app) {
 	app.get("/personal/:id", controller.getOnePersonalTrainerReq); // get one request
 	app.put("/personal/:id", controller.updatePersonalTrainerReq); // update one request
 	app.delete("/personal/:id", controller.deletePersonalTrainerReq); // delete one request
+	app.get("/personal/search/:search", controller.searchPersonalTrainerReq); // search Workout Programs
 
 	//Salary endpoints
 	app.post("/salary/", controller.insertSalary); // insert a salary
 	app.put("/salary/:id", controller.updateSalary); //update a salary
 	app.get("/salary/", controller.getAllSalaries); // get all salaries
 	app.get("/salary/:id", controller.getOneSalary); // get a salary
+	app.get("/salary/search/:search", controller.searchSalaries); // search salaries
 
 	// User endpoints
+	app.get("/user/:id", controller.getUserDetails);
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
+
+	// Trainer endpoints
+	app.post("/trainer/register/", controller.createTrainer);
+	app.get("/trainer/:id", controller.getTrainer);
+	app.get("/trainer/", controller.getTrainers);
+	app.put("/trainer/:id", controller.updateTrainer);
+	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
@@ -85,6 +98,7 @@ export default function (app) {
 	app.put("/workout/:id", controller.updateWorkout); // update one workout
 	app.delete("/workout/:id", controller.deleteWorkout); // delete one workout
 	app.get("/workout/search/:search", controller.searchWorkouts); // search workouts
+	app.get("/workouts/popular", controller.getMostPopularWorkouts); // get most popular workouts
 
 	//Feedback endpoints
 	app.post("/feedback/", controller.insertFeedback); // insert one feedback

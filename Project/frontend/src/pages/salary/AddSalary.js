@@ -1,29 +1,34 @@
 import React, { useContext } from "react";
-import { Button, TextInput, Group, Box, Modal } from "@mantine/core";
+import { Button, TextInput, Group, Box, Modal, NumberInput, Autocomplete } from "@mantine/core";
 
 import SalaryContext from "../../contexts/SalaryContext";
 
 const AddSalary = () => {
-	const { addSalary, form, setOpened, opened } = useContext(SalaryContext);
+	const { addSalary, form, setOpened, opened, months } = useContext(SalaryContext);
 
 	return (
 		<>
 			<Modal opened={opened} onClose={() => setOpened(false)} title="Add Salary">
 				<Box sx={{ maxWidth: 500 }} mx="auto">
-					<form onSubmit={form.onSubmit((values) => addSalary(values))}>
+					<form
+						onSubmit={form.onSubmit((values) => {
+							addSalary(values);
+							setOpened(false);
+						})}
+					>
 						<TextInput required label="NIC" placeholder="NIC" {...form.getInputProps("nic")} />
-						<TextInput required label="Year" placeholder="Year" {...form.getInputProps("year")} />
-						<TextInput required label="Month" placeholder="Month" {...form.getInputProps("month")} />
-						<TextInput
+						<NumberInput required label="Year" placeholder="Year" {...form.getInputProps("year")} />
+						<Autocomplete required label="Month" placeholder="Month" data={months} {...form.getInputProps("month")} />
+						<NumberInput
 							required
 							label="Basic Salary"
 							placeholder="Basic Salary"
 							{...form.getInputProps("basicSalary")}
 						/>
-						<TextInput required label="OT Hours" placeholder="OT Hours" {...form.getInputProps("otHours")} />
-						<TextInput required label="OT Rate" placeholder="OT Rate" {...form.getInputProps("otRate")} />
-						<TextInput required label="Total OT" placeholder="Total OT" {...form.getInputProps("otTotal")} />
-						<TextInput
+						<NumberInput required label="OT Hours" placeholder="OT Hours" {...form.getInputProps("otHours")} />
+						<NumberInput required label="OT Rate" placeholder="OT Rate" {...form.getInputProps("otRate")} />
+						<NumberInput required label="Total OT" placeholder="Total OT" {...form.getInputProps("otTotal")} />
+						<NumberInput
 							required
 							label="Total Salary"
 							placeholder="Total Salary"
@@ -31,14 +36,11 @@ const AddSalary = () => {
 						/>
 
 						<Group position="right" mt="md">
-							<Button
-								sx={{ width: 150, margin: 20 }}
-								onClick={() => {
-									setOpened(false);
-								}}
-								type="submit"
-							>
+							<Button sx={{ width: 150, margin: 20 }} type="submit">
 								Add Salary
+							</Button>
+							<Button sx={{ width: 150, margin: 20 }} onClick={() => setOpened(false)} color="red">
+								Cancel
 							</Button>
 						</Group>
 					</form>

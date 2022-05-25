@@ -5,9 +5,10 @@ import Search from "./search";
 import { Divider, Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea } from "@mantine/core";
 import EditEvent from "./EditEvent";
 import AddEvent from "./AddEvent";
+import { showNotification } from "@mantine/notifications";
 
 const EventList = () => {
-	const { events, confirmDelete } = useContext(EventContext);
+	const { events, confirmDelete, eventStatus, setEventStatus } = useContext(EventContext);
 
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -17,11 +18,32 @@ const EventList = () => {
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const bg = theme.colorScheme === "dark" ? "#222" : "#ddd";
 
+	const notify = () => {
+		setTimeout(() => {
+			if (eventStatus < 100) {
+				notify();
+			} else {
+				if (eventStatus == 201) {
+					showNotification({
+						title: "Event RSVP Successfully",
+					});
+				} else {
+					showNotification({
+						title: "Error While RSVP Event",
+						color: "red",
+					});
+				}
+				setEventStatus(0);
+			}
+		}, 200);
+	};
+
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
 				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				filter: blur("8px"),
 				minHeight: "100vh",
 			})}
 			style={{
@@ -29,7 +51,7 @@ const EventList = () => {
 
 				border: "1px solid #ccc",
 				borderRadius: "5px",
-				width: "100%",
+				width: "99.99%",
 				height: "100%",
 				marginTop: "-110px",
 				marginBottom: "-120px",
@@ -55,24 +77,28 @@ const EventList = () => {
 								},
 								opacity: 0.9,
 							})}
-							radius="lg"
+							radius="md"
 							p="md"
 							withBorder
 							style={{ width: "300px" }}
 						>
 							<Card.Section>
 								<Image
-									src="https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+									src={
+										!("url" in item)
+											? "https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+											: item.url
+									}
 									height={160}
 									alt="Norway"
 								/>
 							</Card.Section>
 
-							<Group position="apart" style={{ marginTop: "4px" }}>
+							<Group position="left" spacing="2px" style={{ marginTop: "5px" }}>
 								<Text weight={500} style={{ fontSize: "18px" }}>
 									{item.title}
 								</Text>
-								<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+								<Text size="xs" style={{ color: secondaryColor }}>
 									{item.tags.map((tag) => (
 										<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
 											{tag}
@@ -80,7 +106,7 @@ const EventList = () => {
 									))}
 								</Text>
 							</Group>
-							<Group position="left" style={{ marginTop: "9px" }}>
+							<Group position="left" style={{ marginTop: "15px" }}>
 								<Text weight={400} style={{ fontSize: "15px", marginRight: "40px" }}>
 									Date:
 								</Text>
@@ -122,7 +148,10 @@ const EventList = () => {
 								<Button
 									leftIcon={<Trash size={18} />}
 									size="md"
-									onClick={() => confirmDelete(item._id)}
+									onClick={() => {
+										confirmDelete(item._id);
+										notify();
+									}}
 									compact
 									color="red"
 								>

@@ -56,9 +56,9 @@ const TrainerList = () => {
 				</Button>
 			</Group>
 
-			<Group style={{ marginTop: "30px" }} position="center" spacing={50}>
+			<Group style={{ marginTop: "80px" }} position="center" spacing={50}>
 				{trainers.map((item) => (
-					<div key={item.id}>
+					<div key={item._id}>
 						<Card
 							sx={(theme) => ({
 								backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
@@ -78,9 +78,9 @@ const TrainerList = () => {
 						>
 							<Group noWrap>
 								<Group style={{ maxWidth: "100px" }} position="center" spacing={5}>
-									<Avatar src={item.pUrl} size={94} radius="md" />
+									<Avatar src={item.avatar} size={94} radius="md" />
 									<Text size="xs" sx={{}} weight={700} color="dimmed">
-										#{item.userName}
+										#{item.username}
 									</Text>
 								</Group>
 								<div>
@@ -94,7 +94,7 @@ const TrainerList = () => {
 											DOB:
 										</Text>
 										<Text size="xs" color="dimmed">
-											{item.dob}
+											{(item.dob || "").split("T")[0]}
 										</Text>
 									</Group>
 									<Group noWrap spacing={10} mt={5}>

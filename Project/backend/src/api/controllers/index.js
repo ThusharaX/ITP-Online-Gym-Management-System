@@ -14,6 +14,8 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 } from "./WorkoutProgram.controller";
 
 import {
@@ -30,6 +32,7 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.controller";
 
 import {
@@ -39,6 +42,8 @@ import {
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
+	getUserDetails,
 } from "./User.Controller";
 
 import {
@@ -57,13 +62,16 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 } from "./Workout.controller";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
 
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.controller";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
+
+import { getTrainer, getTrainers, createTrainer, updateTrainer, deleteTrainers } from "./Trainer.Controller";
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
@@ -84,6 +92,8 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
+	getAllWorkoutProgramsWithTotalRevenue,
 
 	//WorkoutScR controllers
 	insertWorkoutScR,
@@ -105,14 +115,17 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
-	//Admin Controllers
+	//User Controllers
 	login,
 	createUser,
 	getAdminDashboard,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
+	deleteUser,
+	getUserDetails,
 
 	//Workout Controllers
 	insertWorkout,
@@ -122,6 +135,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getMostPopularWorkouts,
 
 	//Notices Controllers
 	insertNotice,
@@ -141,6 +155,7 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
 	//Event Controllers
 	getEvent,
@@ -149,8 +164,14 @@ export default {
 	updateEvents,
 	deleteEvents,
 
-	//Feedback Controllers
+	//Trainer Controllers
+	getTrainer,
+	getTrainers,
+	createTrainer,
+	updateTrainer,
+	deleteTrainers,
 
+	//Feedback Controllers
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,

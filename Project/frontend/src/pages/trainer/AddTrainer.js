@@ -17,7 +17,6 @@ import {
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
 import { PasswordStrength } from "./pswBtn";
-// import dropzoneChildren from "./Dropzone.tsx";
 import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
@@ -28,7 +27,7 @@ const AddTrainer = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { addTrainer, form } = useContext(TrainerContext);
+	const { addTrainer, form, isLoading } = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
 
 	return (
@@ -79,7 +78,12 @@ const AddTrainer = () => {
 				</Text>
 
 				<Divider my="sm" size={"md"} />
-				<form onSubmit={form.onSubmit((values) => addTrainer(values))}>
+				<form
+					onSubmit={form.onSubmit((values) => {
+						addTrainer(values);
+						isLoading(true);
+					})}
+				>
 					<Group position="center" style={{ marginTop: "20px" }}>
 						<TextInput
 							size="md"
@@ -103,9 +107,9 @@ const AddTrainer = () => {
 							size="md"
 							style={{ width: "48%" }}
 							required
-							label="User NAME"
+							label="USER NAME"
 							placeholder="Enter Trainer's User Name"
-							{...form.getInputProps("userName")}
+							{...form.getInputProps("username")}
 						/>
 						<TextInput
 							size="md"
@@ -179,11 +183,23 @@ const AddTrainer = () => {
 					/>
 					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
-						<PasswordStrength fm={form} />
+						{/* <PasswordStrength fm={form} /> */}
+						<PasswordInput
+							size="sm"
+							required
+							label="PASSWORD"
+							style={{ width: "48%" }}
+							placeholder="Your password"
+							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
+							// value={value}
+							// onChange={(event) => setValue(event.currentTarget.value)}
+							{...form.getInputProps("psw")}
+						/>
 						<PasswordInput
 							size="sm"
 							style={{ width: "48%" }}
 							required
+							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
 							label="CONFIRM PASSWORD"
 							placeholder="Confirm Password"
 							{...form.getInputProps("rep_psw")}

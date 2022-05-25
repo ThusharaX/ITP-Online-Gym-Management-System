@@ -12,6 +12,8 @@ import Joi from "joi";
 const WorkoutContext = createContext();
 
 export function WorkoutProvider({ children }) {
+	const [isLoading, setIsLoading] = useState(false);
+
 	// Form Validation
 	const schema = Joi.object({
 		workout_name: Joi.string().min(5).max(50).message("Workout Name should be between 4 and 50 characters"),
@@ -43,12 +45,31 @@ export function WorkoutProvider({ children }) {
 		WorkoutAPI.getWorkoutData().then((response) => {
 			setWorkouts(response.data);
 		});
+		// Get most popular workouts
+		setIsLoading(true);
+		WorkoutAPI.getMostPopularWorkouts().then((response) => {
+			setPopularWorkouts(response.data);
+			setIsLoading(false);
+		});
 	}, []);
 
 	// Form initial state
 	const form = useForm({
 		schema: joiResolver(schema),
 		initialValues: {
+			workout_name: "",
+			workout_category: "",
+			muscle_group: "",
+			starting_position_img: "",
+			mid_position_img: "",
+			instructions: "",
+			action: "",
+			tips: "",
+		},
+	});
+
+	const fillWithDummyData = () => {
+		form.setValues({
 			workout_name: "Workout Name",
 			workout_category: "Workout Category",
 			muscle_group: "Muscle Group",
@@ -58,9 +79,9 @@ export function WorkoutProvider({ children }) {
 				"https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 			instructions: "Instructions",
 			action: "Action",
-			tips: "Tips",
-		},
-	});
+			tips: "Tip: Workout tip 1",
+		});
+	};
 
 	// Add new workout
 	const addWorkout = (values) => {
@@ -139,6 +160,9 @@ export function WorkoutProvider({ children }) {
 		});
 	};
 
+	// Most popular workouts
+	const [popularWorkouts, setPopularWorkouts] = useState([]);
+
 	return (
 		<WorkoutContext.Provider
 			value={{
@@ -155,6 +179,9 @@ export function WorkoutProvider({ children }) {
 				workout,
 				setWorkout,
 				incrementViewCount,
+				popularWorkouts,
+				isLoading,
+				fillWithDummyData,
 			}}
 		>
 			{children}

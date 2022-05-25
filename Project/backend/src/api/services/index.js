@@ -7,6 +7,7 @@ import {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 } from "./WorkoutProgram.service";
 
 import {
@@ -23,9 +24,10 @@ import {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary } from "./Salary.service";
+import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -34,6 +36,9 @@ import {
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
+	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
 import {
@@ -52,6 +57,7 @@ import {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 } from "./Workout.service";
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
@@ -59,6 +65,8 @@ import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice }
 import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
+
+import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
 import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
 export default {
@@ -77,6 +85,7 @@ export default {
 	updateWorkoutProgram,
 	deleteWorkoutProgram,
 	searchWorkoutPrograms,
+	getTotalRevenue,
 
 	// Workout Services
 	insertWorkoutScR,
@@ -103,14 +112,18 @@ export default {
 	updateSalary,
 	getAllSalaries,
 	getOneSalary,
+	searchSalaries,
 
-	// Admin services
+	// User services
 	authenticateUser,
 	insertUser,
 	getAllEnrolledWorkoutPrograms,
 	enrollUserToWorkoutProgram,
 	unenrollUserFromWorkoutProgram,
 	getMembersEmailList,
+	deleteUser,
+	getUserDetails,
+	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
 	insertWorkout,
@@ -120,6 +133,7 @@ export default {
 	deleteWorkout,
 	searchWorkouts,
 	increaseViewCount,
+	getAllWorkoutsOrderByViewCount,
 
 	//Notice Services
 	insertNotice,
@@ -141,9 +155,17 @@ export default {
 	getOnePersonalTrainerReq,
 	updatePersonalTrainerReq,
 	deletePersonalTrainerReq,
+	searchPersonalTrainerReq,
 
 	//Feedback services
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+
+	// Trainer services
+	getTrainer,
+	updateTrainers,
+	deleteTrainers,
+	getTrainers,
+	createTrainers,
 };
