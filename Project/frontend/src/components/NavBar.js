@@ -75,7 +75,6 @@ function NavBar() {
 		{ link: "/workout", label: "Workouts" },
 		{ link: "/blogs", label: "Blogs" },
 		{ link: "/package", label: "Packages" },
-		{ link: "/events", label: "Events" },
 	];
 	const navigate = useNavigate();
 	const [opened, toggleOpened] = useBooleanToggle(false);
