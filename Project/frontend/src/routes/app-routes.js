@@ -51,6 +51,8 @@ import {
 	PReport,
 	Employee_List,
 	WorkoutProgramReport,
+	SalaryReport,
+	EmployeeReport,
 } from "../pages";
 
 // Error pages
@@ -90,6 +92,8 @@ const AppRoutes = () => {
 						{/* Public Routes */}
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/sample-report" element={<SampleReport />} />
+						<Route exact path="/salary-report" element={<SalaryReport />} />
+						<Route exact path="/employee-report" element={<EmployeeReport />} />
 						<Route exact path="/sample" element={<Sample />} />
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />

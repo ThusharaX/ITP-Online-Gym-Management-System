@@ -12,13 +12,17 @@ const Dashboard = () => {
 					Generate Workout Report
 				</Link>
 			</Button>
-
+			<br />
+			<br />
+			<br />
 			<Button style={{ margin: 20 }}>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/salary">
 					Salary
 				</Link>
 			</Button>
-
+			<br />
+			<br />
+			<br />
 			<Button style={{ margin: 20 }}>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/employeeList">
 					Employees

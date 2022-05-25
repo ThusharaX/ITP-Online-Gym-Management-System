@@ -95,7 +95,6 @@ const Profile = () => {
 					<form
 						onSubmit={formProfile.onSubmit((values) => {
 							editEmployee(values);
-							setEditOpened(false);
 						})}
 					>
 						<Group position="center" style={{ marginTop: "20px" }}>

@@ -18,7 +18,7 @@ const Employee_List = () => {
 			</div>
 			<div>
 				<Button style={{ marginLeft: 20 }}>
-					<Link style={{ textDecoration: "none", color: "#fff" }} to="/employeList">
+					<Link style={{ textDecoration: "none", color: "#fff" }} to="/employee-report">
 						Employee Report
 					</Link>
 				</Button>

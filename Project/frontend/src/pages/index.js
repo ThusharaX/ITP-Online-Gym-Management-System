@@ -34,6 +34,8 @@ import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
 import { EmployeeLogin, EmployeeDashboard, EmployeeProfile } from "./employee";
 import SignUp from "./signUp";
 import { Employee_List } from "./employeeList";
+import SalaryReport from "./salary-report";
+import EmployeeReport from "./employee-report";
 
 export {
 	Sample,
@@ -80,4 +82,6 @@ export {
 	PReport,
 	Employee_List,
 	WorkoutProgramReport,
+	SalaryReport,
+	EmployeeReport,
 };

@@ -66,10 +66,7 @@ const Dashboard = () => {
 				shadow="sm"
 				p="xl"
 				component="a"
-				href=""
-				onClick={() => {
-					navigate("/member/profile");
-				}}
+				href="/employee/profile"
 			>
 				<Title order={1} className="your-class-name" sx={cardTitleSx}>
 					PROFILE
