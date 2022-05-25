@@ -7,7 +7,7 @@ import { UserCheck, ShieldCheck, MailOpened } from "tabler-icons-react";
 import BlogContext from "../../contexts/BlogContext";
 
 const AddBlog = () => {
-	const { addBlog, form, setOpened } = useContext(BlogContext);
+	const { addBlog, form, setOpened, fillWithDummyData } = useContext(BlogContext);
 
 	const [active, setActive] = useState(1);
 	const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
@@ -145,6 +145,9 @@ const AddBlog = () => {
 									}}
 								>
 									Create New Blog
+								</Button>
+								<Button onClick={() => fillWithDummyData()} color="green">
+									Demo
 								</Button>
 							</Group>
 						</Stepper.Completed>
