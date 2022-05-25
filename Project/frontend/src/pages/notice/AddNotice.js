@@ -41,9 +41,7 @@ const AddNotice = () => {
 				</Box>
 			</Modal>
 			<Group position="left" style={{ marginLeft: 20 }}>
-				{localStorage.getItem("permissionLevel") === "ADMIN" && (
-					<Button onClick={() => setOpened(true)}>Create Notice</Button>
-				)}
+				<Button onClick={() => setOpened(true)}>Create Notice</Button>
 			</Group>
 		</>
 	);
