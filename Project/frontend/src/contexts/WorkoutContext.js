@@ -45,6 +45,7 @@ export function WorkoutProvider({ children }) {
 		WorkoutAPI.getWorkoutData().then((response) => {
 			setWorkouts(response.data);
 		});
+
 		// Get most popular workouts
 		setIsLoading(true);
 		WorkoutAPI.getMostPopularWorkouts().then((response) => {

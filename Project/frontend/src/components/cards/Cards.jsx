@@ -68,7 +68,7 @@ const useStyles = createStyles((theme) => ({
 
 		"&:hover": {
 			boxShadow: theme.shadows.md,
-			transform: "scale(1.02)",
+			transform: "scale(1.1)",
 		},
 
 		"&::before": {
