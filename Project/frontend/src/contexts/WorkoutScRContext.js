@@ -29,13 +29,6 @@ export function WorkoutScRProvider({ children }) {
 		},
 	});
 
-	// Get One Workout Schedule Request
-	const getOneWorkoutData = (id) => {
-		WorkoutScRAPI.getOneWorkoutData(id).then(() => {
-			setWorkoutScR(WorkoutScR.filter((getOneworkout) => getOneworkout._id !== id));
-		});
-	};
-
 	// Add new workout schedule request
 	const addWorkoutScR = (values) => {
 		const newWorkoutScR = {
@@ -52,8 +45,14 @@ export function WorkoutScRProvider({ children }) {
 		});
 	};
 
-	// Delete Workout Schedule Request
+	// Get One Workout Schedule Request
+	const getOneWorkoutData = () => {
+		WorkoutScRAPI.getOneWorkoutData(localStorage.getItem("uID")).then(() => {
+			setWorkoutScR(WorkoutScR.filter((getOneworkout) => getOneworkout._id !== id));
+		});
+	};
 
+	// Delete Workout Schedule Request
 	const deleteWorkoutScR = (id) => {
 		WorkoutScRAPI.deleteWorkoutScR(id).then(() => {
 			setWorkoutScR(WorkoutScR.filter((workoutScR) => workoutScR._id !== id));
@@ -61,7 +60,6 @@ export function WorkoutScRProvider({ children }) {
 	};
 
 	//  Confirm Delete Workout Schedule Requests
-
 	const modals = useModals();
 	const confirmDelete = (id) => {
 		modals.openConfirmModal({
@@ -84,6 +82,25 @@ export function WorkoutScRProvider({ children }) {
 		});
 	};
 
+	//Edit Workout
+
+	const editWorkoutScR = (values) => {
+		const newWorkoutScR = {
+			name: values.name,
+			age: values.age,
+			gender: values.gender,
+			email: values.email,
+			requirement: values.requirement,
+		};
+
+		WorkoutScRAPI.editWorkoutScR(values.id, newWorkoutScR).then((response) => {
+			setWorkoutScR(WorkoutScR.map((WorkoutScR) => (WorkoutScR._id === values.id ? response.data : WorkoutScR)));
+			form.reset();
+		});
+	};
+
+	const [editOpened, setEditOpened] = useState(false);
+
 	return (
 		<WorkoutScRContext.Provider
 			value={{
@@ -93,6 +110,9 @@ export function WorkoutScRProvider({ children }) {
 				setWorkoutScR,
 				confirmDelete,
 				getOneWorkoutData,
+				editWorkoutScR,
+				editOpened,
+				setEditOpened,
 			}}
 		>
 			{children}

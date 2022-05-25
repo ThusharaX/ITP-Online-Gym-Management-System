@@ -3,7 +3,6 @@ import React from "react";
 // Page Components
 
 import AddWorkoutScR from "./AddWorkoutScr";
-import ViewMyWorkoutScr from "../myWorkoutScr/ViewMyWorkoutScr";
 
 // WorkoutScR Provider
 import { WorkoutScRProvider } from "../../contexts/WorkoutScRContext";
