@@ -44,6 +44,22 @@ export function QuestionProvider({ children }) {
 		});
 	};
 
+	//edit question
+	const editQuestion = (values) => {
+		const editedQuestion = {
+			title: values.title,
+			content: values.content,
+			email: values.email,
+			name: values.name,
+		};
+		QuestionAPI.editQuestion(editedQuestion).then((response) => {
+			setQuestions(questions.map((question) => (question.id === response.data.id ? response.data : question)));
+			form.reset();
+		});
+	};
+	//edit question modal
+	const [editOpened, setEditOpened] = useState(false);
+
 	// Delete question and update UI
 	const deleteQuestion = (id) => {
 		QuestionAPI.deleteQuestion(id).then(() => {
@@ -70,7 +86,9 @@ export function QuestionProvider({ children }) {
 		});
 
 	return (
-		<QuestionContext.Provider value={{ questions, confirmDelete, addQuestion, form }}>
+		<QuestionContext.Provider
+			value={{ questions, confirmDelete, addQuestion, editQuestion, form, editOpened, setEditOpened }}
+		>
 			{children}
 		</QuestionContext.Provider>
 	);
