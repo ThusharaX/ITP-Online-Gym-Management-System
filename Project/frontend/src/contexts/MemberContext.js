@@ -110,6 +110,7 @@ export function MemberProvider({ children }) {
 		if (localStorage.getItem("uID")) {
 			MemberAPI.getMemberData(localStorage.getItem("uID")).then((res) => {
 				setMember(res.data);
+				formProfile.setFieldValue("id", res.data._id);
 				formProfile.setFieldValue("firstName", res.data.firstName);
 				formProfile.setFieldValue("lastName", res.data.lastName);
 				formProfile.setFieldValue("username", res.data.username);

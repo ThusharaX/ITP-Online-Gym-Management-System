@@ -9,9 +9,22 @@ const styles = StyleSheet.create({
 		flexDirection: "column",
 		backgroundColor: "#E4E4E4",
 	},
-	section: {
+	title: {
+		fontSize: 20,
+		textAlign: "center",
 		margin: 10,
-		padding: 10,
+		// textTransform: "uppercase",
+	},
+	section: {
+		fontSize: 12,
+		margin: 5,
+		padding: 5,
+	},
+	row: {
+		flex: 1,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		margin: 5,
 	},
 });
 
@@ -21,29 +34,24 @@ const Report = () => {
 	const MemberReport = () => (
 		<Document>
 			<Page size="A4" style={styles.page}>
-				<View style={styles.section}>
-					<Text>Members Report</Text>
-				</View>
+				<View style={styles.title}>
+					<Text>Employee List</Text>
 
-				{members.map((item) => (
-					<View key={item._id} style={styles.section}>
-						<Text style={{ fontSize: 12 }}>
-							<title style={{ fontSize: 20 }}>
-								{item.firstName} {item.lastName}
-							</title>
-							<p>
-								<strong>ID : </strong> {item._id}
-								<strong>First Name : </strong> {item.firstName}
-								<strong>Last Name : </strong> {item.lastName}
-								<strong>Username : </strong> {item.username}
-								<strong>NIC : </strong> {item.nic}
-								<strong>Email : </strong> {item.email}
-								<strong>DOB : </strong> {item.dob}
-								<strong>Phone Number : </strong> {item.phoneNumber}
-							</p>
-						</Text>
-					</View>
-				))}
+					{members.map((member) => (
+						<View key={member._id} style={styles.section}>
+							<View style={styles.row}>
+								<Text>Username:</Text>
+								<Text>{member.username}</Text>
+								<Text>NIC:</Text>
+								<Text>{member.nic}</Text>
+								<Text>Email:</Text>
+								<Text>{member.email}</Text>
+								<Text>Phone:</Text>
+								<Text>{member.phoneNumber}</Text>
+							</View>
+						</View>
+					))}
+				</View>
 			</Page>
 		</Document>
 	);
