@@ -41,6 +41,9 @@ import {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllMembers,
+	updateUser,
+	searchUsers,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
@@ -129,6 +132,9 @@ export default {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllMembers,
+	updateUser,
+	searchUsers,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services

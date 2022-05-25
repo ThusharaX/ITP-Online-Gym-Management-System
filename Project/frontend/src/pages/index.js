@@ -33,6 +33,8 @@ import WorkoutProgramReport from "./workoutProgram-report";
 
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
 import SignUp from "./signUp";
+import { Member_List } from "./memberList";
+import MemberReport from "./memberReport";
 
 export {
 	Sample,
@@ -74,6 +76,8 @@ export {
 	WorkoutReport,
 	SignUp,
 	PReport,
+	Member_List,
+	MemberReport,
 	WorkoutProgramReport,
 	QuestionReport,
 };

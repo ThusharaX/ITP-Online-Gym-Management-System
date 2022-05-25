@@ -37,9 +37,11 @@ const EditNotice = () => {
 					/>
 
 					<Group position="right" mt="md">
-						<Button type="submit" onAuxClick={() => setEditOpened(false)}>
-							Edit
-						</Button>
+						{localStorage.getItem("permissionLevel") === "ADMIN" && (
+							<Button type="submit" onAuxClick={() => setEditOpened(false)}>
+								Edit
+							</Button>
+						)}
 					</Group>
 				</form>
 			</Box>

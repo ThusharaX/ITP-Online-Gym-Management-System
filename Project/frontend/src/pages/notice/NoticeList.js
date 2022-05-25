@@ -41,20 +41,22 @@ function NoticeList() {
 					<p>{item.content}</p>
 					<br></br>
 					<h4>{item.category}</h4>
-					<Group position="right" mt="md" spacing="md">
-						<Button
-							onClick={() => {
-								setNotice(item);
-								setEditOpened(true);
-							}}
-							color="blue"
-						>
-							Edit
-						</Button>
-						<Button onClick={() => confirmDelete(item._id)} color="red">
-							Delete
-						</Button>
-					</Group>
+					{localStorage.getItem("permissionLevel") === "ADMIN" && (
+						<Group position="right" mt="md" spacing="md">
+							<Button
+								onClick={() => {
+									setNotice(item);
+									setEditOpened(true);
+								}}
+								color="blue"
+							>
+								Edit
+							</Button>
+							<Button onClick={() => confirmDelete(item._id)} color="red">
+								Delete
+							</Button>
+						</Group>
+					)}
 				</Box>
 			))}
 		</div>

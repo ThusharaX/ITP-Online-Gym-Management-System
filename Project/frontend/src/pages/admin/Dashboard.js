@@ -15,6 +15,22 @@ const Dashboard = () => {
 			<br />
 			<br />
 			<br />
+			<Button style={{ margin: 20 }}>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/memberList">
+					Members
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
+			<Button style={{ margin: 20 }}>
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/notice">
+					Notices
+				</Link>
+			</Button>
+			<br />
+			<br />
+			<br />
 			<Button>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/workoutProgram-report">
 					Generate Workout Program Report
