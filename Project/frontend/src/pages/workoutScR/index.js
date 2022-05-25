@@ -12,14 +12,12 @@ const WorkoutScR = () => {
 	return (
 		<div>
 			<h1 style={{ textAlign: "center" }}>Workout Schedule Request</h1>
-		
+
 			<WorkoutScRProvider>
 				<AddWorkoutScR />
 			</WorkoutScRProvider>
 		</div>
 	);
 };
-
-
 
 export default WorkoutScR;

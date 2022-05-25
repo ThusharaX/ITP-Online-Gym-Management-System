@@ -15,4 +15,4 @@ const ViewMyWorkoutScR = () => {
 	);
 };
 
-export default  ViewMyWorkoutScR;
+export default ViewMyWorkoutScR;
