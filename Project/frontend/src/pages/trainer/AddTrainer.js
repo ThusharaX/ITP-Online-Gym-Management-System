@@ -17,7 +17,6 @@ import {
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
 import { PasswordStrength } from "./pswBtn";
-import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
 	const navigate = useNavigate();
@@ -181,7 +180,6 @@ const AddTrainer = () => {
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("email")}
 					/>
-					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
 						{/* <PasswordStrength fm={form} /> */}
 						<PasswordInput

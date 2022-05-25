@@ -51,7 +51,7 @@ const EventList = () => {
 
 				border: "1px solid #ccc",
 				borderRadius: "5px",
-				width: "99.99%",
+				width: "99.7%",
 				height: "100%",
 				marginTop: "-110px",
 				marginBottom: "-120px",
@@ -94,18 +94,16 @@ const EventList = () => {
 								/>
 							</Card.Section>
 
-							<Group position="left" spacing="2px" style={{ marginTop: "5px" }}>
-								<Text weight={500} style={{ fontSize: "18px" }}>
-									{item.title}
-								</Text>
-								<Text size="xs" style={{ color: secondaryColor }}>
-									{item.tags.map((tag) => (
-										<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
-											{tag}
-										</Badge>
-									))}
-								</Text>
-							</Group>
+							<Text weight={500} style={{ marginTop: "5px", fontSize: "18px" }}>
+								{item.title}
+							</Text>
+							<Text size="xs" style={{ color: secondaryColor }}>
+								{item.tags.map((tag) => (
+									<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
+										{tag}
+									</Badge>
+								))}
+							</Text>
 							<Group position="left" style={{ marginTop: "15px" }}>
 								<Text weight={400} style={{ fontSize: "15px", marginRight: "40px" }}>
 									Date:

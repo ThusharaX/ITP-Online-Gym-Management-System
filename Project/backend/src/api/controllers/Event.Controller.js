@@ -93,23 +93,28 @@ const updateEvents = async (req, res, next) => {
 };
 
 const deleteEvents = async (req, res, next) => {
-	await EventService.deleteEvents(req.params.id)
-		.then((data) => {
-			req.handleResponse.successRespond(res)(data);
-			sendMail({
-				email: ["darklaneanjana@gmail.com"],
-				subject: "Event Deleted",
-				html: `
-					<h1>${data.title}</h1>
-					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
-					<p>${data.description}</p>
-					
-				`,
+	await EventService.getEvent(req.params.id)
+		.then((event) => {
+			EventService.deleteEvents(req.params.id).then((data) => {
+				req.handleResponse.successRespond(res)(data);
+				sendMail({
+					email: ["darklaneanjana@gmail.com"],
+					subject: "Event Deleted",
+					html: `
+						<h1>${event.title}</h1>
+						<h4>Date & Time: ${event.date.toString().slice(3, 21)}</h4>
+						<p>${event.description}</p>
+
+					`,
+				});
+				next();
 			});
-			next();
 		})
+
 		.catch((error) => {
-			req.handleResponse.errorRespond(res)(error.message);
+			// req.handleResponse.errorRespond(res)(error.message);
+			// eslint-disable-next-line no-console
+			console.log(error.message);
 			next();
 		});
 };

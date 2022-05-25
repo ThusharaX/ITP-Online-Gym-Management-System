@@ -15,7 +15,6 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import { DropzoneButton } from "./Dropzone";
 
 const Profile = () => {
 	const theme = useMantineTheme();
