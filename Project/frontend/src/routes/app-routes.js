@@ -44,6 +44,7 @@ import {
 	MemberDashboard,
 	MemberProfile,
 	WorkoutReport,
+	QuestionReport,
 	SignUp,
 	PReport,
 	Member_List,
@@ -91,7 +92,9 @@ const AppRoutes = () => {
 						<Route exact path="/sample" element={<Sample />} />
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
-						<Route exact path="/memberReport" element={<MemberReport />} />
+						<Route exact path="/question-report" element={<QuestionReport />} />
+            <Route exact path="/memberReport" element={<MemberReport />} />
+              
 						<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 							<Route exact path="/trainers/login" element={<TrainerLogin />} />
 						</Route>
