@@ -37,6 +37,9 @@ import {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllMembers,
+	updateUser,
+	searchUsers,
 } from "./User.service";
 
 import {
@@ -120,6 +123,9 @@ export default {
 	getMembersEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllMembers,
+	updateUser,
+	searchUsers,
 
 	// Workout services
 	insertWorkout,
