@@ -42,7 +42,10 @@ const EventList = () => {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 				filter: blur("8px"),
 				minHeight: "100vh",
 			})}
@@ -51,7 +54,7 @@ const EventList = () => {
 
 				border: "1px solid #ccc",
 				borderRadius: "5px",
-				width: "99.7%",
+				width: "99.9%",
 				height: "100%",
 				marginTop: "-110px",
 				marginBottom: "-120px",

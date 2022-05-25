@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {
 	Text,
 	useMantineTheme,
@@ -12,6 +14,8 @@ import {
 	Radio,
 	Title,
 	Divider,
+	Paper,
+	Collapse,
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
@@ -31,14 +35,47 @@ const Profile = () => {
 	const textstyle = (theme) => ({ fontSize: "15px", marginTop: "20px", fontWeight: "400", color: TitleColor });
 
 	const { updateTrainer, formProfile, trainer } = useContext(TrainerContext);
-	// eslint-disable-next-line no-console
-	console.log(trainer);
 	const [date, setDate] = useState(new Date());
+
+	const [opened, setOpen] = useState(false);
+	const [imgUrl, setImgUrl] = useState(null);
+	const [progresspercent, setProgresspercent] = useState(0);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const file = e.target[0]?.files[0];
+
+		if (!file) return;
+
+		const storageRef = ref(storage, `events/${file.name}`);
+		const uploadTask = uploadBytesResumable(storageRef, file);
+
+		uploadTask.on(
+			"state_changed",
+			(snapshot) => {
+				const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+				setProgresspercent(progress);
+			},
+			(error) => {
+				alert(error);
+			},
+			() => {
+				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setImgUrl(downloadURL);
+					formProfile.setFieldValue("url", downloadURL);
+				});
+			}
+		);
+	};
+
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 				marginTop: "-100px",
 				marginBottom: "-130px",
 				// width: "100%",
@@ -69,8 +106,35 @@ const Profile = () => {
 							height={150}
 							style={{ boxShadow: "5px 5px 20px #aaa ", borderRadius: "200px" }}
 							src={trainer.url}
+							onClick={() => setOpen((o) => !o)}
 						/>
 					</Group>
+					<Collapse in={opened}>
+						<Paper shadow="xs" p="md" style={{ marginTop: "10px" }}>
+							<input form="saveImg" type="file" required />
+							<Button color={"gray"} form="saveImg" type="submit" compact>
+								Upload
+							</Button>
+
+							{!imgUrl && (
+								<div className="outerbar">
+									<div className="innerbar" style={{ width: `${progresspercent}%` }}>
+										{progresspercent}%
+									</div>
+								</div>
+							)}
+							{imgUrl && (
+								<Image
+									radius="md"
+									style={{ marginRight: "30px", margin: "10px 0px 0px 2px", backgroundPosition: "10px" }}
+									src={imgUrl}
+									alt="uploaded file"
+									height={160}
+								/>
+							)}
+						</Paper>
+					</Collapse>
+					<form id="saveImg" onSubmit={handleSubmit} className="form"></form>
 					<Title sx={(theme) => ({ color: TitleColor, marginTop: "20px" })} order={2}>
 						{trainer.firstName} {trainer.lastName}
 					</Title>
