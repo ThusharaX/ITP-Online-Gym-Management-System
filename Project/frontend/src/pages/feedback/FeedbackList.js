@@ -29,10 +29,10 @@ const FeedbackList = () => {
 							{/* <EditFeedback feedback={item} /> */}
 
 							<Card shadow="sm" p="lg">
-								<h1>
+								<h2>
 									{" "}
 									<Card.Section>{item.displayname}</Card.Section>
-								</h1>
+								</h2>
 
 								<Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
 									<Text weight={500}>{item.ftitle}</Text>

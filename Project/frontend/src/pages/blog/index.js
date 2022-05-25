@@ -132,6 +132,10 @@ export default function Blog() {
 					Wellness
 				</Button>
 			</Group>
+			<div>
+				<br />
+				<br />
+			</div>
 
 			<div className="home">
 				<Posts />

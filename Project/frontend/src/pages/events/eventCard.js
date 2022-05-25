@@ -84,7 +84,11 @@ const EventList = () => {
 						>
 							<Card.Section>
 								<Image
-									src="https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+									src={
+										!("url" in item)
+											? "https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+											: item.url
+									}
 									height={160}
 									alt="Norway"
 								/>

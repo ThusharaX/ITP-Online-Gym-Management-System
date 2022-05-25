@@ -27,6 +27,7 @@ import {
 	Workout,
 	AdminLogin,
 	AdminDashboard,
+	EventReport,
 	AdminProfile,
 	CommonLogin,
 	WorkoutScRList,
@@ -67,7 +68,7 @@ const AppRoutes = () => {
 			label: "Privacy",
 		},
 		{
-			link: "#",
+			link: "/blogs",
 			label: "Blog",
 		},
 		{
@@ -100,20 +101,14 @@ const AppRoutes = () => {
 
 						<Route exact path="/trainers/events" element={<Eventlist />} />
 						<Route exact path="/notice" element={<Notice />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
 						<Route exact path="/blogs" element={<Blog />} />
 						<Route exact path="/write" element={<Write />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 						<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 						<Route exact path="/package" element={<TrainerPackages />} />
 						<Route exact path="/personal" element={<Request />} />
 						<Route exact path="/reqList" element={<RList />} />
 						<Route exact path="/pReport" element={<PReport />} />
-
-						{/* <Route exact path="/blogs" element={<Blogs />} />
-					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
-
 						<Route exact path="/bd" element={<BD />} />
 
 						<Route exact path="/workout" element={<Workout />} />
@@ -156,11 +151,14 @@ const AppRoutes = () => {
 						</Route>
 
 						{/* Trainer Routes */}
+						<Route exact path="/event-report" element={<EventReport />} />
+
 						<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
 							<Route exact path="/trainers" element={<TrainerDashboard />} />
 							<Route exact path="/trainers/list" element={<ListTrainers />} />
 							<Route exact path="/trainers/events" element={<Eventlist />} />
 							<Route exact path="/trainers/profile" element={<TrainerProfile />} />
+							{/* <Route exact path="/trainer/bd" element={<BD />} /> */}
 						</Route>
 
 						{/* 404 */}
