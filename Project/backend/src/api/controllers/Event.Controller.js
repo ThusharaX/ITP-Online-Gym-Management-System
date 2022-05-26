@@ -1,6 +1,7 @@
 import EventService from "../services";
 const joi = require("joi");
 let events = require("../models/Event.model");
+import sendMail from "../../util/sendMail";
 
 const eventValidation = (data) => {
 	const schema = joi.object({
@@ -12,6 +13,7 @@ const eventValidation = (data) => {
 		date: joi.date().required(),
 		trainer: joi.string().required().min(23).max(25),
 		users: joi.required(),
+		url: joi.required(),
 	});
 
 	return schema.validate(data);
@@ -53,10 +55,23 @@ const createEvents = async (req, res, next) => {
 		date: req.body.date,
 		trainer: req.body.trainer,
 		users: req.body.users,
+		url: req.body.url,
 	});
 	await EventService.createEvents(event)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
+			EventService.getTrainer(data.trainer).then((trainer) => {
+				sendMail({
+					email: [trainer.email],
+					subject: "New Event Added",
+					html: `
+					<h1>${data.title}</h1>
+					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
+					<p>${data.description}</p>
+				`,
+				});
+			});
+
 			next();
 		})
 		.catch((error) => {
@@ -78,11 +93,25 @@ const updateEvents = async (req, res, next) => {
 };
 
 const deleteEvents = async (req, res, next) => {
-	await EventService.deleteEvents(req.params.id)
-		.then((data) => {
-			req.handleResponse.successRespond(res)(data);
-			next();
+	await EventService.getEvent(req.params.id)
+		.then((event) => {
+			EventService.deleteEvents(req.params.id).then((data) => {
+				req.handleResponse.successRespond(res)(data);
+				EventService.getTrainer(event.trainer).then((trainer) => {
+					sendMail({
+						email: [trainer.email],
+						subject: "Event Deleted",
+						html: `
+					<h1>${event.title}</h1>
+					<h4>Date & Time: ${event.date.toString().slice(3, 21)}</h4>
+					<p>${event.description}</p>
+				`,
+					});
+				});
+				next();
+			});
 		})
+
 		.catch((error) => {
 			req.handleResponse.errorRespond(res)(error.message);
 			next();

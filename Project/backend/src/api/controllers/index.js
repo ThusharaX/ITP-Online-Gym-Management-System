@@ -73,6 +73,7 @@ import {
 	deleteQuestion,
 	getAllQuestions,
 	searchQuestions,
+	addAnswer,
 } from "./Question.controller";
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
@@ -182,4 +183,5 @@ export default {
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,
+	addAnswer,
 };

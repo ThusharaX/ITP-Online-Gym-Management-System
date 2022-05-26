@@ -1,10 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import Joi from "joi";
 import { useForm, joiResolver } from "@mantine/form";
-import EventAPI from "./api/EventAPI";
 import axios from "axios";
-// app.get("/events/:id",
-// Mantine imports
 import { Text } from "@mantine/core";
 import { useModals } from "@mantine/modals";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/events`;
@@ -30,6 +27,7 @@ export function EventProvider({ children }) {
 		tags: Joi.string().min(3).max(50).message("Tags should be between 3 and 50 characters"),
 		details: Joi.string().min(5).max(50).message("Details should be between 5 and 50 characters"),
 		gender: Joi.string().required(),
+		url: Joi.string().required(),
 	});
 
 	// Form initial state
@@ -44,12 +42,13 @@ export function EventProvider({ children }) {
 			gender: "Both",
 			date: new Date(),
 			time: new Date(),
+			url: "null",
 		},
 	});
 
 	//Respond, If-You-Want
 	const RSVW = (value, eid) => {
-		let userid = "123456789812345678981238";
+		let userid = localStorage.getItem("uID");
 		//get specific react for current user.
 		let event = events.filter((event) => event._id === eid);
 
@@ -90,8 +89,9 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: "123456789812345678981234",
+			trainer: localStorage.getItem("uID"),
 			users: [],
+			url: values.url,
 		};
 		axios.post(baseURL, newEvent).then((res) => {
 			setEventStatus(res.status);
@@ -109,7 +109,8 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: "123456789812345678981234",
+			url: values.url,
+			trainer: localStorage.getItem("uID"),
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
 			axios
@@ -121,6 +122,34 @@ export function EventProvider({ children }) {
 					setEventStatus(res.status);
 				});
 		});
+	};
+
+	//Report
+	const Report = () => {
+		let numbers = events.map((event) => {
+			if (event.users.length > 0) return [event.users, event];
+			else return [0, event];
+		});
+		let arr;
+		let newnumb = numbers.map((status) => {
+			arr = [0, 0, 0, 0, 0];
+			if (status[0] !== 0) {
+				status[0].map((user) => {
+					if (user.status === "1") {
+						arr[0]++;
+					} else if (user.status === "2") {
+						arr[1]++;
+					} else if (user.status === "3") {
+						arr[2]++;
+					} else if (user.status === "4") {
+						arr[3]++;
+					}
+				});
+			}
+			arr[4] = status[1];
+			return arr;
+		});
+		return newnumb;
 	};
 
 	// Delete event and update UI
@@ -147,13 +176,13 @@ export function EventProvider({ children }) {
 			onCancel: () => {
 				let x = 5;
 			},
-			// onCancel: () => console.log("Cancel"),
 			onConfirm: () => deleteEvent(id),
 		});
 
 	return (
 		<EventContext.Provider
 			value={{
+				Report,
 				eventStatus,
 				setEventStatus,
 				setReactStatus,

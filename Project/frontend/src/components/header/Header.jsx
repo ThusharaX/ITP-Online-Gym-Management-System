@@ -5,9 +5,7 @@ export default function Header() {
 	return (
 		<div className="header">
 			<div className="headerTitles">
-				<span className="headerTitleSm">
-					Welcome to Our Blog Page Welcome to Our Blog Page Welcome to Our Blog Page
-				</span>
+				<span className="headerTitleSm">Welcome to Our Blog Page,Stay Tuned</span>
 				<span className="headerTitleLg">BLOG</span>
 			</div>
 			<img

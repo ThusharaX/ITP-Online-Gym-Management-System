@@ -47,6 +47,13 @@ export function QuestionProvider({ children }) {
 		},
 	});
 
+	//answer form initial state
+	const answerForm = useForm({
+		initialValues: {
+			answer: "",
+		},
+	});
+
 	// Add new question
 	const addQuestion = (values) => {
 		const newQuestion = {
@@ -56,6 +63,17 @@ export function QuestionProvider({ children }) {
 			name: values.name,
 		};
 		QuestionAPI.addQuestion(newQuestion).then((response) => {
+			setQuestions([...questions, response.data]);
+			form.reset();
+		});
+	};
+
+	//add new answer
+	const addAnswer = (values) => {
+		const newAnswer = {
+			answer: [],
+		};
+		QuestionAPI.addAnswer(newAnswer).then((response) => {
 			setQuestions([...questions, response.data]);
 			form.reset();
 		});
@@ -111,17 +129,20 @@ export function QuestionProvider({ children }) {
 			value={{
 				questions,
 				setQuestion,
-				confirmDelete,
 				addQuestion,
-				editQuestion,
-				form,
 				question,
-				editOpened,
-				setEditOpened,
 				setQuestions,
 				// schema,
 				setOpened,
 				opened,
+				confirmDelete,
+				addQuestion,
+				editQuestion,
+				addAnswer,
+				answerForm,
+				form,
+				editOpened,
+				setEditOpened,
 			}}
 		>
 			{children}

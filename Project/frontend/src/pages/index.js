@@ -2,7 +2,7 @@ import Sample from "./sample";
 import Home from "./home";
 import WorkoutProgram from "./workoutProgram";
 import { TrainerDashboard, TrainerLogin, ListTrainers, TrainerRegister, TrainerProfile } from "./trainer";
-import { Events, Eventlist } from "./events";
+import { Events, Eventlist, EventReport } from "./events";
 import Dashboard from "./dashboard";
 import Notice from "./notice";
 import Feedback from "./feedback";
@@ -29,6 +29,7 @@ import WorkoutScRList from "./workoutScRList";
 
 import SampleReport from "./sample-report";
 import WorkoutReport from "./workout-report";
+import QuestionReport from "./question-report";
 import WorkoutProgramReport from "./workoutProgram-report";
 
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
@@ -42,6 +43,7 @@ export {
 	//PersonalTrainerRequest,
 	Events,
 	Eventlist,
+	EventReport,
 	TrainerDashboard,
 	TrainerLogin,
 	ListTrainers,
@@ -75,4 +77,5 @@ export {
 	SignUp,
 	PReport,
 	WorkoutProgramReport,
+	QuestionReport,
 };

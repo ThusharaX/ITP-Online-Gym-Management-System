@@ -29,7 +29,10 @@ const TrainerList = () => {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 			})}
 			style={{
 				margin: "0 auto",
@@ -56,7 +59,7 @@ const TrainerList = () => {
 				</Button>
 			</Group>
 
-			<Group style={{ marginTop: "30px" }} position="center" spacing={50}>
+			<Group style={{ marginTop: "80px" }} position="center" spacing={50}>
 				{trainers.map((item) => (
 					<div key={item._id}>
 						<Card
@@ -78,14 +81,14 @@ const TrainerList = () => {
 						>
 							<Group noWrap>
 								<Group style={{ maxWidth: "100px" }} position="center" spacing={5}>
-									<Avatar src={item.pUrl} size={94} radius="md" />
+									<Avatar src={item.avatar} size={94} radius="md" />
 									<Text size="xs" sx={{}} weight={700} color="dimmed">
 										#{item.username}
 									</Text>
 								</Group>
 								<div>
 									<Text size="lg" weight={500} className={classes.name}>
-										{item.firstName} {item.lName}
+										{item.firstName} {item.lastName}
 									</Text>
 
 									<Group noWrap spacing={10} mt={5}>

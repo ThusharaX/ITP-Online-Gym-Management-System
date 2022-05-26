@@ -107,4 +107,7 @@ export default function (app) {
 
 	// increse view count
 	app.put("/workout/view/:id", controller.increaseViewCount);
+
+	//add answer to question
+	app.post("/question/answer/", controller.addAnswer); //insert one answer
 }

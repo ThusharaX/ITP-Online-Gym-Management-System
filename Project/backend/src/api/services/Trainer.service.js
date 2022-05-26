@@ -8,6 +8,7 @@ const getTrainers = async (search) => {
 			.then((trainers) => {
 				trainers = trainers.map((trainer) => {
 					return {
+						avatar: trainer.avatar,
 						_id: trainer._id,
 						firstName: trainer.firstName,
 						lastName: trainer.lastName,
@@ -42,6 +43,7 @@ const getTrainer = async (id) => {
 		.then((trainer) => {
 			if (trainer) {
 				let NewTrainer = {
+					avatar: trainer.avatar,
 					_id: trainer._id,
 					firstName: trainer.firstName,
 					lastName: trainer.lastName,

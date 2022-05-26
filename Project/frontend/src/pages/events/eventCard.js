@@ -42,7 +42,10 @@ const EventList = () => {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 				filter: blur("8px"),
 				minHeight: "100vh",
 			})}
@@ -51,7 +54,7 @@ const EventList = () => {
 
 				border: "1px solid #ccc",
 				borderRadius: "5px",
-				width: "99.99%",
+				width: "99.9%",
 				height: "100%",
 				marginTop: "-110px",
 				marginBottom: "-120px",
@@ -84,24 +87,26 @@ const EventList = () => {
 						>
 							<Card.Section>
 								<Image
-									src="https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+									src={
+										!("url" in item)
+											? "https://media.istockphoto.com/photos/cat-bodybuilder-with-dumbbells-picture-id1131760920?k=20&m=1131760920&s=612x612&w=0&h=5jEgzdmLx4HpFy_4Df_BBs0SsxXDdnby5NjsDpHxceY="
+											: item.url
+									}
 									height={160}
 									alt="Norway"
 								/>
 							</Card.Section>
 
-							<Group position="left" spacing="2px" style={{ marginTop: "5px" }}>
-								<Text weight={500} style={{ fontSize: "18px" }}>
-									{item.title}
-								</Text>
-								<Text size="xs" style={{ color: secondaryColor }}>
-									{item.tags.map((tag) => (
-										<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
-											{tag}
-										</Badge>
-									))}
-								</Text>
-							</Group>
+							<Text weight={500} style={{ marginTop: "5px", fontSize: "18px" }}>
+								{item.title}
+							</Text>
+							<Text size="xs" style={{ color: secondaryColor }}>
+								{item.tags.map((tag) => (
+									<Badge size="xs" key={tag} variant="outline" color="primary" mr={2}>
+										{tag}
+									</Badge>
+								))}
+							</Text>
 							<Group position="left" style={{ marginTop: "15px" }}>
 								<Text weight={400} style={{ fontSize: "15px", marginRight: "40px" }}>
 									Date:

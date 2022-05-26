@@ -22,6 +22,9 @@ class QuestionAPI {
 	static editQuestion(id, newQuestion) {
 		return axios.put(`${BASE_URL}/question/${id}`, newQuestion, requestConfigJson);
 	}
+	static addAnswer(newAnswer) {
+		return axios.post(`${BASE_URL}/answer/`, newAnswer, requestConfigJson);
+	}
 }
 
 export default QuestionAPI;

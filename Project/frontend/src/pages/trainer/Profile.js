@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {
 	Text,
 	useMantineTheme,
@@ -12,10 +14,11 @@ import {
 	Radio,
 	Title,
 	Divider,
+	Paper,
+	Collapse,
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import { DropzoneButton } from "./Dropzone";
 
 const Profile = () => {
 	const theme = useMantineTheme();
@@ -31,14 +34,65 @@ const Profile = () => {
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
 	const textstyle = (theme) => ({ fontSize: "15px", marginTop: "20px", fontWeight: "400", color: TitleColor });
 
-	const { updateTrainer, formProfile, trainer } = useContext(TrainerContext);
-	const [date, setDate] = useState(new Date());
+	const { updateTrainer, formProfile, trainer, date, setDate, TrainerAPI, setTrainer } = useContext(TrainerContext);
+
+	const [opened, setOpen] = useState(false);
+	const [imgUrl, setImgUrl] = useState(null);
+	const [progresspercent, setProgresspercent] = useState(0);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const file = e.target[0]?.files[0];
+
+		if (!file) return;
+
+		const storageRef = ref(storage, `events/${file.name}`);
+		const uploadTask = uploadBytesResumable(storageRef, file);
+
+		uploadTask.on(
+			"state_changed",
+			(snapshot) => {
+				const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+				setProgresspercent(progress);
+			},
+			(error) => {
+				alert(error);
+			},
+			() => {
+				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setImgUrl(downloadURL);
+					formProfile.setFieldValue("avatar", downloadURL);
+				});
+			}
+		);
+	};
+
+	useEffect(() => {
+		TrainerAPI.getTrainerData(localStorage.getItem("uID")).then((res) => {
+			setTrainer(res.data);
+			formProfile.setFieldValue("avatar", res.data.firstName);
+			formProfile.setFieldValue("firstName", res.data.firstName);
+			formProfile.setFieldValue("lastName", res.data.lastName);
+			formProfile.setFieldValue("username", res.data.username);
+			formProfile.setFieldValue("nic", res.data.nic);
+			formProfile.setFieldValue("email", res.data.email);
+			formProfile.setFieldValue("gender", res.data.gender);
+			formProfile.setFieldValue("address", res.data.address);
+			formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
+			formProfile.setFieldValue("qualifications", res.data.qualifications);
+			formProfile.setFieldValue("dob", res.data.dob);
+			setDate(res.data.dob);
+		});
+	}, []);
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
-				marginTop: "-130px",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
+				marginTop: "-100px",
 				marginBottom: "-130px",
 				// width: "100%",
 				padding: "150px 0px",
@@ -55,7 +109,7 @@ const Profile = () => {
 						padding: theme.spacing.md,
 						borderRadius: theme.radius.md,
 						width: "300px",
-						height: "1040px",
+						height: "840px",
 						borderRadius: "50px",
 						paddingTop: "30px",
 						opacity: 0.9,
@@ -67,10 +121,36 @@ const Profile = () => {
 							width={150}
 							height={150}
 							style={{ boxShadow: "5px 5px 20px #aaa ", borderRadius: "200px" }}
-							src="http://cdn2.peopleimages.com/picture/1301022-hes-always-in-the-gym-fit_400_400.jpg"
-							alt="Random unsplash image"
+							src={trainer.avatar}
+							onClick={() => setOpen((o) => !o)}
 						/>
 					</Group>
+					<Collapse in={opened}>
+						<Paper shadow="xs" p="md" style={{ marginTop: "10px" }}>
+							<input form="saveImg" type="file" required />
+							<Button color={"gray"} form="saveImg" type="submit" compact>
+								Upload
+							</Button>
+
+							{!imgUrl && (
+								<div className="outerbar">
+									<div className="innerbar" style={{ width: `${progresspercent}%` }}>
+										{progresspercent}%
+									</div>
+								</div>
+							)}
+							{imgUrl && (
+								<Image
+									radius="md"
+									style={{ marginRight: "30px", margin: "10px 0px 0px 2px", backgroundPosition: "10px" }}
+									src={imgUrl}
+									alt="uploaded file"
+									height={160}
+								/>
+							)}
+						</Paper>
+					</Collapse>
+					<form id="saveImg" onSubmit={handleSubmit} className="form"></form>
 					<Title sx={(theme) => ({ color: TitleColor, marginTop: "20px" })} order={2}>
 						{trainer.firstName} {trainer.lastName}
 					</Title>
@@ -99,7 +179,7 @@ const Profile = () => {
 						padding: theme.spacing.xl,
 						borderRadius: theme.radius.md,
 						width: "600px",
-						height: "1040px",
+						height: "840px",
 						borderRadius: "50px",
 						opacity: 0.9,
 						"&:hover": {
@@ -107,13 +187,18 @@ const Profile = () => {
 						},
 					})}
 				>
-					<Title order={3} align="center" sx={(theme) => ({ color: TitleColor })}>
+					<Title order={1} align="center" sx={(theme) => ({ color: TitleColor })}>
 						Main Details
 					</Title>
 
 					<Divider my="sm" size={"md"} />
-					<form onSubmit={formProfile.onSubmit((values) => updateTrainer(values))}>
-						<Group position="center" style={{ marginTop: "20px" }}>
+					<form
+						onSubmit={formProfile.onSubmit((values) => {
+							updateTrainer(values);
+							setImgUrl(null);
+						})}
+					>
+						<Group position="center" style={{ marginTop: "40px" }}>
 							<TextInput
 								size="md"
 								style={{ width: "48%" }}
@@ -212,7 +297,6 @@ const Profile = () => {
 							style={{ marginTop: "30px", marginBottom: "30px" }}
 							{...formProfile.getInputProps("email")}
 						/>
-						<DropzoneButton />
 
 						<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
 						<Group style={{ marginTop: "20px" }} position="center" mt="md">
