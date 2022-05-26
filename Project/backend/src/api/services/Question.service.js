@@ -54,3 +54,21 @@ export const getAllQuestions = async () => {
 			throw new Error(error.message);
 		});
 };
+
+//Search question from name and title or content or email
+export const searchQuestions = async (searchTerm) => {
+	return await QuestionModel.find({
+		$or: [
+			{ name: { $regex: searchTerm, $options: "i" } },
+			{ title: { $regex: searchTerm, $options: "i" } },
+			{ content: { $regex: searchTerm, $options: "i" } },
+			{ email: { $regex: searchTerm, $options: "i" } },
+		],
+	})
+		.then((questions) => {
+			return questions;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

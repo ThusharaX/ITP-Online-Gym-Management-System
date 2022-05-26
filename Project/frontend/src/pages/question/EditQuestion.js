@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Button, TextInput, Group, Box, Modal, NumberInput } from "@mantine/core";
+import { Button, TextInput, Group, Box, Modal } from "@mantine/core";
 import { useForm, joiResolver } from "@mantine/form";
 
 import QuestionContext from "../../contexts/QuestionContext";
 
 const EditQuestion = () => {
-	const { editQuestion, question, setEditOpened, options, schema, editOpened } = useContext(QuestionContext);
+	const { editQuestion, question, setEditOpened, editOpened } = useContext(QuestionContext);
 
 	// Form initial state
 	let form = useForm({
@@ -38,9 +38,6 @@ const EditQuestion = () => {
 							<Button onClick={() => setEditOpened(false)} color="red">
 								Cancel
 							</Button>
-							{/* <Button onClick={() => confirmDelete(item._id)} color="red" compact>
-								Delete
-							</Button> */}
 						</Group>
 					</form>
 				</Box>

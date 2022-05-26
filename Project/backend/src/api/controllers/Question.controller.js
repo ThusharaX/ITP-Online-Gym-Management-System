@@ -51,3 +51,15 @@ export const getAllQuestions = async (request, response, next) => {
 			next();
 		});
 };
+//Search questions
+export const searchQuestions = async (request, response, next) => {
+	await QuestionService.searchQuestions(request.params.search)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
