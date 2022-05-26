@@ -18,7 +18,7 @@ class UserAPI {
 	}
 
 	static getEmployees() {
-		return axios.get(`${BASE_URL}/user/`, requestConfig);
+		return axios.get(`${BASE_URL}/employee/`, requestConfig);
 	}
 
 	static deleteEmployee(id) {
@@ -30,7 +30,7 @@ class UserAPI {
 	}
 
 	static searchEmployee(search) {
-		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
+		return axios.get(`${BASE_URL}/employee/search/${search}`, requestConfigJson);
 	}
 }
 

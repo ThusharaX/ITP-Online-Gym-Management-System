@@ -22,7 +22,7 @@ class UserAPI {
 	}
 
 	static getUsersEmployee() {
-		return axios.get(`${BASE_URL}/user/`, requestConfig);
+		return axios.get(`${BASE_URL}/employee/`, requestConfig);
 	}
 
 	static editUser(uid, newUser) {
@@ -30,7 +30,7 @@ class UserAPI {
 	}
 
 	static searchUser(search) {
-		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
+		return axios.get(`${BASE_URL}/employee/search/${search}`, requestConfigJson);
 	}
 }
 
