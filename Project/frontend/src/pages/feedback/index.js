@@ -4,7 +4,8 @@ import React from "react";
 import FeedbackList from "./FeedbackList";
 import AddFeedback from "./AddFeedback";
 import HeroImageBackground from "./HeroImageBackground";
-
+import Search from "./Search";
+import FeedbackTableScrollArea from "./FeedbackTableScrollArea";
 // FeedbackProvider
 import { FeedbackProvider } from "../../contexts/FeedbackContext";
 
@@ -28,6 +29,8 @@ const Feedback = () => {
 				<FeedbackList />
 				{/* Add new Feedback */}
 				<AddFeedback />
+				<Search />
+				<FeedbackTableScrollArea />
 			</FeedbackProvider>
 		</div>
 	);

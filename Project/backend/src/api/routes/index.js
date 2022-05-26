@@ -104,6 +104,7 @@ export default function (app) {
 	app.post("/feedback/", controller.insertFeedback); // insert one feedback
 	app.get("/feedback/", controller.getAllFeedbacks); // get all feedbacks
 	app.put("/feedback/:id", controller.updateFeedback); // update one feedback
+	app.get("/feedback/search/:search", controller.searchFeedbacks); // search feedbacks
 
 	// increse view count
 	app.put("/workout/view/:id", controller.increaseViewCount);

@@ -13,8 +13,11 @@ class FeedbackAPI {
 		return axios.post(`${BASE_URL}/feedback/`, newFeedback, requestConfigJson);
 	}
 
-	static deleteFeedback(id) {
-		return axios.delete(`${BASE_URL}/feedback/${id}`, requestConfig);
+	static editFeedback(id, newFeedback) {
+		return axios.put(`${BASE_URL}/feedback/${id}`, newFeedback, requestConfigJson);
+	}
+	static searchFeedback(search) {
+		return axios.get(`${BASE_URL}/feedback/search/${search}`, requestConfigJson);
 	}
 }
 

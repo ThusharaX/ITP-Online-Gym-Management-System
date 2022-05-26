@@ -71,7 +71,7 @@ import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from ".
 
 import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
-import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
+import { insertFeedback, getAllFeedbacks, updateFeedback, searchFeedbacks } from "./Feedback.service";
 export default {
 	// Sample services
 	insertSample,
@@ -168,6 +168,7 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+	searchFeedbacks,
 
 	// Trainer services
 	getTrainer,

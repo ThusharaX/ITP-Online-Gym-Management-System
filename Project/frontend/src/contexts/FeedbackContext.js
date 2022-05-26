@@ -12,6 +12,30 @@ const FeedbackContext = createContext();
 
 export function FeedbackProvider({ children }) {
 	const [feedbacks, setFeedbacks] = useState([]);
+	//Feedback
+	const [feedback, setFeedback] = useState({
+		// email: {
+		// 	type: String,
+		// 	required: true,
+		// },
+		// displayname: {
+		// 	type: String,
+		// 	required: true,
+		// },
+		// ftitle: {
+		// 	type: String,
+		// 	required: true,
+		// },
+		// feedback: {
+		// 	type: String,
+		// 	required: true,
+		// },
+
+		email: "",
+		displayname: "",
+		ftitle: "",
+		feedback: "",
+	});
 
 	// Get all feedbacks
 	useEffect(() => {
@@ -43,6 +67,23 @@ export function FeedbackProvider({ children }) {
 			form.reset();
 		});
 	};
+	//Add Feedback Modal
+	const [opened, setOpened] = useState(false);
+	//Edit Feedback
+	const editFeedback = (values) => {
+		const newFeedback = {
+			ftitle: values.ftitle,
+			feedback: values.feedback,
+			email: values.email,
+			displayname: values.displayname,
+		};
+		FeedbackAPI.editFeedback(values.id, newFeedback).then((response) => {
+			setFeedbacks(salaries.map((feedback) => (feedback.id === values.id ? response.data : feedback)));
+			form.reset();
+		});
+	};
+	//Edit Feedback Modal
+	const [editOpened, setEditOpened] = useState(false);
 
 	// Delete feedback and update UI
 	const deleteFeedback = (id) => {
@@ -70,7 +111,21 @@ export function FeedbackProvider({ children }) {
 		});
 
 	return (
-		<FeedbackContext.Provider value={{ feedbacks, confirmDelete, addFeedback, form }}>
+		<FeedbackContext.Provider
+			value={{
+				opened,
+				editFeedback,
+				setOpened,
+				feedbacks,
+				editOpened,
+				setEditOpened,
+				confirmDelete,
+				addFeedback,
+				form,
+				feedback,
+				setFeedback,
+			}}
+		>
 			{children}
 		</FeedbackContext.Provider>
 	);
