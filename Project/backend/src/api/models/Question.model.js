@@ -15,6 +15,7 @@ const Question = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		answers: [{ type: String }],
 		content: {
 			type: String,
 			required: true,

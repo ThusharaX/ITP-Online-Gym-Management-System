@@ -47,6 +47,7 @@ import {
 	EmployeeDashboard,
 	EmployeeProfile,
 	WorkoutReport,
+	QuestionReport,
 	SignUp,
 	PReport,
 	Employee_List,
@@ -97,6 +98,7 @@ const AppRoutes = () => {
 						<Route exact path="/sample" element={<Sample />} />
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
+						<Route exact path="/question-report" element={<QuestionReport />} />
 
 						<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 							<Route exact path="/trainers/login" element={<TrainerLogin />} />

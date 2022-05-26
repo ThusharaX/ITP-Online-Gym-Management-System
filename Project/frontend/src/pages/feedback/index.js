@@ -3,6 +3,7 @@ import React from "react";
 // Page components
 import FeedbackList from "./FeedbackList";
 import AddFeedback from "./AddFeedback";
+import HeroImageBackground from "./HeroImageBackground";
 
 // FeedbackProvider
 import { FeedbackProvider } from "../../contexts/FeedbackContext";
@@ -21,9 +22,8 @@ const Feedback = () => {
 				// height: "100vh",
 			}}
 		>
-			<h1 align="center">Feedback Page</h1>
-
 			<FeedbackProvider>
+				<HeroImageBackground />
 				{/* Feedback list */}
 				<FeedbackList />
 				{/* Add new Feedback */}

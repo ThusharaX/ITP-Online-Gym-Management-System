@@ -1,5 +1,5 @@
 .header {
-	margin-top: 60px;
+	margin-top: 0px;
 }
 
 .headerTitles {
@@ -12,19 +12,19 @@
 
 .headerTitleSm {
 	position: absolute;
-	top: 65%;
+	top: 40%;
 	font-size: 20px;
 }
 
 .headerTitleLg {
 	position: absolute;
-	top: 50%;
+	top: 25%;
 	font-size: 100px;
 }
 
 .headerImg {
 	width: 100%;
-	height: 700px;
+	height: 500px;
 	margin-top: 6px;
 	margin-bottom: 50px;
 	object-fit: cover;

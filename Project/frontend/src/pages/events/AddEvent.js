@@ -86,7 +86,7 @@ const AddEvent = () => {
 				transitionDuration={600}
 				overlayOpacity={0.75}
 				size={510}
-				style={{ borderRadius: "100px", opacity: 0.97 }}
+				style={{ borderRadius: "100px", opacity: 0.97, marginTop: "60px" }}
 			>
 				<Box
 					sx={(theme) => ({
@@ -170,7 +170,6 @@ const AddEvent = () => {
 						</Group>
 						<Group spacing={5} position="left" style={{ marginTop: "20px" }}>
 							<div style={{ height: "120px", maxWidth: "340px", backgroundColor: "" }}>
-								{/* <App /> */}
 								<input form="saveImg" type="file" required />
 								<Button color={"teal"} form="saveImg" type="submit" compact>
 									Upload
