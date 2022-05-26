@@ -65,7 +65,7 @@ import {
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
 
-import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions, searchQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
@@ -102,6 +102,7 @@ export default {
 	updateQuestion,
 	deleteQuestion,
 	getAllQuestions,
+	searchQuestions,
 
 	//Blog services
 	insertTrainerBD,

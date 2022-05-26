@@ -6,6 +6,7 @@ import { Events, Eventlist, EventReport } from "./events";
 import Dashboard from "./dashboard";
 import Notice from "./notice";
 import Feedback from "./feedback";
+import Question from "./question";
 
 //import PersonalTrainerRequest from "./personalTrainerRequest";
 import BlogCreateRequest from "./blogCreateRequest";
@@ -66,6 +67,7 @@ export {
 	WorkoutScRList,
 	TrainerProfile,
 	BD,
+	Question,
 	RList,
 	SampleReport,
 	MemberLogin,

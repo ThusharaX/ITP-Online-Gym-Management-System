@@ -25,7 +25,7 @@ export default function (app) {
 	app.put("/question/:id", controller.updateQuestion); //update one question
 	app.delete("/question/:id", controller.deleteQuestion); //delete one question
 	app.get("/question/", controller.getAllQuestions); //get all questions
-
+	app.get("/question/search/:search", controller.searchQuestions); // search questions
 	//TrainerDB endpoints
 	app.post("/blog/", controller.insertTrainerBD); // insert one sample
 	app.get("/blog/", controller.getAllTrainerBD); // get all samples
@@ -109,6 +109,5 @@ export default function (app) {
 	app.put("/workout/view/:id", controller.increaseViewCount);
 
 	//add answer to question
-	app.post("/question/answer/", controller.addAnswer);//insert one answer
-
+	app.post("/question/answer/", controller.addAnswer); //insert one answer
 }

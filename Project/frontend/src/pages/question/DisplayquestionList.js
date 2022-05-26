@@ -55,9 +55,9 @@ function QuestionTableScrollArea() {
 						}}
 					/>
 				</ActionIcon>
-				<Button onClick={() => confirmDelete(item._id)} color="red" compact>
+				{/* <Button onClick={() => confirmDelete(item._id)} color="red" compact>
 					Delete
-				</Button>
+				</Button> */}
 			</td>
 		</tr>
 	));
@@ -65,7 +65,7 @@ function QuestionTableScrollArea() {
 	return (
 		<>
 			{/*Edit Question Modal*/}
-			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Salary">
+			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Question">
 				<EditQuestion />
 			</Modal>
 

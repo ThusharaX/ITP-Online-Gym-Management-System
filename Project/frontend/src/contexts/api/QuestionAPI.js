@@ -16,6 +16,12 @@ class QuestionAPI {
 	static deleteQuestion(id) {
 		return axios.delete(`${BASE_URL}/question/${id}`, requestConfig);
 	}
+	static searchQuestion(search) {
+		return axios.get(`${BASE_URL}/question/search/${search}`, requestConfigJson);
+	}
+	static editQuestion(id, newQuestion) {
+		return axios.put(`${BASE_URL}/question/${id}`, newQuestion, requestConfigJson);
+	}
 	static addAnswer(newAnswer) {
 		return axios.post(`${BASE_URL}/answer/`, newAnswer, requestConfigJson);
 	}

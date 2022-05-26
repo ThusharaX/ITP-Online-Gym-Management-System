@@ -1,17 +1,33 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 
 // Mantine imports
 import { Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 import QuestionAPI from "./api/QuestionAPI";
+import Joi from "joi";
 
 const QuestionContext = createContext();
 
 export function QuestionProvider({ children }) {
 	const [questions, setQuestions] = useState([]);
+
+	//question
+	const [question, setQuestion] = useState({
+		email: "",
+		name: "",
+		title: "",
+		content: "",
+	});
+
+	// //form validation
+	// const schema = Joi.object({
+	// 	email: Joi.string().email().required(),
+	// 	name: Joi.string().required(),
+	// 	title: Joi.string().required(),
+	// 	content: Joi.string().required(),
+	// });
 
 	// Get all questions
 	useEffect(() => {
@@ -22,6 +38,7 @@ export function QuestionProvider({ children }) {
 
 	// Form initial state
 	const form = useForm({
+		// schema:joiResolver(schema),
 		initialValues: {
 			email: "",
 			name: "",
@@ -64,17 +81,21 @@ export function QuestionProvider({ children }) {
 
 	//edit question
 	const editQuestion = (values) => {
-		const editedQuestion = {
+		const newQuestion = {
 			title: values.title,
 			content: values.content,
 			email: values.email,
 			name: values.name,
 		};
-		QuestionAPI.editQuestion(editedQuestion).then((response) => {
-			setQuestions(questions.map((question) => (question.id === response.data.id ? response.data : question)));
+		QuestionAPI.editQuestion(values.id, newQuestion).then((response) => {
+			setQuestions(questions.map((question) => (question.id === values.id ? response.data : question)));
 			form.reset();
 		});
 	};
+
+	//Add Question Modal
+	const [opened, setOpened] = useState(false);
+
 	//edit question modal
 	const [editOpened, setEditOpened] = useState(false);
 
@@ -107,6 +128,13 @@ export function QuestionProvider({ children }) {
 		<QuestionContext.Provider
 			value={{
 				questions,
+				setQuestion,
+				addQuestion,
+				question,
+				setQuestions,
+				// schema,
+				setOpened,
+				opened,
 				confirmDelete,
 				addQuestion,
 				editQuestion,
