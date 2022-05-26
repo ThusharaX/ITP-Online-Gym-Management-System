@@ -137,7 +137,8 @@ const AddTrainer = () => {
 						setNicError("");
 						setMailError("");
 						setUserNameError("");
-						// navigate("/trainers/list");
+						navigate("/trainers/login");
+						return alert("Trainer added successfully");
 						// isLoading(true);
 					})}
 				>

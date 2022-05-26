@@ -1,4 +1,4 @@
-import { SimpleGrid, Card, Text, useMantineTheme, Title } from "@mantine/core";
+import { SimpleGrid, Card, Text, useMantineTheme, Title, Button, Group } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
@@ -71,6 +71,40 @@ export function Dashboard() {
 			<br></br>
 			<br></br>
 			<br></br>
+			<Group style={{ marginLeft: "10%" }}>
+				<Button
+					// shadow="lg"
+					// sx={cardTheme(theme, 2, 10)}
+					// style={cardStyle}
+					// p="xl"
+					// component="a"
+					// href=""
+					style={{ width: "100px", marginBottom: "20px" }}
+					color="gray"
+					compact
+					onClick={() => {
+						navigate("/trainers/list");
+					}}
+				>
+					Trainers list
+				</Button>
+				<Button
+					// shadow="lg"
+					// sx={cardTheme(theme, 2, 10)}
+					// style={cardStyle}
+					// p="xl"
+					// component="a"
+					// href=""
+					style={{ width: "170px", marginBottom: "20px" }}
+					color="gray"
+					compact
+					onClick={() => {
+						navigate("/event-report");
+					}}
+				>
+					Event Interest Report
+				</Button>
+			</Group>
 
 			<Card
 				sx={cardTheme(theme, 0, 10)}

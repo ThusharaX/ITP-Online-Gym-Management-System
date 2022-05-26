@@ -4,7 +4,6 @@ import Joi from "joi";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/trainer`;
 const TrainerContext = createContext();
 import TrainerAPI from "./api/TrainerAPI";
-import addTrainer from "../pages/trainer/AddTrainer";
 
 // Mantine imports
 import { Text } from "@mantine/core";

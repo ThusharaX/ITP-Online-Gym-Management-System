@@ -71,7 +71,7 @@ export const createTrainer = async (req, res, next) => {
 	// return res.status(400).json({ success: false, msg: "Username already exists" });
 	else {
 		const trainer = {
-			avatar: req.body.url,
+			avatar: req.body.avatar,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			nic: req.body.nic,
