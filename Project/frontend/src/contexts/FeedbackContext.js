@@ -124,6 +124,7 @@ export function FeedbackProvider({ children }) {
 				form,
 				feedback,
 				setFeedback,
+				setFeedbacks,
 			}}
 		>
 			{children}
