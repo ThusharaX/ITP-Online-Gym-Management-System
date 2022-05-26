@@ -1,4 +1,4 @@
-import TrainerService, { UserService } from "../services";
+import TrainerService from "../services";
 
 const joi = require("joi");
 let users = require("../models/User.model");
@@ -62,6 +62,7 @@ export const createTrainer = async (req, res, next) => {
 		return res.status(400).json({ success: false, msg: "Username already exists" });
 
 	const trainer = {
+		avatar: req.body.url,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		nic: req.body.nic,
@@ -77,7 +78,7 @@ export const createTrainer = async (req, res, next) => {
 		permissionLevel: "TRAINER",
 	};
 
-	await UserService.insertUser(trainer)
+	await TrainerService.insertUser(trainer)
 		.then((data) => {
 			logger.info(`New trainer with ID ${data._id} created`);
 			req.handleResponse.successRespond(res)(data);

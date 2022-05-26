@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { TextInput, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import MemberContext from "../../contexts/MemberContext";
-import MemberAPI from "../../contexts/api/MemberAPI";
+import EmployeeContext from "../../contexts/EmployeeContext";
+import EmployeeAPI from "../../contexts/api/EmployeeAPI";
 
 function Search() {
-	const { setMembers } = useContext(MemberContext);
+	const { setEmployees } = useContext(EmployeeContext);
 
 	const form = useForm({
 		initialValues: {
@@ -15,15 +15,15 @@ function Search() {
 	});
 
 	const handleSearch = (values) => {
-		MemberAPI.searchMember(values.search).then((response) => {
-			setMembers(response.data);
+		EmployeeAPI.searchEmployee(values.search).then((response) => {
+			setEmployees(response.data);
 		});
 	};
 
 	const handleResetSearch = () => {
 		form.reset();
-		MemberAPI.getMembers().then((response) => {
-			setMembers(response.data);
+		EmployeeAPI.getEmployeeData().then((response) => {
+			setEmployees(response.data);
 		});
 	};
 

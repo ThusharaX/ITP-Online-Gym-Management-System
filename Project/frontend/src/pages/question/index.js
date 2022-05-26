@@ -4,10 +4,11 @@ import React from "react";
 import QuestionList from "./QuestionList";
 import AddQuestion from "./AddQuestion";
 import FAQQ from "./FAQQ";
-import QuestionTableScrollArea from "./QuestionTableScrollArea";
+import Search from "./Search";
+import HeroImageBackground from "./Banner";
+import QuestionTableScrollArea from "./DisplayquestionList";
 // QuestionProvider
 import { QuestionProvider } from "../../contexts/QuestionContext";
-import HeroImageBackground from "./Banner";
 
 const Question = () => {
 	return (
@@ -24,16 +25,12 @@ const Question = () => {
 		>
 			<QuestionProvider>
 				<HeroImageBackground />
-				{/* Question list */}
-
 				<QuestionList />
 				<FAQQ />
-				{/* Add new Question */}
 				<AddQuestion />
-
+				<Search />
 				<QuestionTableScrollArea />
 			</QuestionProvider>
-			{/* <FAQ /> */}
 		</div>
 	);
 };

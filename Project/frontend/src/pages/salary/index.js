@@ -5,6 +5,8 @@ import AddSalary from "./AddSalary";
 import SalaryTableScrollArea from "./SalaryList";
 import Search from "./Search";
 import "./index.css";
+import { Button } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 // SalaryProvider
 import { SalaryProvider } from "../../contexts/SalaryContext";
@@ -20,6 +22,13 @@ const Salary = () => {
 					{/* Add new Salary */}
 					<AddSalary />
 				</SalaryProvider>
+				{localStorage.getItem("permissionLevel") === "ADMIN" && (
+					<Button sx={{ width: 150, margin: 20 }}>
+						<Link style={{ textDecoration: "none", color: "#fff" }} to="/salary-report">
+							Salary Report
+						</Link>
+					</Button>
+				)}
 			</div>
 			<div className="salary-form-container">
 				<SalaryProvider>

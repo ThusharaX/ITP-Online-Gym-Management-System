@@ -16,16 +16,16 @@ const Dashboard = () => {
 			<br />
 			<br />
 			<Button style={{ margin: 20 }}>
-				<Link style={{ textDecoration: "none", color: "#fff" }} to="/memberList">
-					Members
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/salary">
+					Salary
 				</Link>
 			</Button>
 			<br />
 			<br />
 			<br />
 			<Button style={{ margin: 20 }}>
-				<Link style={{ textDecoration: "none", color: "#fff" }} to="/notice">
-					Notices
+				<Link style={{ textDecoration: "none", color: "#fff" }} to="/employeeList">
+					Employees
 				</Link>
 			</Button>
 			<br />

@@ -26,7 +26,7 @@ export function Dashboard() {
 
 	let cardTheme = (theme, x, y) => ({
 		backgroundImage: gradient + url[x],
-		boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
+		boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #aaa" : "5px 5px 25px #aaa",
 
 		backgroundPosition: "0% " + y + "%",
 		"&:hover": {
@@ -35,10 +35,12 @@ export function Dashboard() {
 	});
 	let cardStyle = {
 		padding: "35px 30px 40px 5%",
+		margin: "0px 0px 0px 5%",
 		borderRadius: "md",
-		width: "100%",
+		width: "90%",
 		height: "100%",
 		display: "flex",
+		border: "1px solid #333",
 		flexDirection: "column",
 	};
 	let cardTitleSx = (theme) => ({
@@ -52,14 +54,24 @@ export function Dashboard() {
 
 	return (
 		<SimpleGrid
-			style={{ backgroundColor: bg, marginTop: "-50px", marginBottom: "-120px", padding: "60px 0px 100px 0px" }}
+			style={{ backgroundColor: bg, marginTop: "-70px", marginBottom: "-120px", padding: "60px 0px 100px 0px" }}
 			cols={1}
 			spacing="xs"
 			sx={(theme) => ({
-				// backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 			})}
 		>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+
 			<Card
 				sx={cardTheme(theme, 0, 10)}
 				style={{ ...cardStyle }}

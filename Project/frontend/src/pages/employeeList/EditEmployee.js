@@ -3,33 +3,34 @@ import { Button, TextInput, Group, Box, Modal, Autocomplete } from "@mantine/cor
 import { DatePicker } from "@mantine/dates";
 import { useForm, joiResolver } from "@mantine/form";
 
-import MemberContext from "../../contexts/MemberContext";
+import EmployeeContext from "../../contexts/EmployeeContext";
 
-const EditMember = () => {
-	const { editMember, member, setEditOpened, schema, editOpened } = useContext(MemberContext);
+const EditEmployee = () => {
+	const { editEmployee, employee, setEditOpened, schema, editOpened } = useContext(EmployeeContext);
 	const [date, setDate] = useState(new Date());
 
 	// Form initial state
 	let form = useForm({
 		//schema: joiResolver(schema),
 		initialValues: {
-			id: member._id,
-			firstName: member.firstName,
-			lastName: member.lastName,
-			username: member.username,
-			nic: member.nic,
-			email: member.email,
-			dob: member.dob,
-			phoneNumber: member.phoneNumber,
+			id: employee._id,
+			firstName: employee.firstName,
+			lastName: employee.lastName,
+			username: employee.username,
+			nic: employee.nic,
+			email: employee.email,
+			dob: employee.dob,
+			phoneNumber: employee.phoneNumber,
+			qualifications: String(employee.qualifications).split(","),
 		},
 	});
 	return (
 		<>
-			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Member">
+			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Employee">
 				<Box sx={{ maxWidth: 500 }} mx="auto">
 					<form
 						onSubmit={form.onSubmit((values) => {
-							editMember(values);
+							editEmployee(values);
 							setEditOpened(false);
 						})}
 					>
@@ -39,6 +40,7 @@ const EditMember = () => {
 						<TextInput required label="NIC" placeholder="NIC" {...form.getInputProps("nic")} />
 						<TextInput required label="Email" placeholder="Email" {...form.getInputProps("email")} />
 						<DatePicker
+							size="md"
 							placeholder="Date of Birth"
 							label="Date of Birth"
 							required
@@ -51,6 +53,12 @@ const EditMember = () => {
 							label="Phone Number"
 							placeholder="Phone Number"
 							{...form.getInputProps("phoneNumber")}
+						/>
+						<TextInput
+							required
+							label="Qualifications"
+							placeholder="Qualifications"
+							{...form.getInputProps("qualifications")}
 						/>
 						<Group position="right" mt="md">
 							<Button type="submit">Edit</Button>
@@ -65,4 +73,4 @@ const EditMember = () => {
 	);
 };
 
-export default EditMember;
+export default EditEmployee;

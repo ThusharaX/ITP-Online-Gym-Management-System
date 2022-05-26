@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { Button } from "@mantine/core";
 
-import MemberContext from "../../contexts/MemberContext";
+import EmployeeContext from "../../contexts/EmployeeContext";
 
 const styles = StyleSheet.create({
 	page: {
@@ -29,25 +29,25 @@ const styles = StyleSheet.create({
 });
 
 const Report = () => {
-	const { members, isLoading } = useContext(MemberContext);
+	const { employees, isLoading } = useContext(EmployeeContext);
 
-	const MemberReport = () => (
+	const EmployeeReport = () => (
 		<Document>
 			<Page size="A4" style={styles.page}>
 				<View style={styles.title}>
 					<Text>Employee List</Text>
 
-					{members.map((member) => (
-						<View key={member._id} style={styles.section}>
+					{employees.map((employee) => (
+						<View key={employee._id} style={styles.section}>
 							<View style={styles.row}>
 								<Text>Username:</Text>
-								<Text>{member.username}</Text>
+								<Text>{employee.username}</Text>
 								<Text>NIC:</Text>
-								<Text>{member.nic}</Text>
+								<Text>{employee.nic}</Text>
 								<Text>Email:</Text>
-								<Text>{member.email}</Text>
+								<Text>{employee.email}</Text>
 								<Text>Phone:</Text>
-								<Text>{member.phoneNumber}</Text>
+								<Text>{employee.phoneNumber}</Text>
 							</View>
 						</View>
 					))}
@@ -58,8 +58,10 @@ const Report = () => {
 
 	return (
 		<div>
-			<PDFDownloadLink document={<MemberReport />} fileName="Member Report.pdf">
-				<Button disabled={isLoading}>{isLoading ? "Loading document..." : "Download now!"}</Button>
+			<PDFDownloadLink document={<EmployeeReport />} fileName="Employee Report.pdf">
+				<Button style={{ marginLeft: 20 }} disabled={isLoading}>
+					{isLoading ? "Loading document..." : "Download now!"}
+				</Button>
 			</PDFDownloadLink>
 
 			<h1>Report Preview</h1>
@@ -70,7 +72,7 @@ const Report = () => {
 					height: "500px",
 				}}
 			>
-				<MemberReport />
+				<EmployeeReport />
 			</PDFViewer>
 		</div>
 	);

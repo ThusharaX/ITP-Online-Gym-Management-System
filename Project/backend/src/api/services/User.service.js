@@ -163,9 +163,9 @@ export const getUserDetails = async (userId) => {
 		});
 };
 
-//Get all Users where permission is MEMBER
-export const getAllMembers = async () => {
-	return await UserModel.find({ permissionLevel: "MEMBER" })
+//Get all Users where permission is EMPLOYEE
+export const getAllEmployees = async () => {
+	return await UserModel.find({ permissionLevel: "EMPLOYEE" })
 		.then((data) => {
 			return data.map((user) => {
 				return user;
@@ -200,7 +200,6 @@ export const searchUsersMember = async (searchTerm) => {
 		$or: [
 			{ firstName: { $regex: searchTerm, $options: "i" } },
 			{ lastName: { $regex: searchTerm, $options: "i" } },
-			{ username: { $regex: searchTerm, $options: "i" } },
 			{ nic: { $regex: searchTerm, $options: "i" } },
 		],
 	})

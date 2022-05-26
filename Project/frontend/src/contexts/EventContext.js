@@ -42,13 +42,13 @@ export function EventProvider({ children }) {
 			gender: "Both",
 			date: new Date(),
 			time: new Date(),
-			url: "mkkknb",
+			url: "null",
 		},
 	});
 
 	//Respond, If-You-Want
 	const RSVW = (value, eid) => {
-		let userid = "123456789812345678981238";
+		let userid = localStorage.getItem("uID");
 		//get specific react for current user.
 		let event = events.filter((event) => event._id === eid);
 
@@ -89,7 +89,7 @@ export function EventProvider({ children }) {
 			gender: values.gender,
 			date: newDate,
 			tags: String(values.tags).split(","),
-			trainer: "123456789812345678981234",
+			trainer: localStorage.getItem("uID"),
 			users: [],
 			url: values.url,
 		};
@@ -110,7 +110,7 @@ export function EventProvider({ children }) {
 			date: newDate,
 			tags: String(values.tags).split(","),
 			url: values.url,
-			trainer: "123456789812345678981234",
+			trainer: localStorage.getItem("uID"),
 		};
 		axios.put(`${baseURL}/${id}`, newEvent).then((res) => {
 			axios

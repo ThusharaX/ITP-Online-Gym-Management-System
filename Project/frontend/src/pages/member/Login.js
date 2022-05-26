@@ -1,114 +1,43 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-	TextInput,
-	PasswordInput,
-	Button,
-	Group,
-	Box,
-	Checkbox,
-	Anchor,
-	Text,
-	Title,
-	useMantineTheme,
-	Notification,
-} from "@mantine/core";
+import { TextInput, PasswordInput, Button, Group, Box, Notification, Loader } from "@mantine/core";
 import { X } from "tabler-icons-react";
 
-import MemberContext from "../../contexts/MemberContext";
+import UserContext from "../../contexts/UserContext";
 
-export function Login() {
-	const navigate = useNavigate();
-	const { login, form, isLoggedIn, isLoading, message } = useContext(MemberContext);
-	const theme = useMantineTheme();
-
-	const gradient =
-		theme.colorScheme === "dark"
-			? "linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.6)), "
-			: "linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.8)), ";
-	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
+const Login = () => {
+	const { login, form, isLoggedIn, isLoading, message } = useContext(UserContext);
 
 	return (
-		<Box
-			sx={(theme) => ({
-				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692037.jpg)",
-				marginTop: "-120px",
-				height: "100vh",
-				width: "100%",
-				padding: "70px 0px",
-			})}
-		>
-			{isLoggedIn ? (
-				<p>You are logged in!</p>
-			) : isLoading ? (
-				<p>Loading...</p>
-			) : (
-				<Box
-					sx={(theme) => ({
-						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
-						border: "1px solid",
-						borderColor: theme.colorScheme === "dark" ? theme.colors.gray[8] : theme.colors.gray[4],
-						boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
-						textAlign: "left",
-						padding: "2rem",
-						borderRadius: "20px",
-						width: "350px",
-						cursor: "pointer",
-						borderRadius: "50px",
-						margin: "100px auto",
-						opacity: 0.9,
+		<div>
+			<h1 style={{ textAlign: "center" }}>Member Login Page</h1>
 
-						"&:hover": {
-							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
-						},
-					})}
+			{/* Align loader center */}
+			{isLoading && <Loader style={{ flex: 1, justifyContent: "center" }} />}
+
+			{/* if response has message, display it */}
+			{message && (
+				<Notification
+					style={{ maxWidth: "400px", margin: "0 auto", marginBottom: "20px" }}
+					icon={<X size={18} />}
+					color="red"
+					closeButtonProps
 				>
-					<Title
-						align="center"
-						sx={(theme) => ({ color: TitleColor, fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
-					>
-						Welcome back!
-					</Title>
-					<Text color="dimmed" size="sm" align="center" mt={5}>
-						Do not have an account yet?{" "}
-						<Anchor
-							href="#"
-							size="sm"
-							onClick={() => {
-								navigate("/signUp");
-							}}
-						>
-							Create account
-						</Anchor>
-					</Text>
-					{/* if response has message, display it */}
-					{message && (
-						<Notification icon={<X size={18} />} color="red" title="eror">
-							{message}
-						</Notification>
-					)}
-					<form onSubmit={form.onSubmit((values) => login(values))}>
-						<div style={{ marginTop: "25px" }}>
-							<TextInput label="User Name" placeholder="User Name" required {...form.getInputProps("username")} />
-							<PasswordInput
-								label="Password"
-								placeholder="Your password"
-								required
-								mt="md"
-								{...form.getInputProps("password")}
-							/>
-							<Group style={{ margin: "-5px 20px 0px 0px " }} position="center" mt="md">
-								<Button color={"cyan"} radius={"md"} mt="xl" type="submit" sx={{ width: 150 }}>
-									Sign in
-								</Button>
-							</Group>
-						</div>
-					</form>
-				</Box>
+					{message}
+				</Notification>
 			)}
-		</Box>
+
+			<Box sx={{ maxWidth: 300 }} mx="auto">
+				<form onSubmit={form.onSubmit((values) => login(values))}>
+					<TextInput required label="Username" placeholder="Your Username" {...form.getInputProps("username")} />
+					<PasswordInput required label="Password" placeholder="Password" {...form.getInputProps("password")} />
+
+					<Group position="right" mt="md">
+						<Button type="submit">Submit</Button>
+					</Group>
+				</form>
+			</Box>
+		</div>
 	);
-}
+};
 
 export default Login;

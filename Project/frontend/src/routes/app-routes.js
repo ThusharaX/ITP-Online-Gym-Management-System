@@ -43,13 +43,17 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	EmployeeLogin,
+	EmployeeDashboard,
+	EmployeeProfile,
 	WorkoutReport,
 	QuestionReport,
 	SignUp,
 	PReport,
-	Member_List,
-	MemberReport,
+	Employee_List,
 	WorkoutProgramReport,
+	SalaryReport,
+	EmployeeReport,
 } from "../pages";
 
 // Error pages
@@ -89,6 +93,8 @@ const AppRoutes = () => {
 						{/* Public Routes */}
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/sample-report" element={<SampleReport />} />
+						<Route exact path="/salary-report" element={<SalaryReport />} />
+						<Route exact path="/employee-report" element={<EmployeeReport />} />
 						<Route exact path="/sample" element={<Sample />} />
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
@@ -105,13 +111,28 @@ const AppRoutes = () => {
 
 						<Route exact path="/events" element={<Events />} />
 						<Route exact path="/notice" element={<Notice />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
 						{/* <Route exact path="/blogs" element={<Blogs />} />
 					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
 
+						<Route exact path="/blogs" element={<Blog />} />
+						<Route exact path="/write" element={<Write />} />
+						<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
+						<Route exact path="/package" element={<TrainerPackages />} />
+						<Route exact path="/personal" element={<Request />} />
+						<Route exact path="/reqList" element={<RList />} />
+						<Route exact path="/pReport" element={<PReport />} />
+						<Route exact path="/bd" element={<BD />} />
+
 						<Route exact path="/workout" element={<Workout />} />
 						<Route exact path="/workout-report" element={<WorkoutReport />} />
+
+						<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
+						<Route exact path="/workoutProgram-report" element={<WorkoutProgramReport />} />
+
+						{/*Workout Schedule Request */}
+						<Route path="/workoutscr" element={<WorkoutScR />} />
+						<Route path="/workoutscrlist" element={<WorkoutScRList />} />
 
 						<Route exact path="/login" element={<CheckLoginStatus />}>
 							<Route exact path="/login" element={<CommonLogin />} />
@@ -130,26 +151,20 @@ const AppRoutes = () => {
 
 						<Route exact path="/feedback" element={<Feedback />} />
 
-						<Route exact path="/blogs" element={<Blog />} />
-						<Route exact path="/write" element={<Write />} />
-						<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
-						<Route exact path="/package" element={<TrainerPackages />} />
-						<Route exact path="/personal" element={<Request />} />
-						<Route exact path="/reqList" element={<RList />} />
-						<Route exact path="/pReport" element={<PReport />} />
-						<Route exact path="/bd" element={<BD />} />
-
-						<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
-						<Route exact path="/workoutProgram-report" element={<WorkoutProgramReport />} />
-
-						{/*Workout Schedule Request */}
-						<Route path="/workoutscr" element={<WorkoutScR />} />
-						<Route path="/workoutscrlist" element={<WorkoutScRList />} />
-
 						{/* Member Routes */}
 						<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
 							<Route exact path="/member" element={<MemberDashboard />} />
 							<Route exact path="/member/profile" element={<MemberProfile />} />
+						</Route>
+
+						{/* Employee Routes */}
+						<Route exact path="/employee" element={<PrivateRoute permissionLevel="EMPLOYEE" />}>
+							<Route exact path="/employee" element={<EmployeeDashboard />} />
+							<Route exact path="/employee/profile" element={<EmployeeProfile />} />
+						</Route>
+						<Route exact path="/employeeList" element={<Employee_List />} />
+						<Route exact path="/employee/login" element={<CheckLoginStatus />}>
+							<Route exact path="/employee/login" element={<EmployeeLogin />} />
 						</Route>
 
 						{/* Admin Routes */}

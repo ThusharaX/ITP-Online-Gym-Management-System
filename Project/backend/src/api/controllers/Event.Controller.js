@@ -60,18 +60,18 @@ const createEvents = async (req, res, next) => {
 	await EventService.createEvents(event)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
-			// eslint-disable-next-line no-console
-			console.log(data.url);
-			sendMail({
-				email: ["darklaneanjana@gmail.com"],
-				subject: "New Event Added",
-				html: `
+			EventService.getTrainer(data.trainer).then((trainer) => {
+				sendMail({
+					email: [trainer.email],
+					subject: "New Event Added",
+					html: `
 					<h1>${data.title}</h1>
 					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
 					<p>${data.description}</p>
-					
 				`,
+				});
 			});
+
 			next();
 		})
 		.catch((error) => {
@@ -93,21 +93,25 @@ const updateEvents = async (req, res, next) => {
 };
 
 const deleteEvents = async (req, res, next) => {
-	await EventService.deleteEvents(req.params.id)
-		.then((data) => {
-			req.handleResponse.successRespond(res)(data);
-			sendMail({
-				email: ["darklaneanjana@gmail.com"],
-				subject: "Event Deleted",
-				html: `
-					<h1>${data.title}</h1>
-					<h4>Date & Time: ${data.date.toString().slice(3, 21)}</h4>
-					<p>${data.description}</p>
-					
+	await EventService.getEvent(req.params.id)
+		.then((event) => {
+			EventService.deleteEvents(req.params.id).then((data) => {
+				req.handleResponse.successRespond(res)(data);
+				EventService.getTrainer(event.trainer).then((trainer) => {
+					sendMail({
+						email: [trainer.email],
+						subject: "Event Deleted",
+						html: `
+					<h1>${event.title}</h1>
+					<h4>Date & Time: ${event.date.toString().slice(3, 21)}</h4>
+					<p>${event.description}</p>
 				`,
+					});
+				});
+				next();
 			});
-			next();
 		})
+
 		.catch((error) => {
 			req.handleResponse.errorRespond(res)(error.message);
 			next();

@@ -1,9 +1,20 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import EventContext from "../../contexts/EventContext";
 import { Box, Card, Image, Text, Badge, Button, Group, useMantineTheme, ScrollArea, Select } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
+import { useNavigate } from "react-router-dom";
+
 import Search from "./search";
 const ReactCard = () => {
+	const navigate = useNavigate();
+	const user = localStorage.getItem("permissionLevel");
+	useEffect(() => {
+		if (user == null) {
+			navigate("/");
+			return alert("You are not logged in");
+		}
+	}, []);
+
 	const { events, RSVW, reactStatus, setReactStatus } = useContext(EventContext);
 	const theme = useMantineTheme();
 	const secondaryColor = theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -19,7 +30,7 @@ const ReactCard = () => {
 			} else {
 				if (reactStatus == 201) {
 					showNotification({
-						title: "Event RSVP Successfully",
+						title: "Reaction submited Successfully",
 					});
 				} else {
 					showNotification({
@@ -29,12 +40,12 @@ const ReactCard = () => {
 				}
 				setReactStatus(0);
 			}
-		}, 200);
+		}, 50);
 	};
 
 	const getStatuses = (eid) => {
 		let event = events.filter((event) => event._id === eid)[0].users;
-		let user = event.filter((user) => user.uid === "123456789812345678981238")[0];
+		let user = event.filter((user) => user.uid === localStorage.getItem("uID"))[0];
 		//return status;
 		if (user != undefined) {
 			return user.status;
@@ -87,7 +98,10 @@ const ReactCard = () => {
 			sx={(theme) => ({
 				marginTop: "-130px",
 				minHeight: "100vh",
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 			})}
 			style={{
 				margin: "0 auto",

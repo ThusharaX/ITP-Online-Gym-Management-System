@@ -44,7 +44,7 @@ import {
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
 	getUserDetails,
-	getAllMembers,
+	getAllEmployees,
 	updateUser,
 	searchUsersMember,
 } from "./User.Controller";
@@ -70,11 +70,20 @@ import {
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
 
-import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
+import {
+	insertQuestion,
+	updateQuestion,
+	deleteQuestion,
+	getAllQuestions,
+	searchQuestions,
+	addAnswer,
+} from "./Question.controller";
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
 
 import { getTrainer, getTrainers, createTrainer, updateTrainer, deleteTrainers } from "./Trainer.Controller";
+
+import { getEmployee, getEmployees, createEmployee, updateEmployee, deleteEmployees } from "./Employee.Controller";
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
@@ -129,7 +138,7 @@ export default {
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
 	getUserDetails,
-	getAllMembers,
+	getAllEmployees,
 	updateUser,
 	searchUsersMember,
 
@@ -155,6 +164,7 @@ export default {
 	updateQuestion,
 	deleteQuestion,
 	getAllQuestions,
+	searchQuestions,
 
 	//Salary Controller
 	insertSalary,
@@ -177,8 +187,16 @@ export default {
 	updateTrainer,
 	deleteTrainers,
 
+	//Employee Controllers
+	getEmployee,
+	getEmployees,
+	createEmployee,
+	updateEmployee,
+	deleteEmployees,
+
 	//Feedback Controllers
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,
+	addAnswer,
 };

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { createStyles, Table, ScrollArea, ActionIcon, Modal, Button } from "@mantine/core";
-import QuestionContext from "../../contexts/QuestionContext";
-import { Pencil } from "tabler-icons-react";
-import EditQuestion from "./EditQuestion";
+import { createStyles, Table, ScrollArea, ActionIcon, Modal } from "@mantine/core";
+import EmployeeContext from "../../contexts/EmployeeContext";
+import { Pencil, Trash } from "tabler-icons-react";
+import EditEmployee from "./EditEmployee";
 
 const useStyles = createStyles((theme) => ({
 	header: {
@@ -33,52 +33,63 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-function QuestionTableScrollArea() {
+function EmployeeTableScrollArea() {
 	const { classes, cx } = useStyles();
 	const [scrolled, setScrolled] = useState(false);
-	const { questions, setQuestion, setEditOpened, editOpened, confirmDelete } = useContext(QuestionContext);
+	const { employees, setEmployee, confirmDelete, setEditOpened, editOpened } = useContext(EmployeeContext);
 
-	const rows = questions.map((row) => (
+	const rows = employees.map((row) => (
 		<tr key={row._id}>
 			<td>{row._id}</td>
+			<td>{row.firstName}</td>
+			<td>{row.lastName}</td>
+			<td>{row.username}</td>
+			<td>{row.nic}</td>
 			<td>{row.email}</td>
-			<td>{row.name}</td>
-			<td>{row.title}</td>
-			<td>{row.content}</td>
+			<td>{row.dob}</td>
+			<td>{row.phoneNumber}</td>
+			<td>{row.qualifications}</td>
 			<td>
 				<ActionIcon color={"blue"}>
 					<Pencil
 						size={16}
 						onClick={() => {
-							setQuestion(row);
+							setEmployee(row);
 							setEditOpened(true);
 						}}
 					/>
 				</ActionIcon>
-				<Button onClick={() => confirmDelete(item._id)} color="red" compact>
-					Delete
-				</Button>
+			</td>
+			<td>
+				<ActionIcon color="red">
+					<Trash size={16} onClick={() => confirmDelete(row._id)} />
+				</ActionIcon>
 			</td>
 		</tr>
 	));
 
 	return (
 		<>
-			{/*Edit Question Modal*/}
-			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Salary">
-				<EditQuestion />
+			{/* Edit salary Modal */}
+			<Modal opened={editOpened} onClose={() => setEditOpened(false)} title="Edit Employee">
+				<EditEmployee />
 			</Modal>
 
 			<ScrollArea sx={{ height: 600 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
 				<Table sx={{ minWidth: 700, margin: 20 }}>
 					<thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
-						{/* <tr>id,email,name,title,content */}
 						<tr>
-							<th>id</th>
-							<th>email</th>
-							<th>name</th>
-							<th>title</th>
-							<th>content</th>
+							<th>ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Username</th>
+							<th>NIC</th>
+							<th>Email</th>
+							<th>DOB</th>
+							<th>Phone Number</th>
+							<th>Qualifications</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>{rows}</tbody>
@@ -88,4 +99,4 @@ function QuestionTableScrollArea() {
 	);
 }
 
-export default QuestionTableScrollArea;
+export default EmployeeTableScrollArea;

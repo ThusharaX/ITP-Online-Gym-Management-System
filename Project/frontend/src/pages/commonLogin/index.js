@@ -13,7 +13,7 @@ const CommonLogin = () => {
 				flexDirection: "column",
 			}}
 		>
-			{/* Login button link for ADMIN, TRAINER, and MEMBER */}
+			{/* Login button link for ADMIN, TRAINER, MEMBER and EMPLOYEE */}
 			<h1>Login Page</h1>
 
 			<Button variant="gradient" gradient={{ from: "indigo", to: "cyan" }}>
@@ -34,7 +34,7 @@ const CommonLogin = () => {
 				</Link>
 			</Button>
 			<br />
-			<Button variant="gradient" gradient={{ from: "cyan", to: "blue", deg: 60 }}>
+			<Button variant="gradient" gradient={{ from: "teal", to: "blue", deg: 60 }}>
 				<Link style={{ textDecoration: "none", color: "#fff" }} to="/employee/login">
 					Employee Login
 				</Link>

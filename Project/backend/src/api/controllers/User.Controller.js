@@ -137,9 +137,9 @@ export const getUserDetails = async (req, res, next) => {
 		});
 };
 
-// Get All MEmber Details
-export const getAllMembers = async (req, res, next) => {
-	await UserService.getAllMembers(req.params.id)
+// Get All employee Details
+export const getAllEmployees = async (req, res, next) => {
+	await UserService.getAllEmployees(req.params.id)
 		.then((data) => {
 			req.handleResponse.successRespond(res)(data);
 			next();
