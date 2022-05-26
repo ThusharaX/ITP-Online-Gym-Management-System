@@ -109,79 +109,6 @@ const AppRoutes = () => {
 
 						<Route exact path="/trainers/events" element={<Eventlist />} />
 						<Route exact path="/notice" element={<Notice />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
-
-						<Route exact path="/blogs" element={<Blog />} />
-						<Route exact path="/write" element={<Write />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
-						<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
-						<Route exact path="/package" element={<TrainerPackages />} />
-						<Route exact path="/personal" element={<Request />} />
-						<Route exact path="/reqList" element={<RList />} />
-						<Route exact path="/pReport" element={<PReport />} />
-
-						{/* <Route exact path="/blogs" element={<Blogs />} />
-					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
-
-						<Route exact path="/bd" element={<BD />} />
-
-						<Route exact path="/employeeList" element={<Employee_List />} />
-
-						<Route exact path="/workout" element={<Workout />} />
-						<Route exact path="/workout-report" element={<WorkoutReport />} />
-
-						<Route exact path="/workoutProgram" element={<WorkoutProgram />} />
-
-						{/*Workout Schedule Request */}
-						<Route path="/workoutscr" element={<WorkoutScR />} />
-						<Route path="/workoutscrlist" element={<WorkoutScRList />} />
-
-						<Route exact path="/login" element={<CheckLoginStatus />}>
-							<Route exact path="/login" element={<CommonLogin />} />
-						</Route>
-						<Route exact path="/signUp" element={<CheckLoginStatus />}>
-							<Route exact path="/signUp" element={<SignUp />} />
-						</Route>
-
-						<Route exact path="/admin/login" element={<CheckLoginStatus />}>
-							<Route exact path="/admin/login" element={<AdminLogin />} />
-						</Route>
-
-						<Route exact path="/member/login" element={<CheckLoginStatus />}>
-							<Route exact path="/member/login" element={<MemberLogin />} />
-						</Route>
-
-						<Route exact path="/employee/login" element={<CheckLoginStatus />}>
-							<Route exact path="/employee/login" element={<EmployeeLogin />} />
-						</Route>
-
-						<Route exact path="/feedback" element={<Feedback />} />
-
-						{/* Member Routes */}
-						<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
-							<Route exact path="/member" element={<MemberDashboard />} />
-							<Route exact path="/member/profile" element={<MemberProfile />} />
-						</Route>
-
-						{/* Employee Routes */}
-						<Route exact path="/employee" element={<PrivateRoute permissionLevel="EMPLOYEE" />}>
-							<Route exact path="/employee" element={<EmployeeDashboard />} />
-							<Route exact path="/employee/profile" element={<EmployeeProfile />} />
-						</Route>
-
-						{/* Admin Routes */}
-						<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
-							<Route exact path="/admin" element={<AdminDashboard />} />
-							<Route exact path="/admin/profile" element={<AdminProfile />} />
-						</Route>
-
-						{/* Trainer Routes */}
-						<Route exact path="/trainers" element={<PrivateRoute permissionLevel="TRAINER" />}>
-							<Route exact path="/trainers" element={<TrainerDashboard />} />
-							<Route exact path="/trainers/list" element={<ListTrainers />} />
-							<Route exact path="/trainers/events" element={<Eventlist />} />
-						</Route>
-						<Route exact path="/notice" element={<Notice />} />
 
 						<Route exact path="/blogs" element={<Blog />} />
 						<Route exact path="/write" element={<Write />} />
@@ -223,6 +150,16 @@ const AppRoutes = () => {
 						<Route exact path="/member" element={<PrivateRoute permissionLevel="MEMBER" />}>
 							<Route exact path="/member" element={<MemberDashboard />} />
 							<Route exact path="/member/profile" element={<MemberProfile />} />
+						</Route>
+
+						{/* Employee Routes */}
+						<Route exact path="/employee" element={<PrivateRoute permissionLevel="EMPLOYEE" />}>
+							<Route exact path="/employee" element={<EmployeeDashboard />} />
+							<Route exact path="/employee/profile" element={<EmployeeProfile />} />
+						</Route>
+						<Route exact path="/employeeList" element={<Employee_List />} />
+						<Route exact path="/employee/login" element={<CheckLoginStatus />}>
+							<Route exact path="/employee/login" element={<EmployeeLogin />} />
 						</Route>
 
 						{/* Admin Routes */}
