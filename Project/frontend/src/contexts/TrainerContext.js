@@ -12,6 +12,9 @@ import { useModals } from "@mantine/modals";
 
 export function TrainerProvider({ children }) {
 	const [date, setDate] = useState("1990-05-02T00:00:00");
+	const [mailError, setMailError] = useState("");
+	const [nicError, setNicError] = useState("");
+	const [userNameError, setUserNameError] = useState("");
 
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
@@ -131,9 +134,23 @@ export function TrainerProvider({ children }) {
 			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
 		};
-		TrainerAPI.register(newTrainer).then((response) => {
-			setIsLoading(false);
-		});
+		TrainerAPI.register(newTrainer)
+			.then((response) => {
+				// setIsLoading(false);
+			})
+			.catch((err) => {
+				// eslint-disable-next-line no-console
+				console.log(err.response.data);
+				if (err.response.data.details == "Email already exists") {
+					setMailError(err.response.data.details);
+				}
+				if (err.response.data.details == "NIC already exists") {
+					setNicError(err.response.data.details);
+				}
+				if (err.response.data.details == "Username already exists") {
+					setUserNameError(err.response.data.details);
+				}
+			});
 	};
 
 	const updateTrainer = (values) => {
@@ -219,6 +236,12 @@ export function TrainerProvider({ children }) {
 	return (
 		<TrainerContext.Provider
 			value={{
+				userNameError,
+				setUserNameError,
+				nicError,
+				setNicError,
+				mailError,
+				setMailError,
 				TrainerAPI,
 				date,
 				setDate,

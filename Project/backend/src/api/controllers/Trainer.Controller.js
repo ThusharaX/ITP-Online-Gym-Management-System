@@ -17,6 +17,7 @@ const registerValidation = (data) => {
 		phoneNumber: joi.string().required().min(10).max(12),
 		qualifications: joi.required(),
 		password: joi.string().required().min(8).max(50),
+		avatar: joi.string().required(),
 	});
 	return schema.validate(data);
 };
@@ -52,43 +53,52 @@ export const createTrainer = async (req, res, next) => {
 		logger.error(error.message);
 		req.handleResponse.errorRespond(res)(error.message);
 		next();
+	} else if (await users.findOne({ email: req.body.email })) {
+		req.handleResponse.errorRespond(res)("Email already exists");
+		next();
+	}
+	// return res.status(400).json({ success: false, msg: "Email already exists" });
+	else if (await users.findOne({ nic: req.body.nic })) {
+		req.handleResponse.errorRespond(res)("NIC already exists");
+		next();
+	}
+	// return res.status(400).json({ success: false, msg: "NIC already exists" });
+	else if (await users.findOne({ username: req.body.username })) {
+		req.handleResponse.errorRespond(res)("Username already exists");
+		next();
 	}
 
-	if (await users.findOne({ email: req.body.email }))
-		return res.status(400).json({ success: false, msg: "Email already exists" });
-	if (await users.findOne({ nic: req.body.nic }))
-		return res.status(400).json({ success: false, msg: "NIC already exists" });
-	if (await users.findOne({ username: req.body.username }))
-		return res.status(400).json({ success: false, msg: "Username already exists" });
+	// return res.status(400).json({ success: false, msg: "Username already exists" });
+	else {
+		const trainer = {
+			avatar: req.body.avatar,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			nic: req.body.nic,
+			dob: req.body.dob,
+			username: req.body.username,
+			phoneNumber: req.body.phoneNumber,
+			email: req.body.email,
+			gender: req.body.gender,
+			trainername: req.body.trainername,
+			password: req.body.password,
+			address: req.body.address,
+			qualifications: req.body.qualifications,
+			permissionLevel: "TRAINER",
+		};
 
-	const trainer = {
-		avatar: req.body.url,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		nic: req.body.nic,
-		dob: req.body.dob,
-		username: req.body.username,
-		phoneNumber: req.body.phoneNumber,
-		email: req.body.email,
-		gender: req.body.gender,
-		trainername: req.body.trainername,
-		password: req.body.password,
-		address: req.body.address,
-		qualifications: req.body.qualifications,
-		permissionLevel: "TRAINER",
-	};
-
-	await TrainerService.insertUser(trainer)
-		.then((data) => {
-			logger.info(`New trainer with ID ${data._id} created`);
-			req.handleResponse.successRespond(res)(data);
-			next();
-		})
-		.catch((error) => {
-			logger.error(error.message);
-			req.handleResponse.errorRespond(res)(error.message);
-			next();
-		});
+		await TrainerService.insertUser(trainer)
+			.then((data) => {
+				logger.info(`New trainer with ID ${data._id} created`);
+				req.handleResponse.successRespond(res)(data);
+				next();
+			})
+			.catch((error) => {
+				logger.error(error.message);
+				req.handleResponse.errorRespond(res)(error.message);
+				next();
+			});
+	}
 };
 
 const updateTrainer = async (req, res, next) => {
@@ -96,7 +106,6 @@ const updateTrainer = async (req, res, next) => {
 		.then((data) => {
 			logger.info(`Updated trainer with ID ${data._id}`);
 			req.handleResponse.successRespond(res)(data);
-
 			next();
 		})
 		.catch((error) => {

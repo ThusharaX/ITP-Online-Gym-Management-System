@@ -80,8 +80,8 @@ const AppRoutes = () => {
 			label: "Blog",
 		},
 		{
-			link: "#",
-			label: "Careers",
+			link: "trainers/list",
+			label: "Trainers",
 		},
 	];
 
