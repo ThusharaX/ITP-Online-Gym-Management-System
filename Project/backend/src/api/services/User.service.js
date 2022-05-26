@@ -196,6 +196,7 @@ export const updateUser = async (userId, userData) => {
 // Search User from first name,last name or nic
 export const searchUsers = async (searchTerm) => {
 	return await UserModel.find({
+		permissionLevel: "EMPLOYEE",
 		$or: [
 			{ firstName: { $regex: searchTerm, $options: "i" } },
 			{ lastName: { $regex: searchTerm, $options: "i" } },
