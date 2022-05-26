@@ -51,16 +51,19 @@ export default function (app) {
 
 	// User endpoints
 	app.get("/user/:id", controller.getUserDetails);
+
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
-	app.get("/member/", controller.getAllMembers);
-	app.put("/update/:id", controller.updateUser);
-	app.get("/member/search/:search", controller.searchUsersMember);
-	app.get("/employee/", controller.getAllEmployees);
+
+	// app.get("/member/", controller.getAllMembers);
+	// app.get("/member/search/:search", controller.searchUsersMember);
+	// app.put("/update/:id", controller.updateUser);
+	// app.get("/employee/", controller.getAllEmployees);
+	// app.get("/employee/search/:search", controller.searchUsers);
+
 	app.put("/user/:id", controller.updateUser);
-	app.get("/employee/search/:search", controller.searchUsers);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);

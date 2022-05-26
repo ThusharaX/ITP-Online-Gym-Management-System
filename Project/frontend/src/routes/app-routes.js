@@ -54,6 +54,7 @@ import {
 	WorkoutProgramReport,
 	SalaryReport,
 	EmployeeReport,
+	// MemberReport,
 } from "../pages";
 
 // Error pages
@@ -99,8 +100,8 @@ const AppRoutes = () => {
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
 						<Route exact path="/question-report" element={<QuestionReport />} />
-						<Route exact path="/memberReport" element={<MemberReport />} />
-						<Route exact path="/memberList" element={<Member_List />} />
+						{/* <Route exact path="/memberReport" element={<MemberReport />} /> */}
+						{/* <Route exact path="/memberList" element={<Member_List />} /> */}
 
 						<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 							<Route exact path="/trainers/login" element={<TrainerLogin />} />
