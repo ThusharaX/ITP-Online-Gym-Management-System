@@ -110,6 +110,7 @@ const AppRoutes = () => {
 						</Route>
 
 						<Route exact path="/events" element={<Events />} />
+						<Route exact path="/trainers/events" element={<Eventlist />} />
 						<Route exact path="/notice" element={<Notice />} />
 
 						{/* <Route exact path="/blogs" element={<Blogs />} />
