@@ -26,6 +26,8 @@ import CommonLogin from "./commonLogin";
 
 import WorkoutScR from "./workoutScR";
 import WorkoutScRList from "./workoutScRList";
+import ViewMyWorkoutScR from "./myWorkoutScr/ViewMyWorkoutScr";
+import EditWorkoutScR from "./workoutScRList/EditWorkoutScRList";
 
 import SampleReport from "./sample-report";
 import WorkoutReport from "./workout-report";
@@ -85,6 +87,7 @@ export {
 	PReport,
 	Employee_List,
 	WorkoutProgramReport,
+	EditWorkoutScR,
 	SalaryReport,
 	EmployeeReport,
 	QuestionReport,
