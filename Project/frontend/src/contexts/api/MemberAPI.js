@@ -18,7 +18,7 @@ class UserAPI {
 	}
 
 	static getMembers() {
-		return axios.get(`${BASE_URL}/user/`, requestConfig);
+		return axios.get(`${BASE_URL}/member/`, requestConfig);
 	}
 
 	static deleteMember(id) {
@@ -30,7 +30,7 @@ class UserAPI {
 	}
 
 	static searchMember(search) {
-		return axios.get(`${BASE_URL}/user/search/${search}`, requestConfigJson);
+		return axios.get(`${BASE_URL}/member/search/${search}`, requestConfigJson);
 	}
 }
 
