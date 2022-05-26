@@ -20,6 +20,18 @@ class UserAPI {
 	static deleteUser(uid) {
 		return axios.delete(`${BASE_URL}/user/${uid}/`, requestConfig);
 	}
+
+	static getUsersEmployee() {
+		return axios.get(`${BASE_URL}/employee/`, requestConfig);
+	}
+
+	static editUser(uid, newUser) {
+		return axios.put(`${BASE_URL}/user/${uid}`, newUser, requestConfigJson);
+	}
+
+	static searchUser(search) {
+		return axios.get(`${BASE_URL}/employee/search/${search}`, requestConfigJson);
+	}
 }
 
 export default UserAPI;
