@@ -87,7 +87,7 @@ import { getEmployee, getEmployees, createEmployee, updateEmployee, deleteEmploy
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
-import { getAllFeedbacks, updateFeedback, insertFeedback } from "./Feedback.Controller";
+import { getAllFeedbacks, updateFeedback, insertFeedback, searchFeedbacks } from "./Feedback.Controller";
 export default {
 	//Sample Controllers
 	insertSample,
@@ -199,4 +199,5 @@ export default {
 	updateFeedback,
 	insertFeedback,
 	addAnswer,
+	searchFeedbacks,
 };

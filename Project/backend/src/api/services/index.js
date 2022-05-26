@@ -83,7 +83,8 @@ import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers
 
 import { getEmployee, updateEmployees, deleteEmployees, getEmployees, createEmployees } from "./Employee.service";
 
-import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
+import { insertFeedback, getAllFeedbacks, updateFeedback, searchFeedbacks } from "./Feedback.service";
+
 export default {
 	// Sample services
 	insertSample,
@@ -184,6 +185,7 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+	searchFeedbacks,
 
 	// Trainer services
 	getTrainer,
