@@ -65,12 +65,30 @@ export function BlogProvider({ children }) {
 	const form = useForm({
 		schema: joiResolver(schema),
 		initialValues: {
-			trname: "Trainer Name",
+			trname: "",
+			title: "",
+			description: "",
+			fb: "",
+			wNum: "",
+			email: "",
+			monday: "",
+			tuesday: "",
+			wednesday: "",
+			thursday: "",
+			friday: "",
+			saturday: "",
+			sunday: "",
+		},
+	});
+	//demo details
+	const fillWithDummyData = () => {
+		form.setValues({
+			trname: "Andrew",
 			title: "Personal Trainer",
 			description: "Description ",
-			fb: "Trainer's FB Profile",
+			fb: "Andrew Res",
 			wNum: "07112345675",
-			email: "trainer@gmail.com",
+			email: "andrew@gmail.com",
 			monday: "Available",
 			tuesday: "Available",
 			wednesday: "Available",
@@ -78,8 +96,8 @@ export function BlogProvider({ children }) {
 			friday: "Available",
 			saturday: "Available",
 			sunday: "Available",
-		},
-	});
+		});
+	};
 
 	// Add new blog
 	const addBlog = (values) => {
@@ -185,6 +203,7 @@ export function BlogProvider({ children }) {
 				setEditOpened,
 				blog,
 				setBlog,
+				fillWithDummyData,
 			}}
 		>
 			{children}

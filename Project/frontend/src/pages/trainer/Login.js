@@ -34,8 +34,14 @@ export function Login() {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
-				marginTop: "-120px",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
+				marginTop: "-60px",
+				marginBottom: "-120px",
+
+				// marginTop: "-120px",
 				height: "100vh",
 				width: "100%",
 				padding: "70px 0px",
@@ -48,7 +54,7 @@ export function Login() {
 			) : (
 				<Box
 					sx={(theme) => ({
-						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
+						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.colors.gray[0],
 						border: "1px solid",
 						borderColor: theme.colorScheme === "dark" ? theme.colors.gray[8] : theme.colors.gray[4],
 						boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
@@ -60,6 +66,7 @@ export function Login() {
 						borderRadius: "50px",
 						margin: "100px auto",
 						opacity: 0.9,
+						marginTop: "100px",
 
 						"&:hover": {
 							backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
@@ -86,7 +93,12 @@ export function Login() {
 					</Text>
 					<form onSubmit={form.onSubmit((values) => login(values))}>
 						<div style={{ marginTop: "25px" }}>
-							<TextInput label="Email" placeholder="you@mantine.dev" required {...form.getInputProps("username")} />
+							<TextInput
+								label="Email or User Name"
+								placeholder="you@mantine.dev"
+								required
+								{...form.getInputProps("username")}
+							/>
 							<PasswordInput
 								label="Password"
 								placeholder="Your password"

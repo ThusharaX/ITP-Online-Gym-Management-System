@@ -43,10 +43,17 @@ import {
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	EmployeeLogin,
+	EmployeeDashboard,
+	EmployeeProfile,
 	WorkoutReport,
+	QuestionReport,
 	SignUp,
 	PReport,
+	Employee_List,
 	WorkoutProgramReport,
+	SalaryReport,
+	EmployeeReport,
 } from "../pages";
 
 // Error pages
@@ -68,7 +75,7 @@ const AppRoutes = () => {
 			label: "Privacy",
 		},
 		{
-			link: "#",
+			link: "/blogs",
 			label: "Blog",
 		},
 		{
@@ -86,9 +93,12 @@ const AppRoutes = () => {
 						{/* Public Routes */}
 						<Route exact path="/" element={<Home />} />
 						<Route exact path="/sample-report" element={<SampleReport />} />
+						<Route exact path="/salary-report" element={<SalaryReport />} />
+						<Route exact path="/employee-report" element={<EmployeeReport />} />
 						<Route exact path="/sample" element={<Sample />} />
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
+						<Route exact path="/question-report" element={<QuestionReport />} />
 
 						<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 							<Route exact path="/trainers/login" element={<TrainerLogin />} />
@@ -101,20 +111,14 @@ const AppRoutes = () => {
 
 						<Route exact path="/trainers/events" element={<Eventlist />} />
 						<Route exact path="/notice" element={<Notice />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 
 						<Route exact path="/blogs" element={<Blog />} />
 						<Route exact path="/write" element={<Write />} />
-						{/* <Route exact path="/request" element={<PersonalTrainerRequest />} /> */}
 						<Route exact path="/blogCreate" element={<BlogCreateRequest />} />
 						<Route exact path="/package" element={<TrainerPackages />} />
 						<Route exact path="/personal" element={<Request />} />
 						<Route exact path="/reqList" element={<RList />} />
 						<Route exact path="/pReport" element={<PReport />} />
-
-						{/* <Route exact path="/blogs" element={<Blogs />} />
-					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
-
 						<Route exact path="/bd" element={<BD />} />
 
 						<Route exact path="/workout" element={<Workout />} />
@@ -150,6 +154,16 @@ const AppRoutes = () => {
 							<Route exact path="/member/profile" element={<MemberProfile />} />
 						</Route>
 
+						{/* Employee Routes */}
+						<Route exact path="/employee" element={<PrivateRoute permissionLevel="EMPLOYEE" />}>
+							<Route exact path="/employee" element={<EmployeeDashboard />} />
+							<Route exact path="/employee/profile" element={<EmployeeProfile />} />
+						</Route>
+						<Route exact path="/employeeList" element={<Employee_List />} />
+						<Route exact path="/employee/login" element={<CheckLoginStatus />}>
+							<Route exact path="/employee/login" element={<EmployeeLogin />} />
+						</Route>
+
 						{/* Admin Routes */}
 						<Route exact path="/admin" element={<PrivateRoute permissionLevel="ADMIN" />}>
 							<Route exact path="/admin" element={<AdminDashboard />} />
@@ -164,6 +178,7 @@ const AppRoutes = () => {
 							<Route exact path="/trainers/list" element={<ListTrainers />} />
 							<Route exact path="/trainers/events" element={<Eventlist />} />
 							<Route exact path="/trainers/profile" element={<TrainerProfile />} />
+							{/* <Route exact path="/trainer/bd" element={<BD />} /> */}
 						</Route>
 
 						{/* 404 */}

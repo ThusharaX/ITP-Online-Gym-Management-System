@@ -51,39 +51,6 @@ function PersonalTrainerRequestList() {
 
 			<td>{Math.floor(Math.random() * 6 + 5)} days ago</td>
 
-			{/* <td>
-				{Math.random() > 0.5 ? (
-					<Badge fullWidth color="blue">
-						Active
-					</Badge>
-				) : (
-					<Badge color="orange" fullWidth>
-						Disabled
-					</Badge>
-				)}
-			</td> */}
-			{/* <td>
-				{Math.random() > 0.5 ? (
-					<Button
-						onClick={() => {}}
-						// variant="light"
-						color="blue"
-						compact
-					>
-						Active
-					</Button>
-				) : (
-					<Button
-						onClick={() => {}}
-						// variant="light"
-						color="orange"
-						compact
-					>
-						Disabled
-					</Button>
-				)}
-			</td> */}
-
 			<td>
 				<Button
 					onClick={() => {
@@ -147,7 +114,7 @@ function PersonalTrainerRequestList() {
 					</thead>
 					<tbody>{rows}</tbody>
 				</Table>
-				<Pagination total={10} />;
+				{/* <Pagination total={10} />; */}
 			</ScrollArea>
 		</>
 	);

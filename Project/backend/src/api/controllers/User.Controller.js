@@ -136,3 +136,42 @@ export const getUserDetails = async (req, res, next) => {
 			next();
 		});
 };
+
+// Get All employee Details
+export const getAllEmployees = async (req, res, next) => {
+	await UserService.getAllEmployees(req.params.id)
+		.then((data) => {
+			req.handleResponse.successRespond(res)(data);
+			next();
+		})
+		.catch((error) => {
+			req.handleResponse.errorRespond(res)(error.message);
+			next();
+		});
+};
+
+// Update User
+export const updateUser = async (request, response, next) => {
+	await UserService.updateUser(request.params.id, request.body)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
+
+// Search users
+export const searchUsers = async (request, response, next) => {
+	await UserService.searchUsers(request.params.search)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};

@@ -64,3 +64,16 @@ export const searchSalaries = async (request, response, next) => {
 			next();
 		});
 };
+
+//get a salary from Employee
+export const getOneEmployeeSalary = async (request, response, next) => {
+	await SalaryService.getOneEmployeeSalary(request.params.nic)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};
