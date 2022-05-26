@@ -16,6 +16,9 @@ class QuestionAPI {
 	static deleteQuestion(id) {
 		return axios.delete(`${BASE_URL}/question/${id}`, requestConfig);
 	}
+	static addAnswer(newAnswer) {
+		return axios.post(`${BASE_URL}/answer/`, newAnswer, requestConfigJson);
+	}
 }
 
 export default QuestionAPI;

@@ -67,7 +67,7 @@ import {
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.Controller";
 
-import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.controller";
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions, addAnswer } from "./Question.controller";
 
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
 
@@ -175,4 +175,5 @@ export default {
 	getAllFeedbacks,
 	updateFeedback,
 	insertFeedback,
+	addAnswer,
 };
