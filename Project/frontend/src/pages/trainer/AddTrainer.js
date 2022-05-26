@@ -37,7 +37,17 @@ const AddTrainer = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { addTrainer, form, isLoading } = useContext(TrainerContext);
+	const {
+		addTrainer,
+		form,
+		isLoading,
+		mailError,
+		nicError,
+		setNicError,
+		setMailError,
+		userNameError,
+		setUserNameError,
+	} = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
 
 	const [imgUrl, setImgUrl] = useState(null);
@@ -64,7 +74,7 @@ const AddTrainer = () => {
 			() => {
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					setImgUrl(downloadURL);
-					form.setFieldValue("url", downloadURL);
+					form.setFieldValue("avatar", downloadURL);
 				});
 			}
 		);
@@ -124,7 +134,10 @@ const AddTrainer = () => {
 				<form
 					onSubmit={form.onSubmit((values) => {
 						addTrainer(values);
-						navigate("/trainers/list");
+						setNicError("");
+						setMailError("");
+						setUserNameError("");
+						// navigate("/trainers/list");
 						// isLoading(true);
 					})}
 				>
@@ -152,6 +165,7 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							required
 							label="USER NAME"
+							error={userNameError}
 							placeholder="Enter Trainer's User Name"
 							{...form.getInputProps("username")}
 						/>
@@ -160,6 +174,7 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							required
 							label="NIC"
+							error={nicError}
 							placeholder="Enter Trainer's  NIC"
 							{...form.getInputProps("nic")}
 						/>
@@ -221,12 +236,12 @@ const AddTrainer = () => {
 						width={500}
 						required
 						label="Email"
+						error={mailError}
 						placeholder="Enter Trainer's Email"
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("email")}
 					/>
 					<Group position="center" style={{ marginTop: "20px" }}>
-						{/* <PasswordStrength fm={form} /> */}
 						<PasswordInput
 							size="sm"
 							required
@@ -234,8 +249,6 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							placeholder="Your password"
 							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
-							// value={value}
-							// onChange={(event) => setValue(event.currentTarget.value)}
 							{...form.getInputProps("psw")}
 						/>
 						<PasswordInput
