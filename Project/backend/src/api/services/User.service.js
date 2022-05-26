@@ -194,7 +194,7 @@ export const updateUser = async (userId, userData) => {
 };
 
 // Search User from first name,last name or nic
-export const searchUsers = async (searchTerm) => {
+export const searchUsersMember = async (searchTerm) => {
 	return await UserModel.find({
 		permissionLevel: "MEMBER",
 		$or: [

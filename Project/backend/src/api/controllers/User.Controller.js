@@ -164,7 +164,7 @@ export const updateUser = async (request, response, next) => {
 };
 
 // Search users
-export const searchUsers = async (request, response, next) => {
+export const searchUsersMember = async (request, response, next) => {
 	await UserService.searchUsers(request.params.search)
 		.then((data) => {
 			request.handleResponse.successRespond(response)(data);

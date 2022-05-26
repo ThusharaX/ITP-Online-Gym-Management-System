@@ -43,7 +43,7 @@ import {
 	getUserDetails,
 	getAllMembers,
 	updateUser,
-	searchUsers,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
@@ -134,7 +134,7 @@ export default {
 	getUserDetails,
 	getAllMembers,
 	updateUser,
-	searchUsers,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
