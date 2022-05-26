@@ -99,6 +99,8 @@ const AppRoutes = () => {
 						<Route exact path="/salary" element={<Salary />} />
 						<Route exact path="/question" element={<Question />} />
 						<Route exact path="/question-report" element={<QuestionReport />} />
+						<Route exact path="/memberReport" element={<MemberReport />} />
+						<Route exact path="/memberList" element={<Member_List />} />
 
 						<Route exact path="/trainers/login" element={<CheckLoginStatus />}>
 							<Route exact path="/trainers/login" element={<TrainerLogin />} />
@@ -108,9 +110,11 @@ const AppRoutes = () => {
 						</Route>
 
 						<Route exact path="/events" element={<Events />} />
-
 						<Route exact path="/trainers/events" element={<Eventlist />} />
 						<Route exact path="/notice" element={<Notice />} />
+
+						{/* <Route exact path="/blogs" element={<Blogs />} />
+					<Route exact path="/blogUpdate" element={<BlogUpdate />} /> */}
 
 						<Route exact path="/blogs" element={<Blog />} />
 						<Route exact path="/write" element={<Write />} />

@@ -55,6 +55,9 @@ export default function (app) {
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
+	app.get("/member/", controller.getAllMembers);
+	app.put("/update/:id", controller.updateUser);
+	app.get("/member/search/:search", controller.searchUsersMember);
 	app.get("/employee/", controller.getAllEmployees);
 	app.put("/user/:id", controller.updateUser);
 	app.get("/employee/search/:search", controller.searchUsers);

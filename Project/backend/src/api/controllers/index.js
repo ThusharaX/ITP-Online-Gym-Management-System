@@ -46,7 +46,7 @@ import {
 	getUserDetails,
 	getAllEmployees,
 	updateUser,
-	searchUsers,
+	searchUsersMember,
 } from "./User.Controller";
 
 import {
@@ -140,7 +140,7 @@ export default {
 	getUserDetails,
 	getAllEmployees,
 	updateUser,
-	searchUsers,
+	searchUsersMember,
 
 	//Workout Controllers
 	insertWorkout,
