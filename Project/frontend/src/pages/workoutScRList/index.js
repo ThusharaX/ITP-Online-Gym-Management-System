@@ -2,6 +2,7 @@ import React from "react";
 
 // Page Components
 import WorkoutScRList from "./WorkoutScRList";
+import EditWorkoutScR from "./EditWorkoutScRList";
 
 // WorkoutScR Provider
 import { WorkoutScRProvider } from "../../contexts/WorkoutScRContext";

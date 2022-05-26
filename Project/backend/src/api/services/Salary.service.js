@@ -67,3 +67,17 @@ export const searchSalaries = async (searchTerm) => {
 			throw new Error(error.message);
 		});
 };
+
+export const getOneEmployeeSalary = async (nic) => {
+	return await SalaryModel.findOne(nic)
+		.then((salary) => {
+			if (salary) {
+				return salary;
+			} else {
+				throw new Error("Salary not found");
+			}
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

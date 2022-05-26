@@ -5,32 +5,32 @@ import requestConfigJson from "./configJson";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
 class UserAPI {
-	static MemberLogin(values) {
+	static EmployeeLogin(values) {
 		return axios.post(`${BASE_URL}/user/login/`, values, requestConfigJson);
 	}
 
-	static MemberRegister(values) {
+	static EmployeeRegister(values) {
 		return axios.post(`${BASE_URL}/user/register/`, values, requestConfigJson);
 	}
 
-	static getMemberData(id) {
+	static getEmployeeData(id) {
 		return axios.get(`${BASE_URL}/user/${id}`, requestConfigJson);
 	}
 
-	static getMembers() {
-		return axios.get(`${BASE_URL}/member/`, requestConfig);
+	static getEmployees() {
+		return axios.get(`${BASE_URL}/employee/`, requestConfig);
 	}
 
-	static deleteMember(id) {
+	static deleteEmployee(id) {
 		return axios.delete(`${BASE_URL}/user/${id}`, requestConfig);
 	}
 
-	static editMember(id, newMember) {
-		return axios.put(`${BASE_URL}/user/${id}`, newMember, requestConfigJson);
+	static editEmployee(id, newEmployee) {
+		return axios.put(`${BASE_URL}/user/${id}`, newEmployee, requestConfigJson);
 	}
 
-	static searchMember(search) {
-		return axios.get(`${BASE_URL}/member/search/${search}`, requestConfigJson);
+	static searchEmployee(search) {
+		return axios.get(`${BASE_URL}/employee/search/${search}`, requestConfigJson);
 	}
 }
 

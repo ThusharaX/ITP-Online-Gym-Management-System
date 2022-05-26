@@ -27,7 +27,14 @@ import {
 	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
+import {
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
+	searchSalaries,
+	getOneEmployeeSalary,
+} from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -41,6 +48,9 @@ import {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
@@ -71,7 +81,10 @@ import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from ".
 
 import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
+import { getEmployee, updateEmployees, deleteEmployees, getEmployees, createEmployees } from "./Employee.service";
+
 import { insertFeedback, getAllFeedbacks, updateFeedback, searchFeedbacks } from "./Feedback.service";
+
 export default {
 	// Sample services
 	insertSample,
@@ -117,6 +130,7 @@ export default {
 	getAllSalaries,
 	getOneSalary,
 	searchSalaries,
+	getOneEmployeeSalary,
 
 	// User services
 	authenticateUser,
@@ -130,6 +144,9 @@ export default {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
@@ -176,4 +193,11 @@ export default {
 	deleteTrainers,
 	getTrainers,
 	createTrainers,
+
+	//Employee services
+	getEmployee,
+	updateEmployees,
+	deleteEmployees,
+	getEmployees,
+	createEmployees,
 };

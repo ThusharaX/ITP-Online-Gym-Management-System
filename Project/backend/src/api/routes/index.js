@@ -55,6 +55,12 @@ export default function (app) {
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
+	app.get("/member/", controller.getAllMembers);
+	app.put("/update/:id", controller.updateUser);
+	app.get("/member/search/:search", controller.searchUsersMember);
+	app.get("/employee/", controller.getAllEmployees);
+	app.put("/user/:id", controller.updateUser);
+	app.get("/employee/search/:search", controller.searchUsers);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);
@@ -62,6 +68,12 @@ export default function (app) {
 	app.get("/trainer/", controller.getTrainers);
 	app.put("/trainer/:id", controller.updateTrainer);
 	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+
+	// Employee endpoints
+	app.post("/employee/register/", controller.createEmployee);
+	app.get("/employee/:id", controller.getEmployee);
+	app.get("/employee/", controller.getEmployees);
+	app.put("/employee/:id", controller.updateEmployee);
 
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);

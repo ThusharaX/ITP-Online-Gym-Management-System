@@ -160,6 +160,21 @@ function NavBar() {
 					) : (
 						<p></p>
 					)}
+
+					{/* Employee Menu */}
+					{localStorage.getItem("permissionLevel") === "EMPLOYEE" ? (
+						<Menu control={<Button variant="outline">Employee</Button>}>
+							<Menu.Label>Employee</Menu.Label>
+							<Link className={classes.link} to="/employee/profile">
+								<Menu.Item icon={<UserCircle size={14} />}>Profile</Menu.Item>
+							</Link>
+							<Link className={classes.link} to="/employee">
+								<Menu.Item icon={<Dashboard size={14} />}>Employee Dashboard</Menu.Item>
+							</Link>
+						</Menu>
+					) : (
+						<p></p>
+					)}
 				</Group>
 
 				<Group position="center" my="xl">

@@ -44,6 +44,9 @@ import {
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 } from "./User.Controller";
 
 import {
@@ -79,6 +82,8 @@ import {
 import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.controller";
 
 import { getTrainer, getTrainers, createTrainer, updateTrainer, deleteTrainers } from "./Trainer.Controller";
+
+import { getEmployee, getEmployees, createEmployee, updateEmployee, deleteEmployees } from "./Employee.Controller";
 
 import { getEvent, getEvents, createEvents, updateEvents, deleteEvents } from "./Event.Controller";
 
@@ -133,6 +138,9 @@ export default {
 	unenrollUserFromWorkoutProgram,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 
 	//Workout Controllers
 	insertWorkout,
@@ -178,6 +186,13 @@ export default {
 	createTrainer,
 	updateTrainer,
 	deleteTrainers,
+
+	//Employee Controllers
+	getEmployee,
+	getEmployees,
+	createEmployee,
+	updateEmployee,
+	deleteEmployees,
 
 	//Feedback Controllers
 	getAllFeedbacks,
