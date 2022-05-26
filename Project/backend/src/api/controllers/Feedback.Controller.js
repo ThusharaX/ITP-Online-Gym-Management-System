@@ -38,3 +38,16 @@ export const getAllFeedbacks = async (request, response, next) => {
 			next();
 		});
 };
+
+//Search feedbacks
+export const searchFeedbacks = async (request, response, next) => {
+	await FeedbackService.searchFeedbacks(request.params.search)
+		.then((data) => {
+			request.handleResponse.successRespond(response)(data);
+			next();
+		})
+		.catch((error) => {
+			request.handleResponse.errorRespond(response)(error.message);
+			next();
+		});
+};

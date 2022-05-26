@@ -11,17 +11,23 @@ import { useForm, joiResolver } from "@mantine/form";
 import { useModals } from "@mantine/modals";
 
 export function TrainerProvider({ children }) {
+	const [date, setDate] = useState("1990-05-02T00:00:00");
+	const [mailError, setMailError] = useState("");
+	const [nicError, setNicError] = useState("");
+	const [userNameError, setUserNameError] = useState("");
+
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [trainers, setTrainers] = useState([]);
 	const init = {
+		avatar: "null",
 		firstName: "first name",
 		lastName: "last name",
 		username: "user_name",
 		nic: "09612490852",
 		email: "email@gmail.com",
 		address: "address",
-		dob: new Date(),
+		dob: new Date("1990-05-02T00:00:00"),
 		gender: "Female",
 		phoneNumber: "0123456789",
 		qualifications: ["css", "javascript", "mongoose", "node"],
@@ -46,17 +52,19 @@ export function TrainerProvider({ children }) {
 			.strip()
 			.message("Password should be valid"),
 		rep_psw: Joi.ref("psw"),
+		avatar: Joi.string().required(),
 	});
 
 	const form = useForm({
 		schema: joiResolver(schema),
 		initialValues: {
+			avatar: "null",
 			firstName: "first name",
 			lastName: "last name",
 			username: "last name",
 			nic: "09612490852",
 			email: "train@gmail.com",
-			dob: new Date(),
+			dob: new Date("1990-05-02T00:00:00"),
 			gender: "Female",
 			address: "address1Malabbe",
 			phoneNumber: "0123456789",
@@ -77,17 +85,19 @@ export function TrainerProvider({ children }) {
 		address: Joi.string().min(5).max(100).message("Address should be valid"),
 		phoneNumber: Joi.string().min(10).max(10).message("Phone Number should valid"),
 		qualifications: Joi.required(),
+		avatar: Joi.string().required(),
 	});
 
 	const formProfile = useForm({
 		schema: joiResolver(schemaProfile),
 		initialValues: {
+			avatar: "null",
 			firstName: "first name",
 			lastName: "last name",
 			username: "last name",
 			nic: "09612490852",
 			email: "train@gmail.com",
-			dob: new Date(),
+			dob: new Date("1990-05-02T00:00:00"),
 			gender: "Female",
 			address: "address1Malabbe",
 			phoneNumber: "0123456789",
@@ -96,20 +106,6 @@ export function TrainerProvider({ children }) {
 	});
 
 	useEffect(() => {
-		TrainerAPI.getTrainerData("6263d11cbb23827c5af68d79").then((res) => {
-			setTrainer(res.data);
-			formProfile.setFieldValue("firstName", res.data.firstName);
-			formProfile.setFieldValue("lastName", res.data.lastName);
-			formProfile.setFieldValue("username", res.data.username);
-			formProfile.setFieldValue("nic", res.data.nic);
-			formProfile.setFieldValue("email", res.data.email);
-			formProfile.setFieldValue("dob", res.data.dob);
-			formProfile.setFieldValue("gender", res.data.gender);
-			formProfile.setFieldValue("address", res.data.address);
-			formProfile.setFieldValue("phoneNumber", res.data.phoneNumber);
-			formProfile.setFieldValue("qualifications", res.data.qualifications);
-		});
-
 		TrainerAPI.getTrainers().then((res) => {
 			setTrainers(res.data);
 		});
@@ -125,6 +121,7 @@ export function TrainerProvider({ children }) {
 	const addTrainer = (values) => {
 		setIsLoading(true);
 		const newTrainer = {
+			avatar: values.avatar,
 			firstName: values.firstName,
 			lastName: values.lastName,
 			username: values.username,
@@ -137,13 +134,28 @@ export function TrainerProvider({ children }) {
 			password: values.psw,
 			qualifications: String(values.qualifications).split(","),
 		};
-		TrainerAPI.register(newTrainer).then((response) => {
-			setIsLoading(false);
-		});
+		TrainerAPI.register(newTrainer)
+			.then((response) => {
+				// setIsLoading(false);
+			})
+			.catch((err) => {
+				// eslint-disable-next-line no-console
+				console.log(err.response.data);
+				if (err.response.data.details == "Email already exists") {
+					setMailError(err.response.data.details);
+				}
+				if (err.response.data.details == "NIC already exists") {
+					setNicError(err.response.data.details);
+				}
+				if (err.response.data.details == "Username already exists") {
+					setUserNameError(err.response.data.details);
+				}
+			});
 	};
 
 	const updateTrainer = (values) => {
 		const newTrainer = {
+			avatar: values.avatar,
 			firstName: values.firstName,
 			lastName: values.lastName,
 			username: values.username,
@@ -155,7 +167,7 @@ export function TrainerProvider({ children }) {
 			phoneNumber: values.phoneNumber,
 			qualifications: String(values.qualifications).split(","),
 		};
-		TrainerAPI.updateTrainer("6263d11cbb23827c5af68d79", newTrainer).then((res) => {
+		TrainerAPI.updateTrainer(localStorage.getItem("uID"), newTrainer).then((res) => {
 			setTrainer(newTrainer);
 		});
 		//setIsLoading(false);
@@ -224,6 +236,15 @@ export function TrainerProvider({ children }) {
 	return (
 		<TrainerContext.Provider
 			value={{
+				userNameError,
+				setUserNameError,
+				nicError,
+				setNicError,
+				mailError,
+				setMailError,
+				TrainerAPI,
+				date,
+				setDate,
 				getTrainer,
 				trainers,
 				confirmDelete,

@@ -27,7 +27,14 @@ import {
 	searchPersonalTrainerReq,
 } from "./PersonalTrainerReq.service";
 
-import { insertSalary, updateSalary, getAllSalaries, getOneSalary, searchSalaries } from "./Salary.service";
+import {
+	insertSalary,
+	updateSalary,
+	getAllSalaries,
+	getOneSalary,
+	searchSalaries,
+	getOneEmployeeSalary,
+} from "./Salary.service";
 
 import {
 	authenticateUser,
@@ -41,6 +48,9 @@ import {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 } from "./User.service";
 
@@ -65,13 +75,16 @@ import {
 
 import { insertNotice, getAllNotices, getOneNotice, updateNotice, deleteNotice } from "./Notice.service";
 
-import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions } from "./Question.service";
+import { insertQuestion, updateQuestion, deleteQuestion, getAllQuestions, searchQuestions } from "./Question.service";
 
 import { updateEvents, deleteEvents, createEvents, getEvent, getEvents } from "./Event.service";
 
 import { getTrainer, updateTrainers, deleteTrainers, getTrainers, createTrainers } from "./Trainer.service";
 
-import { insertFeedback, getAllFeedbacks, updateFeedback } from "./Feedback.service";
+import { getEmployee, updateEmployees, deleteEmployees, getEmployees, createEmployees } from "./Employee.service";
+
+import { insertFeedback, getAllFeedbacks, updateFeedback, searchFeedbacks } from "./Feedback.service";
+
 export default {
 	// Sample services
 	insertSample,
@@ -102,6 +115,7 @@ export default {
 	updateQuestion,
 	deleteQuestion,
 	getAllQuestions,
+	searchQuestions,
 
 	//Blog services
 	insertTrainerBD,
@@ -116,6 +130,7 @@ export default {
 	getAllSalaries,
 	getOneSalary,
 	searchSalaries,
+	getOneEmployeeSalary,
 
 	// User services
 	authenticateUser,
@@ -129,6 +144,9 @@ export default {
 	getEmployeesEmailList,
 	deleteUser,
 	getUserDetails,
+	getAllEmployees,
+	updateUser,
+	searchUsersMember,
 	getAllEnrolledWorkoutProgramsForAllUsers,
 
 	// Workout services
@@ -167,6 +185,7 @@ export default {
 	insertFeedback,
 	getAllFeedbacks,
 	updateFeedback,
+	searchFeedbacks,
 
 	// Trainer services
 	getTrainer,
@@ -174,4 +193,11 @@ export default {
 	deleteTrainers,
 	getTrainers,
 	createTrainers,
+
+	//Employee services
+	getEmployee,
+	updateEmployees,
+	deleteEmployees,
+	getEmployees,
+	createEmployees,
 };

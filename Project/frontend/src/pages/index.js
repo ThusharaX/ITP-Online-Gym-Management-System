@@ -6,6 +6,7 @@ import { Events, Eventlist, EventReport } from "./events";
 import Dashboard from "./dashboard";
 import Notice from "./notice";
 import Feedback from "./feedback";
+import Question from "./question";
 
 //import PersonalTrainerRequest from "./personalTrainerRequest";
 import BlogCreateRequest from "./blogCreateRequest";
@@ -25,13 +26,20 @@ import CommonLogin from "./commonLogin";
 
 import WorkoutScR from "./workoutScR";
 import WorkoutScRList from "./workoutScRList";
+import ViewMyWorkoutScR from "./myWorkoutScr/ViewMyWorkoutScr";
+import EditWorkoutScR from "./workoutScRList/EditWorkoutScRList";
 
 import SampleReport from "./sample-report";
 import WorkoutReport from "./workout-report";
+import QuestionReport from "./question-report";
 import WorkoutProgramReport from "./workoutProgram-report";
 
 import { MemberLogin, MemberDashboard, MemberProfile } from "./member";
+import { EmployeeLogin, EmployeeDashboard, EmployeeProfile } from "./employee";
 import SignUp from "./signUp";
+import { Employee_List } from "./employeeList";
+import SalaryReport from "./salary-report";
+import EmployeeReport from "./employee-report";
 
 export {
 	Sample,
@@ -65,13 +73,22 @@ export {
 	WorkoutScRList,
 	TrainerProfile,
 	BD,
+	Question,
 	RList,
 	SampleReport,
 	MemberLogin,
 	MemberDashboard,
 	MemberProfile,
+	EmployeeLogin,
+	EmployeeDashboard,
+	EmployeeProfile,
 	WorkoutReport,
 	SignUp,
 	PReport,
+	Employee_List,
 	WorkoutProgramReport,
+	EditWorkoutScR,
+	SalaryReport,
+	EmployeeReport,
+	QuestionReport,
 };

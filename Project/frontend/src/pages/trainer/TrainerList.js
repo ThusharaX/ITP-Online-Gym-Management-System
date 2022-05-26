@@ -29,7 +29,10 @@ const TrainerList = () => {
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
 			})}
 			style={{
 				margin: "0 auto",
@@ -85,7 +88,7 @@ const TrainerList = () => {
 								</Group>
 								<div>
 									<Text size="lg" weight={500} className={classes.name}>
-										{item.firstName} {item.lName}
+										{item.firstName} {item.lastName}
 									</Text>
 
 									<Group noWrap spacing={10} mt={5}>

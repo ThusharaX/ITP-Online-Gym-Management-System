@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import {
 	Text,
 	Anchor,
@@ -10,16 +12,24 @@ import {
 	Box,
 	PasswordInput,
 	RadioGroup,
+	Paper,
 	Radio,
 	Title,
 	Divider,
+	Image,
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import TrainerContext from "../../contexts/TrainerContext";
-import { PasswordStrength } from "./pswBtn";
-import { DropzoneButton } from "./Dropzone";
 
 const AddTrainer = () => {
+	const user = localStorage.getItem("permissionLevel");
+	// useEffect(() => {
+	// 	if (!((user == "ADMIN") | (user == "TRAINER"))) {
+	// 		navigate("/");
+	// 		return alert("You need to be a Admin");
+	// 	}
+	// }, []);
+
 	const navigate = useNavigate();
 	const theme = useMantineTheme();
 	const gradient =
@@ -27,15 +37,58 @@ const AddTrainer = () => {
 			? "linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.6)), "
 			: "linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.8)), ";
 	const TitleColor = theme.colorScheme === "dark" ? "#ddd" : "#222";
-	const { addTrainer, form, isLoading } = useContext(TrainerContext);
+	const {
+		addTrainer,
+		form,
+		isLoading,
+		mailError,
+		nicError,
+		setNicError,
+		setMailError,
+		userNameError,
+		setUserNameError,
+	} = useContext(TrainerContext);
 	const [value, onChange] = useState(new Date());
+
+	const [imgUrl, setImgUrl] = useState(null);
+	const [progresspercent, setProgresspercent] = useState(0);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const file = e.target[0]?.files[0];
+
+		if (!file) return;
+
+		const storageRef = ref(storage, `trainers/${file.name}`);
+		const uploadTask = uploadBytesResumable(storageRef, file);
+
+		uploadTask.on(
+			"state_changed",
+			(snapshot) => {
+				const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+				setProgresspercent(progress);
+			},
+			(error) => {
+				alert(error);
+			},
+			() => {
+				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setImgUrl(downloadURL);
+					form.setFieldValue("avatar", downloadURL);
+				});
+			}
+		);
+	};
 
 	return (
 		<Box
 			sx={(theme) => ({
 				backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[0],
-				backgroundImage: gradient + "url(https://images.alphacoders.com/692/692039.jpg)",
-				marginTop: "-120px",
+				backgroundImage: gradient + "url(https://wallpapercave.com/wp/wp6714633.jpg)",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center",
+				backgroundSize: "cover",
+				marginTop: "-60px",
 				marginBottom: "-120px",
 				width: "100%",
 				padding: "130px 0px",
@@ -43,7 +96,7 @@ const AddTrainer = () => {
 		>
 			<Box
 				sx={(theme) => ({
-					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
+					backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[0],
 					border: "1px solid",
 					borderColor: theme.colorScheme === "dark" ? theme.colors.gray[8] : theme.colors.gray[4],
 					boxShadow: theme.colorScheme === "dark" ? "3px 3px 25px  #444" : "5px 5px 25px #aaa",
@@ -54,7 +107,7 @@ const AddTrainer = () => {
 					cursor: "pointer",
 					borderRadius: "50px",
 					margin: "10px auto",
-					opacity: "0.9",
+					opacity: "0.95",
 
 					"&:hover": {
 						backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[1],
@@ -81,7 +134,12 @@ const AddTrainer = () => {
 				<form
 					onSubmit={form.onSubmit((values) => {
 						addTrainer(values);
-						isLoading(true);
+						setNicError("");
+						setMailError("");
+						setUserNameError("");
+						navigate("/trainers/login");
+						return alert("Trainer added successfully");
+						// isLoading(true);
 					})}
 				>
 					<Group position="center" style={{ marginTop: "20px" }}>
@@ -108,6 +166,7 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							required
 							label="USER NAME"
+							error={userNameError}
 							placeholder="Enter Trainer's User Name"
 							{...form.getInputProps("username")}
 						/>
@@ -116,6 +175,7 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							required
 							label="NIC"
+							error={nicError}
 							placeholder="Enter Trainer's  NIC"
 							{...form.getInputProps("nic")}
 						/>
@@ -177,13 +237,12 @@ const AddTrainer = () => {
 						width={500}
 						required
 						label="Email"
+						error={mailError}
 						placeholder="Enter Trainer's Email"
 						style={{ marginTop: "30px", marginBottom: "30px" }}
 						{...form.getInputProps("email")}
 					/>
-					<DropzoneButton />
 					<Group position="center" style={{ marginTop: "20px" }}>
-						{/* <PasswordStrength fm={form} /> */}
 						<PasswordInput
 							size="sm"
 							required
@@ -191,8 +250,6 @@ const AddTrainer = () => {
 							style={{ width: "48%" }}
 							placeholder="Your password"
 							description="Strong password should include letters in lower and uppercase, at least 1 number, at least 1 special symbol"
-							// value={value}
-							// onChange={(event) => setValue(event.currentTarget.value)}
 							{...form.getInputProps("psw")}
 						/>
 						<PasswordInput
@@ -205,6 +262,29 @@ const AddTrainer = () => {
 							{...form.getInputProps("rep_psw")}
 						/>
 					</Group>
+					<Paper shadow="xs" p="md" style={{ marginTop: "10px" }}>
+						<input form="saveImg" type="file" required />
+						<Button color={"gray"} form="saveImg" type="submit" compact>
+							Upload
+						</Button>
+
+						{!imgUrl && (
+							<div className="outerbar">
+								<div className="innerbar" style={{ width: `${progresspercent}%` }}>
+									{progresspercent}%
+								</div>
+							</div>
+						)}
+						{imgUrl && (
+							<Image
+								radius="md"
+								style={{ marginRight: "30px", margin: "10px 0px 0px 2px", backgroundPosition: "10px" }}
+								src={imgUrl}
+								alt="uploaded file"
+								height={160}
+							/>
+						)}
+					</Paper>
 					<Divider my="sm" size={"md"} style={{ marginTop: "20px" }} />
 					<Group style={{ marginTop: "20px" }} position="center" mt="md">
 						<Button color={"cyan"} type="submit" radius="4px" size="xl" compact>
@@ -212,6 +292,7 @@ const AddTrainer = () => {
 						</Button>
 					</Group>
 				</form>
+				<form id="saveImg" onSubmit={handleSubmit} className="form"></form>
 			</Box>
 		</Box>
 	);

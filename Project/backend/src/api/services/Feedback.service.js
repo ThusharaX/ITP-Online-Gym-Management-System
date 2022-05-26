@@ -39,3 +39,20 @@ export const getAllFeedbacks = async () => {
 			throw new Error(error.message);
 		});
 };
+
+//Search feedbacks from name and title and Content
+export const searchFeedbacks = async (searchTerm) => {
+	return await FeedbackModel.find({
+		$or: [
+			{ name: { $regex: searchTerm, $options: "i" } },
+			{ title: { $regex: searchTerm, $options: "i" } },
+			{ content: { $regex: searchTerm, $options: "i" } },
+		],
+	})
+		.then((feedbacks) => {
+			return feedbacks;
+		})
+		.catch((error) => {
+			throw new Error(error.message);
+		});
+};

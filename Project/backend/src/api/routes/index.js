@@ -25,7 +25,7 @@ export default function (app) {
 	app.put("/question/:id", controller.updateQuestion); //update one question
 	app.delete("/question/:id", controller.deleteQuestion); //delete one question
 	app.get("/question/", controller.getAllQuestions); //get all questions
-
+	app.get("/question/search/:search", controller.searchQuestions); // search questions
 	//TrainerDB endpoints
 	app.post("/blog/", controller.insertTrainerBD); // insert one sample
 	app.get("/blog/", controller.getAllTrainerBD); // get all samples
@@ -51,10 +51,19 @@ export default function (app) {
 
 	// User endpoints
 	app.get("/user/:id", controller.getUserDetails);
+
 	app.post("/user/login/", controller.login);
 	app.post("/user/register/", controller.createUser);
 	app.get("/user/dashboard/", middleware.authenticate, controller.getAdminDashboard);
 	app.delete("/user/:id", middleware.authenticate, controller.deleteUser);
+
+	// app.get("/member/", controller.getAllMembers);
+	// app.get("/member/search/:search", controller.searchUsersMember);
+	// app.put("/update/:id", controller.updateUser);
+	// app.get("/employee/", controller.getAllEmployees);
+	// app.get("/employee/search/:search", controller.searchUsers);
+
+	app.put("/user/:id", controller.updateUser);
 
 	// Trainer endpoints
 	app.post("/trainer/register/", controller.createTrainer);
@@ -62,6 +71,12 @@ export default function (app) {
 	app.get("/trainer/", controller.getTrainers);
 	app.put("/trainer/:id", controller.updateTrainer);
 	// app.get("/trainer/dashboard/", middleware.authenticate, controller.getAdminDashboard);
+
+	// Employee endpoints
+	app.post("/employee/register/", controller.createEmployee);
+	app.get("/employee/:id", controller.getEmployee);
+	app.get("/employee/", controller.getEmployees);
+	app.put("/employee/:id", controller.updateEmployee);
 
 	// Enroll User to Workout Program
 	app.post("/user/enroll/", controller.enrollUserToWorkoutProgram);
@@ -104,7 +119,11 @@ export default function (app) {
 	app.post("/feedback/", controller.insertFeedback); // insert one feedback
 	app.get("/feedback/", controller.getAllFeedbacks); // get all feedbacks
 	app.put("/feedback/:id", controller.updateFeedback); // update one feedback
+	app.get("/feedback/search/:search", controller.searchFeedbacks); // search feedbacks
 
 	// increse view count
 	app.put("/workout/view/:id", controller.increaseViewCount);
+
+	//add answer to question
+	app.post("/question/answer/", controller.addAnswer); //insert one answer
 }

@@ -31,7 +31,7 @@ const Events = () => {
 const EventReport = () => {
 	return (
 		<div>
-			<h1 style={{ textAlign: "center" }}>Workout Report</h1>
+			<h1 style={{ textAlign: "center" }}>Event Report</h1>
 			<EventProvider>
 				<Report />
 			</EventProvider>

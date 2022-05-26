@@ -27,11 +27,15 @@ const QuestionList = () => {
 									<Badge color="pink" variant="light">
 										New Questios
 									</Badge>
+									<Text>{item.created_at.$date}</Text>
 								</Group>
 
 								<Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
 									{item.content}
 								</Text>
+								{/* <Button onClick={() => confirmDelete(item._id)} color="red" compact>
+									Delete
+								</Button> */}
 							</Card>
 						</Grid.Col>
 					))}

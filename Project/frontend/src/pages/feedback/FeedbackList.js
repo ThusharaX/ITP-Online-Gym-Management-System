@@ -15,7 +15,7 @@ const FeedbackList = () => {
 			<Container my="md" background>
 				<Grid>
 					{feedbacks.map((item) => (
-						<Grid.Col xs={12} key={item._id}>
+						<Grid.Col xs={6} key={item._id}>
 							{/* <strong>ID:</strong> {item._id} */}
 							{/* <br />|<strong>Email :</strong> {item.email} */}
 							{/* <br />|<strong></strong> {item.displayname}

@@ -16,6 +16,18 @@ class WorkoutScRAPI {
 	static deleteWorkoutScR(id) {
 		return axios.delete(`${BASE_URL}/workoutScr/${id}`, requestConfig);
 	}
+
+	/*	static getOneWorkoutData(ID) {
+		return axios.get(`${BASE_URL}/workoutScr/${ID}`, requestConfig);
+	} */
+
+	static getOneWorkoutData() {
+		return axios.get(`${BASE_URL}/workoutScr/${localStorage.getItem("uID")}`, requestConfig);
+	}
+
+	static editWorkoutScR(id, newWorkoutScR) {
+		return axios.put(`${BASE_URL}/workoutScr/${id}`, newWorkoutScR, requestConfigJson);
+	}
 }
 
 export default WorkoutScRAPI;

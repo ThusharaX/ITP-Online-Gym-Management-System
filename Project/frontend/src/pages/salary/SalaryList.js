@@ -50,15 +50,17 @@ function SalaryTableScrollArea() {
 			<td>{row.otTotal}</td>
 			<td>{row.totalSalary}</td>
 			<td>
-				<ActionIcon color={"blue"}>
-					<Pencil
-						size={16}
-						onClick={() => {
-							setSalary(row);
-							setEditOpened(true);
-						}}
-					/>
-				</ActionIcon>
+				{localStorage.getItem("permissionLevel") === "ADMIN" && (
+					<ActionIcon color={"blue"}>
+						<Pencil
+							size={16}
+							onClick={() => {
+								setSalary(row);
+								setEditOpened(true);
+							}}
+						/>
+					</ActionIcon>
+				)}
 			</td>
 		</tr>
 	));
