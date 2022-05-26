@@ -38,8 +38,6 @@ const Report = () => {
 	numbers.sort(function (a, b) {
 		return b[0] - a[0];
 	});
-	// eslint-disable-next-line no-console
-	console.log(numbers);
 	const EventReport = () => (
 		<Document>
 			<Page size="A4" orientation="landscape" style={styles.page}>
@@ -81,7 +79,7 @@ const Report = () => {
 			</PDFDownloadLink>
 
 			<h1>Report Preview</h1>
-			<PDFViewer showToolbar={false} style={{ height: "50vh", width: "100%" }}>
+			<PDFViewer showToolbar={false} style={{ height: "70vh", width: "100%" }}>
 				<EventReport />
 			</PDFViewer>
 		</div>

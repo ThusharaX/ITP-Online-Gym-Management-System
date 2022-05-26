@@ -1,5 +1,4 @@
 let events = require("../models/Event.model");
-////9 CRUDS
 
 export const getEvent = async (id) => {
 	return await events
@@ -80,7 +79,7 @@ const updateEvents = async (id, body) => {
 
 const deleteEvents = async (id) => {
 	return await events
-		.remove({ _id: id })
+		.deleteOne({ _id: id })
 		.then((removedEvent) => {
 			if (removedEvent) {
 				return removedEvent;
